@@ -6334,21 +6334,22 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 66 "UART.h"
+# 88 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
+# 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
@@ -6362,16 +6363,17 @@ void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 29 "FLASH.h"
+# 57 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
+# 67
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6380,10 +6382,10 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 26 "MISC.h"
+# 55 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
@@ -6398,13 +6400,13 @@ unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 
-# 20 "Timer.h"
+# 34 "Timer.h"
 void Timer2Init(unsigned char time);
 
-# 48 "user.c"
+# 50 "user.c"
 unsigned char Alarm =0;
 
-
+# 61
 void InitApp(void)
 {
 LATC =0;
@@ -6432,6 +6434,7 @@ WPUC = 0b00100000;
 WPUA = 0;
 }
 
+# 94
 void Init_System (void)
 {
 unsigned long temp =0;

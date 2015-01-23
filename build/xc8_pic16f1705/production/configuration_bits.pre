@@ -6174,7 +6174,7 @@ extern unsigned int flash_read(unsigned short addr);
 extern __nonreentrant void _delay(unsigned long);
 
 
-# 12 "configuration_bits.c"
+# 28 "configuration_bits.c"
 #pragma config FOSC = INTOSC
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF

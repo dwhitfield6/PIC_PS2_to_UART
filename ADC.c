@@ -1,7 +1,22 @@
 /******************************************************************************/
+/* Change log                                                                 *
+ *
+ *
+ *
+ * Date         Revision    Comments
+ * MM/DD/YY
+ * --------     ---------   ----------------------------------------------------
+ * 01/21/15     1.2         Created log.
+/******************************************************************************/
+
+/******************************************************************************/
+/* Contains functions that control the internal ADC.
+ *
+/******************************************************************************/
+
+/******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
-#define USE_OR_MASKS
 #if defined(__XC)
     #include <xc.h>        /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -22,8 +37,27 @@
 #include "UART.h"          /* User funct/params, such as InitApp */
 #include "MISC.h"          /* User funct/params, such as InitApp */
 
+/******************************************************************************/
+/* Defines                                                                    */
+/******************************************************************************/
+#define USE_OR_MASKS
+
+/******************************************************************************/
+/* User Global Variable Declaration                                           */
+/******************************************************************************/
+
 double BatteryVoltage =0;
 
+/******************************************************************************/
+/* Functions                                                                  */
+/******************************************************************************/
+
+/******************************************************************************/
+/* ReadVoltage
+ *
+ * The function returns the voltage that powers the unit. There is a voltage
+ * divider that is turned on (DivON) and the divided voltage is read.
+/******************************************************************************/
 double ReadVoltage(void)
 {
     unsigned int temp;
@@ -38,6 +72,11 @@ double ReadVoltage(void)
     return voltage;
 }
 
+/******************************************************************************/
+/* InternalADC_Read
+ *
+ * The function returns the digital adc counts of the channel.
+/******************************************************************************/
 unsigned int InternalADC_Read(unsigned char channel)
 {
     ADCON0 =0;
@@ -55,6 +94,12 @@ unsigned int InternalADC_Read(unsigned char channel)
     while(ADCON0 & ADC_GO);
     return ((ADRESH << 8) + ADRESL);
 }
+
+/******************************************************************************/
+/* DisableInternalADC(
+ *
+ * The function turns off the internal ADC module.
+/******************************************************************************/
 void DisableInternalADC(void)
 {
     ADCON0 &= ~ADON;

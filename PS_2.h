@@ -1,3 +1,17 @@
+/******************************************************************************/
+/* Change log                                                                 *
+ *
+ *
+ *
+ * Date         Revision    Comments
+ * MM/DD/YY
+ * --------     ---------   ----------------------------------------------------
+ * 01/21/15     1.2         Created log.
+/******************************************************************************/
+
+/******************************************************************************/
+/* Files to Include                                                           */
+/******************************************************************************/
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -15,26 +29,35 @@
 
 #include "system.h"
 
-//Modifies the timeout. too small and we get repeat letters
-//too big and we miss letters
+/******************************************************************************/
+/* PS/2 scan code Timer
+ *
+ * This parameter modifies the timeout. If the value is too small and then we
+ *   get repeat letters. If it is too big then we miss scan codes.
+/******************************************************************************/
+
 #define Read_Timer_Timeout 20
+
+/******************************************************************************/
+/* Defines                                                                    */
+/******************************************************************************/
 
 #define PS_2_CLK_TRIS	TRISAbits.TRISA5
 #define PS_2_DATA_TRIS	TRISAbits.TRISA4
-#define PS_2_CLK 0b00100000 //RA5
-#define PS_2_DATA 0b00010000 //RA4
-//LATA &= ~PS_2_CLK;
-
+#define PS_2_CLK 0b00100000 // RA5
+#define PS_2_DATA 0b00010000 // RA4
 #define CLK 0b00100000
 #define DATA 0b00010000
-
 #define PS_2_NUMBITS   11
 #define PS_2_NUMBITS_2 22
 #define PS_2_NUMBITS_3 33
 #define PS_2_NUMBITS_4 44
-
 #define PS_2_send_timeout 15000
 #define Connected_Wait    8000
+
+/******************************************************************************/
+/* Global Variables                                                           */
+/******************************************************************************/
 
 unsigned int PS_2_Read_Data_FirstTEMP;
 unsigned int PS_2_Read_Data_SecondTEMP;
@@ -46,6 +69,10 @@ unsigned int PS_2_Read_Data_Third =0;
 unsigned int PS_2_Read_Data_Forth =0;
 unsigned char PS_2_bits =0;
 unsigned int Read_Timer = Read_Timer_Timeout;
+
+/******************************************************************************/
+/* Function prototypes                                                        */
+/******************************************************************************/
 
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);

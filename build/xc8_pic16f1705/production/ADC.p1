@@ -1,9 +1,9 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "1899 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [v _LATC `Vuc ~T0 @X0 0 e@270 ]
-"38 ADC.h
+"65 ADC.h
 [v _InternalADC_Read `(ui ~T0 @X0 0 ef1`uc ]
-"37
+"64
 [v _DisableInternalADC `(v ~T0 @X0 0 ef ]
 "1683 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [v _ADCON0 `Vuc ~T0 @X0 0 e@157 ]
@@ -22,7 +22,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S63 . . . ]
 "1105
 [v _PIE1bits `VS63 ~T0 @X0 0 e@145 ]
-"26 MISC.h
+"55 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 "1664 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
@@ -4697,175 +4697,175 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;user.h: 47: void InitApp(void);
-[; ;user.h: 48: void Init_System (void);
-[; ;ADC.h: 36: double ReadVoltage(void);
-[; ;ADC.h: 37: void DisableInternalADC(void);
-[; ;ADC.h: 38: unsigned int InternalADC_Read(unsigned char channel);
-[; ;user.h: 47: void InitApp(void);
-[; ;user.h: 48: void Init_System (void);
-[; ;system.h: 21: void ConfigureOscillator(void);
-[; ;user.h: 47: void InitApp(void);
-[; ;user.h: 48: void Init_System (void);
-"66 UART.h
+[; ;user.h: 85: void InitApp(void);
+[; ;user.h: 86: void Init_System (void);
+[; ;ADC.h: 63: double ReadVoltage(void);
+[; ;ADC.h: 64: void DisableInternalADC(void);
+[; ;ADC.h: 65: unsigned int InternalADC_Read(unsigned char channel);
+[; ;user.h: 85: void InitApp(void);
+[; ;user.h: 86: void Init_System (void);
+[; ;system.h: 52: void ConfigureOscillator(void);
+[; ;user.h: 85: void InitApp(void);
+[; ;user.h: 86: void Init_System (void);
+"88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
 -> -> -> 9600 `i `l `ul
 ]
-[; ;UART.h: 66: unsigned long BAUD = 9600;
-"67
+[; ;UART.h: 88: unsigned long BAUD = 9600;
+"89
 [v _PARITY `uc ~T0 @X0 1 e ]
 [i _PARITY
 -> -> 0 `i `uc
 ]
-[; ;UART.h: 67: unsigned char PARITY = 0;
-[; ;UART.h: 69: void InitUART(unsigned long Baud, unsigned char parity);
-[; ;UART.h: 70: void UARTstring(const unsigned char *data);
-[; ;UART.h: 71: void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
-[; ;UART.h: 72: void OpenUSART( unsigned char config, unsigned int spbrg);
-[; ;UART.h: 73: char ReadUSART(void);
-[; ;UART.h: 74: void baudUSART (unsigned char baudconfig);
-[; ;UART.h: 75: void OpenUSART( unsigned char config, unsigned int spbrg);
-[; ;UART.h: 76: void UART_send_break_timed(unsigned int US);
-[; ;UART.h: 77: void UART_send_break(void);
-[; ;UART.h: 78: void UARTstringWAIT(const unsigned char *data);
-[; ;UART.h: 79: void SetBaud(unsigned long Baud, unsigned char Parity);
-[; ;UART.h: 80: void CloseUSART(void );
-[; ;system.h: 21: void ConfigureOscillator(void);
-[; ;MISC.h: 26: void delayUS(long US);
-[; ;MISC.h: 27: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 28: void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-[; ;MISC.h: 29: unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 30: unsigned char StringContains(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 31: unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 32: int GetEnteredNumber(unsigned char* This);
-[; ;MISC.h: 33: void RemoveSpaces(unsigned char* This);
-[; ;MISC.h: 34: void lowercase(unsigned char* Input);
-[; ;MISC.h: 35: unsigned char StringAddEqual(unsigned char* Input);
-[; ;MISC.h: 36: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 37: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 38: unsigned char ISNUMBER(unsigned char ascii);
-"25 ADC.c
+[; ;UART.h: 89: unsigned char PARITY = 0;
+[; ;UART.h: 95: void InitUART(unsigned long Baud, unsigned char parity);
+[; ;UART.h: 96: void UARTstring(const unsigned char *data);
+[; ;UART.h: 97: void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
+[; ;UART.h: 98: void OpenUSART( unsigned char config, unsigned int spbrg);
+[; ;UART.h: 99: char ReadUSART(void);
+[; ;UART.h: 100: void baudUSART (unsigned char baudconfig);
+[; ;UART.h: 101: void OpenUSART( unsigned char config, unsigned int spbrg);
+[; ;UART.h: 102: void UART_send_break_timed(unsigned int US);
+[; ;UART.h: 103: void UART_send_break(void);
+[; ;UART.h: 104: void UARTstringWAIT(const unsigned char *data);
+[; ;UART.h: 105: void SetBaud(unsigned long Baud, unsigned char Parity);
+[; ;UART.h: 106: void CloseUSART(void );
+[; ;system.h: 52: void ConfigureOscillator(void);
+[; ;MISC.h: 55: void delayUS(long US);
+[; ;MISC.h: 56: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 57: void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
+[; ;MISC.h: 58: unsigned char StringMatch(unsigned char* This, const unsigned char* That);
+[; ;MISC.h: 59: unsigned char StringContains(unsigned char* This, const unsigned char* That);
+[; ;MISC.h: 60: unsigned char StartsWith(unsigned char* This, const unsigned char* That);
+[; ;MISC.h: 61: int GetEnteredNumber(unsigned char* This);
+[; ;MISC.h: 62: void RemoveSpaces(unsigned char* This);
+[; ;MISC.h: 63: void lowercase(unsigned char* Input);
+[; ;MISC.h: 64: unsigned char StringAddEqual(unsigned char* Input);
+[; ;MISC.h: 65: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 66: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 67: unsigned char ISNUMBER(unsigned char ascii);
+"49 ADC.c
 [v _BatteryVoltage `d ~T0 @X0 1 e ]
 [i _BatteryVoltage
 -> -> 0 `i `d
 ]
-[; ;ADC.c: 25: double BatteryVoltage =0;
-"27
+[; ;ADC.c: 49: double BatteryVoltage =0;
+"61
 [v _ReadVoltage `(d ~T0 @X0 1 ef ]
-"28
+"62
 {
-[; ;ADC.c: 27: double ReadVoltage(void)
-[; ;ADC.c: 28: {
+[; ;ADC.c: 61: double ReadVoltage(void)
+[; ;ADC.c: 62: {
 [e :U _ReadVoltage ]
 [f ]
-"29
+"63
 [v _temp `ui ~T0 @X0 1 a ]
-"30
+"64
 [v _voltage `d ~T0 @X0 1 a ]
-[; ;ADC.c: 29: unsigned int temp;
-[; ;ADC.c: 30: double voltage;
-[; ;ADC.c: 31: LATC &= ~0b00000001;
-"31
+[; ;ADC.c: 63: unsigned int temp;
+[; ;ADC.c: 64: double voltage;
+[; ;ADC.c: 65: LATC &= ~0b00000001;
+"65
 [e =& _LATC -> ~ -> 1 `i `uc ]
-[; ;ADC.c: 32: temp = InternalADC_Read(2);
-"32
+[; ;ADC.c: 66: temp = InternalADC_Read(2);
+"66
 [e = _temp ( _InternalADC_Read (1 -> -> 2 `i `uc ]
-[; ;ADC.c: 33: DisableInternalADC();
-"33
+[; ;ADC.c: 67: DisableInternalADC();
+"67
 [e ( _DisableInternalADC ..  ]
-[; ;ADC.c: 34: LATC |= 0b00000001;
-"34
+[; ;ADC.c: 68: LATC |= 0b00000001;
+"68
 [e =| _LATC -> -> 1 `i `uc ]
-[; ;ADC.c: 37: voltage = ((double)temp / 1000) * 5.7;
-"37
+[; ;ADC.c: 71: voltage = ((double)temp / 1000) * 5.7;
+"71
 [e = _voltage * / -> _temp `d -> -> 1000 `i `d .5.7 ]
-[; ;ADC.c: 38: return voltage;
-"38
+[; ;ADC.c: 72: return voltage;
+"72
 [e ) _voltage ]
 [e $UE 587  ]
-[; ;ADC.c: 39: }
-"39
+[; ;ADC.c: 73: }
+"73
 [e :UE 587 ]
 }
-"41
+"80
 [v _InternalADC_Read `(ui ~T0 @X0 1 ef1`uc ]
-"42
+"81
 {
-[; ;ADC.c: 41: unsigned int InternalADC_Read(unsigned char channel)
-[; ;ADC.c: 42: {
+[; ;ADC.c: 80: unsigned int InternalADC_Read(unsigned char channel)
+[; ;ADC.c: 81: {
 [e :U _InternalADC_Read ]
-"41
+"80
 [v _channel `uc ~T0 @X0 1 r1 ]
-"42
+"81
 [f ]
-[; ;ADC.c: 43: ADCON0 =0;
-"43
+[; ;ADC.c: 82: ADCON0 =0;
+"82
 [e = _ADCON0 -> -> 0 `i `uc ]
-[; ;ADC.c: 44: ADCON1 =0;
-"44
+[; ;ADC.c: 83: ADCON1 =0;
+"83
 [e = _ADCON1 -> -> 0 `i `uc ]
-[; ;ADC.c: 45: ADCON1 |= 0b01010000;
-"45
+[; ;ADC.c: 84: ADCON1 |= 0b01010000;
+"84
 [e =| _ADCON1 -> -> 80 `i `uc ]
-[; ;ADC.c: 46: FVRCON |= 0b10000000;
-"46
+[; ;ADC.c: 85: FVRCON |= 0b10000000;
+"85
 [e =| _FVRCON -> -> 128 `i `uc ]
-[; ;ADC.c: 47: FVRCON |= 0x01;
-"47
+[; ;ADC.c: 86: FVRCON |= 0x01;
+"86
 [e =| _FVRCON -> -> 1 `i `uc ]
-[; ;ADC.c: 48: while(!(FVRCON & 0b01000000));
-"48
+[; ;ADC.c: 87: while(!(FVRCON & 0b01000000));
+"87
 [e $U 589  ]
 [e :U 590 ]
 [e :U 589 ]
 [e $ ! != & -> _FVRCON `i -> 64 `i -> 0 `i 590  ]
 [e :U 591 ]
-[; ;ADC.c: 49: ADCON0 |= (channel << 2);
-"49
+[; ;ADC.c: 88: ADCON0 |= (channel << 2);
+"88
 [e =| _ADCON0 -> << -> _channel `i -> 2 `i `uc ]
-[; ;ADC.c: 50: ADCON1 |= 0b10000011;
-"50
+[; ;ADC.c: 89: ADCON1 |= 0b10000011;
+"89
 [e =| _ADCON1 -> -> 131 `i `uc ]
-[; ;ADC.c: 51: ADCON0 |= 0b00000001;
-"51
+[; ;ADC.c: 90: ADCON0 |= 0b00000001;
+"90
 [e =| _ADCON0 -> -> 1 `i `uc ]
-[; ;ADC.c: 52: (PIE1bits.ADIE=0);
-"52
+[; ;ADC.c: 91: (PIE1bits.ADIE=0);
+"91
 [e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
-[; ;ADC.c: 53: delayUS(5);
-"53
+[; ;ADC.c: 92: delayUS(5);
+"92
 [e ( _delayUS (1 -> -> 5 `i `l ]
-[; ;ADC.c: 54: ADCON0 |= 0b00000010;
-"54
+[; ;ADC.c: 93: ADCON0 |= 0b00000010;
+"93
 [e =| _ADCON0 -> -> 2 `i `uc ]
-[; ;ADC.c: 55: while(ADCON0 & 0b00000010);
-"55
+[; ;ADC.c: 94: while(ADCON0 & 0b00000010);
+"94
 [e $U 592  ]
 [e :U 593 ]
 [e :U 592 ]
 [e $ != & -> _ADCON0 `i -> 2 `i -> 0 `i 593  ]
 [e :U 594 ]
-[; ;ADC.c: 56: return ((ADRESH << 8) + ADRESL);
-"56
+[; ;ADC.c: 95: return ((ADRESH << 8) + ADRESL);
+"95
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
 [e $UE 588  ]
-[; ;ADC.c: 57: }
-"57
+[; ;ADC.c: 96: }
+"96
 [e :UE 588 ]
 }
-"58
+"103
 [v _DisableInternalADC `(v ~T0 @X0 1 ef ]
-"59
+"104
 {
-[; ;ADC.c: 58: void DisableInternalADC(void)
-[; ;ADC.c: 59: {
+[; ;ADC.c: 103: void DisableInternalADC(void)
+[; ;ADC.c: 104: {
 [e :U _DisableInternalADC ]
 [f ]
-[; ;ADC.c: 60: ADCON0 &= ~0b00000001;
-"60
+[; ;ADC.c: 105: ADCON0 &= ~0b00000001;
+"105
 [e =& _ADCON0 -> ~ -> 1 `i `uc ]
-[; ;ADC.c: 61: }
-"61
+[; ;ADC.c: 106: }
+"106
 [e :UE 595 ]
 }

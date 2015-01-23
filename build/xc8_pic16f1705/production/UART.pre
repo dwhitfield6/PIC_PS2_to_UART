@@ -6334,24 +6334,25 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 66 "UART.h"
+# 88 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
+# 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
@@ -6365,10 +6366,10 @@ void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 26 "MISC.h"
+# 55 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
@@ -6383,16 +6384,17 @@ unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 29 "FLASH.h"
+# 57 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
+# 67
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6401,9 +6403,10 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 43 "UART.c"
+# 47 "UART.c"
 extern unsigned char BAUDMODE;
 
+# 58
 void CloseUSART(void )
 {
 RCSTA&=0b01001111;
@@ -6411,6 +6414,7 @@ TX1STAbits.TXEN=0;
 PIE1&=0b11001111;
 }
 
+# 71
 void InitUART(unsigned long Baud, unsigned char parity)
 {
 unsigned long temp;
@@ -6418,7 +6422,7 @@ unsigned char config;
 unsigned int spbrg;
 unsigned char baudconfig;
 
-# 67
+# 86
 LATC |= 0b00000100;
 PPSLOCK =0;
 RC2PPS = 0b00000000;
@@ -6445,6 +6449,7 @@ config &= ~0b00000010;
 }
 baudconfig |= 0b00001000;
 
+
 temp = (32000000L / Baud) - 1;
 temp = (temp >> 2) - 1;
 spbrg = (unsigned int)temp;
@@ -6468,12 +6473,14 @@ PIR1bits.RCIF = 0;
 INTCONbits.PEIE = 1;
 }
 
+# 141
 void baudUSART (unsigned char baudconfig)
 {
 BAUD1CON =0;
 BAUD1CON = baudconfig;
 }
 
+# 152
 void OpenUSART( unsigned char config, unsigned int spbrg)
 {
 TX1STA = 0;
@@ -6541,6 +6548,7 @@ TX1STAbits.TXEN = 1;
 RC1STAbits.SPEN = 1;
 }
 
+# 224
 void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data)
 {
 
@@ -6574,6 +6582,7 @@ TXSTAbits.TX9D = (NinethBit_override_data & 0x01);
 TXREG = data;
 }
 
+# 262
 void UARTstring(const unsigned char *data)
 {
 do
@@ -6586,26 +6595,29 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
+# 279
 char ReadUSART(void)
 {
 char data;
 
-if(RCSTAbits.FERR)
-
 if(RCSTAbits.OERR)
+{
 RCSTAbits.CREN = 0;
+}
 
 data = RCREG;
 
 return (data);
 }
 
+# 299
 void UART_send_break(void)
 {
 TX1STA |= 0b00001000;
 TXREG = 'd';
 }
 
+# 311
 void UART_send_break_timed(unsigned int US)
 {
 
@@ -6625,6 +6637,7 @@ RXPPS = 0b00010101;
 PPSLOCK =1;
 }
 
+# 336
 void UARTstringWAIT(const unsigned char *data)
 {
 do
@@ -6638,6 +6651,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
+# 355
 void SetBaud(unsigned long Baud, unsigned char Parity)
 {
 unsigned char buf[50];

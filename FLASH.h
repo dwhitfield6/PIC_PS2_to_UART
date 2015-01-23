@@ -1,3 +1,17 @@
+/******************************************************************************/
+/* Change log                                                                 *
+ *
+ *
+ *
+ * Date         Revision    Comments
+ * MM/DD/YY
+ * --------     ---------   ----------------------------------------------------
+ * 01/21/15     1.2         Created log.
+/******************************************************************************/
+
+/******************************************************************************/
+/* Files to Include                                                           */
+/******************************************************************************/
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -15,9 +29,19 @@
 
 #include "system.h"
 
-#define FLASH_ADDRESS 0x1800
-#define FLASH_ADDRESS_ROW (FLASH_ADDRESS >> 5)//address is FLASH_ADDRESS >> 5
+/******************************************************************************/
+/* Flash Address
+ * Set this to program memory that is not used by the system.
+ * Unused program memory should be 0x3FFF.                                    
+/******************************************************************************/
 
+#define FLASH_ADDRESS 0x1800
+
+/******************************************************************************/
+/* Defines                                                                    */
+/******************************************************************************/
+
+#define FLASH_ADDRESS_ROW (FLASH_ADDRESS >> 5)//address is FLASH_ADDRESS >> 5
 #define RD    0b00000001
 #define WR    0b00000010
 #define WREN  0b00000100
@@ -26,11 +50,19 @@
 #define LWLO  0b00100000
 #define CFGS  0b01000000
 
+/******************************************************************************/
+/* Global variables                                                       */
+/******************************************************************************/
+
 unsigned int MEM[2] =
 {
     0,
     9600,
 };
+
+/******************************************************************************/
+/* Function prototypes                                                        */
+/******************************************************************************/
 
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);

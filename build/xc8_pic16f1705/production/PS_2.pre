@@ -6334,14 +6334,14 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 39 "PS_2.h"
+# 62 "PS_2.h"
 unsigned int PS_2_Read_Data_FirstTEMP;
 unsigned int PS_2_Read_Data_SecondTEMP;
 unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6353,6 +6353,7 @@ unsigned int PS_2_Read_Data_Forth =0;
 unsigned char PS_2_bits =0;
 unsigned int Read_Timer = 20;
 
+# 77
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
@@ -6847,10 +6848,10 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0' ,
 0x17 };
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 26 "MISC.h"
+# 55 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
@@ -6865,17 +6866,18 @@ unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 66 "UART.h"
+# 88 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
+# 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
@@ -6889,16 +6891,17 @@ void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 29 "FLASH.h"
+# 57 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
+# 67
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6907,7 +6910,7 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 56 "PS_2.c"
+# 61 "PS_2.c"
 extern unsigned int PS_2_Read_Data_FirstTEMP;
 extern unsigned int PS_2_Read_Data_SecondTEMP;
 extern unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6939,7 +6942,7 @@ volatile unsigned char ECHO=0;
 unsigned long BaudTyped=0;
 unsigned char ParityTyped=0;
 
-
+# 102
 void PS_2_INIT(void)
 {
 
@@ -6948,7 +6951,7 @@ Data_TRIS(1);
 INIT_PS_2_INTERRUPT(0b00100000);
 }
 
-
+# 115
 void Clock_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6961,7 +6964,7 @@ TRISAbits.TRISA5 = 1;
 }
 }
 
-
+# 132
 void Data_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6974,7 +6977,7 @@ TRISAbits.TRISA4 = 1;
 }
 }
 
-
+# 150
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
 {
 IOCAP =0;
@@ -6993,7 +6996,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-
+# 173
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7012,7 +7015,7 @@ IOCAF &= ~0b00010000;
 }
 }
 
-
+# 196
 void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7033,7 +7036,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-
+# 221
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7062,8 +7065,7 @@ return 0;
 }
 }
 
-
-
+# 256
 void PS_2_Update(void)
 {
 unsigned char temp =0;
@@ -7606,7 +7608,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 }
 }
 
-
+# 803
 unsigned char Decode_Scan_Code(unsigned char Code)
 {
 Code -= 13;
@@ -7620,7 +7622,7 @@ return 0;
 }
 }
 
-
+# 822
 unsigned char Decode_Scan_Code_Shift(unsigned char Code)
 {
 Code -= 13;
@@ -7634,8 +7636,7 @@ return 0;
 }
 }
 
-
-
+# 841
 unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
 {
 Code -= 17;
@@ -7649,8 +7650,7 @@ return 0;
 }
 }
 
-
-
+# 860
 unsigned char Decode_Scan_Code_Function(unsigned char Code)
 {
 if(Code <=131)
@@ -7663,7 +7663,7 @@ return 0;
 }
 }
 
-
+# 877
 unsigned char Send_PS2(unsigned char command)
 {
 unsigned char i=0;
@@ -7817,9 +7817,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 0;
 }
 
-
-
-
+# 1037
 unsigned char Init_PS_2_Send(void)
 {
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -7909,6 +7907,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 1;
 }
 
+# 1132
 unsigned char Keyboard_Connected(void)
 {
 unsigned long i=0;

@@ -5,7 +5,7 @@
  *
  * Date         Revision    Comments
  * MM/DD/YY
- * --------     ---         -------------------------------------------------------
+ * --------     ---------   ----------------------------------------------------
  * 01/09/15     C           Written.
  *
 /******************************************************************************/
@@ -15,6 +15,9 @@
  *
 /******************************************************************************/
 
+/******************************************************************************/
+/* Files to Include                                                           */
+/******************************************************************************/
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -28,6 +31,15 @@
 #include "user.h"
 #include "MISC.h"
 
+/******************************************************************************/
+/* Functions                                                                  */
+/******************************************************************************/
+
+/******************************************************************************/
+/* ReadFlash_2Byte
+ *
+ * The function returns the 2 byte value stored at the memory row and column.
+/******************************************************************************/
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column)
 {
     PMCON1 &= ~CFGS;
@@ -40,6 +52,13 @@ unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column)
     return (PMDATL | (PMDATH << 8));
 }
 
+/******************************************************************************/
+/* ReadFlash_4Byte
+ *
+ * The function returns a 4 byte value. The return value is made by adding the
+ *  value stored at the memory row and column with the column one place to the
+ *  right.
+/******************************************************************************/
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column)
 {
     unsigned long temp =0;
@@ -48,6 +67,12 @@ unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column)
     return temp;
 }
 
+/******************************************************************************/
+/* UNLOCK
+ *
+ * The function sends the unlock sequence required for modifying the internal
+ *  flash.
+/******************************************************************************/
 void UNLOCK(void)
 {
     PMCON2 = 0x55;
@@ -58,6 +83,11 @@ void UNLOCK(void)
     NOP();
 }
 
+/******************************************************************************/
+/* BlockErase
+ *
+ * The function erases a block of internal flash memory.
+/******************************************************************************/
 void BlockErase(unsigned int row)
 {
     INTCON &= ~gie;//disable global interrupts
@@ -70,6 +100,15 @@ void BlockErase(unsigned int row)
     PMCON1 &= ~WREN;
     INTCON |= gie;//enable global interrupts
 }
+
+/******************************************************************************/
+/* WriteFlash_Sequential
+ *
+ * The function sequentially writes the array 'buffer' to internal flash memory.
+ * It first reads the data stored in memory and only overwrites it if the
+ *   variable amount is geat enough. hence, if amount is 5, only the first 5
+ *   places get overwritten.
+/******************************************************************************/
 void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount)
 {
     unsigned char spaces = 32;
@@ -124,6 +163,11 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount)
     INTCON |= gie;//enable global interrupts
 }
 
+/******************************************************************************/
+/* WriteBaud
+ *
+ * The function writes the BAUD rate and parity setting to a row in memory.
+/******************************************************************************/
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity)
 {
     unsigned long temp;
@@ -132,6 +176,14 @@ void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity)
     MEM[0] = (unsigned int)((temp & 0xFFFC000) >> 14);
     WriteFlash_Sequential(row, MEM, 2);
 }
+
+/******************************************************************************/
+/* ReadBaud
+ *
+ * The function returns teh baud rate annd parity bit combined. In order to
+ *   separate the values, the parity bit must be masked off.
+ * return value: 0xXXPBBBBB where X is dont care, P is parity, and B is baud.
+/******************************************************************************/
 unsigned long ReadBaud(unsigned int row, unsigned char column)
 {
     unsigned long temp;

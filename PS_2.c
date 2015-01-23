@@ -5,21 +5,23 @@
  *
  * Date         Revision    Comments
  * MM/DD/YY
- * --------     ----        -------------------------------------------------------
+ * --------     ---------   ----------------------------------------------------
  * 01/09/15     1.0C        Written.
  * 01/15/15     1.0C        Sequence keyboard leds on initialization.
- * 01/20/15     1.1         Added code to allow for a key to be release at the same
- *                            time of pressing a new key. This allows for faster
- *                            typing.
- *                          Add code to turn on shift key led when shift key is hit.
- *                          Add code to try to turn on Keyboard 10 times then break.
- *                          Add code to lowercase the letters if caps lock is on and
- *                            shift key is pressed
+ * 01/20/15     1.1         Added code to allow for a key to be release at the
+ *                            same time of pressing a new key. This allows for
+ *                             faster typing.
+ *                          Add code to turn on shift key led when shift key is
+ *                            hit.
+ *                          Add code to try to turn on Keyboard 10 times then
+ *                            break.
+ *                          Add code to lowercase the letters if caps lock is on
+ *                            and shift key is pressed.
  *                          Add code to keep the shift key illuiminated when
  *                            releasing the right key if the left key is still
  *                            pressed and vice versa.
- *                          Fixed code to do caps lock at button press instead of
- *                            release.
+ *                          Fixed code to do caps lock at button press instead
+ *                            of release.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -27,7 +29,9 @@
  *
 /******************************************************************************/
 
-
+/******************************************************************************/
+/* Files to Include                                                           */
+/******************************************************************************/
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -50,8 +54,9 @@
 #include "UART.h"
 #include "FLASH.h"
 
-//data pin is RA4
-//clock pin is RA5
+/******************************************************************************/
+/* User Global Variable Declaration                                           */
+/******************************************************************************/
 
 extern unsigned int PS_2_Read_Data_FirstTEMP;
 extern unsigned int PS_2_Read_Data_SecondTEMP;
@@ -84,16 +89,29 @@ volatile unsigned char ECHO=0;
 unsigned long BaudTyped=0;
 unsigned char ParityTyped=0;
 
-//initialize the PS/2 keyboard
+/******************************************************************************/
+/* Functions                                                                  */
+/******************************************************************************/
+
+/******************************************************************************/
+/* PS_2_INIT
+ *
+ * The function initializes the PS/2 keyboard. The intterupts are sent and the
+ *   inputs are set as an input.
+/******************************************************************************/
 void PS_2_INIT(void)
 {
-    //turn both pis to inputs and turn on the interrupt
+    //turn both pins to inputs and turn on the interrupt
     Clock_TRIS(INPUT);
     Data_TRIS(INPUT);
     INIT_PS_2_INTERRUPT(CLK);
 }
 
-//Change direction of PS/2 Clock pin
+/******************************************************************************/
+/* Clock_TRIS
+ *
+ * The function modifys the diretction of the PS/2 clock pin.
+/******************************************************************************/
 void Clock_TRIS(unsigned char direction)
 {
     if(direction == OUTPUT)
@@ -106,7 +124,11 @@ void Clock_TRIS(unsigned char direction)
     }
 }
 
-//Change direction of PS/2 Data pin
+/******************************************************************************/
+/* Data_TRIS
+ *
+ * The function modifys the diretction of the PS/2 data pin.
+/******************************************************************************/
 void Data_TRIS(unsigned char direction)
 {
     if(direction == OUTPUT)
@@ -119,7 +141,12 @@ void Data_TRIS(unsigned char direction)
     }
 }
 
-//set up interrupt on pin
+/******************************************************************************/
+/* INIT_PS_2_INTERRUPT
+ *
+ * The function initialzes the PS_2 interupt associated with the input
+ *   'DATA_CLK'.
+/******************************************************************************/
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
 {
     IOCAP =0;
@@ -138,7 +165,11 @@ void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
     }
 }
 
-//disable interrupt on pin
+/******************************************************************************/
+/* PS_2_DISABLE_INTERRUPT
+ *
+ * The function disables the PS_2 interupt associated with the input 'DATA_CLK'.
+/******************************************************************************/
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
 {
     if(DATA_CLK == CLK)
@@ -157,7 +188,11 @@ void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
     }
 }
 
-//Enable interrupt on pin
+/******************************************************************************/
+/* PS_2_ENABLE_INTERRUPT
+ *
+ * The function enables the PS_2 interupt associated with the input 'DATA_CLK'.
+/******************************************************************************/
 void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
 {
     if(DATA_CLK == CLK)
@@ -178,7 +213,11 @@ void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
     }
 }
 
-//Read data on pin (high or low)
+/******************************************************************************/
+/* READ_PS_2_PIN
+ *
+ * The function returns the digital value on the data pin or clock pin.
+/******************************************************************************/
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
 {
     if(DATA_CLK == CLK)
@@ -207,8 +246,13 @@ unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
     }
 }
 
-//This function is used around the main loop in order to detemine when a new
-//key is pressed
+/******************************************************************************/
+/* PS_2_Update
+ *
+ * The function is called around the main loop. This function id polled until
+ *   the keyboard character is ready to be decoded. This function is big and
+ *   takes a lot of time to complete.
+/******************************************************************************/
 void PS_2_Update(void)
 {
     unsigned char temp =0;
@@ -751,7 +795,11 @@ void PS_2_Update(void)
     }
 }
 
-//Called to go from scan code to ASCII (non shift key)
+/******************************************************************************/
+/* Decode_Scan_Code
+ *
+ * The function returns the ascii character associated with the scan code.
+/******************************************************************************/
 unsigned char Decode_Scan_Code(unsigned char Code)
 {
     Code -= 13;
@@ -765,7 +813,12 @@ unsigned char Decode_Scan_Code(unsigned char Code)
     }
 }
 
-//Called to go from scan code to ASCII (shift key also pressed)
+/******************************************************************************/
+/* Decode_Scan_Code_Shift
+ *
+ * The function returns the ascii character associated with the scan code.
+ *   These ascii values are used when the shift key is held.
+/******************************************************************************/
 unsigned char Decode_Scan_Code_Shift(unsigned char Code)
 {
     Code -= 13;
@@ -779,8 +832,12 @@ unsigned char Decode_Scan_Code_Shift(unsigned char Code)
     }
 }
 
-//Called to go from scan code to non standard ascii
-//(scan code has E0 in the first of 2 bits)
+/******************************************************************************/
+/* Decode_Scan_Code_FunctionE0
+ *
+ * The function returns the artificial ascii character associated with the scan
+ *   code. These scan codes are 2 part scan codes. The first byte is E0.
+/******************************************************************************/
 unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
 {
     Code -= 17;
@@ -794,8 +851,12 @@ unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
     }
 }
 
-//Called to go from scan code to non standard ascii
-//(scan code does not have E0)
+/******************************************************************************/
+/* Decode_Scan_Code_Function
+ *
+ * The function returns the artificail ascii character associated with the scan
+ *   code.
+/******************************************************************************/
 unsigned char Decode_Scan_Code_Function(unsigned char Code)
 {
     if(Code <=131)
@@ -808,7 +869,11 @@ unsigned char Decode_Scan_Code_Function(unsigned char Code)
     }
 }
 
-//function is used to send command from host to keyboard
+/******************************************************************************/
+/* Send_PS2
+ *
+ * The function sends a command to the PS/2 keyboard.
+/******************************************************************************/
 unsigned char Send_PS2(unsigned char command)
 {
     unsigned char i=0;
@@ -962,9 +1027,13 @@ unsigned char Send_PS2(unsigned char command)
     return 0;
 }
 
-//initializes the send to keyboard
-//this function flashes the scroll light, num lock light, and caps lock
-//light once
+/******************************************************************************/
+/* Init_PS_2_Send
+ *
+ * The function flashes the scroll light, num lock light, and caps lock
+ *   light once. The keyboard is also comanded to be enabled and to use scan
+ *   code set 1.
+/******************************************************************************/
 unsigned char Init_PS_2_Send(void)
 {
     PS_2_DISABLE_INTERRUPT(CLK);
@@ -1054,6 +1123,12 @@ unsigned char Init_PS_2_Send(void)
     return 1;
 }
 
+/******************************************************************************/
+/* Keyboard_Connected
+ *
+ * The function checks to see if the keyboard is connected. The Echo signal is
+ *   waited on.
+/******************************************************************************/
 unsigned char Keyboard_Connected(void)
 {
     unsigned long i=0;

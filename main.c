@@ -1,26 +1,4 @@
 /******************************************************************************/
-/* Files to Include                                                           */
-/******************************************************************************/
-#define USE_OR_MASKS
-
-#if defined(__XC)
-    #include <xc.h>         /* XC8 General Include File */
-#elif defined(HI_TECH_C)
-    #include <htc.h>        /* HiTech General Include File */
-#endif
-
-#include <stdint.h>        /* For uint8_t definition */
-#include <stdbool.h>       /* For true/false definition */
-
-#include "system.h"        /* System funct/params, like osc/peripheral config */
-#include "user.h"          /* User funct/params, such as InitApp */
-#include "MISC.h"
-#include "UART.h"
-#include "PS_2.h"
-#include "FLASH.h"
-#include "ADC.h"
-
-/******************************************************************************/
 /* Change log                                                                 *
  *
  *
@@ -47,15 +25,49 @@
  *                            configuration bits.
  *                          Fixed bugs with shift key and Caps lock key.
  * 01/21/15     1.2         Changed name from 1.1_DW0a.
+ *                          Add log comments.
+ *                          Add function comments.
+ *                          Add function prototype and define comments.
  *                          Tagged
 /******************************************************************************/
+
 /******************************************************************************/
-/* Version number                                                              */
+/* Contains main function.
+ *
 /******************************************************************************/
+
+/******************************************************************************/
+/* Files to Include                                                           */
+/******************************************************************************/
+#define USE_OR_MASKS
+
+#if defined(__XC)
+    #include <xc.h>         /* XC8 General Include File */
+#elif defined(HI_TECH_C)
+    #include <htc.h>        /* HiTech General Include File */
+#endif
+
+#include <stdint.h>        /* For uint8_t definition */
+#include <stdbool.h>       /* For true/false definition */
+
+#include "system.h"        /* System funct/params, like osc/peripheral config */
+#include "user.h"          /* User funct/params, such as InitApp */
+#include "MISC.h"
+#include "UART.h"
+#include "PS_2.h"
+#include "FLASH.h"
+#include "ADC.h"
+
+/******************************************************************************/
+/* Version number                                                             */
+/******************************************************************************/
+
 unsigned char Version[] = {"1.2"};
+
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
+
 extern double BatteryVoltage;
 extern unsigned char Alarm;
 

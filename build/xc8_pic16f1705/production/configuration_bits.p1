@@ -4639,37 +4639,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 28: extern void __nop(void);
 [; ;pic.h: 80: extern unsigned int flash_read(unsigned short addr);
 [; ;pic.h: 154: extern __nonreentrant void _delay(unsigned long);
-"12 configuration_bits.c
+"28 configuration_bits.c
 [p x FOSC=INTOSC ]
-"13
-[p x WDTE=OFF ]
-"14
-[p x PWRTE=OFF ]
-"15
-[p x MCLRE=ON ]
-"16
-[p x CP=ON ]
-"17
-[p x BOREN=ON ]
-"18
-[p x CLKOUTEN=OFF ]
-"19
-[p x IESO=OFF ]
-"20
-[p x FCMEN=OFF ]
-"23
-[p x WRT=OFF ]
-"24
-[p x PPS1WAY=OFF ]
-"25
-[p x ZCDDIS=ON ]
-"26
-[p x PLLEN=OFF ]
-"27
-[p x STVREN=ON ]
-"28
-[p x BORV=LO ]
 "29
-[p x LPBOR=OFF ]
+[p x WDTE=OFF ]
 "30
+[p x PWRTE=OFF ]
+"31
+[p x MCLRE=ON ]
+"32
+[p x CP=ON ]
+"33
+[p x BOREN=ON ]
+"34
+[p x CLKOUTEN=OFF ]
+"35
+[p x IESO=OFF ]
+"36
+[p x FCMEN=OFF ]
+"39
+[p x WRT=OFF ]
+"40
+[p x PPS1WAY=OFF ]
+"41
+[p x ZCDDIS=ON ]
+"42
+[p x PLLEN=OFF ]
+"43
+[p x STVREN=ON ]
+"44
+[p x BORV=LO ]
+"45
+[p x LPBOR=OFF ]
+"46
 [p x LVP=ON ]

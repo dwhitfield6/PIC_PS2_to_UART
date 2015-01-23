@@ -6266,16 +6266,17 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 29 "FLASH.h"
+# 57 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
+# 67
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6284,14 +6285,14 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 26 "MISC.h"
+# 55 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
@@ -6306,7 +6307,7 @@ unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 
-# 31 "FLASH.c"
+# 43 "FLASH.c"
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column)
 {
 PMCON1 &= ~0b01000000;
@@ -6319,6 +6320,7 @@ __nop();
 return (PMDATL | (PMDATH << 8));
 }
 
+# 62
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column)
 {
 unsigned long temp =0;
@@ -6327,6 +6329,7 @@ temp |= ((unsigned long)ReadFlash_2Byte(row, (column + 1)));
 return temp;
 }
 
+# 76
 void UNLOCK(void)
 {
 PMCON2 = 0x55;
@@ -6337,6 +6340,7 @@ __nop();
 __nop();
 }
 
+# 91
 void BlockErase(unsigned int row)
 {
 INTCON &= ~0x80;
@@ -6349,6 +6353,8 @@ UNLOCK();
 PMCON1 &= ~0b00000100;
 INTCON |= 0x80;
 }
+
+# 112
 void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount)
 {
 unsigned char spaces = 32;
@@ -6403,6 +6409,7 @@ PMCON1 &= ~0b00000100;
 INTCON |= 0x80;
 }
 
+# 171
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity)
 {
 unsigned long temp;
@@ -6411,6 +6418,8 @@ MEM[1] = (unsigned int) (temp & 0x0003FFF);
 MEM[0] = (unsigned int)((temp & 0xFFFC000) >> 14);
 WriteFlash_Sequential(row, MEM, 2);
 }
+
+# 187
 unsigned long ReadBaud(unsigned int row, unsigned char column)
 {
 unsigned long temp;

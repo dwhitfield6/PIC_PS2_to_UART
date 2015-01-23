@@ -5,24 +5,33 @@
  *
  * Date         Revision    Comments
  * MM/DD/YY
- * --------     ---         -------------------------------------------------------
- * 01/09/15     C           Written.
+ * --------     ---------   ----------------------------------------------------
+ * 01/21/15     1.2         Created log.
+/******************************************************************************/
+
+/******************************************************************************/
+/* Contains Interupt service routine.
  *
 /******************************************************************************/
 
 /******************************************************************************/
-/* Contains Interrupt routine
- *
+/* Files to Include                                                           */
 /******************************************************************************/
-
+#define USE_OR_MASKS
 #if defined(__XC)
-    #include <xc.h>         /* XC8 General Include File */
+    #include <xc.h>        /* XC8 General Include File */
 #elif defined(HI_TECH_C)
-    #include <htc.h>        /* HiTech General Include File */
+    #include <htc.h>       /* HiTech General Include File */
+#elif defined(__18CXX)
+    #include <p18cxxx.h>   /* C18 General Include File */
 #endif
 
-#include <stdint.h>         /* For uint8_t definition */
-#include <stdbool.h>        /* For true/false definition */
+#if defined(__XC) || defined(HI_TECH_C)
+
+#include <stdint.h>        /* For uint8_t definition */
+#include <stdbool.h>       /* For true/false definition */
+
+#endif
 
 #include "PS_2.h"
 #include "UART.h"
@@ -38,6 +47,11 @@
  * _PIC12 */
 #ifndef _PIC12
 
+
+/******************************************************************************/
+/* User Global Variable Declaration                                           */
+/******************************************************************************/
+
 extern unsigned int PS_2_Read_Data_FirstTEMP;
 extern unsigned int PS_2_Read_Data_SecondTEMP;
 extern unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -49,6 +63,10 @@ extern unsigned int SinLEDtimer;
 
 unsigned char blinkdelay =0;
 
+
+/******************************************************************************/
+/* ISR                                                                */
+/******************************************************************************/
 void interrupt isr(void)
 {
     unsigned char rx;
@@ -136,7 +154,7 @@ void interrupt isr(void)
         {
             if(Alarm)
             {
-                
+                NOP();
             }
             else
             {
@@ -150,6 +168,7 @@ void interrupt isr(void)
     else
     {
         /* Unhandled interrupts */
+        NOP();
     }
 }
 #endif

@@ -5,10 +5,10 @@
  *
  * Date         Revision    Comments
  * MM/DD/YY
- * --------     ----        --------------------------------------------------------
+ * --------     ---------   ----------------------------------------------------
  * 01/09/15     1.0C        Written.
- * 01/20/15     1.0F        Commented out Timer2 interrupt since we no longer use
- *                            this to flash the power LED.
+ * 01/20/15     1.0F        Commented out Timer2 interrupt since we no longer
+ *                            use this to flash the power LED.
  * 01/21/15     1.1         Fixed error in calculating the parity bit for
  *                            initialization.
 /******************************************************************************/
@@ -18,7 +18,9 @@
  *
 /******************************************************************************/
 
-
+/******************************************************************************/
+/* Files to Include                                                           */
+/******************************************************************************/
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -42,12 +44,20 @@
 #include "Timer.h"
 
 /******************************************************************************/
-/* User Functions                                                             */
+/* User Global Variable Declaration                                           */
 /******************************************************************************/
 
 unsigned char Alarm =0;
 
+/******************************************************************************/
+/* Functions
+/******************************************************************************/
 
+/******************************************************************************/
+/* InitApp
+ *
+ * The function initializes the application. It sets the pins and pull-ups.
+/******************************************************************************/
 void InitApp(void)
 {
     LATC =0;
@@ -75,6 +85,12 @@ void InitApp(void)
     WPUA = 0;
 }
 
+/******************************************************************************/
+/* Init_System
+ *
+ * The function initializes the system by setting up the initial starting baud
+ *   and prints the baud rate over the baud.
+/******************************************************************************/
 void Init_System (void)
 {
     unsigned long temp =0;
