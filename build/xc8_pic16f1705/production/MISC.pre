@@ -6269,7 +6269,7 @@ typedef unsigned char bool;
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 55 "MISC.h"
+# 54 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);

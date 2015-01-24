@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.33 build 59893 
-                                                                                               Fri Jan 23 18:52:01 2015
+                                                                                               Fri Jan 23 18:50:08 2015
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	16F1705
@@ -17565,12 +17565,12 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Fri Jan 23 18:52:01 2015
+Symbol Table                                                                                   Fri Jan 23 18:50:08 2015
 
-              _PS_2_DISABLE_INTERRUPT 1AF6                            __CFG_CP$ON 0000  
-                   ??_ReadFlash_2Byte 0028                     ??_ReadFlash_4Byte 002E  
-                                   _i 016C                          ___fldiv@cntr 0045  
-                        ___fldiv@sign 0047                    Data_TRIS@direction 0025  
+              _PS_2_DISABLE_INTERRUPT 1AF6                     ??_ReadFlash_2Byte 0028  
+                   ??_ReadFlash_4Byte 002E                                     _i 016C  
+                        ___fldiv@cntr 0045                          ___fldiv@sign 0047  
+                         __CFG_CP$OFF 0000                    Data_TRIS@direction 0025  
                 ?_INIT_PS_2_INTERRUPT 0070                          ___flpack@arg 0025  
                          __CFG_LVP$ON 0000                          ___flpack@exp 0029  
                                  l160 0E5C                                   l412 1BFC  

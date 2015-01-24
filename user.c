@@ -11,6 +11,8 @@
  *                            use this to flash the power LED.
  * 01/21/15     1.1         Fixed error in calculating the parity bit for
  *                            initialization.
+ * 01/23/15     1.2         Fixed Baud rate sting logic to save memory.
+ *                          Added "keyboard" before every baud rate change.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -110,29 +112,30 @@ void Init_System (void)
     InitUART(Baud, Parity);
     UARTstringWAIT("\r\n");
     delayUS(Word_Spacing);
+    sprintf(buf,"KeyBoard Baud is %lu",Baud);
+    UARTstringWAIT(buf);
     if(Parity)
     {
         switch (Parity)
         {
             case 1:
-                sprintf(buf,"Baud is %lu with Odd parity bit\r\n",Baud);//Odd parity
+                UARTstringWAIT(" with Odd parity bit\r\n");//Odd parity
                 break;
             case 2:
-                sprintf(buf,"Baud is %lu with Even parity bit\r\n",Baud);//Even parity
+                UARTstringWAIT(" with Even parity bit\r\n");//Even parity
                 break;
             case 3:
-                sprintf(buf,"Baud is %lu with Mark bit\r\n",Baud);//mark
+                UARTstringWAIT(" with Mark bit\r\n");//mark
                 break;
             default:
-                sprintf(buf,"Baud is %lu with Space bit\r\n",Baud);//Space
+                UARTstringWAIT(" with Space bit\r\n");//Space
                 break;
         }
     }
     else
     {
-        sprintf(buf,"Baud is %lu with no parity bit\r\n",Baud);
+        UARTstringWAIT(" with no parity bit\r\n");
     }
-    UARTstringWAIT(buf);
     delayUS(Word_Spacing);
     //Timer2Init(0xFF);
     INTCON |= iocie;// int on change

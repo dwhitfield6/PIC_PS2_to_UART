@@ -6266,10 +6266,10 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 20 "Timer.h"
+# 34 "Timer.h"
 void Timer2Init(unsigned char time);
 
-# 30 "Timer.c"
+# 41 "Timer.c"
 void Timer2Init(unsigned char time)
 {
 unsigned char postscaler =0xF;

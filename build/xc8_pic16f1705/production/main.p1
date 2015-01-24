@@ -10,7 +10,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PS_2_INIT `(v ~T0 @X0 0 ef ]
 "1899 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [v _LATC `Vuc ~T0 @X0 0 e@270 ]
-"55 MISC.h
+"54 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 "88 PS_2.h
 [v _PS_2_DISABLE_INTERRUPT `(v ~T0 @X0 0 ef1`uc ]
@@ -4701,19 +4701,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.h: 85: void InitApp(void);
 [; ;user.h: 86: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;MISC.h: 55: void delayUS(long US);
-[; ;MISC.h: 56: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 57: void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-[; ;MISC.h: 58: unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 59: unsigned char StringContains(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 60: unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 61: int GetEnteredNumber(unsigned char* This);
-[; ;MISC.h: 62: void RemoveSpaces(unsigned char* This);
-[; ;MISC.h: 63: void lowercase(unsigned char* Input);
-[; ;MISC.h: 64: unsigned char StringAddEqual(unsigned char* Input);
-[; ;MISC.h: 65: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 66: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 67: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 54: void delayUS(long US);
+[; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 56: void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
+[; ;MISC.h: 57: unsigned char StringMatch(unsigned char* This, const unsigned char* That);
+[; ;MISC.h: 58: unsigned char StringContains(unsigned char* This, const unsigned char* That);
+[; ;MISC.h: 59: unsigned char StartsWith(unsigned char* This, const unsigned char* That);
+[; ;MISC.h: 60: int GetEnteredNumber(unsigned char* This);
+[; ;MISC.h: 61: void RemoveSpaces(unsigned char* This);
+[; ;MISC.h: 62: void lowercase(unsigned char* Input);
+[; ;MISC.h: 63: unsigned char StringAddEqual(unsigned char* Input);
+[; ;MISC.h: 64: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
 [; ;system.h: 52: void ConfigureOscillator(void);
 [; ;user.h: 85: void InitApp(void);
 [; ;user.h: 86: void Init_System (void);

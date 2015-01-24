@@ -6851,7 +6851,7 @@ const unsigned char ScanCodeFunctionE0[109] = {
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 55 "MISC.h"
+# 54 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
@@ -6910,7 +6910,7 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 61 "PS_2.c"
+# 63 "PS_2.c"
 extern unsigned int PS_2_Read_Data_FirstTEMP;
 extern unsigned int PS_2_Read_Data_SecondTEMP;
 extern unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6942,7 +6942,7 @@ volatile unsigned char ECHO=0;
 unsigned long BaudTyped=0;
 unsigned char ParityTyped=0;
 
-# 102
+# 104
 void PS_2_INIT(void)
 {
 
@@ -6951,7 +6951,7 @@ Data_TRIS(1);
 INIT_PS_2_INTERRUPT(0b00100000);
 }
 
-# 115
+# 117
 void Clock_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6964,7 +6964,7 @@ TRISAbits.TRISA5 = 1;
 }
 }
 
-# 132
+# 134
 void Data_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6977,7 +6977,7 @@ TRISAbits.TRISA4 = 1;
 }
 }
 
-# 150
+# 152
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
 {
 IOCAP =0;
@@ -6996,7 +6996,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-# 173
+# 175
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7015,7 +7015,7 @@ IOCAF &= ~0b00010000;
 }
 }
 
-# 196
+# 198
 void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7036,7 +7036,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-# 221
+# 223
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7065,7 +7065,7 @@ return 0;
 }
 }
 
-# 256
+# 258
 void PS_2_Update(void)
 {
 unsigned char temp =0;
@@ -7491,7 +7491,7 @@ UARTchar('>' , 0, 0);
 else
 {
 BaudTyped = 9600;
-UARTstringWAIT("Reset to 9600 with no parity bit\r\n");
+UARTstringWAIT("KeyBoard Reset to 9600 with no parity bit\r\n");
 delayUS(10000);
 SetBaud(BaudTyped, 0);
 BAUDMODE = 0;
@@ -7556,34 +7556,35 @@ UARTstringWAIT("\r\n");
 delayUS(10000);
 if(BaudTyped >=2400 && BaudTyped <= 115200)
 {
+sprintf(buf,"KeyBoard Baud will be set to %lu",BaudTyped);
+UARTstringWAIT(buf);
 if(ParityTyped)
 {
 switch (ParityTyped)
 {
 case 1:
-sprintf(buf,"Baud will be set to %lu with Odd parity bit\r\n",BaudTyped);
+UARTstringWAIT(" with Odd parity bit\r\n");
 break;
 case 2:
-sprintf(buf,"Baud will be set to %lu with Even parity bit\r\n",BaudTyped);
+UARTstringWAIT(" with Even parity bit\r\n");
 break;
 case 3:
-sprintf(buf,"Baud will be set to %lu with Mark bit\r\n",BaudTyped);
+UARTstringWAIT(" with Mark bit\r\n");
 break;
 default:
-sprintf(buf,"Baud will be set to %lu with Space bit\r\n",BaudTyped);
+UARTstringWAIT(" with Space bit\r\n");
 break;
 }
 }
 else
 {
-sprintf(buf,"Baud will be set to %lu with no parity bit\r\n",BaudTyped);
+UARTstringWAIT(" with no parity bit\r\n");
 }
-UARTstringWAIT(buf);
 SetBaud(BaudTyped, ParityTyped);
 }
 else
 {
-UARTstringWAIT("Baud Out of Range\r\n");
+UARTstringWAIT("KeyBoard Baud Out of Range\r\n");
 delayUS(10000);
 }
 BAUDMODE=0;
@@ -7608,7 +7609,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 }
 }
 
-# 803
+# 806
 unsigned char Decode_Scan_Code(unsigned char Code)
 {
 Code -= 13;
@@ -7622,7 +7623,7 @@ return 0;
 }
 }
 
-# 822
+# 825
 unsigned char Decode_Scan_Code_Shift(unsigned char Code)
 {
 Code -= 13;
@@ -7636,7 +7637,7 @@ return 0;
 }
 }
 
-# 841
+# 844
 unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
 {
 Code -= 17;
@@ -7650,7 +7651,7 @@ return 0;
 }
 }
 
-# 860
+# 863
 unsigned char Decode_Scan_Code_Function(unsigned char Code)
 {
 if(Code <=131)
@@ -7663,7 +7664,7 @@ return 0;
 }
 }
 
-# 877
+# 880
 unsigned char Send_PS2(unsigned char command)
 {
 unsigned char i=0;
@@ -7817,7 +7818,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 0;
 }
 
-# 1037
+# 1040
 unsigned char Init_PS_2_Send(void)
 {
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -7907,7 +7908,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 1;
 }
 
-# 1132
+# 1135
 unsigned char Keyboard_Connected(void)
 {
 unsigned long i=0;

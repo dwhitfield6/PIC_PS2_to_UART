@@ -6266,10 +6266,10 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 39 "PS_2.h"
+# 62 "PS_2.h"
 unsigned int PS_2_Read_Data_FirstTEMP;
 unsigned int PS_2_Read_Data_SecondTEMP;
 unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6281,6 +6281,7 @@ unsigned int PS_2_Read_Data_Forth =0;
 unsigned char PS_2_bits =0;
 unsigned int Read_Timer = 20;
 
+# 77
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
@@ -6775,17 +6776,18 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0' ,
 0x17 };
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 66 "UART.h"
+# 88 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
+# 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
@@ -6799,16 +6801,17 @@ void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 29 "FLASH.h"
+# 57 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
+# 67
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6817,11 +6820,11 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 41 "interrupts.c"
+# 55 "interrupts.c"
 extern unsigned int PS_2_Read_Data_FirstTEMP;
 extern unsigned int PS_2_Read_Data_SecondTEMP;
 extern unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6833,6 +6836,7 @@ extern unsigned int SinLEDtimer;
 
 unsigned char blinkdelay =0;
 
+# 70
 void interrupt isr(void)
 {
 unsigned char rx;
@@ -6920,7 +6924,7 @@ if(blinkdelay > 4)
 {
 if(Alarm)
 {
-
+__nop();
 }
 else
 {
@@ -6934,6 +6938,7 @@ PIR1bits.TMR2IF =0;
 else
 {
 
+__nop();
 }
 }
 

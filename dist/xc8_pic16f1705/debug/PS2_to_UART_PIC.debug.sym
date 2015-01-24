@@ -109,7 +109,6 @@ ___fldiv@f3 41 0 BANK0 1
 _UARTchar 1D3A 0 CODE 0
 __Hbigram 0 0 ABS 0
 __Lbigram 0 0 ABS 0
-__CFG_CP$ON 0 0 ABS 0
 __end_of_READ_PS_2_PIN 1A92 0 CODE 0
 __Hram 0 0 ABS 0
 __Lram 0 0 ABS 0
@@ -663,7 +662,7 @@ __end_of_ReadUSART 19F8 0 CODE 0
 _ReadVoltage 109B 0 CODE 0
 __end_of___llmod 1CF0 0 CODE 0
 __size_of_CloseUSART 0 0 ABS 0
-__Hreset_vec 2 0 CODE 0
+__Hreset_vec 3 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 __HcstackBANK3 0 0 ABS 0
 __LcstackBANK3 0 0 ABS 0
@@ -746,6 +745,7 @@ ___lmul@product 2D 0 BANK0 1
 UARTchar@NinethBit_override_data 2E 0 BANK0 1
 __HidataBANK4 0 0 ABS 0
 __LidataBANK4 0 0 ABS 0
+__CFG_CP$OFF 0 0 ABS 0
 __pidataBANK4 1A25 0 CODE 0
 WriteFlash_Sequential@i E6 0 BANK1 1
 delayUS@i 2A 0 BANK0 1
@@ -760,7 +760,7 @@ ___lldiv@dividend 29 0 BANK0 1
 Reverse_Byte@This 28 0 BANK0 1
 WriteFlash_Sequential@buffer 31 0 BANK0 1
 %segments
-reset_vec 0 3 CODE 0 0
+reset_vec 0 5 CODE 0 0
 intentry 8 FFD CODE 8 0
 config 1000E 10011 CONFIG 1000E 0
 cstackCOMMON 70 7D COMMON 70 1
@@ -828,8 +828,8 @@ inittext 3392 339D CODE 3392 0
 text14 3388 3391 CODE 3388 0
 text54 337E 3387 CODE 337E 0
 %locals
-dist/xc8_pic16f1705/production\PS2_to_UART_PIC.production.obj
-C:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7vg.
+dist/xc8_pic16f1705/debug\PS2_to_UART_PIC.debug.obj
+C:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7no.
 6610 DF 0 CODE 0
 6613 DF 0 CODE 0
 6776 DF 0 CODE 0

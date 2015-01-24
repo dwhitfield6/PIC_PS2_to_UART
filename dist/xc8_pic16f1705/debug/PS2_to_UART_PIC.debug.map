@@ -3,11 +3,11 @@ Microchip MPLAB XC8 Compiler V1.33 ()
 Linker command line:
 
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
-  -h+dist/xc8_pic16f1705/production\PS2_to_UART_PIC.production.sym \
-  --cmf=dist/xc8_pic16f1705/production\PS2_to_UART_PIC.production.cmf -z \
-  -Q16F1705 -oC:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7vg.6 \
-  -Mdist/xc8_pic16f1705/production/PS2_to_UART_PIC.production.map -E1 \
-  -ver=XC8 -ASTACK=021D1h-0231fh -pstack=STACK -ACONST=00h-0FFhx32 \
+  -h+dist/xc8_pic16f1705/debug\PS2_to_UART_PIC.debug.sym \
+  --cmf=dist/xc8_pic16f1705/debug\PS2_to_UART_PIC.debug.cmf -z -Q16F1705 \
+  -oC:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7no.6 \
+  -Mdist/xc8_pic16f1705/debug/PS2_to_UART_PIC.debug.map -E1 -ver=XC8 \
+  -ASTACK=021D1h-0231fh -pstack=STACK -ACONST=00h-0FFhx32 \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -AENTRY=00h-0FFhx32 \
   -ASTRING=00h-0FFhx32 -ACOMMON=070h-07Fh -ABANK0=020h-06Fh \
   -ABANK1=0A0h-0EFh -ABANK2=0120h-016Fh -ABANK3=01A0h-01EFh \
@@ -31,8 +31,8 @@ Linker command line:
   -ppowerup=CODE -pcinit=CODE -pfunctab=CODE -ACONFIG=08007h-08008h \
   -pconfig=CONFIG -DCONFIG=2 -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 \
   -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7vg.obj \
-  dist/xc8_pic16f1705/production\PS2_to_UART_PIC.production.obj 
+  C:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7no.obj \
+  dist/xc8_pic16f1705/debug\PS2_to_UART_PIC.debug.obj 
 
 Object code version is 3.11
 
@@ -41,11 +41,11 @@ Machine type is 16F1705
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7vg.obj
+C:\Users\DWHITF~1.TDY\AppData\Local\Temp\s7no.obj
                 end_init                             DD       DD        2        8       0
-                reset_vec                             0        0        2        0       0
+                reset_vec                             0        0        3        0       0
                 config                             8007     8007        2    1000E       0
-dist/xc8_pic16f1705/production\PS2_to_UART_PIC.production.obj
+dist/xc8_pic16f1705/debug\PS2_to_UART_PIC.debug.obj
                 cinit                                DF       DF       3A        8       0
                 intentry                              4        4       D9        8       0
                 text56                             1A92     1A92       13     3524       0
@@ -132,7 +132,7 @@ TOTAL           Name                               Link     Load   Length     Sp
                 end_init                             DD       DD        2         0
                 cinit                                DF       DF       3A         0
                 intentry                              4        4       D9         0
-                reset_vec                             0        0        2         0
+                reset_vec                             0        0        3         0
                 text56                             1A92     1A92       13         0
                 text55                             19DC     19DC        9         0
                 text54                             19BF     19BF        5         0
@@ -362,7 +362,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
-                reset_vec                      000000  000002  000002         0       0  CODE        2
+                reset_vec                      000000  000003  000003         0       0  CODE        2
                 intentry                       000004  0007FB  0007FF         8       0  CODE        2
                 cstackBANK0                    000020  00004B  00006B        20       1  BANK0       1
                 cstackCOMMON                   000070  00000E  00007E        70       1  COMMON      1
@@ -448,15 +448,15 @@ UNUSED ADDRESS RANGES
         BANK8            00420-0046F              50           1
         BANK9            004A0-004EF              50           1
         BIGRAM           02000-023EF             3F0           1
-        CODE             00002-00003               2           2
+        CODE             00003-00003               1           2
                          007FF-007FF               1
                          00BC1-00BC1               1
                          01800-019BE             1BF
-        CONST            00002-00003               2           2
+        CONST            00003-00003               1           2
                          007FF-007FF               1
                          00BC1-00BC1               1
                          01800-019BE             100
-        ENTRY            00002-00003               2           2
+        ENTRY            00003-00003               1           2
                          007FF-007FF               1
                          00BC1-00BC1               1
                          01800-019BE             100
@@ -507,11 +507,11 @@ UNUSED ADDRESS RANGES
         SFR8             00400-0041F              20           1
         SFR9             00480-0049F              20           1
         STACK            021D1-0231F             14F           1
-        STRCODE          00002-00003               2           2
+        STRCODE          00003-00003               1           2
                          007FF-007FF               1
                          00BC1-00BC1               1
                          01800-019BE             1BF
-        STRING           00002-00003               2           2
+        STRING           00003-00003               1           2
                          007FF-007FF               1
                          00BC1-00BC1               1
                          01800-019BE             100
@@ -744,7 +744,7 @@ _WriteFlash_Sequential                text17       012BA
 __CFG_BOREN$ON                        (abs)        00000
 __CFG_BORV$LO                         (abs)        00000
 __CFG_CLKOUTEN$OFF                    (abs)        00000
-__CFG_CP$ON                           (abs)        00000
+__CFG_CP$OFF                          (abs)        00000
 __CFG_FCMEN$OFF                       (abs)        00000
 __CFG_FOSC$INTOSC                     (abs)        00000
 __CFG_IESO$OFF                        (abs)        00000
@@ -822,7 +822,7 @@ __Hintentry                           intentry     000DD
 __Hmaintext                           maintext     00000
 __Hpowerup                            powerup      00000
 __Hram                                ram          00000
-__Hreset_vec                          reset_vec    00002
+__Hreset_vec                          reset_vec    00003
 __Hsfr0                               sfr0         00000
 __Hsfr1                               sfr1         00000
 __Hsfr10                              sfr10        00000

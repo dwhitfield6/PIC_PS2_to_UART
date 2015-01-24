@@ -22,6 +22,8 @@
  *                            pressed and vice versa.
  *                          Fixed code to do caps lock at button press instead
  *                            of release.
+ *                          Fixed Baud rate sting logic to save memory.
+ *                          Added "keyboard" before every baud rate change.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -678,7 +680,7 @@ void PS_2_Update(void)
             else
             {
                 BaudTyped = 9600;
-                UARTstringWAIT("Reset to 9600 with no parity bit\r\n");
+                UARTstringWAIT("KeyBoard Reset to 9600 with no parity bit\r\n");
                 delayUS(Word_Spacing);
                 SetBaud(BaudTyped, 0);
                 BAUDMODE = 0;
@@ -743,34 +745,35 @@ void PS_2_Update(void)
                         delayUS(Word_Spacing);
                         if(BaudTyped >=2400 && BaudTyped <= 115200)
                         {
+                            sprintf(buf,"KeyBoard Baud will be set to %lu",BaudTyped);
+                            UARTstringWAIT(buf);
                             if(ParityTyped)
                             {
                                 switch (ParityTyped)
                                 {
                                     case 1:
-                                        sprintf(buf,"Baud will be set to %lu with Odd parity bit\r\n",BaudTyped);//Odd parity
+                                        UARTstringWAIT(" with Odd parity bit\r\n");//Odd parity
                                         break;
                                     case 2:
-                                        sprintf(buf,"Baud will be set to %lu with Even parity bit\r\n",BaudTyped);//Even parity
+                                        UARTstringWAIT(" with Even parity bit\r\n");//Even parity
                                         break;
                                     case 3:
-                                        sprintf(buf,"Baud will be set to %lu with Mark bit\r\n",BaudTyped);//mark
+                                        UARTstringWAIT(" with Mark bit\r\n");//mark
                                         break;
                                     default:
-                                        sprintf(buf,"Baud will be set to %lu with Space bit\r\n",BaudTyped);//Space
+                                        UARTstringWAIT(" with Space bit\r\n");//Space
                                         break;
                                 }
                             }
                             else
                             {
-                                sprintf(buf,"Baud will be set to %lu with no parity bit\r\n",BaudTyped);
+                                 UARTstringWAIT(" with no parity bit\r\n");
                             }
-                            UARTstringWAIT(buf);
                             SetBaud(BaudTyped, ParityTyped);
                         }
                         else
                         {
-                            UARTstringWAIT("Baud Out of Range\r\n");
+                            UARTstringWAIT("KeyBoard Baud Out of Range\r\n");
                             delayUS(Word_Spacing);
                         }
                         BAUDMODE=0;

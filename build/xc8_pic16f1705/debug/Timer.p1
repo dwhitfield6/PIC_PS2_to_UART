@@ -4708,45 +4708,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;Timer.h: 20: void Timer2Init(unsigned char time);
-"30 Timer.c
+[; ;Timer.h: 34: void Timer2Init(unsigned char time);
+"41 Timer.c
 [v _Timer2Init `(v ~T0 @X0 1 ef1`uc ]
-"31
+"42
 {
-[; ;Timer.c: 30: void Timer2Init(unsigned char time)
-[; ;Timer.c: 31: {
+[; ;Timer.c: 41: void Timer2Init(unsigned char time)
+[; ;Timer.c: 42: {
 [e :U _Timer2Init ]
-"30
-[v _time `uc ~T0 @X0 1 r1 ]
-"31
-[f ]
-"32
-[v _postscaler `uc ~T0 @X0 1 a ]
-[; ;Timer.c: 32: unsigned char postscaler =0xF;
-[e = _postscaler -> -> 15 `i `uc ]
-"33
-[v _prescaler `uc ~T0 @X0 1 a ]
-[; ;Timer.c: 33: unsigned char prescaler =3;
-[e = _prescaler -> -> 3 `i `uc ]
-[; ;Timer.c: 34: CCP2CONbits.CCP2M = 0b1010;
-"34
-[e = . . _CCP2CONbits 0 0 -> -> 10 `i `uc ]
-[; ;Timer.c: 35: PR2 = time;
-"35
-[e = _PR2 _time ]
-[; ;Timer.c: 36: T2CON |= postscaler << 3;
-"36
-[e =| _T2CON -> << -> _postscaler `i -> 3 `i `uc ]
-[; ;Timer.c: 37: T2CON |= prescaler;
-"37
-[e =| _T2CON _prescaler ]
-[; ;Timer.c: 39: T2CONbits.TMR2ON = 1;
-"39
-[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-[; ;Timer.c: 40: PIE1bits.TMR2IE = 1;
-"40
-[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
-[; ;Timer.c: 41: }
 "41
+[v _time `uc ~T0 @X0 1 r1 ]
+"42
+[f ]
+"43
+[v _postscaler `uc ~T0 @X0 1 a ]
+[; ;Timer.c: 43: unsigned char postscaler =0xF;
+[e = _postscaler -> -> 15 `i `uc ]
+"44
+[v _prescaler `uc ~T0 @X0 1 a ]
+[; ;Timer.c: 44: unsigned char prescaler =3;
+[e = _prescaler -> -> 3 `i `uc ]
+[; ;Timer.c: 45: CCP2CONbits.CCP2M = 0b1010;
+"45
+[e = . . _CCP2CONbits 0 0 -> -> 10 `i `uc ]
+[; ;Timer.c: 46: PR2 = time;
+"46
+[e = _PR2 _time ]
+[; ;Timer.c: 47: T2CON |= postscaler << 3;
+"47
+[e =| _T2CON -> << -> _postscaler `i -> 3 `i `uc ]
+[; ;Timer.c: 48: T2CON |= prescaler;
+"48
+[e =| _T2CON _prescaler ]
+[; ;Timer.c: 50: T2CONbits.TMR2ON = 1;
+"50
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+[; ;Timer.c: 51: PIE1bits.TMR2IE = 1;
+"51
+[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
+[; ;Timer.c: 52: }
+"52
 [e :UE 587 ]
 }

@@ -6266,30 +6266,31 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 36 "ADC.h"
+# 63 "ADC.h"
 double ReadVoltage(void);
 void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 47 "user.h"
+# 85 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 66 "UART.h"
+# 88 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
+# 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
@@ -6303,10 +6304,10 @@ void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 
-# 21 "system.h"
+# 52 "system.h"
 void ConfigureOscillator(void);
 
-# 26 "MISC.h"
+# 54 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
@@ -6321,9 +6322,10 @@ unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 
-# 25 "ADC.c"
+# 49 "ADC.c"
 double BatteryVoltage =0;
 
+# 61
 double ReadVoltage(void)
 {
 unsigned int temp;
@@ -6338,6 +6340,7 @@ voltage = ((double)temp / 1000) * 5.7;
 return voltage;
 }
 
+# 80
 unsigned int InternalADC_Read(unsigned char channel)
 {
 ADCON0 =0;
@@ -6355,6 +6358,8 @@ ADCON0 |= 0b00000010;
 while(ADCON0 & 0b00000010);
 return ((ADRESH << 8) + ADRESL);
 }
+
+# 103
 void DisableInternalADC(void)
 {
 ADCON0 &= ~0b00000001;

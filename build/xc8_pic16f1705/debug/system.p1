@@ -4674,33 +4674,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;system.h: 21: void ConfigureOscillator(void);
-"18 system.c
+[; ;system.h: 52: void ConfigureOscillator(void);
+"40 system.c
 [v _ConfigureOscillator `(v ~T0 @X0 1 ef ]
-"19
+"41
 {
-[; ;system.c: 18: void ConfigureOscillator(void)
-[; ;system.c: 19: {
+[; ;system.c: 40: void ConfigureOscillator(void)
+[; ;system.c: 41: {
 [e :U _ConfigureOscillator ]
 [f ]
-[; ;system.c: 26: OSCCON= 0b11110000;
-"26
+[; ;system.c: 42: OSCCON= 0b11110000;
+"42
 [e = _OSCCON -> -> 240 `i `uc ]
-[; ;system.c: 27: while(!(OSCSTAT & HFIOFS));
-"27
+[; ;system.c: 43: while(!(OSCSTAT & HFIOFS));
+"43
 [e $U 588  ]
 [e :U 589 ]
 [e :U 588 ]
 [e $ ! != & -> _OSCSTAT `i -> _HFIOFS `i -> 0 `i 589  ]
 [e :U 590 ]
-[; ;system.c: 28: while(!(OSCSTAT & = 0b01000000));
-"28
+[; ;system.c: 44: while(!(OSCSTAT & = 0b01000000));
+"44
 [e $U 591  ]
 [e :U 592 ]
 [e :U 591 ]
 [e $ ! != -> =& _OSCSTAT -> -> 64 `i `uc `i -> -> -> 0 `i `Vuc `i 592  ]
 [e :U 593 ]
-[; ;system.c: 29: }
-"29
+[; ;system.c: 45: }
+"45
 [e :UE 587 ]
 }

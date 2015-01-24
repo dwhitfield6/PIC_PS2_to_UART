@@ -7,6 +7,8 @@
  * MM/DD/YY
  * --------     ---------   ----------------------------------------------------
  * 01/21/15     1.2         Added log.
+ *                          Fixed Baud rate sting logic to save memory.
+ *                          Added "keyboard" before every baud rate change.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -91,7 +93,8 @@ void InitUART(unsigned long Baud, unsigned char parity)
     CloseUSART(); //turn off usart if was previously on
     config =0;
     baudconfig =0;
-         //-----configure USART -----
+
+    //-----configure USART -----
     config |= USART_TX_INT_OFF;
     config |= USART_RX_INT_ON;
     config |= USART_ASYNCH_MODE;
@@ -109,7 +112,7 @@ void InitUART(unsigned long Baud, unsigned char parity)
     }
     baudconfig |= USART_BRG16;
 
-    //calculate teh spbrg from the baud rate.
+    //calculate the spbrg from the baud rate.
     temp = (SYS_FREQ / Baud) - 1;
     temp = (temp >> 2) - 1;
     spbrg = (unsigned int)temp;
@@ -223,7 +226,6 @@ void OpenUSART( unsigned char config, unsigned int spbrg)
 /******************************************************************************/
 void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data)
 {
-
     if(TXSTAbits.TX9)  
     {
         // 9-bit mode
@@ -370,7 +372,7 @@ void SetBaud(unsigned long Baud, unsigned char Parity)
     delayUS(Word_Spacing);
     if((Baud != Baudtemp) || (Parity != Paritytemp))
     {
-        UARTstringWAIT("Program Fail\r\n");
+        UARTstringWAIT("KeyBoard Program Fail\r\n");
         delayUS(Word_Spacing);
     }
 
@@ -383,28 +385,29 @@ void SetBaud(unsigned long Baud, unsigned char Parity)
        delayUS(10000);
     }
 
+    sprintf(buf,"KeyBoard Baud is %lu",Baud);
+    UARTstringWAIT(buf);
     if(Parity)
     {
         switch (Parity)
         {
             case 1:
-                sprintf(buf,"Baud is %lu with Odd parity bit\r\n",Baud);//Odd parity
+                UARTstringWAIT(" with Odd parity bit\r\n");//Odd parity
                 break;
             case 2:
-                sprintf(buf,"Baud is %lu with Even parity bit\r\n",Baud);//Even parity
+                UARTstringWAIT(" with Even parity bit\r\n");//Even parity
                 break;
             case 3:
-                sprintf(buf,"Baud is %lu with Mark bit\r\n",Baud);//mark
+                UARTstringWAIT(" with Mark bit\r\n");//mark
                 break;
             default:
-                sprintf(buf,"Baud is %lu with Space bit\r\n",Baud);//Space
+                UARTstringWAIT(" with Space bit\r\n");//Space
                 break;
         }
     }
     else
     {
-        sprintf(buf,"Baud is %lu with no parity bit\r\n",Baud);
+        UARTstringWAIT(" with no parity bit\r\n");
     }
-    UARTstringWAIT(buf);
     delayUS(Word_Spacing);
 }
