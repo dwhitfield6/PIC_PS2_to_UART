@@ -6334,7 +6334,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6869,7 +6869,7 @@ unsigned char ISNUMBER(unsigned char ascii);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -7508,7 +7508,8 @@ if(temp)
 if(temp == 0x01)
 {
 
-UART_send_break();
+
+UART_send_break_timed(100000);
 }
 else
 {
@@ -7609,7 +7610,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 }
 }
 
-# 806
+# 807
 unsigned char Decode_Scan_Code(unsigned char Code)
 {
 Code -= 13;
@@ -7623,7 +7624,7 @@ return 0;
 }
 }
 
-# 825
+# 826
 unsigned char Decode_Scan_Code_Shift(unsigned char Code)
 {
 Code -= 13;
@@ -7637,7 +7638,7 @@ return 0;
 }
 }
 
-# 844
+# 845
 unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
 {
 Code -= 17;
@@ -7651,7 +7652,7 @@ return 0;
 }
 }
 
-# 863
+# 864
 unsigned char Decode_Scan_Code_Function(unsigned char Code)
 {
 if(Code <=131)
@@ -7664,7 +7665,7 @@ return 0;
 }
 }
 
-# 880
+# 881
 unsigned char Send_PS2(unsigned char command)
 {
 unsigned char i=0;
@@ -7818,7 +7819,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 0;
 }
 
-# 1040
+# 1041
 unsigned char Init_PS_2_Send(void)
 {
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -7908,14 +7909,14 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 1;
 }
 
-# 1135
+# 1136
 unsigned char Keyboard_Connected(void)
 {
 unsigned long i=0;
 ECHO =0;
 Send_PS2(0xEE);
 PS_2_ENABLE_INTERRUPT(0b00100000);
-for(i=0;i<8000;i++)
+for(i=0;i<5000;i++)
 {
 PS_2_Update();
 delayUS(10);

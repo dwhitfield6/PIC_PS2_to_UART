@@ -6779,7 +6779,7 @@ const unsigned char ScanCodeFunctionE0[109] = {
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6820,11 +6820,11 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 55 "interrupts.c"
+# 57 "interrupts.c"
 extern unsigned int PS_2_Read_Data_FirstTEMP;
 extern unsigned int PS_2_Read_Data_SecondTEMP;
 extern unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6836,7 +6836,7 @@ extern unsigned int SinLEDtimer;
 
 unsigned char blinkdelay =0;
 
-# 70
+# 72
 void interrupt isr(void)
 {
 unsigned char rx;
@@ -6906,7 +6906,8 @@ if(Rx_fault == 1)
 {
 if(rx == 0)
 {
-UART_send_break();
+
+UART_send_break_timed(100000);
 }
 }
 else

@@ -6266,23 +6266,24 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 63 "ADC.h"
+# 83 "ADC.h"
 double ReadVoltage(void);
 void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
+void ShutDown_ADC(void);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6322,10 +6323,10 @@ unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 
-# 49 "ADC.c"
+# 52 "ADC.c"
 double BatteryVoltage =0;
 
-# 61
+# 64
 double ReadVoltage(void)
 {
 unsigned int temp;
@@ -6336,18 +6337,29 @@ DisableInternalADC();
 LATC |= 0b00000001;
 
 
+
+if((FVRCON & 0x03) == 0x03)
+{
+
+temp <<= 2;
+}
+else if((FVRCON & 0x03) == 0x02)
+{
+
+temp <<= 1;
+}
 voltage = ((double)temp / 1000) * 5.7;
 return voltage;
 }
 
-# 80
+# 94
 unsigned int InternalADC_Read(unsigned char channel)
 {
 ADCON0 =0;
 ADCON1 =0;
 ADCON1 |= 0b01010000;
 FVRCON |= 0b10000000;
-FVRCON |= 0x01;
+FVRCON |= 0b00000011;
 while(!(FVRCON & 0b01000000));
 ADCON0 |= (channel << 2);
 ADCON1 |= 0b10000011;
@@ -6359,8 +6371,17 @@ while(ADCON0 & 0b00000010);
 return ((ADRESH << 8) + ADRESL);
 }
 
-# 103
+# 117
 void DisableInternalADC(void)
 {
 ADCON0 &= ~0b00000001;
+}
+
+# 128
+void ShutDown_ADC(void)
+{
+FVRCON =0;
+ADCON0 =0;
+ADCON1 =0;
+ADCON2 =0;
 }

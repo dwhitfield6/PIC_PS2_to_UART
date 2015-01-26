@@ -7,6 +7,8 @@
  * MM/DD/YY
  * --------     ---------   ----------------------------------------------------
  * 01/21/15     1.2         Created log.
+ *                          Changed send_break to a timed send break for
+ *                            compatibility reasons.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -136,7 +138,8 @@ void interrupt isr(void)
         {
             if(rx == 0)
             {
-                UART_send_break();
+                //UART_send_break();
+                UART_send_break_timed(100000);
             }
         }
         else

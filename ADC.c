@@ -6,7 +6,10 @@
  * Date         Revision    Comments
  * MM/DD/YY
  * --------     ---------   ----------------------------------------------------
- * 01/21/15     1.2         Created log.
+ * 01/26/15     1.2         Created log.
+ *                          Add macro to allow the voltage equation to be
+ *                            compensatied for reference change.
+ *                          Added function ShutDown_ADC to reset ADC module.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -66,8 +69,19 @@ double ReadVoltage(void)
     temp = InternalADC_Read(2);
     DisableInternalADC();
     LATC |= DivON;//release voltage divider
-    //reference is 1.024 and its 10 bits
-    //therefore 1.024/1024 = 1000
+    //reference is 1.024 * reference multiplier and its 10 bits
+    //therefore 1.024*Ref_Multiplier/1024 = 1000
+    //the bottom 2 bits are the Ref_Multiplier
+    if((FVRCON & 0x03) == 0x03)
+    {
+        //reference is 4 times higher
+        temp <<= 2;
+    }
+    else if((FVRCON & 0x03) == 0x02)
+    {
+        //reference is 2 times higher
+        temp <<= 1;
+    }
     voltage = ((double)temp / 1000) * ratio;
     return voltage;
 }
@@ -83,7 +97,7 @@ unsigned int InternalADC_Read(unsigned char channel)
     ADCON1 =0;
     ADCON1 |= 0b01010000;//FOSC/16
     FVRCON |= FVREN;
-    FVRCON |= 0x01;//buffer is set to 1x
+    FVRCON |= Ref_Multiplier;//buffer is set to 4x
     while(!(FVRCON & FVRrdy));//wait for reference to be ready
     ADCON0 |= (channel << 2);//input channel
     ADCON1 |= 0b10000011; //right justified and VREF is FVR
@@ -96,11 +110,25 @@ unsigned int InternalADC_Read(unsigned char channel)
 }
 
 /******************************************************************************/
-/* DisableInternalADC(
+/* DisableInternalADC
  *
  * The function turns off the internal ADC module.
 /******************************************************************************/
 void DisableInternalADC(void)
 {
     ADCON0 &= ~ADON;
+}
+
+/******************************************************************************/
+/* ShutDown_ADC
+ *
+ * The function shutsdown the ADC module and sets all registers to their
+ *   preinitialized values.
+/******************************************************************************/
+void ShutDown_ADC(void)
+{
+    FVRCON =0;
+    ADCON0 =0;
+    ADCON1 =0;
+    ADCON2 =0;
 }

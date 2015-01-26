@@ -697,7 +697,8 @@ void PS_2_Update(void)
             if(temp == 0x01)
             {
                 //break character
-                UART_send_break();
+                //UART_send_break();
+                UART_send_break_timed(100000);
             }
             else
             {

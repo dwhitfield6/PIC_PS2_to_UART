@@ -6269,7 +6269,7 @@ typedef unsigned char bool;
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6294,7 +6294,7 @@ unsigned char ISNUMBER(unsigned char ascii);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6845,26 +6845,27 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 63 "ADC.h"
+# 83 "ADC.h"
 double ReadVoltage(void);
 void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
+void ShutDown_ADC(void);
 
-# 65 "main.c"
+# 76 "main.c"
 unsigned char Version[] = {"1.2"};
 
-# 71
+# 82
 extern double BatteryVoltage;
 extern unsigned char Alarm;
 
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
 
-# 81
+# 92
 void main(void)
 {
 unsigned char i=0;
@@ -6896,11 +6897,28 @@ delayUS(5000);
 UARTstringWAIT("To Change BAUD hit \"CNT+ALT+DEL\"\r\n");
 delayUS(10000);
 
+
+if(!Keyboard_Connected())
+{
 if(!Keyboard_Connected())
 {
 UARTstringWAIT("No Keyboard connected\r\n");
 
-while(!Keyboard_Connected());
+while(!Keyboard_Connected())
+{
+BatteryVoltage = ReadVoltage();
+
+if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
+{
+LATC ^= 0b00000010;
+pwrLEDtoggle = 0;
+}
+else
+{
+LATC |= 0b00000010;
+}
+}
+}
 }
 UARTstringWAIT("Keyboard Connected\r\n");
 if(!Init_PS_2_Send())
@@ -6913,11 +6931,11 @@ else
 UARTstringWAIT("Keyboard Pass!\r\n");
 }
 BatteryVoltage = ReadVoltage();
-if(BatteryVoltage < 4.65 )
+if(BatteryVoltage < 5.85 )
 {
 UARTstringWAIT("Voltage too Low!\r\n");
 }
-else if (BatteryVoltage > 5.35)
+else if (BatteryVoltage > 20.0)
 {
 UARTstringWAIT("Voltage too High!\r\n");
 }
@@ -6926,7 +6944,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 while(1)
 {
 BatteryVoltage = ReadVoltage();
-if(BatteryVoltage < 4.65 || BatteryVoltage > 5.35)
+if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
 {
 pwrLEDtoggle++;
 if(pwrLEDtoggle > 1000)

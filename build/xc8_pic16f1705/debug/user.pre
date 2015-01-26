@@ -6334,14 +6334,14 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 85 "user.h"
+# 112 "user.h"
 void InitApp(void);
 void Init_System (void);
 

@@ -37,6 +37,21 @@
 /******************************************************************************/
 #define ratio 5.7
 
+/******************************************************************************/
+/* Set the ADC reference
+ *
+ * Set this to the voltage refeence required.
+ * For 0 - 5.8 volts use Ref_1x.
+ * For 0 - 11.6 volts use Ref_2x.
+ * For 0 - 23.2 volts use Ref_4x.
+/******************************************************************************/
+#ifdef RS232
+#define Ref_Multiplier Ref_4x
+#else
+#define Ref_Multiplier Ref_1x
+#endif
+
+
 /* Below is not used due to speed*/
 
 /*
@@ -56,6 +71,11 @@
 #define FVREN   0b10000000
 #define FVRrdy  0b01000000
 
+#define Ref_OFF 0b00000000
+#define Ref_1x  0b00000001
+#define Ref_2x  0b00000010
+#define Ref_4x  0b00000011
+
 /******************************************************************************/
 /* Function prototypes                                                        */
 /******************************************************************************/
@@ -63,3 +83,4 @@
 double ReadVoltage(void);
 void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
+void ShutDown_ADC(void);

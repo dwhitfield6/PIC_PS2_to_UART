@@ -16,7 +16,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S33 . . . ]
 "531
 [v _PIR1bits `VS33 ~T0 @X0 0 e@17 ]
-"62 interrupts.c
+"64 interrupts.c
 [v _SinLEDtimer `ui ~T0 @X0 0 e ]
 "3139 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [s S177 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -28,8 +28,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RC1STAbits `VS176 ~T0 @X0 0 e@413 ]
 "99 UART.h
 [v _ReadUSART `(uc ~T0 @X0 0 ef ]
-"103
-[v _UART_send_break `(v ~T0 @X0 0 ef ]
+"102
+[v _UART_send_break_timed `(v ~T0 @X0 0 ef1`ui ]
 "97
 [v _UARTchar `(v ~T0 @X0 0 ef3`uc`uc`uc ]
 "1090 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
@@ -43,7 +43,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S63 . . . ]
 "1105
 [v _PIE1bits `VS63 ~T0 @X0 0 e@145 ]
-"61 interrupts.c
+"63 interrupts.c
 [v _Alarm `uc ~T0 @X0 0 e ]
 "28 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic.h
 [v ___nop `(v ~T0 @X0 0 ef ]
@@ -6211,8 +6211,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 568: '\0' ,
 [; ;PS_2.h: 569: 0x17 };
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 85: void InitApp(void);
-[; ;user.h: 86: void Init_System (void);
+[; ;user.h: 112: void InitApp(void);
+[; ;user.h: 113: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -6260,350 +6260,350 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FLASH.h: 71: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 [; ;FLASH.h: 72: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 [; ;FLASH.h: 73: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;user.h: 85: void InitApp(void);
-[; ;user.h: 86: void Init_System (void);
-[; ;interrupts.c: 55: extern unsigned int PS_2_Read_Data_FirstTEMP;
-[; ;interrupts.c: 56: extern unsigned int PS_2_Read_Data_SecondTEMP;
-[; ;interrupts.c: 57: extern unsigned int PS_2_Read_Data_ThirdTEMP;
-[; ;interrupts.c: 58: extern unsigned int PS_2_Read_Data_ForthTEMP;
-[; ;interrupts.c: 59: extern unsigned char PS_2_bits;
-[; ;interrupts.c: 60: extern unsigned int Read_Timer;
-[; ;interrupts.c: 61: extern unsigned char Alarm;
-[; ;interrupts.c: 62: extern unsigned int SinLEDtimer;
-"64 interrupts.c
+[; ;user.h: 112: void InitApp(void);
+[; ;user.h: 113: void Init_System (void);
+[; ;interrupts.c: 57: extern unsigned int PS_2_Read_Data_FirstTEMP;
+[; ;interrupts.c: 58: extern unsigned int PS_2_Read_Data_SecondTEMP;
+[; ;interrupts.c: 59: extern unsigned int PS_2_Read_Data_ThirdTEMP;
+[; ;interrupts.c: 60: extern unsigned int PS_2_Read_Data_ForthTEMP;
+[; ;interrupts.c: 61: extern unsigned char PS_2_bits;
+[; ;interrupts.c: 62: extern unsigned int Read_Timer;
+[; ;interrupts.c: 63: extern unsigned char Alarm;
+[; ;interrupts.c: 64: extern unsigned int SinLEDtimer;
+"66 interrupts.c
 [v _blinkdelay `uc ~T0 @X0 1 e ]
 [i _blinkdelay
 -> -> 0 `i `uc
 ]
-[; ;interrupts.c: 64: unsigned char blinkdelay =0;
+[; ;interrupts.c: 66: unsigned char blinkdelay =0;
 [v F4915 `(v ~T0 @X0 1 tf ]
-"70
+"72
 [v _isr `IF4915 ~T0 @X0 1 e ]
-"71
+"73
 {
-[; ;interrupts.c: 70: void interrupt isr(void)
-[; ;interrupts.c: 71: {
+[; ;interrupts.c: 72: void interrupt isr(void)
+[; ;interrupts.c: 73: {
 [e :U _isr ]
 [f ]
-"72
+"74
 [v _rx `uc ~T0 @X0 1 a ]
-"73
-[v _Rx_fault `uc ~T0 @X0 1 a ]
-[; ;interrupts.c: 72: unsigned char rx;
-[; ;interrupts.c: 73: unsigned char Rx_fault =0;
-[e = _Rx_fault -> -> 0 `i `uc ]
-[; ;interrupts.c: 75: if(IOCAF & 0b00100000)
 "75
+[v _Rx_fault `uc ~T0 @X0 1 a ]
+[; ;interrupts.c: 74: unsigned char rx;
+[; ;interrupts.c: 75: unsigned char Rx_fault =0;
+[e = _Rx_fault -> -> 0 `i `uc ]
+[; ;interrupts.c: 77: if(IOCAF & 0b00100000)
+"77
 [e $ ! != & -> _IOCAF `i -> 32 `i -> 0 `i 588  ]
-[; ;interrupts.c: 76: {
-"76
-{
-[; ;interrupts.c: 78: LATC |= 0b00010000;
+[; ;interrupts.c: 78: {
 "78
-[e =| _LATC -> -> 16 `i `uc ]
-[; ;interrupts.c: 79: if(PS_2_bits <44)
-"79
-[e $ ! < -> _PS_2_bits `i -> 44 `i 589  ]
-[; ;interrupts.c: 80: {
-"80
 {
-[; ;interrupts.c: 81: if(PS_2_bits <11 )
+[; ;interrupts.c: 80: LATC |= 0b00010000;
+"80
+[e =| _LATC -> -> 16 `i `uc ]
+[; ;interrupts.c: 81: if(PS_2_bits <44)
 "81
-[e $ ! < -> _PS_2_bits `i -> 11 `i 590  ]
+[e $ ! < -> _PS_2_bits `i -> 44 `i 589  ]
 [; ;interrupts.c: 82: {
 "82
 {
-[; ;interrupts.c: 83: PS_2_Read_Data_FirstTEMP <<= 1;
+[; ;interrupts.c: 83: if(PS_2_bits <11 )
 "83
-[e =<< _PS_2_Read_Data_FirstTEMP -> 1 `i ]
-[; ;interrupts.c: 84: if(READ_PS_2_PIN(0b00010000))
+[e $ ! < -> _PS_2_bits `i -> 11 `i 590  ]
+[; ;interrupts.c: 84: {
 "84
-[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 591  ]
-[; ;interrupts.c: 85: {
-"85
 {
-[; ;interrupts.c: 86: PS_2_Read_Data_FirstTEMP++;
+[; ;interrupts.c: 85: PS_2_Read_Data_FirstTEMP <<= 1;
+"85
+[e =<< _PS_2_Read_Data_FirstTEMP -> 1 `i ]
+[; ;interrupts.c: 86: if(READ_PS_2_PIN(0b00010000))
 "86
-[e ++ _PS_2_Read_Data_FirstTEMP -> -> 1 `i `ui ]
+[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 591  ]
+[; ;interrupts.c: 87: {
 "87
+{
+[; ;interrupts.c: 88: PS_2_Read_Data_FirstTEMP++;
+"88
+[e ++ _PS_2_Read_Data_FirstTEMP -> -> 1 `i `ui ]
+"89
 }
 [e :U 591 ]
-[; ;interrupts.c: 87: }
-[; ;interrupts.c: 88: PS_2_Read_Data_SecondTEMP = 0;
-"88
-[e = _PS_2_Read_Data_SecondTEMP -> -> 0 `i `ui ]
-[; ;interrupts.c: 89: PS_2_Read_Data_ThirdTEMP = 0;
-"89
-[e = _PS_2_Read_Data_ThirdTEMP -> -> 0 `i `ui ]
+[; ;interrupts.c: 89: }
+[; ;interrupts.c: 90: PS_2_Read_Data_SecondTEMP = 0;
 "90
-}
-[; ;interrupts.c: 90: }
-[e $U 592  ]
+[e = _PS_2_Read_Data_SecondTEMP -> -> 0 `i `ui ]
+[; ;interrupts.c: 91: PS_2_Read_Data_ThirdTEMP = 0;
 "91
-[e :U 590 ]
-[; ;interrupts.c: 91: else if(PS_2_bits <22 )
-[e $ ! < -> _PS_2_bits `i -> 22 `i 593  ]
-[; ;interrupts.c: 92: {
+[e = _PS_2_Read_Data_ThirdTEMP -> -> 0 `i `ui ]
 "92
-{
-[; ;interrupts.c: 93: PS_2_Read_Data_SecondTEMP <<= 1;
+}
+[; ;interrupts.c: 92: }
+[e $U 592  ]
 "93
-[e =<< _PS_2_Read_Data_SecondTEMP -> 1 `i ]
-[; ;interrupts.c: 94: if(READ_PS_2_PIN(0b00010000))
+[e :U 590 ]
+[; ;interrupts.c: 93: else if(PS_2_bits <22 )
+[e $ ! < -> _PS_2_bits `i -> 22 `i 593  ]
+[; ;interrupts.c: 94: {
 "94
-[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 594  ]
-[; ;interrupts.c: 95: {
-"95
 {
-[; ;interrupts.c: 96: PS_2_Read_Data_SecondTEMP++;
+[; ;interrupts.c: 95: PS_2_Read_Data_SecondTEMP <<= 1;
+"95
+[e =<< _PS_2_Read_Data_SecondTEMP -> 1 `i ]
+[; ;interrupts.c: 96: if(READ_PS_2_PIN(0b00010000))
 "96
-[e ++ _PS_2_Read_Data_SecondTEMP -> -> 1 `i `ui ]
+[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 594  ]
+[; ;interrupts.c: 97: {
 "97
+{
+[; ;interrupts.c: 98: PS_2_Read_Data_SecondTEMP++;
+"98
+[e ++ _PS_2_Read_Data_SecondTEMP -> -> 1 `i `ui ]
+"99
 }
 [e :U 594 ]
-"98
-}
-[; ;interrupts.c: 97: }
-[; ;interrupts.c: 98: }
-[e $U 595  ]
-"99
-[e :U 593 ]
-[; ;interrupts.c: 99: else if(PS_2_bits <33 )
-[e $ ! < -> _PS_2_bits `i -> 33 `i 596  ]
-[; ;interrupts.c: 100: {
 "100
-{
-[; ;interrupts.c: 101: PS_2_Read_Data_ThirdTEMP <<= 1;
+}
+[; ;interrupts.c: 99: }
+[; ;interrupts.c: 100: }
+[e $U 595  ]
 "101
-[e =<< _PS_2_Read_Data_ThirdTEMP -> 1 `i ]
-[; ;interrupts.c: 102: if(READ_PS_2_PIN(0b00010000))
+[e :U 593 ]
+[; ;interrupts.c: 101: else if(PS_2_bits <33 )
+[e $ ! < -> _PS_2_bits `i -> 33 `i 596  ]
+[; ;interrupts.c: 102: {
 "102
-[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 597  ]
-[; ;interrupts.c: 103: {
-"103
 {
-[; ;interrupts.c: 104: PS_2_Read_Data_ThirdTEMP++;
+[; ;interrupts.c: 103: PS_2_Read_Data_ThirdTEMP <<= 1;
+"103
+[e =<< _PS_2_Read_Data_ThirdTEMP -> 1 `i ]
+[; ;interrupts.c: 104: if(READ_PS_2_PIN(0b00010000))
 "104
-[e ++ _PS_2_Read_Data_ThirdTEMP -> -> 1 `i `ui ]
+[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 597  ]
+[; ;interrupts.c: 105: {
 "105
+{
+[; ;interrupts.c: 106: PS_2_Read_Data_ThirdTEMP++;
+"106
+[e ++ _PS_2_Read_Data_ThirdTEMP -> -> 1 `i `ui ]
+"107
 }
 [e :U 597 ]
-"106
-}
-[; ;interrupts.c: 105: }
-[; ;interrupts.c: 106: }
-[e $U 598  ]
-"107
-[e :U 596 ]
-[; ;interrupts.c: 107: else
-[; ;interrupts.c: 108: {
 "108
-{
-[; ;interrupts.c: 109: PS_2_Read_Data_ForthTEMP <<= 1;
+}
+[; ;interrupts.c: 107: }
+[; ;interrupts.c: 108: }
+[e $U 598  ]
 "109
-[e =<< _PS_2_Read_Data_ForthTEMP -> 1 `i ]
-[; ;interrupts.c: 110: if(READ_PS_2_PIN(0b00010000))
+[e :U 596 ]
+[; ;interrupts.c: 109: else
+[; ;interrupts.c: 110: {
 "110
-[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 599  ]
-[; ;interrupts.c: 111: {
-"111
 {
-[; ;interrupts.c: 112: PS_2_Read_Data_ForthTEMP++;
+[; ;interrupts.c: 111: PS_2_Read_Data_ForthTEMP <<= 1;
+"111
+[e =<< _PS_2_Read_Data_ForthTEMP -> 1 `i ]
+[; ;interrupts.c: 112: if(READ_PS_2_PIN(0b00010000))
 "112
-[e ++ _PS_2_Read_Data_ForthTEMP -> -> 1 `i `ui ]
+[e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 599  ]
+[; ;interrupts.c: 113: {
 "113
+{
+[; ;interrupts.c: 114: PS_2_Read_Data_ForthTEMP++;
+"114
+[e ++ _PS_2_Read_Data_ForthTEMP -> -> 1 `i `ui ]
+"115
 }
 [e :U 599 ]
-"114
+"116
 }
 [e :U 598 ]
 [e :U 595 ]
 [e :U 592 ]
-[; ;interrupts.c: 113: }
-[; ;interrupts.c: 114: }
-[; ;interrupts.c: 115: PS_2_bits++;
-"115
-[e ++ _PS_2_bits -> -> 1 `i `uc ]
-[; ;interrupts.c: 116: Read_Timer = 0;
-"116
-[e = _Read_Timer -> -> 0 `i `ui ]
+[; ;interrupts.c: 115: }
+[; ;interrupts.c: 116: }
+[; ;interrupts.c: 117: PS_2_bits++;
 "117
-}
-[e :U 589 ]
-[; ;interrupts.c: 117: }
-[; ;interrupts.c: 118: IOCAF &= ~0b00100000;
+[e ++ _PS_2_bits -> -> 1 `i `uc ]
+[; ;interrupts.c: 118: Read_Timer = 0;
 "118
-[e =& _IOCAF -> ~ -> 32 `i `uc ]
+[e = _Read_Timer -> -> 0 `i `ui ]
 "119
 }
+[e :U 589 ]
 [; ;interrupts.c: 119: }
-[e $U 600  ]
+[; ;interrupts.c: 120: IOCAF &= ~0b00100000;
 "120
-[e :U 588 ]
-[; ;interrupts.c: 120: else if (IOCAF & 0b00010000)
-[e $ ! != & -> _IOCAF `i -> 16 `i -> 0 `i 601  ]
-[; ;interrupts.c: 121: {
+[e =& _IOCAF -> ~ -> 32 `i `uc ]
 "121
-{
-[; ;interrupts.c: 122: IOCAF &= ~0b00010000;
-"122
-[e =& _IOCAF -> ~ -> 16 `i `uc ]
-"123
 }
-[; ;interrupts.c: 123: }
-[e $U 602  ]
+[; ;interrupts.c: 121: }
+[e $U 600  ]
+"122
+[e :U 588 ]
+[; ;interrupts.c: 122: else if (IOCAF & 0b00010000)
+[e $ ! != & -> _IOCAF `i -> 16 `i -> 0 `i 601  ]
+[; ;interrupts.c: 123: {
+"123
+{
+[; ;interrupts.c: 124: IOCAF &= ~0b00010000;
 "124
-[e :U 601 ]
-[; ;interrupts.c: 124: else if (PIR1bits.RCIF)
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 603  ]
-[; ;interrupts.c: 125: {
+[e =& _IOCAF -> ~ -> 16 `i `uc ]
 "125
-{
-[; ;interrupts.c: 127: LATC |= 0b00001000;
+}
+[; ;interrupts.c: 125: }
+[e $U 602  ]
+"126
+[e :U 601 ]
+[; ;interrupts.c: 126: else if (PIR1bits.RCIF)
+[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 603  ]
+[; ;interrupts.c: 127: {
 "127
-[e =| _LATC -> -> 8 `i `uc ]
-[; ;interrupts.c: 128: SinLEDtimer = 0;
-"128
-[e = _SinLEDtimer -> -> 0 `i `ui ]
-[; ;interrupts.c: 129: Rx_fault = 0;
-"129
-[e = _Rx_fault -> -> 0 `i `uc ]
-[; ;interrupts.c: 130: if(RC1STAbits.FERR)
-"130
-[e $ ! != -> . . _RC1STAbits 0 2 `i -> -> -> 0 `i `Vuc `i 604  ]
-[; ;interrupts.c: 131: {
-"131
 {
-[; ;interrupts.c: 132: Rx_fault =1;
+[; ;interrupts.c: 129: LATC |= 0b00001000;
+"129
+[e =| _LATC -> -> 8 `i `uc ]
+[; ;interrupts.c: 130: SinLEDtimer = 0;
+"130
+[e = _SinLEDtimer -> -> 0 `i `ui ]
+[; ;interrupts.c: 131: Rx_fault = 0;
+"131
+[e = _Rx_fault -> -> 0 `i `uc ]
+[; ;interrupts.c: 132: if(RC1STAbits.FERR)
 "132
-[e = _Rx_fault -> -> 1 `i `uc ]
+[e $ ! != -> . . _RC1STAbits 0 2 `i -> -> -> 0 `i `Vuc `i 604  ]
+[; ;interrupts.c: 133: {
 "133
+{
+[; ;interrupts.c: 134: Rx_fault =1;
+"134
+[e = _Rx_fault -> -> 1 `i `uc ]
+"135
 }
 [e :U 604 ]
-[; ;interrupts.c: 133: }
-[; ;interrupts.c: 134: rx = ReadUSART();
-"134
-[e = _rx ( _ReadUSART ..  ]
-[; ;interrupts.c: 135: if(Rx_fault == 1)
-"135
-[e $ ! == -> _Rx_fault `i -> 1 `i 605  ]
-[; ;interrupts.c: 136: {
+[; ;interrupts.c: 135: }
+[; ;interrupts.c: 136: rx = ReadUSART();
 "136
-{
-[; ;interrupts.c: 137: if(rx == 0)
+[e = _rx ( _ReadUSART ..  ]
+[; ;interrupts.c: 137: if(Rx_fault == 1)
 "137
-[e $ ! == -> _rx `i -> 0 `i 606  ]
+[e $ ! == -> _Rx_fault `i -> 1 `i 605  ]
 [; ;interrupts.c: 138: {
 "138
 {
-[; ;interrupts.c: 139: UART_send_break();
+[; ;interrupts.c: 139: if(rx == 0)
 "139
-[e ( _UART_send_break ..  ]
+[e $ ! == -> _rx `i -> 0 `i 606  ]
+[; ;interrupts.c: 140: {
 "140
+{
+[; ;interrupts.c: 142: UART_send_break_timed(100000);
+"142
+[e ( _UART_send_break_timed (1 -> -> 100000 `l `ui ]
+"143
 }
 [e :U 606 ]
-"141
-}
-[; ;interrupts.c: 140: }
-[; ;interrupts.c: 141: }
-[e $U 607  ]
-"142
-[e :U 605 ]
-[; ;interrupts.c: 142: else
-[; ;interrupts.c: 143: {
-"143
-{
-[; ;interrupts.c: 144: UARTchar(rx, 1 ,RC1STAbits.RX9D);
 "144
-[e ( _UARTchar (3 , , _rx -> -> 1 `i `uc . . _RC1STAbits 0 0 ]
+}
+[; ;interrupts.c: 143: }
+[; ;interrupts.c: 144: }
+[e $U 607  ]
 "145
+[e :U 605 ]
+[; ;interrupts.c: 145: else
+[; ;interrupts.c: 146: {
+"146
+{
+[; ;interrupts.c: 147: UARTchar(rx, 1 ,RC1STAbits.RX9D);
+"147
+[e ( _UARTchar (3 , , _rx -> -> 1 `i `uc . . _RC1STAbits 0 0 ]
+"148
 }
 [e :U 607 ]
-[; ;interrupts.c: 145: }
-[; ;interrupts.c: 146: PIR1bits.RCIF = 0;
-"146
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-"147
-}
-[; ;interrupts.c: 147: }
-[e $U 608  ]
-"148
-[e :U 603 ]
-[; ;interrupts.c: 148: else if(PIR1bits.TMR2IF)
-[e $ ! != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i 609  ]
-[; ;interrupts.c: 149: {
+[; ;interrupts.c: 148: }
+[; ;interrupts.c: 149: PIR1bits.RCIF = 0;
 "149
-{
-[; ;interrupts.c: 151: PIE1bits.TMR2IE = 0;
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+"150
+}
+[; ;interrupts.c: 150: }
+[e $U 608  ]
 "151
-[e = . . _PIE1bits 0 1 -> -> 0 `i `uc ]
-[; ;interrupts.c: 152: blinkdelay++;LATC ^= 0b00000010;
+[e :U 603 ]
+[; ;interrupts.c: 151: else if(PIR1bits.TMR2IF)
+[e $ ! != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i 609  ]
+[; ;interrupts.c: 152: {
 "152
+{
+[; ;interrupts.c: 154: PIE1bits.TMR2IE = 0;
+"154
+[e = . . _PIE1bits 0 1 -> -> 0 `i `uc ]
+[; ;interrupts.c: 155: blinkdelay++;LATC ^= 0b00000010;
+"155
 [e ++ _blinkdelay -> -> 1 `i `uc ]
 [e =^ _LATC -> -> 2 `i `uc ]
-[; ;interrupts.c: 153: if(blinkdelay > 4)
-"153
-[e $ ! > -> _blinkdelay `i -> 4 `i 610  ]
-[; ;interrupts.c: 154: {
-"154
-{
-[; ;interrupts.c: 155: if(Alarm)
-"155
-[e $ ! != -> _Alarm `i -> -> -> 0 `i `uc `i 611  ]
-[; ;interrupts.c: 156: {
+[; ;interrupts.c: 156: if(blinkdelay > 4)
 "156
-{
-[; ;interrupts.c: 157: __nop();
+[e $ ! > -> _blinkdelay `i -> 4 `i 610  ]
+[; ;interrupts.c: 157: {
 "157
-[e ( ___nop ..  ]
-"158
-}
-[; ;interrupts.c: 158: }
-[e $U 612  ]
-"159
-[e :U 611 ]
-[; ;interrupts.c: 159: else
-[; ;interrupts.c: 160: {
-"160
 {
-[; ;interrupts.c: 161: LATC |= 0b00000010;
+[; ;interrupts.c: 158: if(Alarm)
+"158
+[e $ ! != -> _Alarm `i -> -> -> 0 `i `uc `i 611  ]
+[; ;interrupts.c: 159: {
+"159
+{
+[; ;interrupts.c: 160: __nop();
+"160
+[e ( ___nop ..  ]
 "161
-[e =| _LATC -> -> 2 `i `uc ]
+}
+[; ;interrupts.c: 161: }
+[e $U 612  ]
 "162
+[e :U 611 ]
+[; ;interrupts.c: 162: else
+[; ;interrupts.c: 163: {
+"163
+{
+[; ;interrupts.c: 164: LATC |= 0b00000010;
+"164
+[e =| _LATC -> -> 2 `i `uc ]
+"165
 }
 [e :U 612 ]
-[; ;interrupts.c: 162: }
-[; ;interrupts.c: 163: blinkdelay =0;
-"163
+[; ;interrupts.c: 165: }
+[; ;interrupts.c: 166: blinkdelay =0;
+"166
 [e = _blinkdelay -> -> 0 `i `uc ]
-"164
-}
-[e :U 610 ]
-[; ;interrupts.c: 164: }
-[; ;interrupts.c: 165: PIR1bits.TMR2IF =0;
-"165
-[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
 "167
 }
+[e :U 610 ]
 [; ;interrupts.c: 167: }
-[e $U 613  ]
+[; ;interrupts.c: 168: PIR1bits.TMR2IF =0;
 "168
-[e :U 609 ]
-[; ;interrupts.c: 168: else
-[; ;interrupts.c: 169: {
-"169
-{
-[; ;interrupts.c: 171: __nop();
+[e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
+"170
+}
+[; ;interrupts.c: 170: }
+[e $U 613  ]
 "171
-[e ( ___nop ..  ]
+[e :U 609 ]
+[; ;interrupts.c: 171: else
+[; ;interrupts.c: 172: {
 "172
+{
+[; ;interrupts.c: 174: __nop();
+"174
+[e ( ___nop ..  ]
+"175
 }
 [e :U 613 ]
 [e :U 608 ]
 [e :U 602 ]
 [e :U 600 ]
-[; ;interrupts.c: 172: }
-[; ;interrupts.c: 173: }
-"173
+[; ;interrupts.c: 175: }
+[; ;interrupts.c: 176: }
+"176
 [e :UE 587 ]
 }

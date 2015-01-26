@@ -24,16 +24,28 @@
  *                          Protect code with code protect bit enabled in
  *                            configuration bits.
  *                          Fixed bugs with shift key and Caps lock key.
- * 01/21/15     1.2         Changed name from 1.1_DW0a.
+ * 01/26/15     1.2         Changed name from 1.1_DW0a.
  *                          Add log comments.
  *                          Add function comments.
  *                          Add function prototype and define comments.
+ *                          Add 'KeyBoard' to Baud comments.
+ *                          Check voltage when keyboard is not connected.
+ *                          Add macro to allow the voltage equation to be
+ *                            compensated for reference change.
+ *                          Check twice for disconnected keyboard.
+ *                          Changed system from short break to long break.
  *                          Tagged
 /******************************************************************************/
 
 /******************************************************************************/
 /* Contains main function.
  *
+/******************************************************************************/
+
+/******************************************************************************/
+/* Pick Which System!!!
+ *
+ * Go to user.h and define if the system is the RS232 model or TTL model
 /******************************************************************************/
 
 /******************************************************************************/
@@ -109,11 +121,28 @@ void main(void)
     UARTstringWAIT("To Change BAUD hit \"CNT+ALT+DEL\"\r\n");
     delayUS(Word_Spacing);
 
+    //check twice for a disconnecteed keyboard then print
     if(!Keyboard_Connected())
     {
-        UARTstringWAIT("No Keyboard connected\r\n");
-        //wait here until a keyboard is connected
-        while(!Keyboard_Connected());
+        if(!Keyboard_Connected())
+        {
+            UARTstringWAIT("No Keyboard connected\r\n");
+            //wait here until a keyboard is connected
+            while(!Keyboard_Connected())
+            {
+                BatteryVoltage = ReadVoltage();
+                //Check to see if voltage is out of range
+                if(BatteryVoltage < VoltageLow || BatteryVoltage > VoltageHigh)
+                {
+                    LATC ^= pwrLED;
+                    pwrLEDtoggle = 0;
+                }
+                else
+                {
+                    LATC |= pwrLED;
+                }
+            }
+        }
     }
     UARTstringWAIT("Keyboard Connected\r\n");
     if(!Init_PS_2_Send())

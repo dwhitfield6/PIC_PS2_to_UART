@@ -7,6 +7,8 @@
  * MM/DD/YY
  * --------     ---------   ----------------------------------------------------
  * 01/21/15     1.2         Created log.
+ *                          Create #define for the distingtion between
+ *                            products.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -27,6 +29,23 @@
 
 #endif
 
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+/******************************************************************************/
+/* Pick Which System!!!
+ * 
+ * Go to user.h and define if the system is the RS232 model or TTL model
+ *
+ * For an RS-232 system (includes rs 232 drivers and is powered by ower brick;
+ * Uncomment the code below.
+ *
+ * For the TTL version that goes between the main sustem and the USB to TTL
+ *  UART converter, Commetn below.
+ *
+/******************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+#define RS232
+
 /******************************************************************************/
 /* Important parameters.
  *
@@ -45,14 +64,22 @@
  * VoltageHigh is the high voltage threshold. If the supply voltage is higher
  *   than this value, the power led blinks.
  *
+ * Note:When the system is driven by the 7805 LDO, the lowest input voltage is
+ *   ~5.8 volts.
+ *
 /******************************************************************************/
 
 #define SinLEDTimeOut 100
 #define pwrLEDtime    1000
 #define BlinkDelay    4
+
+#ifdef RS232
+#define VoltageLow 5.85
+#define VoltageHigh 20.0
+#else
 #define VoltageLow 4.65
 #define VoltageHigh 5.35
-
+#endif
 /******************************************************************************/
 /* Defines                                                                    */
 /******************************************************************************/
