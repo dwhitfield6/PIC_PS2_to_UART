@@ -312,7 +312,7 @@ void UART_send_break(void)
 /******************************************************************************/
 void UART_send_break_timed(unsigned int US)
 {
-    //a long break of 200,000 is 285 mS
+    //a long break of 100,000 is 285 mS
     LATC |= TX;
     PPSLOCK =0;//unlock PPS
     RC2PPS = 0b00000000;//RC2 is LATxy
