@@ -6211,8 +6211,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 568: '\0' ,
 [; ;PS_2.h: 569: 0x17 };
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 112: void InitApp(void);
-[; ;user.h: 113: void Init_System (void);
+[; ;user.h: 124: void InitApp(void);
+[; ;user.h: 125: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -6227,7 +6227,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.h: 89: unsigned char PARITY = 0;
 [; ;UART.h: 95: void InitUART(unsigned long Baud, unsigned char parity);
 [; ;UART.h: 96: void UARTstring(const unsigned char *data);
-[; ;UART.h: 97: void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
+[; ;UART.h: 97: void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
 [; ;UART.h: 98: void OpenUSART( unsigned char config, unsigned int spbrg);
 [; ;UART.h: 99: char ReadUSART(void);
 [; ;UART.h: 100: void baudUSART (unsigned char baudconfig);
@@ -6260,8 +6260,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FLASH.h: 71: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 [; ;FLASH.h: 72: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 [; ;FLASH.h: 73: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;user.h: 112: void InitApp(void);
-[; ;user.h: 113: void Init_System (void);
+[; ;user.h: 124: void InitApp(void);
+[; ;user.h: 125: void Init_System (void);
 [; ;interrupts.c: 57: extern unsigned int PS_2_Read_Data_FirstTEMP;
 [; ;interrupts.c: 58: extern unsigned int PS_2_Read_Data_SecondTEMP;
 [; ;interrupts.c: 59: extern unsigned int PS_2_Read_Data_ThirdTEMP;

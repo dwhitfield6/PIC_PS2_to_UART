@@ -6779,7 +6779,7 @@ const unsigned char ScanCodeFunctionE0[109] = {
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 112 "user.h"
+# 124 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6790,7 +6790,7 @@ unsigned char PARITY = 0;
 # 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
-void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
+void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
 void OpenUSART( unsigned char config, unsigned int spbrg);
 char ReadUSART(void);
 void baudUSART (unsigned char baudconfig);
@@ -6820,7 +6820,7 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 112 "user.h"
+# 124 "user.h"
 void InitApp(void);
 void Init_System (void);
 

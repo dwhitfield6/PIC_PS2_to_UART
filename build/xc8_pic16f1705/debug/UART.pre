@@ -6337,14 +6337,14 @@ extern int printf(const char *, ...);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 112 "user.h"
+# 124 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 112 "user.h"
+# 124 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6355,7 +6355,7 @@ unsigned char PARITY = 0;
 # 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
-void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
+void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
 void OpenUSART( unsigned char config, unsigned int spbrg);
 char ReadUSART(void);
 void baudUSART (unsigned char baudconfig);
@@ -6550,12 +6550,12 @@ RC1STAbits.SPEN = 1;
 }
 
 # 227
-void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data)
+void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data)
 {
 if(TXSTAbits.TX9)
 {
 
-if(!NinethBit_override)
+if(!override)
 {
 
 switch (PARITY)
@@ -6579,10 +6579,23 @@ else
 TXSTAbits.TX9D = (NinethBit_override_data & 0x01);
 }
 }
+
+if(data == '\n')
+{
+if(override)
+{
+TXREG = data;
+}
+}
+else
+{
 TXREG = data;
 }
 
-# 264
+# 271
+}
+
+# 278
 void UARTstring(const unsigned char *data)
 {
 do
@@ -6595,7 +6608,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 281
+# 295
 char ReadUSART(void)
 {
 char data;
@@ -6610,14 +6623,14 @@ data = RCREG;
 return (data);
 }
 
-# 301
+# 315
 void UART_send_break(void)
 {
 TX1STA |= 0b00001000;
 TXREG = 'd';
 }
 
-# 313
+# 327
 void UART_send_break_timed(unsigned int US)
 {
 
@@ -6637,7 +6650,7 @@ RXPPS = 0b00010101;
 PPSLOCK =1;
 }
 
-# 338
+# 352
 void UARTstringWAIT(const unsigned char *data)
 {
 do
@@ -6651,7 +6664,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 357
+# 371
 void SetBaud(unsigned long Baud, unsigned char Parity)
 {
 unsigned char buf[50];

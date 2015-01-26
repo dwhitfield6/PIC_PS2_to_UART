@@ -94,7 +94,7 @@ unsigned char PARITY = 0;
 
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
-void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
+void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
 void OpenUSART( unsigned char config, unsigned int spbrg);
 char ReadUSART(void);
 void baudUSART (unsigned char baudconfig);

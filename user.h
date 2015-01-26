@@ -7,8 +7,10 @@
  * MM/DD/YY
  * --------     ---------   ----------------------------------------------------
  * 01/21/15     1.2         Created log.
- *                          Create #define for the distingtion between
+ *                          Create macro for the distingtion between
  *                            products.
+ *                          Create macro for the adding a new line with each
+ *                            cariage return.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -33,7 +35,7 @@
 /******************************************************************************/
 /* Pick Which System!!!
  * 
- * Go to user.h and define if the system is the RS232 model or TTL model
+ * Choose if the system is the RS232 model or TTL model.
  *
  * For an RS-232 system (includes rs 232 drivers and is powered by ower brick;
  * Uncomment the code below.
@@ -45,6 +47,18 @@
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 #define RS232
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+/******************************************************************************/
+/* Pick System Config!!!
+ *
+ * Choose if the system inserts a new line after a return. This is needed by
+ *   some software but causes 2 new line in others.
+ *
+ * /******************************************************************************/
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+//#define ADDLINE
 
 /******************************************************************************/
 /* Important parameters.

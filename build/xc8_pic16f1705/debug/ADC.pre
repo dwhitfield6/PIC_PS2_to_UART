@@ -6266,7 +6266,7 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 112 "user.h"
+# 124 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6276,14 +6276,14 @@ void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 void ShutDown_ADC(void);
 
-# 112 "user.h"
+# 124 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 112 "user.h"
+# 124 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6294,7 +6294,7 @@ unsigned char PARITY = 0;
 # 95
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
-void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
+void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
 void OpenUSART( unsigned char config, unsigned int spbrg);
 char ReadUSART(void);
 void baudUSART (unsigned char baudconfig);

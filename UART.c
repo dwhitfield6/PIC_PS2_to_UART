@@ -224,12 +224,12 @@ void OpenUSART( unsigned char config, unsigned int spbrg)
  *
  * The function sends one character over the UART.
 /******************************************************************************/
-void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data)
+void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data)
 {
     if(TXSTAbits.TX9)  
     {
         // 9-bit mode
-        if(!NinethBit_override)
+        if(!override)
         {
             //no override 9th bit so we will calculate it
             switch (PARITY)
@@ -253,7 +253,21 @@ void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned cha
             TXSTAbits.TX9D = (NinethBit_override_data & 0x01);
         }
     }
-  TXREG = data;      // Write the data byte to the USART
+    #ifndef ADDLINE
+    if(data == '\n')
+    {
+        if(override)
+        {
+            TXREG = data;      // Write the data byte to the USART
+        }
+    }
+    else
+    {
+        TXREG = data;      // Write the data byte to the USART
+    }
+    #else
+    TXREG = data;      // Write the data byte to the USART
+    #endif
 }
 
 /******************************************************************************/

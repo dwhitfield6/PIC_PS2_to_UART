@@ -4769,8 +4769,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 201: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 205: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 206: extern int printf(const char *, ...);
-[; ;user.h: 112: void InitApp(void);
-[; ;user.h: 113: void Init_System (void);
+[; ;user.h: 126: void InitApp(void);
+[; ;user.h: 127: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 "62 PS_2.h
 [v _PS_2_Read_Data_FirstTEMP `ui ~T0 @X0 1 e ]
@@ -6279,8 +6279,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
 [; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 112: void InitApp(void);
-[; ;user.h: 113: void Init_System (void);
+[; ;user.h: 126: void InitApp(void);
+[; ;user.h: 127: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -6295,7 +6295,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.h: 89: unsigned char PARITY = 0;
 [; ;UART.h: 95: void InitUART(unsigned long Baud, unsigned char parity);
 [; ;UART.h: 96: void UARTstring(const unsigned char *data);
-[; ;UART.h: 97: void UARTchar(unsigned char data, unsigned char NinethBit_override, unsigned char NinethBit_override_data);
+[; ;UART.h: 97: void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
 [; ;UART.h: 98: void OpenUSART( unsigned char config, unsigned int spbrg);
 [; ;UART.h: 99: char ReadUSART(void);
 [; ;UART.h: 100: void baudUSART (unsigned char baudconfig);

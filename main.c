@@ -34,6 +34,10 @@
  *                            compensated for reference change.
  *                          Check twice for disconnected keyboard.
  *                          Changed system from short break to long break.
+ *                          Create macro for the distingtion between
+ *                            products.
+ *                          Create macro for the adding a new line with each
+ *                            carriage return.
  *                          Tagged
 /******************************************************************************/
 
