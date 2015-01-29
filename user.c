@@ -13,6 +13,7 @@
  *                            initialization.
  * 01/23/15     1.2         Fixed Baud rate sting logic to save memory.
  *                          Added "keyboard" before every baud rate change.
+ *                          Added macro for arduino shield system.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -69,14 +70,17 @@ void InitApp(void)
     SinLEDTRIS = OUTPUT;
     KeyLEDTRIS = OUTPUT;
     BatINTRIS  = INPUT;
-    DivONTRIS  = OUTPUT;  
+    DivONTRIS  = OUTPUT;
+    RXTRIS     = INPUT;
 
     //turn on power LED and initialize the pins
     LATC |= pwrLED;
     PPSLOCK =0;//unlock PPS
     RC2PPS = 0b00010100;//RC2 is TX/CK
     CKPPS = 0b00010010;//RC2 is TX
+    #ifndef ARDUINO
     RXPPS = 0b00010101;//RC5 is RX
+    #endif
     PPSLOCK =1; //lock PPS
 
     ANSELA &= ~0xFF;//set ALL PortA to digital

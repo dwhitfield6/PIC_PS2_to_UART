@@ -96,7 +96,9 @@ void InitUART(unsigned long Baud, unsigned char parity)
 
     //-----configure USART -----
     config |= USART_TX_INT_OFF;
+    #ifndef ARDUINO
     config |= USART_RX_INT_ON;
+    #endif
     config |= USART_ASYNCH_MODE;
     config |= USART_CONT_RX;//single mode
     config |= USART_BRGH_HIGH;
@@ -129,7 +131,9 @@ void InitUART(unsigned long Baud, unsigned char parity)
     PPSLOCK =0;//unlock PPS
     RC2PPS = 0b00010100;//RC2 is TX/CK
     CKPPS = 0b00010010;//RC2 is TX
+    #ifndef ARDUINO
     RXPPS = 0b00010101;//RC5 is RX
+    #endif
     PPSLOCK =1; //lock PPS
 
     PIR1bits.RCIF = 0; //reset RX pin flag
@@ -339,7 +343,9 @@ void UART_send_break_timed(unsigned int US)
     PPSLOCK =0;//unlock PPS
     RC2PPS = 0b00010100;//RC2 is TX/CK
     CKPPS = 0b00010010;//RC2 is TX
+    #ifndef ARDUINO
     RXPPS = 0b00010101;//RC5 is RX
+    #endif
     PPSLOCK =1; //lock PPS
 }
 

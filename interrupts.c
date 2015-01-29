@@ -126,6 +126,7 @@ void interrupt isr(void)
     else if (PIR1bits.RCIF)
     {
         //rx interrupt
+        #ifndef ARDUINO
         LATC |= SinLED;
         SinLEDtimer = 0;
         Rx_fault = 0;
@@ -146,6 +147,7 @@ void interrupt isr(void)
         {
             UARTchar(rx, YES ,RC1STAbits.RX9D);
         }
+        #endif
         PIR1bits.RCIF = 0;
     }
     else if(PIR1bits.TMR2IF)

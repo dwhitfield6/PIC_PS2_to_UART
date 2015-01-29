@@ -4699,17 +4699,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;user.h: 124: void InitApp(void);
-[; ;user.h: 125: void Init_System (void);
+[; ;user.h: 132: void InitApp(void);
+[; ;user.h: 133: void Init_System (void);
 [; ;ADC.h: 83: double ReadVoltage(void);
 [; ;ADC.h: 84: void DisableInternalADC(void);
 [; ;ADC.h: 85: unsigned int InternalADC_Read(unsigned char channel);
 [; ;ADC.h: 86: void ShutDown_ADC(void);
-[; ;user.h: 124: void InitApp(void);
-[; ;user.h: 125: void Init_System (void);
+[; ;user.h: 132: void InitApp(void);
+[; ;user.h: 133: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 124: void InitApp(void);
-[; ;user.h: 125: void Init_System (void);
+[; ;user.h: 132: void InitApp(void);
+[; ;user.h: 133: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD

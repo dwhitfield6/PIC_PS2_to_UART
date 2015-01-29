@@ -6266,7 +6266,7 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6276,14 +6276,14 @@ void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 void ShutDown_ADC(void);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 

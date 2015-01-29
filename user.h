@@ -43,10 +43,14 @@
  * For the TTL version that goes between the main sustem and the USB to TTL
  *  UART converter, Commetn below.
  *
+ * For the Arduino version, we dont need any UART RX. And the system is
+ *  powered by 5 volts.
+ *
 /******************************************************************************/
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
 #define RS232
+//#define ARDUINO
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /******************************************************************************/
@@ -106,6 +110,8 @@
 #define iocie 0x08
 #define TXTRIS	TRISCbits.TRISC2
 #define TX 0b00000100 //RC2
+#define RXTRIS	TRISCbits.TRISC5
+#define RX 0b00100000 //RC5
 #define pwrLEDTRIS	TRISCbits.TRISC1
 #define pwrLED 0b00000010 //RC1
 #define SinLEDTRIS	TRISCbits.TRISC3

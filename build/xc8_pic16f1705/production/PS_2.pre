@@ -6334,14 +6334,14 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 62 "PS_2.h"
+# 64 "PS_2.h"
 unsigned int PS_2_Read_Data_FirstTEMP;
 unsigned int PS_2_Read_Data_SecondTEMP;
 unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6353,7 +6353,7 @@ unsigned int PS_2_Read_Data_Forth =0;
 unsigned char PS_2_bits =0;
 unsigned int Read_Timer = 20;
 
-# 77
+# 79
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
@@ -6869,7 +6869,7 @@ unsigned char ISNUMBER(unsigned char ascii);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6920,6 +6920,7 @@ extern unsigned int PS_2_Read_Data_Second;
 extern unsigned int PS_2_Read_Data_Third;
 extern unsigned int PS_2_Read_Data_Forth;
 extern unsigned char PS_2_bits;
+extern unsigned char No_Keyboard;
 extern unsigned int Read_Timer;
 
 unsigned char i=0;
@@ -6942,7 +6943,7 @@ volatile unsigned char ECHO=0;
 unsigned long BaudTyped=0;
 unsigned char ParityTyped=0;
 
-# 104
+# 105
 void PS_2_INIT(void)
 {
 
@@ -6951,7 +6952,7 @@ Data_TRIS(1);
 INIT_PS_2_INTERRUPT(0b00100000);
 }
 
-# 117
+# 118
 void Clock_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6964,7 +6965,7 @@ TRISAbits.TRISA5 = 1;
 }
 }
 
-# 134
+# 135
 void Data_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6977,7 +6978,7 @@ TRISAbits.TRISA4 = 1;
 }
 }
 
-# 152
+# 153
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
 {
 IOCAP =0;
@@ -6996,7 +6997,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-# 175
+# 176
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7015,7 +7016,7 @@ IOCAF &= ~0b00010000;
 }
 }
 
-# 198
+# 199
 void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7036,7 +7037,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-# 223
+# 224
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7065,7 +7066,7 @@ return 0;
 }
 }
 
-# 258
+# 259
 void PS_2_Update(void)
 {
 unsigned char temp =0;
@@ -7096,6 +7097,7 @@ if(CheckSum_byte((PS_2_Read_Data_First >> 2) & 0xFF , 3) == ((PS_2_Read_Data_Fir
 
 PS_2_Read_Data_First = ((PS_2_Read_Data_First >> 2) & 0xFF);
 PS_2_Read_Data_First = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_First);
+No_Keyboard = 0;
 }
 else
 {
@@ -7113,6 +7115,7 @@ if(CheckSum_byte((PS_2_Read_Data_Second >> 2) & 0xFF , 3) == ((PS_2_Read_Data_Se
 
 PS_2_Read_Data_Second = ((PS_2_Read_Data_Second >> 2) & 0xFF);
 PS_2_Read_Data_Second = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Second);
+No_Keyboard = 0;
 }
 else
 {
@@ -7131,6 +7134,7 @@ if(CheckSum_byte((PS_2_Read_Data_Third >> 2) & 0xFF , 3) == ((PS_2_Read_Data_Thi
 
 PS_2_Read_Data_Third = ((PS_2_Read_Data_Third >> 2) & 0xFF);
 PS_2_Read_Data_Third = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Third);
+No_Keyboard = 0;
 }
 else
 {
@@ -7150,6 +7154,7 @@ if(CheckSum_byte((PS_2_Read_Data_Forth >> 2) & 0xFF , 3) == ((PS_2_Read_Data_For
 
 PS_2_Read_Data_Forth = ((PS_2_Read_Data_Forth >> 2) & 0xFF);
 PS_2_Read_Data_Forth = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Forth);
+No_Keyboard = 0;
 }
 else
 {
@@ -7610,7 +7615,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 }
 }
 
-# 807
+# 812
 unsigned char Decode_Scan_Code(unsigned char Code)
 {
 Code -= 13;
@@ -7624,7 +7629,7 @@ return 0;
 }
 }
 
-# 826
+# 831
 unsigned char Decode_Scan_Code_Shift(unsigned char Code)
 {
 Code -= 13;
@@ -7638,7 +7643,7 @@ return 0;
 }
 }
 
-# 845
+# 850
 unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
 {
 Code -= 17;
@@ -7652,7 +7657,7 @@ return 0;
 }
 }
 
-# 864
+# 869
 unsigned char Decode_Scan_Code_Function(unsigned char Code)
 {
 if(Code <=131)
@@ -7665,7 +7670,7 @@ return 0;
 }
 }
 
-# 881
+# 886
 unsigned char Send_PS2(unsigned char command)
 {
 unsigned char i=0;
@@ -7819,7 +7824,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 0;
 }
 
-# 1041
+# 1046
 unsigned char Init_PS_2_Send(void)
 {
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -7909,7 +7914,7 @@ PS_2_ENABLE_INTERRUPT(0b00100000);
 return 1;
 }
 
-# 1136
+# 1141
 unsigned char Keyboard_Connected(void)
 {
 unsigned long i=0;

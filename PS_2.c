@@ -69,6 +69,7 @@ extern unsigned int PS_2_Read_Data_Second;
 extern unsigned int PS_2_Read_Data_Third;
 extern unsigned int PS_2_Read_Data_Forth;
 extern unsigned char PS_2_bits;
+extern unsigned char No_Keyboard;
 extern unsigned int Read_Timer;
 
 unsigned char i=0;
@@ -285,6 +286,7 @@ void PS_2_Update(void)
                 // CheckSum PASS
                 PS_2_Read_Data_First = ((PS_2_Read_Data_First >> 2) & 0xFF);
                 PS_2_Read_Data_First = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_First);
+                No_Keyboard = FALSE;
             }
             else
             {
@@ -302,6 +304,7 @@ void PS_2_Update(void)
                 // CheckSum PASS
                 PS_2_Read_Data_Second = ((PS_2_Read_Data_Second >> 2) & 0xFF);
                 PS_2_Read_Data_Second = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Second);
+                No_Keyboard = FALSE;
             }
             else
             {
@@ -320,6 +323,7 @@ void PS_2_Update(void)
                 // CheckSum PASS
                 PS_2_Read_Data_Third = ((PS_2_Read_Data_Third >> 2) & 0xFF);
                 PS_2_Read_Data_Third = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Third);
+                No_Keyboard = FALSE;
             }
             else
             {
@@ -339,6 +343,7 @@ void PS_2_Update(void)
                 // CheckSum PASS
                 PS_2_Read_Data_Forth = ((PS_2_Read_Data_Forth >> 2) & 0xFF);
                 PS_2_Read_Data_Forth = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Forth);
+                No_Keyboard = FALSE;
             }
             else
             {

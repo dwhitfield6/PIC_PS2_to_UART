@@ -38,6 +38,9 @@
  *                            products.
  *                          Create macro for the adding a new line with each
  *                            carriage return.
+ *                          Added macro for arduino shield system.
+ *                          Added code to allow for receiving when the keyboard
+ *                            is not connected.
  *                          Tagged
 /******************************************************************************/
 
@@ -81,6 +84,10 @@
 unsigned char Version[] = {"1.2"};
 
 /******************************************************************************/
+/* Defines                                           */
+/******************************************************************************/
+
+/******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
 
@@ -89,6 +96,8 @@ extern unsigned char Alarm;
 
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
+unsigned char No_Keyboard =TRUE;
+unsigned char No_Keyboard_old =TRUE;
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -122,41 +131,43 @@ void main(void)
     UARTstringWAIT(Version);
     UARTstringWAIT("\r\n");
     delayUS(Character_Spacing);
-    UARTstringWAIT("To Change BAUD hit \"CNT+ALT+DEL\"\r\n");
+    UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
     delayUS(Word_Spacing);
 
     //check twice for a disconnecteed keyboard then print
     if(!Keyboard_Connected())
     {
+        No_Keyboard =TRUE;
         if(!Keyboard_Connected())
         {
-            UARTstringWAIT("No Keyboard connected\r\n");
-            //wait here until a keyboard is connected
-            while(!Keyboard_Connected())
-            {
-                BatteryVoltage = ReadVoltage();
-                //Check to see if voltage is out of range
-                if(BatteryVoltage < VoltageLow || BatteryVoltage > VoltageHigh)
-                {
-                    LATC ^= pwrLED;
-                    pwrLEDtoggle = 0;
-                }
-                else
-                {
-                    LATC |= pwrLED;
-                }
-            }
+            No_Keyboard =TRUE;
         }
-    }
-    UARTstringWAIT("Keyboard Connected\r\n");
-    if(!Init_PS_2_Send())
-    {
-        delayUS(Word_Spacing);
-        UARTstringWAIT("Initialization Fail\r\n");
+        else
+        {
+            No_Keyboard = FALSE;
+        }
     }
     else
     {
-        UARTstringWAIT("Keyboard Pass!\r\n");
+        No_Keyboard =FALSE;
+    }
+
+    if(No_Keyboard)
+    {
+        UARTstringWAIT("No Keyboard connected\r\n");
+    }
+    else
+    {
+        UARTstringWAIT("Keyboard Connected\r\n");
+        if(!Init_PS_2_Send())
+        {
+            delayUS(Word_Spacing);
+            UARTstringWAIT("Initialization Fail\r\n");
+        }
+        else
+        {
+            UARTstringWAIT("Keyboard Pass!\r\n");
+        }
     }
     BatteryVoltage = ReadVoltage();
     if(BatteryVoltage < VoltageLow )
@@ -168,9 +179,24 @@ void main(void)
         UARTstringWAIT("Voltage too High!\r\n");
     }
     PS_2_ENABLE_INTERRUPT(CLK);
-
+    No_Keyboard_old = No_Keyboard;
+    
     while(1)
     {
+        PS_2_Update();
+        if(No_Keyboard == FALSE && No_Keyboard_old == TRUE)
+        {
+            UARTstringWAIT("Keyboard Connected\r\n");
+            if(!Init_PS_2_Send())
+            {
+                delayUS(Word_Spacing);
+                UARTstringWAIT("Initialization Fail\r\n");
+            }
+            else
+            {
+                UARTstringWAIT("Keyboard Pass!\r\n");
+            }
+        }
         BatteryVoltage = ReadVoltage();
         if(BatteryVoltage < VoltageLow || BatteryVoltage > VoltageHigh)
         {
@@ -193,7 +219,7 @@ void main(void)
         {
             SinLEDtimer++;
         }
-        PS_2_Update();
+        No_Keyboard_old = No_Keyboard;
     }
 }
 

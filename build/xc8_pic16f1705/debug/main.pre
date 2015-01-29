@@ -6269,7 +6269,7 @@ typedef unsigned char bool;
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 124 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6294,7 +6294,7 @@ unsigned char ISNUMBER(unsigned char ascii);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 124 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6319,7 +6319,7 @@ void CloseUSART(void );
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 62 "PS_2.h"
+# 64 "PS_2.h"
 unsigned int PS_2_Read_Data_FirstTEMP;
 unsigned int PS_2_Read_Data_SecondTEMP;
 unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6331,7 +6331,7 @@ unsigned int PS_2_Read_Data_Forth =0;
 unsigned char PS_2_bits =0;
 unsigned int Read_Timer = 20;
 
-# 77
+# 79
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
@@ -6845,7 +6845,7 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 124 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6855,17 +6855,19 @@ void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 void ShutDown_ADC(void);
 
-# 77 "main.c"
+# 84 "main.c"
 unsigned char Version[] = {"1.2"};
 
-# 83
+# 94
 extern double BatteryVoltage;
 extern unsigned char Alarm;
 
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
+unsigned char No_Keyboard =1;
+unsigned char No_Keyboard_old =1;
 
-# 93
+# 106
 void main(void)
 {
 unsigned char i=0;
@@ -6894,32 +6896,33 @@ UARTstringWAIT("Firmware Version: ");
 UARTstringWAIT(Version);
 UARTstringWAIT("\r\n");
 delayUS(5000);
-UARTstringWAIT("To Change BAUD hit \"CNT+ALT+DEL\"\r\n");
+UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
 delayUS(10000);
 
 
 if(!Keyboard_Connected())
 {
+No_Keyboard =1;
 if(!Keyboard_Connected())
 {
-UARTstringWAIT("No Keyboard connected\r\n");
-
-while(!Keyboard_Connected())
-{
-BatteryVoltage = ReadVoltage();
-
-if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
-{
-LATC ^= 0b00000010;
-pwrLEDtoggle = 0;
+No_Keyboard =1;
 }
 else
 {
-LATC |= 0b00000010;
+No_Keyboard = 0;
 }
 }
+else
+{
+No_Keyboard =0;
 }
+
+if(No_Keyboard)
+{
+UARTstringWAIT("No Keyboard connected\r\n");
 }
+else
+{
 UARTstringWAIT("Keyboard Connected\r\n");
 if(!Init_PS_2_Send())
 {
@@ -6929,6 +6932,7 @@ UARTstringWAIT("Initialization Fail\r\n");
 else
 {
 UARTstringWAIT("Keyboard Pass!\r\n");
+}
 }
 BatteryVoltage = ReadVoltage();
 if(BatteryVoltage < 5.85 )
@@ -6940,9 +6944,24 @@ else if (BatteryVoltage > 20.0)
 UARTstringWAIT("Voltage too High!\r\n");
 }
 PS_2_ENABLE_INTERRUPT(0b00100000);
+No_Keyboard_old = No_Keyboard;
 
 while(1)
 {
+PS_2_Update();
+if(No_Keyboard == 0 && No_Keyboard_old == 1)
+{
+UARTstringWAIT("Keyboard Connected\r\n");
+if(!Init_PS_2_Send())
+{
+delayUS(10000);
+UARTstringWAIT("Initialization Fail\r\n");
+}
+else
+{
+UARTstringWAIT("Keyboard Pass!\r\n");
+}
+}
 BatteryVoltage = ReadVoltage();
 if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
 {
@@ -6965,7 +6984,7 @@ else
 {
 SinLEDtimer++;
 }
-PS_2_Update();
+No_Keyboard_old = No_Keyboard;
 }
 }
 

@@ -6334,14 +6334,14 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6403,10 +6403,10 @@ unsigned char ISNUMBER(unsigned char ascii);
 # 34 "Timer.h"
 void Timer2Init(unsigned char time);
 
-# 52 "user.c"
+# 53 "user.c"
 unsigned char Alarm =0;
 
-# 63
+# 64
 void InitApp(void)
 {
 LATC =0;
@@ -6417,13 +6417,16 @@ TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 0;
 TRISAbits.TRISA2 = 1;
 TRISCbits.TRISC0 = 0;
+TRISCbits.TRISC5 = 1;
 
 
 LATC |= 0b00000010;
 PPSLOCK =0;
 RC2PPS = 0b00010100;
 CKPPS = 0b00010010;
+
 RXPPS = 0b00010101;
+
 PPSLOCK =1;
 
 ANSELA &= ~0xFF;
@@ -6434,7 +6437,7 @@ WPUC = 0b00100000;
 WPUA = 0;
 }
 
-# 96
+# 100
 void Init_System (void)
 {
 unsigned long temp =0;

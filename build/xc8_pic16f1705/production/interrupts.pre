@@ -6269,7 +6269,7 @@ typedef unsigned char bool;
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 62 "PS_2.h"
+# 64 "PS_2.h"
 unsigned int PS_2_Read_Data_FirstTEMP;
 unsigned int PS_2_Read_Data_SecondTEMP;
 unsigned int PS_2_Read_Data_ThirdTEMP;
@@ -6281,7 +6281,7 @@ unsigned int PS_2_Read_Data_Forth =0;
 unsigned char PS_2_bits =0;
 unsigned int Read_Timer = 20;
 
-# 77
+# 79
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
@@ -6779,7 +6779,7 @@ const unsigned char ScanCodeFunctionE0[109] = {
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6820,7 +6820,7 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 126 "user.h"
+# 132 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6894,6 +6894,7 @@ IOCAF &= ~0b00010000;
 else if (PIR1bits.RCIF)
 {
 
+
 LATC |= 0b00001000;
 SinLEDtimer = 0;
 Rx_fault = 0;
@@ -6914,6 +6915,7 @@ else
 {
 UARTchar(rx, 1 ,RC1STAbits.RX9D);
 }
+
 PIR1bits.RCIF = 0;
 }
 else if(PIR1bits.TMR2IF)

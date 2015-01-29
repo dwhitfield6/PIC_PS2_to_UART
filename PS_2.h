@@ -54,6 +54,8 @@
 #define PS_2_NUMBITS_4 44
 #define PS_2_send_timeout 15000
 #define Connected_Wait    5000
+#define TRUE 1
+#define FALSE 0
 
 /******************************************************************************/
 /* Global Variables                                                           */

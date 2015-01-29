@@ -4710,8 +4710,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FLASH.h: 71: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 [; ;FLASH.h: 72: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 [; ;FLASH.h: 73: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;user.h: 126: void InitApp(void);
-[; ;user.h: 127: void Init_System (void);
+[; ;user.h: 132: void InitApp(void);
+[; ;user.h: 133: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 [; ;MISC.h: 54: void delayUS(long US);
 [; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);

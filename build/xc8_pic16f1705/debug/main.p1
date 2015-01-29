@@ -2,31 +2,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "52 system.h
 [v _ConfigureOscillator `(v ~T0 @X0 0 ef ]
-"124 user.h
+"132 user.h
 [v _InitApp `(v ~T0 @X0 0 ef ]
-"125
+"133
 [v _Init_System `(v ~T0 @X0 0 ef ]
-"82 PS_2.h
+"84 PS_2.h
 [v _PS_2_INIT `(v ~T0 @X0 0 ef ]
 "1899 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [v _LATC `Vuc ~T0 @X0 0 e@270 ]
 "54 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
-"88 PS_2.h
+"90 PS_2.h
 [v _PS_2_DISABLE_INTERRUPT `(v ~T0 @X0 0 ef1`uc ]
 "104 UART.h
 [v _UARTstringWAIT `(v ~T0 @X0 0 ef1`*Cuc ]
-"91 PS_2.h
+"93 PS_2.h
 [v _Keyboard_Connected `(uc ~T0 @X0 0 ef ]
-"83 main.c
+"92
+[v _Init_PS_2_Send `(uc ~T0 @X0 0 ef ]
+"94 main.c
 [v _BatteryVoltage `d ~T0 @X0 0 e ]
 "83 ADC.h
 [v _ReadVoltage `(d ~T0 @X0 0 ef ]
-"90 PS_2.h
-[v _Init_PS_2_Send `(uc ~T0 @X0 0 ef ]
-"87
+"89 PS_2.h
 [v _PS_2_ENABLE_INTERRUPT `(v ~T0 @X0 0 ef1`uc ]
-"81
+"83
 [v _PS_2_Update `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
@@ -4698,8 +4698,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 124: void InitApp(void);
-[; ;user.h: 125: void Init_System (void);
+[; ;user.h: 132: void InitApp(void);
+[; ;user.h: 133: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 [; ;MISC.h: 54: void delayUS(long US);
 [; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);
@@ -4715,8 +4715,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
 [; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 124: void InitApp(void);
-[; ;user.h: 125: void Init_System (void);
+[; ;user.h: 132: void InitApp(void);
+[; ;user.h: 133: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -4742,81 +4742,77 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.h: 105: void SetBaud(unsigned long Baud, unsigned char Parity);
 [; ;UART.h: 106: void CloseUSART(void );
 [; ;system.h: 52: void ConfigureOscillator(void);
-"62 PS_2.h
+"64 PS_2.h
 [v _PS_2_Read_Data_FirstTEMP `ui ~T0 @X0 1 e ]
-[; ;PS_2.h: 62: unsigned int PS_2_Read_Data_FirstTEMP;
-"63
-[v _PS_2_Read_Data_SecondTEMP `ui ~T0 @X0 1 e ]
-[; ;PS_2.h: 63: unsigned int PS_2_Read_Data_SecondTEMP;
-"64
-[v _PS_2_Read_Data_ThirdTEMP `ui ~T0 @X0 1 e ]
-[; ;PS_2.h: 64: unsigned int PS_2_Read_Data_ThirdTEMP;
+[; ;PS_2.h: 64: unsigned int PS_2_Read_Data_FirstTEMP;
 "65
-[v _PS_2_Read_Data_ForthTEMP `ui ~T0 @X0 1 e ]
-[; ;PS_2.h: 65: unsigned int PS_2_Read_Data_ForthTEMP;
+[v _PS_2_Read_Data_SecondTEMP `ui ~T0 @X0 1 e ]
+[; ;PS_2.h: 65: unsigned int PS_2_Read_Data_SecondTEMP;
 "66
+[v _PS_2_Read_Data_ThirdTEMP `ui ~T0 @X0 1 e ]
+[; ;PS_2.h: 66: unsigned int PS_2_Read_Data_ThirdTEMP;
+"67
+[v _PS_2_Read_Data_ForthTEMP `ui ~T0 @X0 1 e ]
+[; ;PS_2.h: 67: unsigned int PS_2_Read_Data_ForthTEMP;
+"68
 [v _PS_2_Read_Data_First `ui ~T0 @X0 1 e ]
 [i _PS_2_Read_Data_First
 -> -> 0 `i `ui
 ]
-[; ;PS_2.h: 66: unsigned int PS_2_Read_Data_First =0;
-"67
+[; ;PS_2.h: 68: unsigned int PS_2_Read_Data_First =0;
+"69
 [v _PS_2_Read_Data_Second `ui ~T0 @X0 1 e ]
 [i _PS_2_Read_Data_Second
 -> -> 0 `i `ui
 ]
-[; ;PS_2.h: 67: unsigned int PS_2_Read_Data_Second =0;
-"68
+[; ;PS_2.h: 69: unsigned int PS_2_Read_Data_Second =0;
+"70
 [v _PS_2_Read_Data_Third `ui ~T0 @X0 1 e ]
 [i _PS_2_Read_Data_Third
 -> -> 0 `i `ui
 ]
-[; ;PS_2.h: 68: unsigned int PS_2_Read_Data_Third =0;
-"69
+[; ;PS_2.h: 70: unsigned int PS_2_Read_Data_Third =0;
+"71
 [v _PS_2_Read_Data_Forth `ui ~T0 @X0 1 e ]
 [i _PS_2_Read_Data_Forth
 -> -> 0 `i `ui
 ]
-[; ;PS_2.h: 69: unsigned int PS_2_Read_Data_Forth =0;
-"70
+[; ;PS_2.h: 71: unsigned int PS_2_Read_Data_Forth =0;
+"72
 [v _PS_2_bits `uc ~T0 @X0 1 e ]
 [i _PS_2_bits
 -> -> 0 `i `uc
 ]
-[; ;PS_2.h: 70: unsigned char PS_2_bits =0;
-"71
+[; ;PS_2.h: 72: unsigned char PS_2_bits =0;
+"73
 [v _Read_Timer `ui ~T0 @X0 1 e ]
 [i _Read_Timer
 -> -> 20 `i `ui
 ]
-[; ;PS_2.h: 71: unsigned int Read_Timer = 20;
-[; ;PS_2.h: 77: void Clock_TRIS(unsigned char direction);
-[; ;PS_2.h: 78: void Data_TRIS(unsigned char direction);
-[; ;PS_2.h: 79: void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
-[; ;PS_2.h: 80: unsigned char READ_PS_2_PIN(unsigned char DATA_CLK);
-[; ;PS_2.h: 81: void PS_2_Update(void);
-[; ;PS_2.h: 82: void PS_2_INIT(void);
-[; ;PS_2.h: 83: unsigned char Decode_Scan_Code(unsigned char Code);
-[; ;PS_2.h: 84: unsigned char Decode_Scan_Code_Shift(unsigned char Code);
-[; ;PS_2.h: 85: unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code);
-[; ;PS_2.h: 86: unsigned char Decode_Scan_Code_Function(unsigned char Code);
-[; ;PS_2.h: 87: void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK);
-[; ;PS_2.h: 88: void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK);
-[; ;PS_2.h: 89: unsigned char Send_PS2(unsigned char command);
-[; ;PS_2.h: 90: unsigned char Init_PS_2_Send(void);
-[; ;PS_2.h: 91: unsigned char Keyboard_Connected(void);
-"94
+[; ;PS_2.h: 73: unsigned int Read_Timer = 20;
+[; ;PS_2.h: 79: void Clock_TRIS(unsigned char direction);
+[; ;PS_2.h: 80: void Data_TRIS(unsigned char direction);
+[; ;PS_2.h: 81: void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
+[; ;PS_2.h: 82: unsigned char READ_PS_2_PIN(unsigned char DATA_CLK);
+[; ;PS_2.h: 83: void PS_2_Update(void);
+[; ;PS_2.h: 84: void PS_2_INIT(void);
+[; ;PS_2.h: 85: unsigned char Decode_Scan_Code(unsigned char Code);
+[; ;PS_2.h: 86: unsigned char Decode_Scan_Code_Shift(unsigned char Code);
+[; ;PS_2.h: 87: unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code);
+[; ;PS_2.h: 88: unsigned char Decode_Scan_Code_Function(unsigned char Code);
+[; ;PS_2.h: 89: void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK);
+[; ;PS_2.h: 90: void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK);
+[; ;PS_2.h: 91: unsigned char Send_PS2(unsigned char command);
+[; ;PS_2.h: 92: unsigned char Init_PS_2_Send(void);
+[; ;PS_2.h: 93: unsigned char Keyboard_Connected(void);
+"96
 [v _ScanCode `Cuc ~T0 @X0 -> 113 `i e ]
 [i _ScanCode
 :U ..
-"95
--> -> 9 `i `uc
-"96
--> -> 96 `i `uc
 "97
--> -> 0 `ui `uc
+-> -> 9 `i `uc
 "98
--> -> 0 `ui `uc
+-> -> 96 `i `uc
 "99
 -> -> 0 `ui `uc
 "100
@@ -4826,155 +4822,155 @@ Version 3.2 HI-TECH Software Intermediate Code
 "102
 -> -> 0 `ui `uc
 "103
--> -> 113 `ui `uc
+-> -> 0 `ui `uc
 "104
--> -> 49 `ui `uc
+-> -> 0 `ui `uc
 "105
--> -> 0 `ui `uc
+-> -> 113 `ui `uc
 "106
--> -> 0 `ui `uc
+-> -> 49 `ui `uc
 "107
 -> -> 0 `ui `uc
 "108
--> -> 122 `ui `uc
+-> -> 0 `ui `uc
 "109
--> -> 115 `ui `uc
+-> -> 0 `ui `uc
 "110
--> -> 97 `ui `uc
+-> -> 122 `ui `uc
 "111
--> -> 119 `ui `uc
+-> -> 115 `ui `uc
 "112
--> -> 50 `ui `uc
+-> -> 97 `ui `uc
 "113
--> -> 0 `ui `uc
+-> -> 119 `ui `uc
 "114
--> -> 0 `ui `uc
+-> -> 50 `ui `uc
 "115
--> -> 99 `ui `uc
+-> -> 0 `ui `uc
 "116
--> -> 120 `ui `uc
+-> -> 0 `ui `uc
 "117
--> -> 100 `ui `uc
+-> -> 99 `ui `uc
 "118
--> -> 101 `ui `uc
+-> -> 120 `ui `uc
 "119
--> -> 52 `ui `uc
+-> -> 100 `ui `uc
 "120
--> -> 51 `ui `uc
+-> -> 101 `ui `uc
 "121
--> -> 0 `ui `uc
+-> -> 52 `ui `uc
 "122
--> -> 0 `ui `uc
+-> -> 51 `ui `uc
 "123
--> -> 32 `i `uc
+-> -> 0 `ui `uc
 "124
--> -> 118 `ui `uc
+-> -> 0 `ui `uc
 "125
--> -> 102 `ui `uc
+-> -> 32 `i `uc
 "126
--> -> 116 `ui `uc
+-> -> 118 `ui `uc
 "127
--> -> 114 `ui `uc
+-> -> 102 `ui `uc
 "128
--> -> 53 `ui `uc
+-> -> 116 `ui `uc
 "129
--> -> 0 `ui `uc
+-> -> 114 `ui `uc
 "130
--> -> 0 `ui `uc
+-> -> 53 `ui `uc
 "131
--> -> 110 `ui `uc
+-> -> 0 `ui `uc
 "132
--> -> 98 `ui `uc
+-> -> 0 `ui `uc
 "133
--> -> 104 `ui `uc
+-> -> 110 `ui `uc
 "134
--> -> 103 `ui `uc
+-> -> 98 `ui `uc
 "135
--> -> 121 `ui `uc
+-> -> 104 `ui `uc
 "136
--> -> 54 `ui `uc
+-> -> 103 `ui `uc
 "137
--> -> 0 `ui `uc
+-> -> 121 `ui `uc
 "138
--> -> 0 `ui `uc
+-> -> 54 `ui `uc
 "139
 -> -> 0 `ui `uc
 "140
--> -> 109 `ui `uc
+-> -> 0 `ui `uc
 "141
--> -> 106 `ui `uc
+-> -> 0 `ui `uc
 "142
--> -> 117 `ui `uc
+-> -> 109 `ui `uc
 "143
--> -> 55 `ui `uc
+-> -> 106 `ui `uc
 "144
--> -> 56 `ui `uc
+-> -> 117 `ui `uc
 "145
--> -> 0 `ui `uc
+-> -> 55 `ui `uc
 "146
--> -> 0 `ui `uc
+-> -> 56 `ui `uc
 "147
--> -> 44 `i `uc
+-> -> 0 `ui `uc
 "148
--> -> 107 `ui `uc
+-> -> 0 `ui `uc
 "149
--> -> 105 `ui `uc
+-> -> 44 `i `uc
 "150
--> -> 111 `ui `uc
+-> -> 107 `ui `uc
 "151
--> -> 48 `ui `uc
+-> -> 105 `ui `uc
 "152
--> -> 57 `ui `uc
+-> -> 111 `ui `uc
 "153
--> -> 0 `ui `uc
+-> -> 48 `ui `uc
 "154
--> -> 0 `ui `uc
+-> -> 57 `ui `uc
 "155
--> -> 46 `ui `uc
+-> -> 0 `ui `uc
 "156
--> -> 47 `i `uc
+-> -> 0 `ui `uc
 "157
--> -> 108 `ui `uc
+-> -> 46 `ui `uc
 "158
--> -> 59 `ui `uc
+-> -> 47 `i `uc
 "159
--> -> 112 `ui `uc
+-> -> 108 `ui `uc
 "160
--> -> 45 `ui `uc
+-> -> 59 `ui `uc
 "161
--> -> 0 `ui `uc
+-> -> 112 `ui `uc
 "162
--> -> 0 `ui `uc
+-> -> 45 `ui `uc
 "163
 -> -> 0 `ui `uc
 "164
--> -> 39 `i `uc
+-> -> 0 `ui `uc
 "165
 -> -> 0 `ui `uc
 "166
--> -> 91 `ui `uc
+-> -> 39 `i `uc
 "167
--> -> 61 `ui `uc
+-> -> 0 `ui `uc
 "168
--> -> 0 `ui `uc
+-> -> 91 `ui `uc
 "169
--> -> 0 `ui `uc
+-> -> 61 `ui `uc
 "170
 -> -> 0 `ui `uc
 "171
 -> -> 0 `ui `uc
 "172
--> -> 13 `ui `uc
-"173
--> -> 93 `ui `uc
-"174
 -> -> 0 `ui `uc
+"173
+-> -> 0 `ui `uc
+"174
+-> -> 13 `ui `uc
 "175
--> -> 92 `i `uc
+-> -> 93 `ui `uc
 "176
 -> -> 0 `ui `uc
 "177
--> -> 0 `ui `uc
+-> -> 92 `i `uc
 "178
 -> -> 0 `ui `uc
 "179
@@ -4988,181 +4984,181 @@ Version 3.2 HI-TECH Software Intermediate Code
 "183
 -> -> 0 `ui `uc
 "184
--> -> 8 `i `uc
+-> -> 0 `ui `uc
 "185
 -> -> 0 `ui `uc
 "186
--> -> 0 `ui `uc
+-> -> 8 `i `uc
 "187
--> -> 49 `ui `uc
+-> -> 0 `ui `uc
 "188
 -> -> 0 `ui `uc
 "189
--> -> 52 `ui `uc
+-> -> 49 `ui `uc
 "190
--> -> 55 `ui `uc
+-> -> 0 `ui `uc
 "191
--> -> 0 `ui `uc
+-> -> 52 `ui `uc
 "192
--> -> 0 `ui `uc
+-> -> 55 `ui `uc
 "193
 -> -> 0 `ui `uc
 "194
--> -> 48 `ui `uc
+-> -> 0 `ui `uc
 "195
--> -> 46 `ui `uc
+-> -> 0 `ui `uc
 "196
--> -> 50 `ui `uc
+-> -> 48 `ui `uc
 "197
--> -> 53 `ui `uc
+-> -> 46 `ui `uc
 "198
--> -> 54 `ui `uc
+-> -> 50 `ui `uc
 "199
--> -> 56 `ui `uc
+-> -> 53 `ui `uc
 "200
--> -> 27 `i `uc
+-> -> 54 `ui `uc
 "201
--> -> 0 `ui `uc
+-> -> 56 `ui `uc
 "202
--> -> 0 `ui `uc
+-> -> 27 `i `uc
 "203
--> -> 43 `ui `uc
+-> -> 0 `ui `uc
 "204
--> -> 51 `ui `uc
+-> -> 0 `ui `uc
 "205
--> -> 45 `ui `uc
+-> -> 43 `ui `uc
 "206
--> -> 42 `ui `uc
+-> -> 51 `ui `uc
 "207
+-> -> 45 `ui `uc
+"208
+-> -> 42 `ui `uc
+"209
 -> -> 57 `ui `uc
 ..
 ]
-[; ;PS_2.h: 94: const unsigned char ScanCode[113] = {
-[; ;PS_2.h: 95: 0x09 ,
-[; ;PS_2.h: 96: 0x60 ,
-[; ;PS_2.h: 97: '\0' ,
-[; ;PS_2.h: 98: '\0' ,
+[; ;PS_2.h: 96: const unsigned char ScanCode[113] = {
+[; ;PS_2.h: 97: 0x09 ,
+[; ;PS_2.h: 98: 0x60 ,
 [; ;PS_2.h: 99: '\0' ,
 [; ;PS_2.h: 100: '\0' ,
 [; ;PS_2.h: 101: '\0' ,
 [; ;PS_2.h: 102: '\0' ,
-[; ;PS_2.h: 103: 'q' ,
-[; ;PS_2.h: 104: '1' ,
-[; ;PS_2.h: 105: '\0' ,
-[; ;PS_2.h: 106: '\0' ,
+[; ;PS_2.h: 103: '\0' ,
+[; ;PS_2.h: 104: '\0' ,
+[; ;PS_2.h: 105: 'q' ,
+[; ;PS_2.h: 106: '1' ,
 [; ;PS_2.h: 107: '\0' ,
-[; ;PS_2.h: 108: 'z' ,
-[; ;PS_2.h: 109: 's' ,
-[; ;PS_2.h: 110: 'a' ,
-[; ;PS_2.h: 111: 'w' ,
-[; ;PS_2.h: 112: '2' ,
-[; ;PS_2.h: 113: '\0' ,
-[; ;PS_2.h: 114: '\0' ,
-[; ;PS_2.h: 115: 'c' ,
-[; ;PS_2.h: 116: 'x' ,
-[; ;PS_2.h: 117: 'd' ,
-[; ;PS_2.h: 118: 'e' ,
-[; ;PS_2.h: 119: '4' ,
-[; ;PS_2.h: 120: '3' ,
-[; ;PS_2.h: 121: '\0' ,
-[; ;PS_2.h: 122: '\0' ,
-[; ;PS_2.h: 123: 0x20 ,
-[; ;PS_2.h: 124: 'v' ,
-[; ;PS_2.h: 125: 'f' ,
-[; ;PS_2.h: 126: 't' ,
-[; ;PS_2.h: 127: 'r' ,
-[; ;PS_2.h: 128: '5' ,
-[; ;PS_2.h: 129: '\0' ,
-[; ;PS_2.h: 130: '\0' ,
-[; ;PS_2.h: 131: 'n' ,
-[; ;PS_2.h: 132: 'b' ,
-[; ;PS_2.h: 133: 'h' ,
-[; ;PS_2.h: 134: 'g' ,
-[; ;PS_2.h: 135: 'y' ,
-[; ;PS_2.h: 136: '6' ,
-[; ;PS_2.h: 137: '\0' ,
-[; ;PS_2.h: 138: '\0' ,
+[; ;PS_2.h: 108: '\0' ,
+[; ;PS_2.h: 109: '\0' ,
+[; ;PS_2.h: 110: 'z' ,
+[; ;PS_2.h: 111: 's' ,
+[; ;PS_2.h: 112: 'a' ,
+[; ;PS_2.h: 113: 'w' ,
+[; ;PS_2.h: 114: '2' ,
+[; ;PS_2.h: 115: '\0' ,
+[; ;PS_2.h: 116: '\0' ,
+[; ;PS_2.h: 117: 'c' ,
+[; ;PS_2.h: 118: 'x' ,
+[; ;PS_2.h: 119: 'd' ,
+[; ;PS_2.h: 120: 'e' ,
+[; ;PS_2.h: 121: '4' ,
+[; ;PS_2.h: 122: '3' ,
+[; ;PS_2.h: 123: '\0' ,
+[; ;PS_2.h: 124: '\0' ,
+[; ;PS_2.h: 125: 0x20 ,
+[; ;PS_2.h: 126: 'v' ,
+[; ;PS_2.h: 127: 'f' ,
+[; ;PS_2.h: 128: 't' ,
+[; ;PS_2.h: 129: 'r' ,
+[; ;PS_2.h: 130: '5' ,
+[; ;PS_2.h: 131: '\0' ,
+[; ;PS_2.h: 132: '\0' ,
+[; ;PS_2.h: 133: 'n' ,
+[; ;PS_2.h: 134: 'b' ,
+[; ;PS_2.h: 135: 'h' ,
+[; ;PS_2.h: 136: 'g' ,
+[; ;PS_2.h: 137: 'y' ,
+[; ;PS_2.h: 138: '6' ,
 [; ;PS_2.h: 139: '\0' ,
-[; ;PS_2.h: 140: 'm' ,
-[; ;PS_2.h: 141: 'j' ,
-[; ;PS_2.h: 142: 'u' ,
-[; ;PS_2.h: 143: '7' ,
-[; ;PS_2.h: 144: '8' ,
-[; ;PS_2.h: 145: '\0' ,
-[; ;PS_2.h: 146: '\0' ,
-[; ;PS_2.h: 147: 0x2C ,
-[; ;PS_2.h: 148: 'k' ,
-[; ;PS_2.h: 149: 'i' ,
-[; ;PS_2.h: 150: 'o' ,
-[; ;PS_2.h: 151: '0' ,
-[; ;PS_2.h: 152: '9' ,
-[; ;PS_2.h: 153: '\0' ,
-[; ;PS_2.h: 154: '\0' ,
-[; ;PS_2.h: 155: '.' ,
-[; ;PS_2.h: 156: 0x2F ,
-[; ;PS_2.h: 157: 'l' ,
-[; ;PS_2.h: 158: ';' ,
-[; ;PS_2.h: 159: 'p' ,
-[; ;PS_2.h: 160: '-' ,
-[; ;PS_2.h: 161: '\0' ,
-[; ;PS_2.h: 162: '\0' ,
+[; ;PS_2.h: 140: '\0' ,
+[; ;PS_2.h: 141: '\0' ,
+[; ;PS_2.h: 142: 'm' ,
+[; ;PS_2.h: 143: 'j' ,
+[; ;PS_2.h: 144: 'u' ,
+[; ;PS_2.h: 145: '7' ,
+[; ;PS_2.h: 146: '8' ,
+[; ;PS_2.h: 147: '\0' ,
+[; ;PS_2.h: 148: '\0' ,
+[; ;PS_2.h: 149: 0x2C ,
+[; ;PS_2.h: 150: 'k' ,
+[; ;PS_2.h: 151: 'i' ,
+[; ;PS_2.h: 152: 'o' ,
+[; ;PS_2.h: 153: '0' ,
+[; ;PS_2.h: 154: '9' ,
+[; ;PS_2.h: 155: '\0' ,
+[; ;PS_2.h: 156: '\0' ,
+[; ;PS_2.h: 157: '.' ,
+[; ;PS_2.h: 158: 0x2F ,
+[; ;PS_2.h: 159: 'l' ,
+[; ;PS_2.h: 160: ';' ,
+[; ;PS_2.h: 161: 'p' ,
+[; ;PS_2.h: 162: '-' ,
 [; ;PS_2.h: 163: '\0' ,
-[; ;PS_2.h: 164: 0x27 ,
+[; ;PS_2.h: 164: '\0' ,
 [; ;PS_2.h: 165: '\0' ,
-[; ;PS_2.h: 166: '[' ,
-[; ;PS_2.h: 167: '=' ,
-[; ;PS_2.h: 168: '\0' ,
-[; ;PS_2.h: 169: '\0' ,
+[; ;PS_2.h: 166: 0x27 ,
+[; ;PS_2.h: 167: '\0' ,
+[; ;PS_2.h: 168: '[' ,
+[; ;PS_2.h: 169: '=' ,
 [; ;PS_2.h: 170: '\0' ,
 [; ;PS_2.h: 171: '\0' ,
-[; ;PS_2.h: 172: '\r' ,
-[; ;PS_2.h: 173: ']' ,
-[; ;PS_2.h: 174: '\0' ,
-[; ;PS_2.h: 175: 0x5C ,
+[; ;PS_2.h: 172: '\0' ,
+[; ;PS_2.h: 173: '\0' ,
+[; ;PS_2.h: 174: '\r' ,
+[; ;PS_2.h: 175: ']' ,
 [; ;PS_2.h: 176: '\0' ,
-[; ;PS_2.h: 177: '\0' ,
+[; ;PS_2.h: 177: 0x5C ,
 [; ;PS_2.h: 178: '\0' ,
 [; ;PS_2.h: 179: '\0' ,
 [; ;PS_2.h: 180: '\0' ,
 [; ;PS_2.h: 181: '\0' ,
 [; ;PS_2.h: 182: '\0' ,
 [; ;PS_2.h: 183: '\0' ,
-[; ;PS_2.h: 184: 0x08 ,
+[; ;PS_2.h: 184: '\0' ,
 [; ;PS_2.h: 185: '\0' ,
-[; ;PS_2.h: 186: '\0' ,
-[; ;PS_2.h: 187: '1' ,
+[; ;PS_2.h: 186: 0x08 ,
+[; ;PS_2.h: 187: '\0' ,
 [; ;PS_2.h: 188: '\0' ,
-[; ;PS_2.h: 189: '4' ,
-[; ;PS_2.h: 190: '7' ,
-[; ;PS_2.h: 191: '\0' ,
-[; ;PS_2.h: 192: '\0' ,
+[; ;PS_2.h: 189: '1' ,
+[; ;PS_2.h: 190: '\0' ,
+[; ;PS_2.h: 191: '4' ,
+[; ;PS_2.h: 192: '7' ,
 [; ;PS_2.h: 193: '\0' ,
-[; ;PS_2.h: 194: '0' ,
-[; ;PS_2.h: 195: '.' ,
-[; ;PS_2.h: 196: '2' ,
-[; ;PS_2.h: 197: '5' ,
-[; ;PS_2.h: 198: '6' ,
-[; ;PS_2.h: 199: '8' ,
-[; ;PS_2.h: 200: 0x1B ,
-[; ;PS_2.h: 201: '\0' ,
-[; ;PS_2.h: 202: '\0' ,
-[; ;PS_2.h: 203: '+' ,
-[; ;PS_2.h: 204: '3' ,
-[; ;PS_2.h: 205: '-' ,
-[; ;PS_2.h: 206: '*' ,
-[; ;PS_2.h: 207: '9' };
-"210
+[; ;PS_2.h: 194: '\0' ,
+[; ;PS_2.h: 195: '\0' ,
+[; ;PS_2.h: 196: '0' ,
+[; ;PS_2.h: 197: '.' ,
+[; ;PS_2.h: 198: '2' ,
+[; ;PS_2.h: 199: '5' ,
+[; ;PS_2.h: 200: '6' ,
+[; ;PS_2.h: 201: '8' ,
+[; ;PS_2.h: 202: 0x1B ,
+[; ;PS_2.h: 203: '\0' ,
+[; ;PS_2.h: 204: '\0' ,
+[; ;PS_2.h: 205: '+' ,
+[; ;PS_2.h: 206: '3' ,
+[; ;PS_2.h: 207: '-' ,
+[; ;PS_2.h: 208: '*' ,
+[; ;PS_2.h: 209: '9' };
+"212
 [v _ScanCodeSHIFT `Cuc ~T0 @X0 -> 113 `i e ]
 [i _ScanCodeSHIFT
 :U ..
-"211
--> -> 9 `i `uc
-"212
--> -> 126 `ui `uc
 "213
--> -> 0 `ui `uc
+-> -> 9 `i `uc
 "214
--> -> 0 `ui `uc
+-> -> 126 `ui `uc
 "215
 -> -> 0 `ui `uc
 "216
@@ -5172,155 +5168,155 @@ Version 3.2 HI-TECH Software Intermediate Code
 "218
 -> -> 0 `ui `uc
 "219
--> -> 81 `ui `uc
+-> -> 0 `ui `uc
 "220
--> -> 33 `ui `uc
+-> -> 0 `ui `uc
 "221
--> -> 0 `ui `uc
+-> -> 81 `ui `uc
 "222
--> -> 0 `ui `uc
+-> -> 33 `ui `uc
 "223
 -> -> 0 `ui `uc
 "224
--> -> 90 `ui `uc
+-> -> 0 `ui `uc
 "225
--> -> 83 `ui `uc
+-> -> 0 `ui `uc
 "226
--> -> 65 `ui `uc
+-> -> 90 `ui `uc
 "227
--> -> 87 `ui `uc
+-> -> 83 `ui `uc
 "228
--> -> 64 `ui `uc
+-> -> 65 `ui `uc
 "229
--> -> 0 `ui `uc
+-> -> 87 `ui `uc
 "230
--> -> 0 `ui `uc
+-> -> 64 `ui `uc
 "231
--> -> 67 `ui `uc
+-> -> 0 `ui `uc
 "232
--> -> 88 `ui `uc
+-> -> 0 `ui `uc
 "233
--> -> 68 `ui `uc
+-> -> 67 `ui `uc
 "234
--> -> 69 `ui `uc
+-> -> 88 `ui `uc
 "235
--> -> 36 `ui `uc
+-> -> 68 `ui `uc
 "236
--> -> 35 `ui `uc
+-> -> 69 `ui `uc
 "237
--> -> 0 `ui `uc
+-> -> 36 `ui `uc
 "238
--> -> 0 `ui `uc
+-> -> 35 `ui `uc
 "239
--> -> 32 `i `uc
+-> -> 0 `ui `uc
 "240
--> -> 86 `ui `uc
+-> -> 0 `ui `uc
 "241
--> -> 70 `ui `uc
+-> -> 32 `i `uc
 "242
--> -> 84 `ui `uc
+-> -> 86 `ui `uc
 "243
--> -> 82 `ui `uc
+-> -> 70 `ui `uc
 "244
--> -> 37 `ui `uc
+-> -> 84 `ui `uc
 "245
--> -> 0 `ui `uc
+-> -> 82 `ui `uc
 "246
--> -> 0 `ui `uc
+-> -> 37 `ui `uc
 "247
--> -> 78 `ui `uc
+-> -> 0 `ui `uc
 "248
--> -> 66 `ui `uc
+-> -> 0 `ui `uc
 "249
--> -> 72 `ui `uc
+-> -> 78 `ui `uc
 "250
--> -> 71 `ui `uc
+-> -> 66 `ui `uc
 "251
--> -> 89 `ui `uc
+-> -> 72 `ui `uc
 "252
--> -> 94 `ui `uc
+-> -> 71 `ui `uc
 "253
--> -> 0 `ui `uc
+-> -> 89 `ui `uc
 "254
--> -> 0 `ui `uc
+-> -> 94 `ui `uc
 "255
 -> -> 0 `ui `uc
 "256
--> -> 77 `ui `uc
+-> -> 0 `ui `uc
 "257
--> -> 74 `ui `uc
+-> -> 0 `ui `uc
 "258
--> -> 85 `ui `uc
+-> -> 77 `ui `uc
 "259
--> -> 38 `ui `uc
+-> -> 74 `ui `uc
 "260
--> -> 42 `ui `uc
+-> -> 85 `ui `uc
 "261
--> -> 0 `ui `uc
+-> -> 38 `ui `uc
 "262
--> -> 0 `ui `uc
+-> -> 42 `ui `uc
 "263
--> -> 60 `ui `uc
+-> -> 0 `ui `uc
 "264
--> -> 75 `ui `uc
+-> -> 0 `ui `uc
 "265
--> -> 73 `ui `uc
+-> -> 60 `ui `uc
 "266
--> -> 79 `ui `uc
+-> -> 75 `ui `uc
 "267
--> -> 41 `ui `uc
+-> -> 73 `ui `uc
 "268
--> -> 40 `ui `uc
+-> -> 79 `ui `uc
 "269
--> -> 0 `ui `uc
+-> -> 41 `ui `uc
 "270
--> -> 0 `ui `uc
+-> -> 40 `ui `uc
 "271
--> -> 62 `ui `uc
+-> -> 0 `ui `uc
 "272
--> -> 63 `ui `uc
+-> -> 0 `ui `uc
 "273
--> -> 76 `ui `uc
+-> -> 62 `ui `uc
 "274
--> -> 58 `ui `uc
+-> -> 63 `ui `uc
 "275
--> -> 80 `ui `uc
+-> -> 76 `ui `uc
 "276
--> -> 95 `ui `uc
+-> -> 58 `ui `uc
 "277
--> -> 0 `ui `uc
+-> -> 80 `ui `uc
 "278
--> -> 0 `ui `uc
+-> -> 95 `ui `uc
 "279
 -> -> 0 `ui `uc
 "280
--> -> 34 `i `uc
+-> -> 0 `ui `uc
 "281
 -> -> 0 `ui `uc
 "282
--> -> 123 `ui `uc
+-> -> 34 `i `uc
 "283
--> -> 43 `ui `uc
+-> -> 0 `ui `uc
 "284
--> -> 0 `ui `uc
+-> -> 123 `ui `uc
 "285
--> -> 0 `ui `uc
+-> -> 43 `ui `uc
 "286
 -> -> 0 `ui `uc
 "287
 -> -> 0 `ui `uc
 "288
--> -> 13 `ui `uc
-"289
--> -> 125 `ui `uc
-"290
 -> -> 0 `ui `uc
+"289
+-> -> 0 `ui `uc
+"290
+-> -> 13 `ui `uc
 "291
--> -> 124 `ui `uc
+-> -> 125 `ui `uc
 "292
 -> -> 0 `ui `uc
 "293
--> -> 0 `ui `uc
+-> -> 124 `ui `uc
 "294
 -> -> 0 `ui `uc
 "295
@@ -5334,219 +5330,219 @@ Version 3.2 HI-TECH Software Intermediate Code
 "299
 -> -> 0 `ui `uc
 "300
--> -> 8 `i `uc
+-> -> 0 `ui `uc
 "301
 -> -> 0 `ui `uc
 "302
--> -> 0 `ui `uc
+-> -> 8 `i `uc
 "303
--> -> 49 `ui `uc
+-> -> 0 `ui `uc
 "304
 -> -> 0 `ui `uc
 "305
--> -> 52 `ui `uc
+-> -> 49 `ui `uc
 "306
--> -> 55 `ui `uc
+-> -> 0 `ui `uc
 "307
--> -> 0 `ui `uc
+-> -> 52 `ui `uc
 "308
--> -> 0 `ui `uc
+-> -> 55 `ui `uc
 "309
 -> -> 0 `ui `uc
 "310
--> -> 48 `ui `uc
+-> -> 0 `ui `uc
 "311
--> -> 46 `ui `uc
+-> -> 0 `ui `uc
 "312
--> -> 50 `ui `uc
+-> -> 48 `ui `uc
 "313
--> -> 53 `ui `uc
+-> -> 46 `ui `uc
 "314
--> -> 54 `ui `uc
+-> -> 50 `ui `uc
 "315
--> -> 56 `ui `uc
+-> -> 53 `ui `uc
 "316
--> -> 27 `i `uc
+-> -> 54 `ui `uc
 "317
--> -> 0 `ui `uc
+-> -> 56 `ui `uc
 "318
--> -> 0 `ui `uc
+-> -> 27 `i `uc
 "319
--> -> 43 `ui `uc
+-> -> 0 `ui `uc
 "320
--> -> 51 `ui `uc
+-> -> 0 `ui `uc
 "321
--> -> 45 `ui `uc
+-> -> 43 `ui `uc
 "322
--> -> 42 `ui `uc
+-> -> 51 `ui `uc
 "323
+-> -> 45 `ui `uc
+"324
+-> -> 42 `ui `uc
+"325
 -> -> 57 `ui `uc
 ..
 ]
-[; ;PS_2.h: 210: const unsigned char ScanCodeSHIFT[113] = {
-[; ;PS_2.h: 211: 0x09 ,
-[; ;PS_2.h: 212: '~' ,
-[; ;PS_2.h: 213: '\0' ,
-[; ;PS_2.h: 214: '\0' ,
+[; ;PS_2.h: 212: const unsigned char ScanCodeSHIFT[113] = {
+[; ;PS_2.h: 213: 0x09 ,
+[; ;PS_2.h: 214: '~' ,
 [; ;PS_2.h: 215: '\0' ,
 [; ;PS_2.h: 216: '\0' ,
 [; ;PS_2.h: 217: '\0' ,
 [; ;PS_2.h: 218: '\0' ,
-[; ;PS_2.h: 219: 'Q' ,
-[; ;PS_2.h: 220: '!' ,
-[; ;PS_2.h: 221: '\0' ,
-[; ;PS_2.h: 222: '\0' ,
+[; ;PS_2.h: 219: '\0' ,
+[; ;PS_2.h: 220: '\0' ,
+[; ;PS_2.h: 221: 'Q' ,
+[; ;PS_2.h: 222: '!' ,
 [; ;PS_2.h: 223: '\0' ,
-[; ;PS_2.h: 224: 'Z' ,
-[; ;PS_2.h: 225: 'S' ,
-[; ;PS_2.h: 226: 'A' ,
-[; ;PS_2.h: 227: 'W' ,
-[; ;PS_2.h: 228: '@' ,
-[; ;PS_2.h: 229: '\0' ,
-[; ;PS_2.h: 230: '\0' ,
-[; ;PS_2.h: 231: 'C' ,
-[; ;PS_2.h: 232: 'X' ,
-[; ;PS_2.h: 233: 'D' ,
-[; ;PS_2.h: 234: 'E' ,
-[; ;PS_2.h: 235: '$' ,
-[; ;PS_2.h: 236: '#' ,
-[; ;PS_2.h: 237: '\0' ,
-[; ;PS_2.h: 238: '\0' ,
-[; ;PS_2.h: 239: 0x20 ,
-[; ;PS_2.h: 240: 'V' ,
-[; ;PS_2.h: 241: 'F' ,
-[; ;PS_2.h: 242: 'T' ,
-[; ;PS_2.h: 243: 'R' ,
-[; ;PS_2.h: 244: '%' ,
-[; ;PS_2.h: 245: '\0' ,
-[; ;PS_2.h: 246: '\0' ,
-[; ;PS_2.h: 247: 'N' ,
-[; ;PS_2.h: 248: 'B' ,
-[; ;PS_2.h: 249: 'H' ,
-[; ;PS_2.h: 250: 'G' ,
-[; ;PS_2.h: 251: 'Y' ,
-[; ;PS_2.h: 252: '^' ,
-[; ;PS_2.h: 253: '\0' ,
-[; ;PS_2.h: 254: '\0' ,
+[; ;PS_2.h: 224: '\0' ,
+[; ;PS_2.h: 225: '\0' ,
+[; ;PS_2.h: 226: 'Z' ,
+[; ;PS_2.h: 227: 'S' ,
+[; ;PS_2.h: 228: 'A' ,
+[; ;PS_2.h: 229: 'W' ,
+[; ;PS_2.h: 230: '@' ,
+[; ;PS_2.h: 231: '\0' ,
+[; ;PS_2.h: 232: '\0' ,
+[; ;PS_2.h: 233: 'C' ,
+[; ;PS_2.h: 234: 'X' ,
+[; ;PS_2.h: 235: 'D' ,
+[; ;PS_2.h: 236: 'E' ,
+[; ;PS_2.h: 237: '$' ,
+[; ;PS_2.h: 238: '#' ,
+[; ;PS_2.h: 239: '\0' ,
+[; ;PS_2.h: 240: '\0' ,
+[; ;PS_2.h: 241: 0x20 ,
+[; ;PS_2.h: 242: 'V' ,
+[; ;PS_2.h: 243: 'F' ,
+[; ;PS_2.h: 244: 'T' ,
+[; ;PS_2.h: 245: 'R' ,
+[; ;PS_2.h: 246: '%' ,
+[; ;PS_2.h: 247: '\0' ,
+[; ;PS_2.h: 248: '\0' ,
+[; ;PS_2.h: 249: 'N' ,
+[; ;PS_2.h: 250: 'B' ,
+[; ;PS_2.h: 251: 'H' ,
+[; ;PS_2.h: 252: 'G' ,
+[; ;PS_2.h: 253: 'Y' ,
+[; ;PS_2.h: 254: '^' ,
 [; ;PS_2.h: 255: '\0' ,
-[; ;PS_2.h: 256: 'M' ,
-[; ;PS_2.h: 257: 'J' ,
-[; ;PS_2.h: 258: 'U' ,
-[; ;PS_2.h: 259: '&' ,
-[; ;PS_2.h: 260: '*' ,
-[; ;PS_2.h: 261: '\0' ,
-[; ;PS_2.h: 262: '\0' ,
-[; ;PS_2.h: 263: '<' ,
-[; ;PS_2.h: 264: 'K' ,
-[; ;PS_2.h: 265: 'I' ,
-[; ;PS_2.h: 266: 'O' ,
-[; ;PS_2.h: 267: ')' ,
-[; ;PS_2.h: 268: '(' ,
-[; ;PS_2.h: 269: '\0' ,
-[; ;PS_2.h: 270: '\0' ,
-[; ;PS_2.h: 271: '>' ,
-[; ;PS_2.h: 272: '?' ,
-[; ;PS_2.h: 273: 'L' ,
-[; ;PS_2.h: 274: ':' ,
-[; ;PS_2.h: 275: 'P' ,
-[; ;PS_2.h: 276: '_' ,
-[; ;PS_2.h: 277: '\0' ,
-[; ;PS_2.h: 278: '\0' ,
+[; ;PS_2.h: 256: '\0' ,
+[; ;PS_2.h: 257: '\0' ,
+[; ;PS_2.h: 258: 'M' ,
+[; ;PS_2.h: 259: 'J' ,
+[; ;PS_2.h: 260: 'U' ,
+[; ;PS_2.h: 261: '&' ,
+[; ;PS_2.h: 262: '*' ,
+[; ;PS_2.h: 263: '\0' ,
+[; ;PS_2.h: 264: '\0' ,
+[; ;PS_2.h: 265: '<' ,
+[; ;PS_2.h: 266: 'K' ,
+[; ;PS_2.h: 267: 'I' ,
+[; ;PS_2.h: 268: 'O' ,
+[; ;PS_2.h: 269: ')' ,
+[; ;PS_2.h: 270: '(' ,
+[; ;PS_2.h: 271: '\0' ,
+[; ;PS_2.h: 272: '\0' ,
+[; ;PS_2.h: 273: '>' ,
+[; ;PS_2.h: 274: '?' ,
+[; ;PS_2.h: 275: 'L' ,
+[; ;PS_2.h: 276: ':' ,
+[; ;PS_2.h: 277: 'P' ,
+[; ;PS_2.h: 278: '_' ,
 [; ;PS_2.h: 279: '\0' ,
-[; ;PS_2.h: 280: 0x22 ,
+[; ;PS_2.h: 280: '\0' ,
 [; ;PS_2.h: 281: '\0' ,
-[; ;PS_2.h: 282: '{' ,
-[; ;PS_2.h: 283: '+' ,
-[; ;PS_2.h: 284: '\0' ,
-[; ;PS_2.h: 285: '\0' ,
+[; ;PS_2.h: 282: 0x22 ,
+[; ;PS_2.h: 283: '\0' ,
+[; ;PS_2.h: 284: '{' ,
+[; ;PS_2.h: 285: '+' ,
 [; ;PS_2.h: 286: '\0' ,
 [; ;PS_2.h: 287: '\0' ,
-[; ;PS_2.h: 288: '\r' ,
-[; ;PS_2.h: 289: '}' ,
-[; ;PS_2.h: 290: '\0' ,
-[; ;PS_2.h: 291: '|' ,
+[; ;PS_2.h: 288: '\0' ,
+[; ;PS_2.h: 289: '\0' ,
+[; ;PS_2.h: 290: '\r' ,
+[; ;PS_2.h: 291: '}' ,
 [; ;PS_2.h: 292: '\0' ,
-[; ;PS_2.h: 293: '\0' ,
+[; ;PS_2.h: 293: '|' ,
 [; ;PS_2.h: 294: '\0' ,
 [; ;PS_2.h: 295: '\0' ,
 [; ;PS_2.h: 296: '\0' ,
 [; ;PS_2.h: 297: '\0' ,
 [; ;PS_2.h: 298: '\0' ,
 [; ;PS_2.h: 299: '\0' ,
-[; ;PS_2.h: 300: 0x08 ,
+[; ;PS_2.h: 300: '\0' ,
 [; ;PS_2.h: 301: '\0' ,
-[; ;PS_2.h: 302: '\0' ,
-[; ;PS_2.h: 303: '1' ,
+[; ;PS_2.h: 302: 0x08 ,
+[; ;PS_2.h: 303: '\0' ,
 [; ;PS_2.h: 304: '\0' ,
-[; ;PS_2.h: 305: '4' ,
-[; ;PS_2.h: 306: '7' ,
-[; ;PS_2.h: 307: '\0' ,
-[; ;PS_2.h: 308: '\0' ,
+[; ;PS_2.h: 305: '1' ,
+[; ;PS_2.h: 306: '\0' ,
+[; ;PS_2.h: 307: '4' ,
+[; ;PS_2.h: 308: '7' ,
 [; ;PS_2.h: 309: '\0' ,
-[; ;PS_2.h: 310: '0' ,
-[; ;PS_2.h: 311: '.' ,
-[; ;PS_2.h: 312: '2' ,
-[; ;PS_2.h: 313: '5' ,
-[; ;PS_2.h: 314: '6' ,
-[; ;PS_2.h: 315: '8' ,
-[; ;PS_2.h: 316: 0x1B ,
-[; ;PS_2.h: 317: '\0' ,
-[; ;PS_2.h: 318: '\0' ,
-[; ;PS_2.h: 319: '+' ,
-[; ;PS_2.h: 320: '3' ,
-[; ;PS_2.h: 321: '-' ,
-[; ;PS_2.h: 322: '*' ,
-[; ;PS_2.h: 323: '9' };
-"325
+[; ;PS_2.h: 310: '\0' ,
+[; ;PS_2.h: 311: '\0' ,
+[; ;PS_2.h: 312: '0' ,
+[; ;PS_2.h: 313: '.' ,
+[; ;PS_2.h: 314: '2' ,
+[; ;PS_2.h: 315: '5' ,
+[; ;PS_2.h: 316: '6' ,
+[; ;PS_2.h: 317: '8' ,
+[; ;PS_2.h: 318: 0x1B ,
+[; ;PS_2.h: 319: '\0' ,
+[; ;PS_2.h: 320: '\0' ,
+[; ;PS_2.h: 321: '+' ,
+[; ;PS_2.h: 322: '3' ,
+[; ;PS_2.h: 323: '-' ,
+[; ;PS_2.h: 324: '*' ,
+[; ;PS_2.h: 325: '9' };
+"327
 [v _ScanCodeFunctionNoE0 `Cuc ~T0 @X0 -> 132 `i e ]
 [i _ScanCodeFunctionNoE0
 :U ..
-"326
--> -> 0 `ui `uc
-"327
--> -> 17 `i `uc
 "328
 -> -> 0 `ui `uc
 "329
--> -> 12 `i `uc
+-> -> 17 `i `uc
 "330
--> -> 10 `i `uc
+-> -> 0 `ui `uc
 "331
--> -> 6 `i `uc
+-> -> 12 `i `uc
 "332
--> -> 7 `i `uc
+-> -> 10 `i `uc
 "333
--> -> 20 `i `uc
+-> -> 6 `i `uc
 "334
--> -> 0 `ui `uc
+-> -> 7 `i `uc
 "335
--> -> 18 `i `uc
+-> -> 20 `i `uc
 "336
--> -> 16 `i `uc
+-> -> 0 `ui `uc
 "337
--> -> 14 `i `uc
+-> -> 18 `i `uc
 "338
--> -> 11 `i `uc
+-> -> 16 `i `uc
 "339
--> -> 0 `ui `uc
+-> -> 14 `i `uc
 "340
--> -> 0 `ui `uc
+-> -> 11 `i `uc
 "341
 -> -> 0 `ui `uc
 "342
 -> -> 0 `ui `uc
 "343
--> -> 28 `i `uc
+-> -> 0 `ui `uc
 "344
 -> -> 0 `ui `uc
 "345
--> -> 0 `ui `uc
+-> -> 28 `i `uc
 "346
--> -> 26 `i `uc
+-> -> 0 `ui `uc
 "347
 -> -> 0 `ui `uc
 "348
--> -> 0 `ui `uc
+-> -> 26 `i `uc
 "349
 -> -> 0 `ui `uc
 "350
@@ -5742,11 +5738,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "445
 -> -> 0 `ui `uc
 "446
--> -> 19 `i `uc
+-> -> 0 `ui `uc
 "447
 -> -> 0 `ui `uc
 "448
--> -> 0 `ui `uc
+-> -> 19 `i `uc
 "449
 -> -> 0 `ui `uc
 "450
@@ -5764,33 +5760,35 @@ Version 3.2 HI-TECH Software Intermediate Code
 "456
 -> -> 0 `ui `uc
 "457
+-> -> 0 `ui `uc
+"458
+-> -> 0 `ui `uc
+"459
 -> -> 15 `i `uc
 ..
 ]
-[; ;PS_2.h: 325: const unsigned char ScanCodeFunctionNoE0[132] = {
-[; ;PS_2.h: 326: '\0' ,
-[; ;PS_2.h: 327: 0x11 ,
+[; ;PS_2.h: 327: const unsigned char ScanCodeFunctionNoE0[132] = {
 [; ;PS_2.h: 328: '\0' ,
-[; ;PS_2.h: 329: 0x0C ,
-[; ;PS_2.h: 330: 0x0A ,
-[; ;PS_2.h: 331: 0x06 ,
-[; ;PS_2.h: 332: 0x07 ,
-[; ;PS_2.h: 333: 0x14 ,
-[; ;PS_2.h: 334: '\0' ,
-[; ;PS_2.h: 335: 0x12 ,
-[; ;PS_2.h: 336: 0x10 ,
-[; ;PS_2.h: 337: 0x0E ,
-[; ;PS_2.h: 338: 0x0B ,
-[; ;PS_2.h: 339: '\0' ,
-[; ;PS_2.h: 340: '\0' ,
+[; ;PS_2.h: 329: 0x11 ,
+[; ;PS_2.h: 330: '\0' ,
+[; ;PS_2.h: 331: 0x0C ,
+[; ;PS_2.h: 332: 0x0A ,
+[; ;PS_2.h: 333: 0x06 ,
+[; ;PS_2.h: 334: 0x07 ,
+[; ;PS_2.h: 335: 0x14 ,
+[; ;PS_2.h: 336: '\0' ,
+[; ;PS_2.h: 337: 0x12 ,
+[; ;PS_2.h: 338: 0x10 ,
+[; ;PS_2.h: 339: 0x0E ,
+[; ;PS_2.h: 340: 0x0B ,
 [; ;PS_2.h: 341: '\0' ,
 [; ;PS_2.h: 342: '\0' ,
-[; ;PS_2.h: 343: 0x1C ,
+[; ;PS_2.h: 343: '\0' ,
 [; ;PS_2.h: 344: '\0' ,
-[; ;PS_2.h: 345: '\0' ,
-[; ;PS_2.h: 346: 0x1A ,
+[; ;PS_2.h: 345: 0x1C ,
+[; ;PS_2.h: 346: '\0' ,
 [; ;PS_2.h: 347: '\0' ,
-[; ;PS_2.h: 348: '\0' ,
+[; ;PS_2.h: 348: 0x1A ,
 [; ;PS_2.h: 349: '\0' ,
 [; ;PS_2.h: 350: '\0' ,
 [; ;PS_2.h: 351: '\0' ,
@@ -5888,9 +5886,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 443: '\0' ,
 [; ;PS_2.h: 444: '\0' ,
 [; ;PS_2.h: 445: '\0' ,
-[; ;PS_2.h: 446: 0x13 ,
+[; ;PS_2.h: 446: '\0' ,
 [; ;PS_2.h: 447: '\0' ,
-[; ;PS_2.h: 448: '\0' ,
+[; ;PS_2.h: 448: 0x13 ,
 [; ;PS_2.h: 449: '\0' ,
 [; ;PS_2.h: 450: '\0' ,
 [; ;PS_2.h: 451: '\0' ,
@@ -5899,23 +5897,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 454: '\0' ,
 [; ;PS_2.h: 455: '\0' ,
 [; ;PS_2.h: 456: '\0' ,
-[; ;PS_2.h: 457: 0x0F };
-"460
+[; ;PS_2.h: 457: '\0' ,
+[; ;PS_2.h: 458: '\0' ,
+[; ;PS_2.h: 459: 0x0F };
+"462
 [v _ScanCodeFunctionE0 `Cuc ~T0 @X0 -> 109 `i e ]
 [i _ScanCodeFunctionE0
 :U ..
-"461
--> -> 30 `i `uc
-"462
--> -> 0 `ui `uc
 "463
--> -> 0 `ui `uc
+-> -> 30 `i `uc
 "464
--> -> 31 `i `uc
+-> -> 0 `ui `uc
 "465
 -> -> 0 `ui `uc
 "466
--> -> 0 `ui `uc
+-> -> 31 `i `uc
 "467
 -> -> 0 `ui `uc
 "468
@@ -5933,11 +5929,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "474
 -> -> 0 `ui `uc
 "475
--> -> 25 `i `uc
+-> -> 0 `ui `uc
 "476
 -> -> 0 `ui `uc
 "477
--> -> 0 `ui `uc
+-> -> 25 `i `uc
 "478
 -> -> 0 `ui `uc
 "479
@@ -5949,11 +5945,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "482
 -> -> 0 `ui `uc
 "483
--> -> 29 `i `uc
+-> -> 0 `ui `uc
 "484
 -> -> 0 `ui `uc
 "485
--> -> 0 `ui `uc
+-> -> 29 `i `uc
 "486
 -> -> 0 `ui `uc
 "487
@@ -6019,11 +6015,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "517
 -> -> 0 `ui `uc
 "518
--> -> 47 `i `uc
+-> -> 0 `ui `uc
 "519
 -> -> 0 `ui `uc
 "520
--> -> 0 `ui `uc
+-> -> 47 `i `uc
 "521
 -> -> 0 `ui `uc
 "522
@@ -6051,11 +6047,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "533
 -> -> 0 `ui `uc
 "534
--> -> 13 `ui `uc
+-> -> 0 `ui `uc
 "535
 -> -> 0 `ui `uc
 "536
--> -> 0 `ui `uc
+-> -> 13 `ui `uc
 "537
 -> -> 0 `ui `uc
 "538
@@ -6081,56 +6077,58 @@ Version 3.2 HI-TECH Software Intermediate Code
 "548
 -> -> 0 `ui `uc
 "549
--> -> 1 `i `uc
+-> -> 0 `ui `uc
 "550
 -> -> 0 `ui `uc
 "551
--> -> 3 `i `uc
+-> -> 1 `i `uc
 "552
--> -> 22 `i `uc
+-> -> 0 `ui `uc
 "553
--> -> 0 `ui `uc
+-> -> 3 `i `uc
 "554
--> -> 0 `ui `uc
+-> -> 22 `i `uc
 "555
 -> -> 0 `ui `uc
 "556
--> -> 21 `i `uc
+-> -> 0 `ui `uc
 "557
--> -> 127 `i `uc
+-> -> 0 `ui `uc
 "558
--> -> 4 `i `uc
+-> -> 21 `i `uc
 "559
--> -> 0 `ui `uc
+-> -> 127 `i `uc
 "560
--> -> 5 `i `uc
+-> -> 4 `i `uc
 "561
--> -> 2 `i `uc
+-> -> 0 `ui `uc
 "562
--> -> 0 `ui `uc
+-> -> 5 `i `uc
 "563
--> -> 0 `ui `uc
+-> -> 2 `i `uc
 "564
 -> -> 0 `ui `uc
 "565
 -> -> 0 `ui `uc
 "566
--> -> 24 `i `uc
+-> -> 0 `ui `uc
 "567
 -> -> 0 `ui `uc
 "568
--> -> 0 `ui `uc
+-> -> 24 `i `uc
 "569
+-> -> 0 `ui `uc
+"570
+-> -> 0 `ui `uc
+"571
 -> -> 23 `i `uc
 ..
 ]
-[; ;PS_2.h: 460: const unsigned char ScanCodeFunctionE0[109] = {
-[; ;PS_2.h: 461: 0x1E ,
-[; ;PS_2.h: 462: '\0' ,
-[; ;PS_2.h: 463: '\0' ,
-[; ;PS_2.h: 464: 0x1F ,
+[; ;PS_2.h: 462: const unsigned char ScanCodeFunctionE0[109] = {
+[; ;PS_2.h: 463: 0x1E ,
+[; ;PS_2.h: 464: '\0' ,
 [; ;PS_2.h: 465: '\0' ,
-[; ;PS_2.h: 466: '\0' ,
+[; ;PS_2.h: 466: 0x1F ,
 [; ;PS_2.h: 467: '\0' ,
 [; ;PS_2.h: 468: '\0' ,
 [; ;PS_2.h: 469: '\0' ,
@@ -6139,17 +6137,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 472: '\0' ,
 [; ;PS_2.h: 473: '\0' ,
 [; ;PS_2.h: 474: '\0' ,
-[; ;PS_2.h: 475: 0x19 ,
+[; ;PS_2.h: 475: '\0' ,
 [; ;PS_2.h: 476: '\0' ,
-[; ;PS_2.h: 477: '\0' ,
+[; ;PS_2.h: 477: 0x19 ,
 [; ;PS_2.h: 478: '\0' ,
 [; ;PS_2.h: 479: '\0' ,
 [; ;PS_2.h: 480: '\0' ,
 [; ;PS_2.h: 481: '\0' ,
 [; ;PS_2.h: 482: '\0' ,
-[; ;PS_2.h: 483: 0x1D ,
+[; ;PS_2.h: 483: '\0' ,
 [; ;PS_2.h: 484: '\0' ,
-[; ;PS_2.h: 485: '\0' ,
+[; ;PS_2.h: 485: 0x1D ,
 [; ;PS_2.h: 486: '\0' ,
 [; ;PS_2.h: 487: '\0' ,
 [; ;PS_2.h: 488: '\0' ,
@@ -6182,9 +6180,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 515: '\0' ,
 [; ;PS_2.h: 516: '\0' ,
 [; ;PS_2.h: 517: '\0' ,
-[; ;PS_2.h: 518: 0x2F ,
+[; ;PS_2.h: 518: '\0' ,
 [; ;PS_2.h: 519: '\0' ,
-[; ;PS_2.h: 520: '\0' ,
+[; ;PS_2.h: 520: 0x2F ,
 [; ;PS_2.h: 521: '\0' ,
 [; ;PS_2.h: 522: '\0' ,
 [; ;PS_2.h: 523: '\0' ,
@@ -6198,9 +6196,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 531: '\0' ,
 [; ;PS_2.h: 532: '\0' ,
 [; ;PS_2.h: 533: '\0' ,
-[; ;PS_2.h: 534: '\r' ,
+[; ;PS_2.h: 534: '\0' ,
 [; ;PS_2.h: 535: '\0' ,
-[; ;PS_2.h: 536: '\0' ,
+[; ;PS_2.h: 536: '\r' ,
 [; ;PS_2.h: 537: '\0' ,
 [; ;PS_2.h: 538: '\0' ,
 [; ;PS_2.h: 539: '\0' ,
@@ -6213,27 +6211,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 546: '\0' ,
 [; ;PS_2.h: 547: '\0' ,
 [; ;PS_2.h: 548: '\0' ,
-[; ;PS_2.h: 549: 0x01 ,
+[; ;PS_2.h: 549: '\0' ,
 [; ;PS_2.h: 550: '\0' ,
-[; ;PS_2.h: 551: 0x03 ,
-[; ;PS_2.h: 552: 0x16 ,
-[; ;PS_2.h: 553: '\0' ,
-[; ;PS_2.h: 554: '\0' ,
+[; ;PS_2.h: 551: 0x01 ,
+[; ;PS_2.h: 552: '\0' ,
+[; ;PS_2.h: 553: 0x03 ,
+[; ;PS_2.h: 554: 0x16 ,
 [; ;PS_2.h: 555: '\0' ,
-[; ;PS_2.h: 556: 0x15 ,
-[; ;PS_2.h: 557: 0x7F ,
-[; ;PS_2.h: 558: 0x04 ,
-[; ;PS_2.h: 559: '\0' ,
-[; ;PS_2.h: 560: 0x05 ,
-[; ;PS_2.h: 561: 0x02 ,
-[; ;PS_2.h: 562: '\0' ,
-[; ;PS_2.h: 563: '\0' ,
+[; ;PS_2.h: 556: '\0' ,
+[; ;PS_2.h: 557: '\0' ,
+[; ;PS_2.h: 558: 0x15 ,
+[; ;PS_2.h: 559: 0x7F ,
+[; ;PS_2.h: 560: 0x04 ,
+[; ;PS_2.h: 561: '\0' ,
+[; ;PS_2.h: 562: 0x05 ,
+[; ;PS_2.h: 563: 0x02 ,
 [; ;PS_2.h: 564: '\0' ,
 [; ;PS_2.h: 565: '\0' ,
-[; ;PS_2.h: 566: 0x18 ,
+[; ;PS_2.h: 566: '\0' ,
 [; ;PS_2.h: 567: '\0' ,
-[; ;PS_2.h: 568: '\0' ,
-[; ;PS_2.h: 569: 0x17 };
+[; ;PS_2.h: 568: 0x18 ,
+[; ;PS_2.h: 569: '\0' ,
+[; ;PS_2.h: 570: '\0' ,
+[; ;PS_2.h: 571: 0x17 };
 [; ;system.h: 52: void ConfigureOscillator(void);
 "57 FLASH.h
 [v _MEM `ui ~T0 @X0 -> 2 `i e ]
@@ -6257,13 +6257,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FLASH.h: 71: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 [; ;FLASH.h: 72: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 [; ;FLASH.h: 73: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;user.h: 124: void InitApp(void);
-[; ;user.h: 125: void Init_System (void);
+[; ;user.h: 132: void InitApp(void);
+[; ;user.h: 133: void Init_System (void);
 [; ;ADC.h: 83: double ReadVoltage(void);
 [; ;ADC.h: 84: void DisableInternalADC(void);
 [; ;ADC.h: 85: unsigned int InternalADC_Read(unsigned char channel);
 [; ;ADC.h: 86: void ShutDown_ADC(void);
-"77 main.c
+"84 main.c
 [v _Version `uc ~T0 @X0 -> 0 `x e ]
 [i _Version
 :U ..
@@ -6273,343 +6273,412 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[; ;main.c: 77: unsigned char Version[] = {"1.2"};
-[; ;main.c: 83: extern double BatteryVoltage;
-[; ;main.c: 84: extern unsigned char Alarm;
-"86
+[; ;main.c: 84: unsigned char Version[] = {"1.2"};
+[; ;main.c: 94: extern double BatteryVoltage;
+[; ;main.c: 95: extern unsigned char Alarm;
+"97
 [v _SinLEDtimer `ui ~T0 @X0 1 e ]
 [i _SinLEDtimer
 -> -> 0 `i `ui
 ]
-[; ;main.c: 86: unsigned int SinLEDtimer =0;
-"87
+[; ;main.c: 97: unsigned int SinLEDtimer =0;
+"98
 [v _pwrLEDtoggle `ui ~T0 @X0 1 e ]
 [i _pwrLEDtoggle
 -> -> 0 `i `ui
 ]
-[; ;main.c: 87: unsigned int pwrLEDtoggle =0;
-"93
+[; ;main.c: 98: unsigned int pwrLEDtoggle =0;
+"99
+[v _No_Keyboard `uc ~T0 @X0 1 e ]
+[i _No_Keyboard
+-> -> 1 `i `uc
+]
+[; ;main.c: 99: unsigned char No_Keyboard =1;
+"100
+[v _No_Keyboard_old `uc ~T0 @X0 1 e ]
+[i _No_Keyboard_old
+-> -> 1 `i `uc
+]
+[; ;main.c: 100: unsigned char No_Keyboard_old =1;
+"106
 [v _main `(v ~T0 @X0 1 ef ]
-"94
+"107
 {
-[; ;main.c: 93: void main(void)
-[; ;main.c: 94: {
+[; ;main.c: 106: void main(void)
+[; ;main.c: 107: {
 [e :U _main ]
 [f ]
-"95
+"108
 [v _i `uc ~T0 @X0 1 a ]
-[; ;main.c: 95: unsigned char i=0;
+[; ;main.c: 108: unsigned char i=0;
 [e = _i -> -> 0 `i `uc ]
-[; ;main.c: 97: ConfigureOscillator();
-"97
+[; ;main.c: 110: ConfigureOscillator();
+"110
 [e ( _ConfigureOscillator ..  ]
-[; ;main.c: 98: InitApp();
-"98
+[; ;main.c: 111: InitApp();
+"111
 [e ( _InitApp ..  ]
-[; ;main.c: 99: Init_System();
-"99
+[; ;main.c: 112: Init_System();
+"112
 [e ( _Init_System ..  ]
-[; ;main.c: 100: PS_2_INIT();
-"100
+[; ;main.c: 113: PS_2_INIT();
+"113
 [e ( _PS_2_INIT ..  ]
-[; ;main.c: 103: for(i =0;i<10;i++)
-"103
+[; ;main.c: 116: for(i =0;i<10;i++)
+"116
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 588  ]
 [e $U 589  ]
-"104
+"117
 [e :U 588 ]
-[; ;main.c: 104: {
+[; ;main.c: 117: {
 {
-[; ;main.c: 105: LATC |= 0b00010000;
-"105
+[; ;main.c: 118: LATC |= 0b00010000;
+"118
 [e =| _LATC -> -> 16 `i `uc ]
-[; ;main.c: 106: delayUS(10000);
-"106
+[; ;main.c: 119: delayUS(10000);
+"119
 [e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 107: LATC &= ~0b00010000;
-"107
+[; ;main.c: 120: LATC &= ~0b00010000;
+"120
 [e =& _LATC -> ~ -> 16 `i `uc ]
-[; ;main.c: 108: delayUS(10000);
-"108
+[; ;main.c: 121: delayUS(10000);
+"121
 [e ( _delayUS (1 -> -> 10000 `i `l ]
-"109
+"122
 }
-"103
+"116
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 588  ]
 [e :U 589 ]
-"109
-}
-[; ;main.c: 109: }
-[; ;main.c: 111: PS_2_DISABLE_INTERRUPT(0b00100000);
-"111
-[e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;main.c: 113: UARTstringWAIT("\r\n");
-"113
-[e ( _UARTstringWAIT (1 :s 1C ]
-[; ;main.c: 114: delayUS(10000);
-"114
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 115: UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
-"115
-[e ( _UARTstringWAIT (1 :s 2C ]
-[; ;main.c: 116: delayUS(5000);
-"116
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;main.c: 117: UARTstringWAIT("Firmware Version: ");
-"117
-[e ( _UARTstringWAIT (1 :s 3C ]
-[; ;main.c: 118: UARTstringWAIT(Version);
-"118
-[e ( _UARTstringWAIT (1 -> &U _Version `*Cuc ]
-[; ;main.c: 119: UARTstringWAIT("\r\n");
-"119
-[e ( _UARTstringWAIT (1 :s 4C ]
-[; ;main.c: 120: delayUS(5000);
-"120
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;main.c: 121: UARTstringWAIT("To Change BAUD hit \"CNT+ALT+DEL\"\r\n");
-"121
-[e ( _UARTstringWAIT (1 :s 5C ]
-[; ;main.c: 122: delayUS(10000);
 "122
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 125: if(!Keyboard_Connected())
-"125
-[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 591  ]
-[; ;main.c: 126: {
+}
+[; ;main.c: 122: }
+[; ;main.c: 124: PS_2_DISABLE_INTERRUPT(0b00100000);
+"124
+[e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
+[; ;main.c: 126: UARTstringWAIT("\r\n");
 "126
-{
-[; ;main.c: 127: if(!Keyboard_Connected())
+[e ( _UARTstringWAIT (1 :s 1C ]
+[; ;main.c: 127: delayUS(10000);
 "127
-[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 592  ]
-[; ;main.c: 128: {
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 128: UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
 "128
-{
-[; ;main.c: 129: UARTstringWAIT("No Keyboard connected\r\n");
+[e ( _UARTstringWAIT (1 :s 2C ]
+[; ;main.c: 129: delayUS(5000);
 "129
-[e ( _UARTstringWAIT (1 :s 6C ]
-[; ;main.c: 131: while(!Keyboard_Connected())
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;main.c: 130: UARTstringWAIT("Firmware Version: ");
+"130
+[e ( _UARTstringWAIT (1 :s 3C ]
+[; ;main.c: 131: UARTstringWAIT(Version);
 "131
-[e $U 593  ]
-[e :U 594 ]
-[; ;main.c: 132: {
+[e ( _UARTstringWAIT (1 -> &U _Version `*Cuc ]
+[; ;main.c: 132: UARTstringWAIT("\r\n");
 "132
-{
-[; ;main.c: 133: BatteryVoltage = ReadVoltage();
+[e ( _UARTstringWAIT (1 :s 4C ]
+[; ;main.c: 133: delayUS(5000);
 "133
-[e = _BatteryVoltage ( _ReadVoltage ..  ]
-[; ;main.c: 135: if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;main.c: 134: UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
+"134
+[e ( _UARTstringWAIT (1 :s 5C ]
+[; ;main.c: 135: delayUS(10000);
 "135
-[e $ ! || < _BatteryVoltage .5.85 > _BatteryVoltage .20.0 596  ]
-[; ;main.c: 136: {
-"136
-{
-[; ;main.c: 137: LATC ^= 0b00000010;
-"137
-[e =^ _LATC -> -> 2 `i `uc ]
-[; ;main.c: 138: pwrLEDtoggle = 0;
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 138: if(!Keyboard_Connected())
 "138
-[e = _pwrLEDtoggle -> -> 0 `i `ui ]
+[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 591  ]
+[; ;main.c: 139: {
 "139
-}
-[; ;main.c: 139: }
-[e $U 597  ]
-"140
-[e :U 596 ]
-[; ;main.c: 140: else
-[; ;main.c: 141: {
-"141
 {
-[; ;main.c: 142: LATC |= 0b00000010;
+[; ;main.c: 140: No_Keyboard =1;
+"140
+[e = _No_Keyboard -> -> 1 `i `uc ]
+[; ;main.c: 141: if(!Keyboard_Connected())
+"141
+[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 592  ]
+[; ;main.c: 142: {
 "142
-[e =| _LATC -> -> 2 `i `uc ]
+{
+[; ;main.c: 143: No_Keyboard =1;
 "143
-}
-[e :U 597 ]
+[e = _No_Keyboard -> -> 1 `i `uc ]
 "144
 }
-[e :U 593 ]
-"131
-[e $ ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 594  ]
-[e :U 595 ]
-"145
-}
-[e :U 592 ]
-"146
-}
-[e :U 591 ]
-[; ;main.c: 143: }
 [; ;main.c: 144: }
-[; ;main.c: 145: }
-[; ;main.c: 146: }
-[; ;main.c: 147: UARTstringWAIT("Keyboard Connected\r\n");
+[e $U 593  ]
+"145
+[e :U 592 ]
+[; ;main.c: 145: else
+[; ;main.c: 146: {
+"146
+{
+[; ;main.c: 147: No_Keyboard = 0;
 "147
-[e ( _UARTstringWAIT (1 :s 7C ]
-[; ;main.c: 148: if(!Init_PS_2_Send())
+[e = _No_Keyboard -> -> 0 `i `uc ]
 "148
-[e $ ! ! != -> ( _Init_PS_2_Send ..  `i -> -> -> 0 `i `uc `i 598  ]
-[; ;main.c: 149: {
+}
+[e :U 593 ]
 "149
-{
-[; ;main.c: 150: delayUS(10000);
+}
+[; ;main.c: 148: }
+[; ;main.c: 149: }
+[e $U 594  ]
 "150
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 151: UARTstringWAIT("Initialization Fail\r\n");
+[e :U 591 ]
+[; ;main.c: 150: else
+[; ;main.c: 151: {
 "151
-[e ( _UARTstringWAIT (1 :s 8C ]
+{
+[; ;main.c: 152: No_Keyboard =0;
 "152
-}
-[; ;main.c: 152: }
-[e $U 599  ]
+[e = _No_Keyboard -> -> 0 `i `uc ]
 "153
-[e :U 598 ]
-[; ;main.c: 153: else
-[; ;main.c: 154: {
-"154
-{
-[; ;main.c: 155: UARTstringWAIT("Keyboard Pass!\r\n");
+}
+[e :U 594 ]
+[; ;main.c: 153: }
+[; ;main.c: 155: if(No_Keyboard)
 "155
-[e ( _UARTstringWAIT (1 :s 9C ]
+[e $ ! != -> _No_Keyboard `i -> -> -> 0 `i `uc `i 595  ]
+[; ;main.c: 156: {
 "156
-}
-[e :U 599 ]
-[; ;main.c: 156: }
-[; ;main.c: 157: BatteryVoltage = ReadVoltage();
-"157
-[e = _BatteryVoltage ( _ReadVoltage ..  ]
-[; ;main.c: 158: if(BatteryVoltage < 5.85 )
-"158
-[e $ ! < _BatteryVoltage .5.85 600  ]
-[; ;main.c: 159: {
-"159
 {
-[; ;main.c: 160: UARTstringWAIT("Voltage too Low!\r\n");
-"160
-[e ( _UARTstringWAIT (1 :s 10C ]
-"161
+[; ;main.c: 157: UARTstringWAIT("No Keyboard connected\r\n");
+"157
+[e ( _UARTstringWAIT (1 :s 6C ]
+"158
 }
-[; ;main.c: 161: }
-[e $U 601  ]
+[; ;main.c: 158: }
+[e $U 596  ]
+"159
+[e :U 595 ]
+[; ;main.c: 159: else
+[; ;main.c: 160: {
+"160
+{
+[; ;main.c: 161: UARTstringWAIT("Keyboard Connected\r\n");
+"161
+[e ( _UARTstringWAIT (1 :s 7C ]
+[; ;main.c: 162: if(!Init_PS_2_Send())
 "162
-[e :U 600 ]
-[; ;main.c: 162: else if (BatteryVoltage > 20.0)
-[e $ ! > _BatteryVoltage .20.0 602  ]
+[e $ ! ! != -> ( _Init_PS_2_Send ..  `i -> -> -> 0 `i `uc `i 597  ]
 [; ;main.c: 163: {
 "163
 {
-[; ;main.c: 164: UARTstringWAIT("Voltage too High!\r\n");
+[; ;main.c: 164: delayUS(10000);
 "164
-[e ( _UARTstringWAIT (1 :s 11C ]
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 165: UARTstringWAIT("Initialization Fail\r\n");
 "165
-}
-[e :U 602 ]
+[e ( _UARTstringWAIT (1 :s 8C ]
 "166
-[e :U 601 ]
-[; ;main.c: 165: }
-[; ;main.c: 166: PS_2_ENABLE_INTERRUPT(0b00100000);
-[e ( _PS_2_ENABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;main.c: 168: while(1)
+}
+[; ;main.c: 166: }
+[e $U 598  ]
+"167
+[e :U 597 ]
+[; ;main.c: 167: else
+[; ;main.c: 168: {
 "168
-[e :U 604 ]
-[; ;main.c: 169: {
+{
+[; ;main.c: 169: UARTstringWAIT("Keyboard Pass!\r\n");
 "169
-{
-[; ;main.c: 170: BatteryVoltage = ReadVoltage();
+[e ( _UARTstringWAIT (1 :s 9C ]
 "170
-[e = _BatteryVoltage ( _ReadVoltage ..  ]
-[; ;main.c: 171: if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
+}
+[e :U 598 ]
 "171
-[e $ ! || < _BatteryVoltage .5.85 > _BatteryVoltage .20.0 606  ]
-[; ;main.c: 172: {
+}
+[e :U 596 ]
+[; ;main.c: 170: }
+[; ;main.c: 171: }
+[; ;main.c: 172: BatteryVoltage = ReadVoltage();
 "172
-{
-[; ;main.c: 173: pwrLEDtoggle++;
+[e = _BatteryVoltage ( _ReadVoltage ..  ]
+[; ;main.c: 173: if(BatteryVoltage < 5.85 )
 "173
-[e ++ _pwrLEDtoggle -> -> 1 `i `ui ]
-[; ;main.c: 174: if(pwrLEDtoggle > 1000)
+[e $ ! < _BatteryVoltage .5.85 599  ]
+[; ;main.c: 174: {
 "174
-[e $ ! > _pwrLEDtoggle -> -> 1000 `i `ui 607  ]
-[; ;main.c: 175: {
+{
+[; ;main.c: 175: UARTstringWAIT("Voltage too Low!\r\n");
 "175
-{
-[; ;main.c: 176: LATC ^= 0b00000010;
+[e ( _UARTstringWAIT (1 :s 10C ]
 "176
-[e =^ _LATC -> -> 2 `i `uc ]
-[; ;main.c: 177: pwrLEDtoggle = 0;
+}
+[; ;main.c: 176: }
+[e $U 600  ]
 "177
-[e = _pwrLEDtoggle -> -> 0 `i `ui ]
+[e :U 599 ]
+[; ;main.c: 177: else if (BatteryVoltage > 20.0)
+[e $ ! > _BatteryVoltage .20.0 601  ]
+[; ;main.c: 178: {
 "178
-}
-[e :U 607 ]
-"179
-}
-[; ;main.c: 178: }
-[; ;main.c: 179: }
-[e $U 608  ]
-"180
-[e :U 606 ]
-[; ;main.c: 180: else
-[; ;main.c: 181: {
-"181
 {
-[; ;main.c: 182: LATC |= 0b00000010;
-"182
-[e =| _LATC -> -> 2 `i `uc ]
-"183
+[; ;main.c: 179: UARTstringWAIT("Voltage too High!\r\n");
+"179
+[e ( _UARTstringWAIT (1 :s 11C ]
+"180
 }
-[e :U 608 ]
-[; ;main.c: 183: }
-[; ;main.c: 184: if(SinLEDtimer >= 100)
+[e :U 601 ]
+"181
+[e :U 600 ]
+[; ;main.c: 180: }
+[; ;main.c: 181: PS_2_ENABLE_INTERRUPT(0b00100000);
+[e ( _PS_2_ENABLE_INTERRUPT (1 -> -> 32 `i `uc ]
+[; ;main.c: 182: No_Keyboard_old = No_Keyboard;
+"182
+[e = _No_Keyboard_old _No_Keyboard ]
+[; ;main.c: 184: while(1)
 "184
-[e $ ! >= _SinLEDtimer -> -> 100 `i `ui 609  ]
+[e :U 603 ]
 [; ;main.c: 185: {
 "185
 {
-[; ;main.c: 186: LATC &= ~0b00001000;
+[; ;main.c: 186: PS_2_Update();
 "186
-[e =& _LATC -> ~ -> 8 `i `uc ]
+[e ( _PS_2_Update ..  ]
+[; ;main.c: 187: if(No_Keyboard == 0 && No_Keyboard_old == 1)
 "187
-}
-[; ;main.c: 187: }
-[e $U 610  ]
+[e $ ! && == -> _No_Keyboard `i -> 0 `i == -> _No_Keyboard_old `i -> 1 `i 605  ]
+[; ;main.c: 188: {
 "188
-[e :U 609 ]
-[; ;main.c: 188: else
-[; ;main.c: 189: {
-"189
 {
-[; ;main.c: 190: SinLEDtimer++;
+[; ;main.c: 189: UARTstringWAIT("Keyboard Connected\r\n");
+"189
+[e ( _UARTstringWAIT (1 :s 12C ]
+[; ;main.c: 190: if(!Init_PS_2_Send())
 "190
-[e ++ _SinLEDtimer -> -> 1 `i `ui ]
+[e $ ! ! != -> ( _Init_PS_2_Send ..  `i -> -> -> 0 `i `uc `i 606  ]
+[; ;main.c: 191: {
 "191
+{
+[; ;main.c: 192: delayUS(10000);
+"192
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 193: UARTstringWAIT("Initialization Fail\r\n");
+"193
+[e ( _UARTstringWAIT (1 :s 13C ]
+"194
+}
+[; ;main.c: 194: }
+[e $U 607  ]
+"195
+[e :U 606 ]
+[; ;main.c: 195: else
+[; ;main.c: 196: {
+"196
+{
+[; ;main.c: 197: UARTstringWAIT("Keyboard Pass!\r\n");
+"197
+[e ( _UARTstringWAIT (1 :s 14C ]
+"198
+}
+[e :U 607 ]
+"199
+}
+[e :U 605 ]
+[; ;main.c: 198: }
+[; ;main.c: 199: }
+[; ;main.c: 200: BatteryVoltage = ReadVoltage();
+"200
+[e = _BatteryVoltage ( _ReadVoltage ..  ]
+[; ;main.c: 201: if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
+"201
+[e $ ! || < _BatteryVoltage .5.85 > _BatteryVoltage .20.0 608  ]
+[; ;main.c: 202: {
+"202
+{
+[; ;main.c: 203: pwrLEDtoggle++;
+"203
+[e ++ _pwrLEDtoggle -> -> 1 `i `ui ]
+[; ;main.c: 204: if(pwrLEDtoggle > 1000)
+"204
+[e $ ! > _pwrLEDtoggle -> -> 1000 `i `ui 609  ]
+[; ;main.c: 205: {
+"205
+{
+[; ;main.c: 206: LATC ^= 0b00000010;
+"206
+[e =^ _LATC -> -> 2 `i `uc ]
+[; ;main.c: 207: pwrLEDtoggle = 0;
+"207
+[e = _pwrLEDtoggle -> -> 0 `i `ui ]
+"208
+}
+[e :U 609 ]
+"209
+}
+[; ;main.c: 208: }
+[; ;main.c: 209: }
+[e $U 610  ]
+"210
+[e :U 608 ]
+[; ;main.c: 210: else
+[; ;main.c: 211: {
+"211
+{
+[; ;main.c: 212: LATC |= 0b00000010;
+"212
+[e =| _LATC -> -> 2 `i `uc ]
+"213
 }
 [e :U 610 ]
-[; ;main.c: 191: }
-[; ;main.c: 192: PS_2_Update();
-"192
-[e ( _PS_2_Update ..  ]
-"193
+[; ;main.c: 213: }
+[; ;main.c: 214: if(SinLEDtimer >= 100)
+"214
+[e $ ! >= _SinLEDtimer -> -> 100 `i `ui 611  ]
+[; ;main.c: 215: {
+"215
+{
+[; ;main.c: 216: LATC &= ~0b00001000;
+"216
+[e =& _LATC -> ~ -> 8 `i `uc ]
+"217
 }
-[e :U 603 ]
-"168
-[e $U 604  ]
-[e :U 605 ]
-[; ;main.c: 193: }
-[; ;main.c: 194: }
-"194
+[; ;main.c: 217: }
+[e $U 612  ]
+"218
+[e :U 611 ]
+[; ;main.c: 218: else
+[; ;main.c: 219: {
+"219
+{
+[; ;main.c: 220: SinLEDtimer++;
+"220
+[e ++ _SinLEDtimer -> -> 1 `i `ui ]
+"221
+}
+[e :U 612 ]
+[; ;main.c: 221: }
+[; ;main.c: 222: No_Keyboard_old = No_Keyboard;
+"222
+[e = _No_Keyboard_old _No_Keyboard ]
+"223
+}
+[e :U 602 ]
+"184
+[e $U 603  ]
+[e :U 604 ]
+[; ;main.c: 223: }
+[; ;main.c: 224: }
+"224
 [e :UE 587 ]
 }
 [a 3C 70 105 114 109 119 97 114 101 32 86 101 114 115 105 111 110 58 32 0 ]
 [a 8C 73 110 105 116 105 97 108 105 122 97 116 105 111 110 32 70 97 105 108 13 10 0 ]
+[a 13C 73 110 105 116 105 97 108 105 122 97 116 105 111 110 32 70 97 105 108 13 10 0 ]
 [a 6C 78 111 32 75 101 121 98 111 97 114 100 32 99 111 110 110 101 99 116 101 100 13 10 0 ]
 [a 7C 75 101 121 98 111 97 114 100 32 67 111 110 110 101 99 116 101 100 13 10 0 ]
+[a 12C 75 101 121 98 111 97 114 100 32 67 111 110 110 101 99 116 101 100 13 10 0 ]
 [a 2C 80 83 47 50 32 75 101 121 98 111 97 114 100 32 116 111 32 82 83 45 50 51 50 13 10 0 ]
-[a 5C 84 111 32 67 104 97 110 103 101 32 66 65 85 68 32 104 105 116 32 34 67 78 84 43 65 76 84 43 68 69 76 34 13 10 0 ]
+[a 5C 84 111 32 67 104 97 110 103 101 32 66 65 85 68 32 104 105 116 32 34 67 78 84 32 43 32 65 76 84 32 43 32 68 69 76 34 13 10 0 ]
 [a 10C 86 111 108 116 97 103 101 32 116 111 111 32 76 111 119 33 13 10 0 ]
 [a 9C 75 101 121 98 111 97 114 100 32 80 97 115 115 33 13 10 0 ]
+[a 14C 75 101 121 98 111 97 114 100 32 80 97 115 115 33 13 10 0 ]
 [a 11C 86 111 108 116 97 103 101 32 116 111 111 32 72 105 103 104 33 13 10 0 ]
 [a 1C 13 10 0 ]
 [a 4C 13 10 0 ]
