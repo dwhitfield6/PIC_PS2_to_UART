@@ -37,19 +37,19 @@
  * 
  * Choose if the system is the RS232 model or TTL model.
  *
- * For an RS-232 system (includes rs 232 drivers and is powered by ower brick;
- * Uncomment the code below.
+ * For an RS-232 system (includes rs 232 drivers and is powered by power brick;
+ * Uncomment the RS232 macro below.
  *
  * For the TTL version that goes between the main sustem and the USB to TTL
- *  UART converter, Commetn below.
+ *  UART converter, Comment both below.
  *
  * For the Arduino version, we dont need any UART RX. And the system is
- *  powered by 5 volts.
+ *  powered by 5 volts. comment RS232 and uncomment ARDUINO
  *
 /******************************************************************************/
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-#define RS232
+//#define RS232
 //#define ARDUINO
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/

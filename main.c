@@ -41,6 +41,9 @@
  *                          Added macro for arduino shield system.
  *                          Added code to allow for receiving when the keyboard
  *                            is not connected.
+ *                          Add function READ_CONFIG_PIN().
+ *                          Add code for 'Config' Pin on RS232 system.
+ *                          Use device macro to define the use of pin RC0.
  *                          Tagged
 /******************************************************************************/
 
