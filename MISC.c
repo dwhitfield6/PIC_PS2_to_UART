@@ -33,6 +33,7 @@
 
 #include "MISC.h"
 #include "system.h"
+#include "user.h"
 
 /******************************************************************************/
 /* Functions                                                                  */
@@ -133,4 +134,19 @@ unsigned char ISNUMBER(unsigned char ascii)
     {
         return 0;
     }
+}
+
+/******************************************************************************/
+/* unsigned char READ_CONFIG_PIN(void)
+ *
+ * The function returns configuration baseed off of the config pin.
+/******************************************************************************/
+unsigned char READ_CONFIG_PIN(void)
+{
+        //READ RC0
+        if((PORTC & Config) == Config)
+        {
+            return (1);
+        }
+        return 0;
 }

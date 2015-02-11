@@ -6334,14 +6334,14 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6362,6 +6362,7 @@ void UART_send_break(void);
 void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
+unsigned char READ_CONFIG_PIN(void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
@@ -6416,7 +6417,10 @@ TRISCbits.TRISC1 = 0;
 TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 0;
 TRISAbits.TRISA2 = 1;
-TRISCbits.TRISC0 = 0;
+
+TRISCbits.TRISC0 = 1;
+
+# 79
 TRISCbits.TRISC5 = 1;
 
 
@@ -6437,7 +6441,7 @@ WPUC = 0b00100000;
 WPUA = 0;
 }
 
-# 100
+# 105
 void Init_System (void)
 {
 unsigned long temp =0;

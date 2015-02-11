@@ -5,11 +5,11 @@
 [d frameptr 6 ]
 "64 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.c
 [v _ReadVoltage ReadVoltage `(d  1 e 4 0 ]
-"94
+"99
 [v _InternalADC_Read InternalADC_Read `(ui  1 e 2 0 ]
-"117
+"122
 [v _DisableInternalADC DisableInternalADC `(v  1 e 0 0 ]
-"128
+"133
 [v _ShutDown_ADC ShutDown_ADC `(v  1 e 0 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\abdiv.c
 [v ___abdiv __abdiv `(c  1 e 1 0 ]
@@ -103,16 +103,18 @@
 [v _isr isr `II(v  1 e 0 0 ]
 "106 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
 [v _main main `(v  1 e 0 0 ]
-"48 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"49 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
 [v _delayUS delayUS `(v  1 e 0 0 ]
 [v i1_delayUS delayUS `(v  1 e 0 0 ]
-"68
+"69
 [v _CheckSum_byte CheckSum_byte `(uc  1 e 1 0 ]
 [v i1_CheckSum_byte CheckSum_byte `(uc  1 e 1 0 ]
-"105
+"106
 [v _Reverse_Byte Reverse_Byte `(uc  1 e 1 0 ]
-"126
+"127
 [v _ISNUMBER ISNUMBER `(uc  1 e 1 0 ]
+"144
+[v _READ_CONFIG_PIN READ_CONFIG_PIN `(uc  1 e 1 0 ]
 "105 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v _PS_2_INIT PS_2_INIT `(v  1 e 0 0 ]
 "118
@@ -156,32 +158,32 @@
 [v _baudUSART baudUSART `(v  1 e 0 0 ]
 "159
 [v _OpenUSART OpenUSART `(v  1 e 0 0 ]
-"231
+"232
 [v _UARTchar UARTchar `(v  1 e 0 0 ]
 [v i1_UARTchar UARTchar `(v  1 e 0 0 ]
-"282
+"283
 [v _UARTstring UARTstring `(v  1 e 0 0 ]
-"299
+"300
 [v _ReadUSART ReadUSART `(uc  1 e 1 0 ]
 [v i1_ReadUSART ReadUSART `(uc  1 e 1 0 ]
-"319
+"320
 [v _UART_send_break UART_send_break `(v  1 e 0 0 ]
-"331
+"332
 [v _UART_send_break_timed UART_send_break_timed `(v  1 e 0 0 ]
 [v i1_UART_send_break_timed UART_send_break_timed `(v  1 e 0 0 ]
-"358
+"359
 [v _UARTstringWAIT UARTstringWAIT `(v  1 e 0 0 ]
-"377
+"378
 [v _SetBaud SetBaud `(v  1 e 0 0 ]
 "64 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\user.c
 [v _InitApp InitApp `(v  1 e 0 0 ]
-"100
+"105
 [v _Init_System Init_System `(v  1 e 0 0 ]
 "52 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.c
 [v _BatteryVoltage BatteryVoltage `d  1 e 4 0 ]
 "335 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
-[s S364 . 1 `uc 1 IOCIF 1 0 :1:0 
+[s S368 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 IOCIE 1 0 :1:3 
@@ -191,15 +193,17 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "358
-[s S373 . 1 `uc 1 . 1 0 :2:0 
+[s S377 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 T0IE 1 0 :1:5 
 ]
-[u S378 . 1 `S364 1 . 1 0 `S373 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES378  1 e 1 @11 ]
+[u S382 . 1 `S368 1 . 1 0 `S377 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES382  1 e 1 @11 ]
 "412
 [v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"461
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
 [s S26 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -219,12 +223,12 @@
 [v _PR2 PR2 `VEuc  1 e 1 @27 ]
 "921
 [v _T2CON T2CON `VEuc  1 e 1 @28 ]
-[s S981 . 1 `uc 1 T2CKPS 1 0 :2:0 
+[s S986 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 T2OUTPS 1 0 :4:3 
 ]
 "942
-[s S985 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+[s S990 . 1 `uc 1 T2CKPS0 1 0 :1:0 
 `uc 1 T2CKPS1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 T2OUTPS0 1 0 :1:3 
@@ -232,9 +236,9 @@
 `uc 1 T2OUTPS2 1 0 :1:5 
 `uc 1 T2OUTPS3 1 0 :1:6 
 ]
-[u S993 . 1 `S981 1 . 1 0 `S985 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES993  1 e 1 @28 ]
-[s S269 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S998 . 1 `S986 1 . 1 0 `S990 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES998  1 e 1 @28 ]
+[s S273 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -242,15 +246,15 @@
 `uc 1 TRISC5 1 0 :1:5 
 ]
 "1006
-[u S276 . 1 `S269 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES276  1 e 1 @140 ]
+[u S280 . 1 `S273 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES280  1 e 1 @140 ]
 "1050
-[v _TRISCbits TRISCbits `VES276  1 e 1 @142 ]
+[v _TRISCbits TRISCbits `VES280  1 e 1 @142 ]
 "1084
 [v _PIE1 PIE1 `VEuc  1 e 1 @145 ]
 "1105
 [v _PIE1bits PIE1bits `VES38  1 e 1 @145 ]
-[s S309 . 1 `uc 1 PS 1 0 :3:0 
+[s S313 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 TMR0SE 1 0 :1:4 
 `uc 1 TMR0CS 1 0 :1:5 
@@ -258,15 +262,15 @@
 `uc 1 nWPUEN 1 0 :1:7 
 ]
 "1277
-[s S316 . 1 `uc 1 PS0 1 0 :1:0 
+[s S320 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
 ]
-[u S323 . 1 `S309 1 . 1 0 `S316 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES323  1 e 1 @149 ]
+[u S327 . 1 `S313 1 . 1 0 `S320 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES327  1 e 1 @149 ]
 "1507
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
 "1578
@@ -341,23 +345,23 @@
 [v _WPUA WPUA `VEuc  1 e 1 @524 ]
 "3776
 [v _WPUC WPUC `VEuc  1 e 1 @526 ]
-[s S946 . 1 `uc 1 CCP2M 1 0 :4:0 
+[s S951 . 1 `uc 1 CCP2M 1 0 :4:0 
 `uc 1 DC2B 1 0 :2:4 
 ]
 "5581
-[s S949 . 1 `uc 1 CCP2M0 1 0 :1:0 
+[s S954 . 1 `uc 1 CCP2M0 1 0 :1:0 
 `uc 1 CCP2M1 1 0 :1:1 
 `uc 1 CCP2M2 1 0 :1:2 
 `uc 1 CCP2M3 1 0 :1:3 
 `uc 1 DC2B0 1 0 :1:4 
 `uc 1 DC2B1 1 0 :1:5 
 ]
-[s S956 . 1 `uc 1 . 1 0 :4:0 
+[s S961 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CCP2Y 1 0 :1:4 
 `uc 1 CCP2X 1 0 :1:5 
 ]
-[u S960 . 1 `S946 1 . 1 0 `S949 1 . 1 0 `S956 1 . 1 0 ]
-[v _CCP2CONbits CCP2CONbits `VES960  1 e 1 @666 ]
+[u S965 . 1 `S951 1 . 1 0 `S954 1 . 1 0 `S961 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES965  1 e 1 @666 ]
 "5985
 [v _IOCAP IOCAP `VEuc  1 e 1 @913 ]
 "6034
@@ -483,7 +487,7 @@
 [v ReadVoltage@voltage voltage `d  1 a 4 0 ]
 "66
 [v ReadVoltage@temp temp `ui  1 a 2 4 ]
-"87
+"92
 } 0
 "28 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\lwtofl.c
 [v ___lwtofl __lwtofl `(d  1 e 4 0 ]
@@ -527,19 +531,19 @@
 [v ___flpack@sign sign `uc  1 p 1 10 ]
 "87
 } 0
-"94 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.c
+"99 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.c
 [v _InternalADC_Read InternalADC_Read `(ui  1 e 2 0 ]
 {
 [v InternalADC_Read@channel channel `uc  1 a 1 wreg ]
 [v InternalADC_Read@channel channel `uc  1 a 1 wreg ]
-"96
+"101
 [v InternalADC_Read@channel channel `uc  1 a 1 19 ]
-"110
+"115
 } 0
-"117
+"122
 [v _DisableInternalADC DisableInternalADC `(v  1 e 0 0 ]
 {
-"120
+"125
 } 0
 "105 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v _PS_2_INIT PS_2_INIT `(v  1 e 0 0 ]
@@ -581,29 +585,29 @@
 [v ___lmul@multiplicand multiplicand `ul  1 p 4 9 ]
 "129
 } 0
-"331 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"332 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
 [v _UART_send_break_timed UART_send_break_timed `(v  1 e 0 0 ]
 {
 [v UART_send_break_timed@US US `ui  1 p 2 15 ]
-"350
+"351
 } 0
-"377
+"378
 [v _SetBaud SetBaud `(v  1 e 0 0 ]
 {
-"379
-[v SetBaud@buf buf `[50]uc  1 a 50 0 ]
-"382
-[v SetBaud@temp temp `ul  1 a 4 58 ]
-"381
-[v SetBaud@Paritytemp Paritytemp `ul  1 a 4 54 ]
 "380
-[v SetBaud@Baudtemp Baudtemp `ul  1 a 4 50 ]
+[v SetBaud@buf buf `[50]uc  1 a 50 0 ]
 "383
+[v SetBaud@temp temp `ul  1 a 4 58 ]
+"382
+[v SetBaud@Paritytemp Paritytemp `ul  1 a 4 54 ]
+"381
+[v SetBaud@Baudtemp Baudtemp `ul  1 a 4 50 ]
+"384
 [v SetBaud@i i `uc  1 a 1 62 ]
-"377
+"378
 [v SetBaud@Baud Baud `ul  1 p 4 52 ]
 [v SetBaud@Parity Parity `uc  1 p 1 56 ]
-"433
+"434
 } 0
 "171 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.c
 [v _WriteBaud WriteBaud `(v  1 e 0 0 ]
@@ -652,26 +656,26 @@
 {
 "84
 } 0
-"105 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"106 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
 [v _Reverse_Byte Reverse_Byte `(uc  1 e 1 0 ]
 {
 [v Reverse_Byte@This This `uc  1 a 1 wreg ]
-"107
+"108
 [v Reverse_Byte@temp temp `uc  1 a 1 7 ]
-"105
+"106
 [v Reverse_Byte@This This `uc  1 a 1 wreg ]
-"107
+"108
 [v Reverse_Byte@This This `uc  1 a 1 8 ]
-"119
+"120
 } 0
-"126
+"127
 [v _ISNUMBER ISNUMBER `(uc  1 e 1 0 ]
 {
 [v ISNUMBER@ascii ascii `uc  1 a 1 wreg ]
 [v ISNUMBER@ascii ascii `uc  1 a 1 wreg ]
-"128
+"129
 [v ISNUMBER@ascii ascii `uc  1 a 1 5 ]
-"136
+"137
 } 0
 "831 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v _Decode_Scan_Code_Shift Decode_Scan_Code_Shift `(uc  1 e 1 0 ]
@@ -709,26 +713,26 @@
 [v Decode_Scan_Code@Code Code `uc  1 a 1 5 ]
 "823
 } 0
-"100 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\user.c
+"105 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\user.c
 [v _Init_System Init_System `(v  1 e 0 0 ]
 {
-"105
+"110
 [v Init_System@buf buf `[60]uc  1 a 60 0 ]
-"103
+"108
 [v Init_System@Baud Baud `ul  1 a 4 65 ]
-"102
+"107
 [v Init_System@temp temp `ul  1 a 4 60 ]
-"104
+"109
 [v Init_System@Parity Parity `uc  1 a 1 64 ]
-"147
+"152
 } 0
 "492 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[s S1051 . 4 `*.1DCCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
+[s S1056 . 4 `*.1DCCuc 1 _cp 2 0 `ui 1 _len 2 2 ]
 "533
-[u S1054 . 4 `ul 1 _val 4 0 `S1051 1 _str 4 0 ]
-[v sprintf@_val _val `S1054  1 a 4 46 ]
+[u S1059 . 4 `ul 1 _val 4 0 `S1056 1 _str 4 0 ]
+[v sprintf@_val _val `S1059  1 a 4 46 ]
 "504
 [v sprintf@prec prec `i  1 a 2 44 ]
 "499
@@ -752,22 +756,22 @@
 [v ___llmod@dividend dividend `ul  1 p 4 23 ]
 "26
 } 0
-"358 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"359 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
 [v _UARTstringWAIT UARTstringWAIT `(v  1 e 0 0 ]
 {
 [v UARTstringWAIT@data data `*.26DCCuc  1 p 2 20 ]
-"369
+"370
 } 0
-"231
+"232
 [v _UARTchar UARTchar `(v  1 e 0 0 ]
 {
 [v UARTchar@data data `uc  1 a 1 wreg ]
 [v UARTchar@data data `uc  1 a 1 wreg ]
 [v UARTchar@override override `uc  1 p 1 13 ]
 [v UARTchar@NinethBit_override_data NinethBit_override_data `uc  1 p 1 14 ]
-"233
+"234
 [v UARTchar@data data `uc  1 a 1 19 ]
-"275
+"276
 } 0
 "187 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.c
 [v _ReadBaud ReadBaud `(ul  1 e 4 0 ]
@@ -833,12 +837,12 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 9 ]
 "31
 } 0
-"299 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"300 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
 [v _ReadUSART ReadUSART `(uc  1 e 1 0 ]
 {
-"301
+"302
 [v ReadUSART@data data `uc  1 a 1 6 ]
-"311
+"312
 } 0
 "159
 [v _OpenUSART OpenUSART `(v  1 e 0 0 ]
@@ -848,7 +852,7 @@
 [v OpenUSART@spbrg spbrg `ui  1 p 2 5 ]
 "161
 [v OpenUSART@config config `uc  1 a 1 7 ]
-"224
+"225
 } 0
 "60
 [v _CloseUSART CloseUSART `(v  1 e 0 0 ]
@@ -876,16 +880,16 @@
 [v Send_PS2@command command `uc  1 a 1 20 ]
 "1037
 } 0
-"48 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"49 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
 [v _delayUS delayUS `(v  1 e 0 0 ]
 {
-"50
-[v delayUS@i i `l  1 a 4 10 ]
 "51
+[v delayUS@i i `l  1 a 4 10 ]
+"52
 [v delayUS@j j `uc  1 a 1 14 ]
-"48
+"49
 [v delayUS@US US `l  1 p 4 5 ]
-"59
+"60
 } 0
 "224 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v _READ_PS_2_PIN READ_PS_2_PIN `(uc  1 e 1 0 ]
@@ -923,19 +927,19 @@
 [v Clock_TRIS@direction direction `uc  1 a 1 5 ]
 "128
 } 0
-"68 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"69 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
 [v _CheckSum_byte CheckSum_byte `(uc  1 e 1 0 ]
 {
-"72
+"73
 [v CheckSum_byte@ThisTemp ThisTemp `ui  1 a 2 9 ]
-"70
-[v CheckSum_byte@i i `uc  1 a 1 12 ]
 "71
+[v CheckSum_byte@i i `uc  1 a 1 12 ]
+"72
 [v CheckSum_byte@Parity Parity `uc  1 a 1 11 ]
-"68
+"69
 [v CheckSum_byte@This This `ui  1 p 2 5 ]
 [v CheckSum_byte@Odd_Even Odd_Even `uc  1 p 1 7 ]
-"98
+"99
 } 0
 "176 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v _PS_2_DISABLE_INTERRUPT PS_2_DISABLE_INTERRUPT `(v  1 e 0 0 ]
@@ -949,7 +953,7 @@
 "64 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\user.c
 [v _InitApp InitApp `(v  1 e 0 0 ]
 {
-"92
+"97
 } 0
 "40 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\system.c
 [v _ConfigureOscillator ConfigureOscillator `(v  1 e 0 0 ]
@@ -963,20 +967,20 @@
 [v isr@rx rx `uc  1 a 1 4 ]
 "75
 [v isr@Rx_fault Rx_fault `uc  1 a 1 3 ]
-"178
+"196
 } 0
-"231 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"232 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
 [v i1_UARTchar UARTchar `(v  1 e 0 0 ]
 {
 [v i1UARTchar@data data `uc  1 a 1 wreg ]
 [v i1UARTchar@data data `uc  1 a 1 wreg ]
 [v i1UARTchar@override override `uc  1 p 1 8 ]
 [v i1UARTchar@NinethBit_override_data NinethBit_override_data `uc  1 p 1 9 ]
-"233
+"234
 [v i1UARTchar@data data `uc  1 a 1 0 ]
-"275
+"276
 } 0
-"68 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"69 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
 [v i1_CheckSum_byte CheckSum_byte `(uc  1 e 1 0 ]
 {
 [v i1CheckSum_byte@ThisTemp CheckSum_byte `ui  1 a 2 4 ]
@@ -984,27 +988,27 @@
 [v i1CheckSum_byte@Parity CheckSum_byte `uc  1 a 1 6 ]
 [v i1CheckSum_byte@This This `ui  1 p 2 0 ]
 [v i1CheckSum_byte@Odd_Even Odd_Even `uc  1 p 1 2 ]
-"98
+"99
 } 0
-"331 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"332 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
 [v i1_UART_send_break_timed UART_send_break_timed `(v  1 e 0 0 ]
 {
 [v i1UART_send_break_timed@US US `ui  1 p 2 10 ]
-"350
+"351
 } 0
-"48 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"49 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
 [v i1_delayUS delayUS `(v  1 e 0 0 ]
 {
 [v i1delayUS@i delayUS `l  1 a 4 5 ]
 [v i1delayUS@j delayUS `uc  1 a 1 9 ]
 [v i1delayUS@US US `l  1 p 4 0 ]
-"59
+"60
 } 0
-"299 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"300 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
 [v i1_ReadUSART ReadUSART `(uc  1 e 1 0 ]
 {
 [v i1ReadUSART@data ReadUSART `uc  1 a 1 1 ]
-"311
+"312
 } 0
 "224 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v i1_READ_PS_2_PIN READ_PS_2_PIN `(uc  1 e 1 0 ]
@@ -1014,4 +1018,9 @@
 "226
 [v i1READ_PS_2_PIN@DATA_CLK DATA_CLK `uc  1 a 1 0 ]
 "250
+} 0
+"144 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+[v _READ_CONFIG_PIN READ_CONFIG_PIN `(uc  1 e 1 0 ]
+{
+"152
 } 0

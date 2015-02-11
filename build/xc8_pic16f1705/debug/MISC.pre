@@ -6287,7 +6287,11 @@ unsigned char ISNUMBER(unsigned char ascii);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 48 "MISC.c"
+# 141 "user.h"
+void InitApp(void);
+void Init_System (void);
+
+# 49 "MISC.c"
 void delayUS(long US)
 {
 long i;
@@ -6301,7 +6305,7 @@ __nop();
 }
 }
 
-# 68
+# 69
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even)
 {
 char i = 0;
@@ -6334,7 +6338,7 @@ return 0;
 }
 }
 
-# 105
+# 106
 unsigned char Reverse_Byte(unsigned char This)
 {
 unsigned char temp=0;
@@ -6351,7 +6355,7 @@ temp += (This & 0x80) >> 7;
 return temp;
 }
 
-# 126
+# 127
 unsigned char ISNUMBER(unsigned char ascii)
 {
 if(ascii >= '0' && ascii <='9')
@@ -6362,4 +6366,15 @@ else
 {
 return 0;
 }
+}
+
+# 144
+unsigned char READ_CONFIG_PIN(void)
+{
+
+if((PORTC & 0b00000001) == 0b00000001)
+{
+return (1);
+}
+return 0;
 }

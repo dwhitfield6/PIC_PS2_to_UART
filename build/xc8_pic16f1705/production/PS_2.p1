@@ -4771,8 +4771,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 201: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 205: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 206: extern int printf(const char *, ...);
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 "64 PS_2.h
 [v _PS_2_Read_Data_FirstTEMP `ui ~T0 @X0 1 e ]
@@ -6281,8 +6281,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
 [; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -6307,6 +6307,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.h: 104: void UARTstringWAIT(const unsigned char *data);
 [; ;UART.h: 105: void SetBaud(unsigned long Baud, unsigned char Parity);
 [; ;UART.h: 106: void CloseUSART(void );
+[; ;UART.h: 107: unsigned char READ_CONFIG_PIN(void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 "57 FLASH.h
 [v _MEM `ui ~T0 @X0 -> 2 `i e ]

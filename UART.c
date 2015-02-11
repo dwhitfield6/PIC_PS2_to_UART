@@ -158,69 +158,70 @@ void baudUSART (unsigned char baudconfig)
 /******************************************************************************/
 void OpenUSART( unsigned char config, unsigned int spbrg)
 {
-  TX1STA = 0;           // Reset USART registers to POR state
-  RC1STA = 0;
+    TX1STA = 0;           // Reset USART registers to POR state
+    RC1STA = 0;
 
-  if(config&0x01)      // Sync or async operation
-  {
-    TX1STAbits.SYNC = 1;
-  }
+    if(config&0x01)      // Sync or async operation
+    {
+        TX1STAbits.SYNC = 1;
+    }
 
-  if(config&0x02)      // 8- or 9-bit mode
-  {
-    TX1STAbits.TX9 = 1;
-    RC1STAbits.RX9 = 1;
-  }
+    if(config&0x02)      // 8- or 9-bit mode
+    {
+        TX1STAbits.TX9 = 1;
+        RC1STAbits.RX9 = 1;
+    }
 
-  if(config&0x04)      // Master or Slave (sync only)
-  {
-    TX1STAbits.CSRC = 1;
-  }
+    if(config&0x04)      // Master or Slave (sync only)
+    {
+        TX1STAbits.CSRC = 1;
+    }
 
-  if(config&0x08)      // Continuous or single reception
-  {
-    RC1STAbits.CREN = 1;
-  }
-  else
-  {
-    RC1STAbits.SREN = 1;
-  }
+    if(config&0x08)      // Continuous or single reception
+    {
+        RC1STAbits.CREN = 1;
+    }
+    else
+    {
+        RC1STAbits.SREN = 1;
+    }
 
-  if(config&0x10)      // Baud rate select (asychronous mode only)
-  {
-    TX1STAbits.BRGH = 1;
-  }
+    if(config&0x10)      // Baud rate select (asychronous mode only)
+    {
+        TX1STAbits.BRGH = 1;
+    }
 
-  if(config&0x20)  // Address Detect Enable
-  {
-	 //RCSTAbits.ADEN = 1;
-  }
+    if(config&0x20)  // Address Detect Enable
+    {
+         //RCSTAbits.ADEN = 1;
+    }
 
-  if(config&0x40)      // Interrupt on receipt
-  {
-    PIR1bits.RCIF = 0;
-    PIE1bits.RCIE = 1;
-  }
-  else
-  {
-    PIE1bits.RCIE = 0;
-  }
+    if(config&0x40)      // Interrupt on receipt
+    {
+        PIR1bits.RCIF = 0;
+        PIE1bits.RCIE = 1;
 
-  if(config&0x80)      // Interrupt on transmission
-  {
-    PIR1bits.TXIF = 0;
-    PIE1bits.TXIE = 1;
-  }
-  else
-  {
-    PIE1bits.TXIE = 0;
-  }
+    }
+    else
+    {
+        PIE1bits.RCIE = 0;
+    }
 
-  SPBRG = spbrg;       // Write baudrate to SPBRG1
-  SPBRGH = spbrg >> 8; // For 16-bit baud rate generation
+    if(config&0x80)      // Interrupt on transmission
+    {
+        PIR1bits.TXIF = 0;
+        PIE1bits.TXIE = 1;
+    }
+    else
+    {
+        PIE1bits.TXIE = 0;
+    }
 
-  TX1STAbits.TXEN = 1;  // Enable transmitter
-  RC1STAbits.SPEN = 1;  // Enable receiver
+    SPBRG = spbrg;       // Write baudrate to SPBRG1
+    SPBRGH = spbrg >> 8; // For 16-bit baud rate generation
+
+    TX1STAbits.TXEN = 1;  // Enable transmitter
+    RC1STAbits.SPEN = 1;  // Enable receiver
 }
 
 /******************************************************************************/

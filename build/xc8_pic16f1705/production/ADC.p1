@@ -1,6 +1,4 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"1899 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
-[v _LATC `Vuc ~T0 @X0 0 e@270 ]
 "85 ADC.h
 [v _InternalADC_Read `(ui ~T0 @X0 0 ef1`uc ]
 "84
@@ -4699,17 +4697,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 [; ;ADC.h: 83: double ReadVoltage(void);
 [; ;ADC.h: 84: void DisableInternalADC(void);
 [; ;ADC.h: 85: unsigned int InternalADC_Read(unsigned char channel);
 [; ;ADC.h: 86: void ShutDown_ADC(void);
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -4734,6 +4732,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.h: 104: void UARTstringWAIT(const unsigned char *data);
 [; ;UART.h: 105: void SetBaud(unsigned long Baud, unsigned char Parity);
 [; ;UART.h: 106: void CloseUSART(void );
+[; ;UART.h: 107: unsigned char READ_CONFIG_PIN(void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 [; ;MISC.h: 54: void delayUS(long US);
 [; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);
@@ -4768,159 +4767,153 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _voltage `d ~T0 @X0 1 a ]
 [; ;ADC.c: 66: unsigned int temp;
 [; ;ADC.c: 67: double voltage;
-[; ;ADC.c: 68: LATC &= ~0b00000001;
-"68
-[e =& _LATC -> ~ -> 1 `i `uc ]
-[; ;ADC.c: 69: temp = InternalADC_Read(2);
-"69
+[; ;ADC.c: 72: temp = InternalADC_Read(2);
+"72
 [e = _temp ( _InternalADC_Read (1 -> -> 2 `i `uc ]
-[; ;ADC.c: 70: DisableInternalADC();
-"70
+[; ;ADC.c: 73: DisableInternalADC();
+"73
 [e ( _DisableInternalADC ..  ]
-[; ;ADC.c: 71: LATC |= 0b00000001;
-"71
-[e =| _LATC -> -> 1 `i `uc ]
-[; ;ADC.c: 75: if((FVRCON & 0x03) == 0x03)
-"75
-[e $ ! == & -> _FVRCON `i -> 3 `i -> 3 `i 588  ]
-[; ;ADC.c: 76: {
-"76
-{
-[; ;ADC.c: 78: temp <<= 2;
-"78
-[e =<< _temp -> 2 `i ]
-"79
-}
-[; ;ADC.c: 79: }
-[e $U 589  ]
+[; ;ADC.c: 80: if((FVRCON & 0x03) == 0x03)
 "80
-[e :U 588 ]
-[; ;ADC.c: 80: else if((FVRCON & 0x03) == 0x02)
-[e $ ! == & -> _FVRCON `i -> 3 `i -> 2 `i 590  ]
+[e $ ! == & -> _FVRCON `i -> 3 `i -> 3 `i 588  ]
 [; ;ADC.c: 81: {
 "81
 {
-[; ;ADC.c: 83: temp <<= 1;
+[; ;ADC.c: 83: temp <<= 2;
 "83
-[e =<< _temp -> 1 `i ]
+[e =<< _temp -> 2 `i ]
 "84
 }
-[e :U 590 ]
-"85
-[e :U 589 ]
 [; ;ADC.c: 84: }
-[; ;ADC.c: 85: voltage = ((double)temp / 1000) * 5.7;
-[e = _voltage * / -> _temp `d -> -> 1000 `i `d .5.7 ]
-[; ;ADC.c: 86: return voltage;
+[e $U 589  ]
+"85
+[e :U 588 ]
+[; ;ADC.c: 85: else if((FVRCON & 0x03) == 0x02)
+[e $ ! == & -> _FVRCON `i -> 3 `i -> 2 `i 590  ]
+[; ;ADC.c: 86: {
 "86
+{
+[; ;ADC.c: 88: temp <<= 1;
+"88
+[e =<< _temp -> 1 `i ]
+"89
+}
+[e :U 590 ]
+"90
+[e :U 589 ]
+[; ;ADC.c: 89: }
+[; ;ADC.c: 90: voltage = ((double)temp / 1000) * 5.7;
+[e = _voltage * / -> _temp `d -> -> 1000 `i `d .5.7 ]
+[; ;ADC.c: 91: return voltage;
+"91
 [e ) _voltage ]
 [e $UE 587  ]
-[; ;ADC.c: 87: }
-"87
+[; ;ADC.c: 92: }
+"92
 [e :UE 587 ]
 }
-"94
-[v _InternalADC_Read `(ui ~T0 @X0 1 ef1`uc ]
-"95
-{
-[; ;ADC.c: 94: unsigned int InternalADC_Read(unsigned char channel)
-[; ;ADC.c: 95: {
-[e :U _InternalADC_Read ]
-"94
-[v _channel `uc ~T0 @X0 1 r1 ]
-"95
-[f ]
-[; ;ADC.c: 96: ADCON0 =0;
-"96
-[e = _ADCON0 -> -> 0 `i `uc ]
-[; ;ADC.c: 97: ADCON1 =0;
-"97
-[e = _ADCON1 -> -> 0 `i `uc ]
-[; ;ADC.c: 98: ADCON1 |= 0b01010000;
-"98
-[e =| _ADCON1 -> -> 80 `i `uc ]
-[; ;ADC.c: 99: FVRCON |= 0b10000000;
 "99
-[e =| _FVRCON -> -> 128 `i `uc ]
-[; ;ADC.c: 100: FVRCON |= 0b00000011;
+[v _InternalADC_Read `(ui ~T0 @X0 1 ef1`uc ]
 "100
-[e =| _FVRCON -> -> 3 `i `uc ]
-[; ;ADC.c: 101: while(!(FVRCON & 0b01000000));
+{
+[; ;ADC.c: 99: unsigned int InternalADC_Read(unsigned char channel)
+[; ;ADC.c: 100: {
+[e :U _InternalADC_Read ]
+"99
+[v _channel `uc ~T0 @X0 1 r1 ]
+"100
+[f ]
+[; ;ADC.c: 101: ADCON0 =0;
 "101
+[e = _ADCON0 -> -> 0 `i `uc ]
+[; ;ADC.c: 102: ADCON1 =0;
+"102
+[e = _ADCON1 -> -> 0 `i `uc ]
+[; ;ADC.c: 103: ADCON1 |= 0b01010000;
+"103
+[e =| _ADCON1 -> -> 80 `i `uc ]
+[; ;ADC.c: 104: FVRCON |= 0b10000000;
+"104
+[e =| _FVRCON -> -> 128 `i `uc ]
+[; ;ADC.c: 105: FVRCON |= 0b00000011;
+"105
+[e =| _FVRCON -> -> 3 `i `uc ]
+[; ;ADC.c: 106: while(!(FVRCON & 0b01000000));
+"106
 [e $U 592  ]
 [e :U 593 ]
 [e :U 592 ]
 [e $ ! != & -> _FVRCON `i -> 64 `i -> 0 `i 593  ]
 [e :U 594 ]
-[; ;ADC.c: 102: ADCON0 |= (channel << 2);
-"102
-[e =| _ADCON0 -> << -> _channel `i -> 2 `i `uc ]
-[; ;ADC.c: 103: ADCON1 |= 0b10000011;
-"103
-[e =| _ADCON1 -> -> 131 `i `uc ]
-[; ;ADC.c: 104: ADCON0 |= 0b00000001;
-"104
-[e =| _ADCON0 -> -> 1 `i `uc ]
-[; ;ADC.c: 105: (PIE1bits.ADIE=0);
-"105
-[e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
-[; ;ADC.c: 106: delayUS(5);
-"106
-[e ( _delayUS (1 -> -> 5 `i `l ]
-[; ;ADC.c: 107: ADCON0 |= 0b00000010;
+[; ;ADC.c: 107: ADCON0 |= (channel << 2);
 "107
-[e =| _ADCON0 -> -> 2 `i `uc ]
-[; ;ADC.c: 108: while(ADCON0 & 0b00000010);
+[e =| _ADCON0 -> << -> _channel `i -> 2 `i `uc ]
+[; ;ADC.c: 108: ADCON1 |= 0b10000011;
 "108
+[e =| _ADCON1 -> -> 131 `i `uc ]
+[; ;ADC.c: 109: ADCON0 |= 0b00000001;
+"109
+[e =| _ADCON0 -> -> 1 `i `uc ]
+[; ;ADC.c: 110: (PIE1bits.ADIE=0);
+"110
+[e = . . _PIE1bits 0 6 -> -> 0 `i `uc ]
+[; ;ADC.c: 111: delayUS(5);
+"111
+[e ( _delayUS (1 -> -> 5 `i `l ]
+[; ;ADC.c: 112: ADCON0 |= 0b00000010;
+"112
+[e =| _ADCON0 -> -> 2 `i `uc ]
+[; ;ADC.c: 113: while(ADCON0 & 0b00000010);
+"113
 [e $U 595  ]
 [e :U 596 ]
 [e :U 595 ]
 [e $ != & -> _ADCON0 `i -> 2 `i -> 0 `i 596  ]
 [e :U 597 ]
-[; ;ADC.c: 109: return ((ADRESH << 8) + ADRESL);
-"109
+[; ;ADC.c: 114: return ((ADRESH << 8) + ADRESL);
+"114
 [e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
 [e $UE 591  ]
-[; ;ADC.c: 110: }
-"110
+[; ;ADC.c: 115: }
+"115
 [e :UE 591 ]
 }
-"117
+"122
 [v _DisableInternalADC `(v ~T0 @X0 1 ef ]
-"118
+"123
 {
-[; ;ADC.c: 117: void DisableInternalADC(void)
-[; ;ADC.c: 118: {
+[; ;ADC.c: 122: void DisableInternalADC(void)
+[; ;ADC.c: 123: {
 [e :U _DisableInternalADC ]
 [f ]
-[; ;ADC.c: 119: ADCON0 &= ~0b00000001;
-"119
+[; ;ADC.c: 124: ADCON0 &= ~0b00000001;
+"124
 [e =& _ADCON0 -> ~ -> 1 `i `uc ]
-[; ;ADC.c: 120: }
-"120
+[; ;ADC.c: 125: }
+"125
 [e :UE 598 ]
 }
-"128
+"133
 [v _ShutDown_ADC `(v ~T0 @X0 1 ef ]
-"129
+"134
 {
-[; ;ADC.c: 128: void ShutDown_ADC(void)
-[; ;ADC.c: 129: {
+[; ;ADC.c: 133: void ShutDown_ADC(void)
+[; ;ADC.c: 134: {
 [e :U _ShutDown_ADC ]
 [f ]
-[; ;ADC.c: 130: FVRCON =0;
-"130
+[; ;ADC.c: 135: FVRCON =0;
+"135
 [e = _FVRCON -> -> 0 `i `uc ]
-[; ;ADC.c: 131: ADCON0 =0;
-"131
+[; ;ADC.c: 136: ADCON0 =0;
+"136
 [e = _ADCON0 -> -> 0 `i `uc ]
-[; ;ADC.c: 132: ADCON1 =0;
-"132
+[; ;ADC.c: 137: ADCON1 =0;
+"137
 [e = _ADCON1 -> -> 0 `i `uc ]
-[; ;ADC.c: 133: ADCON2 =0;
-"133
+[; ;ADC.c: 138: ADCON2 =0;
+"138
 [e = _ADCON2 -> -> 0 `i `uc ]
-[; ;ADC.c: 134: }
-"134
+[; ;ADC.c: 139: }
+"139
 [e :UE 599 ]
 }

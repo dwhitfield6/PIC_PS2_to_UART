@@ -62,7 +62,9 @@
  * /******************************************************************************/
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-//#define ADDLINE
+#ifndef RS232
+#define ADDLINE
+#endif
 
 /******************************************************************************/
 /* Important parameters.
@@ -122,8 +124,15 @@
 #define BatINTRIS	TRISAbits.TRISA2
 #define BatIN 0b00000100 //RA2 OR an2
 //DivON turns on the voltage divider to take a reading
+#ifdef RS232
+#define configTRIS	TRISCbits.TRISC0
+#define Config 0b00000001 //RC0
+#else
 #define DivONTRIS	TRISCbits.TRISC0
 #define DivON 0b00000001 //RC0
+#endif
+
+
 
 /******************************************************************************/
 /* Function prototypes                                                        */

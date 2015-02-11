@@ -135,6 +135,23 @@ void interrupt isr(void)
             Rx_fault =1;
         }
         rx = ReadUSART(); //read the byte from rx register
+        #ifdef RS232
+        if(READ_CONFIG_PIN())
+        {
+            if(Rx_fault == 1)
+            {
+                if(rx == 0)
+                {
+                    //UART_send_break();
+                    UART_send_break_timed(100000);
+                }
+            }
+            else
+            {
+                UARTchar(rx, YES ,RC1STAbits.RX9D);
+            }
+        }
+        #else
         if(Rx_fault == 1)
         {
             if(rx == 0)
@@ -147,6 +164,7 @@ void interrupt isr(void)
         {
             UARTchar(rx, YES ,RC1STAbits.RX9D);
         }
+        #endif
         #endif
         PIR1bits.RCIF = 0;
     }

@@ -6285,7 +6285,7 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 

@@ -2,4 +2,5 @@
  build/xc8_pic16f1705/production/MISC.p1:  \
  MISC.c  \
 MISC.h  \
+user.h  \
 system.h 

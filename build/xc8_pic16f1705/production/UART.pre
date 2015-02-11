@@ -6337,14 +6337,14 @@ extern int printf(const char *, ...);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6365,6 +6365,7 @@ void UART_send_break(void);
 void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
+unsigned char READ_CONFIG_PIN(void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
@@ -6530,6 +6531,7 @@ if(config&0x40)
 {
 PIR1bits.RCIF = 0;
 PIE1bits.RCIE = 1;
+
 }
 else
 {
@@ -6553,7 +6555,7 @@ TX1STAbits.TXEN = 1;
 RC1STAbits.SPEN = 1;
 }
 
-# 231
+# 232
 void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data)
 {
 if(TXSTAbits.TX9)
@@ -6596,10 +6598,10 @@ else
 TXREG = data;
 }
 
-# 275
+# 276
 }
 
-# 282
+# 283
 void UARTstring(const unsigned char *data)
 {
 do
@@ -6612,7 +6614,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 299
+# 300
 char ReadUSART(void)
 {
 char data;
@@ -6627,14 +6629,14 @@ data = RCREG;
 return (data);
 }
 
-# 319
+# 320
 void UART_send_break(void)
 {
 TX1STA |= 0b00001000;
 TXREG = 'd';
 }
 
-# 331
+# 332
 void UART_send_break_timed(unsigned int US)
 {
 
@@ -6656,7 +6658,7 @@ RXPPS = 0b00010101;
 PPSLOCK =1;
 }
 
-# 358
+# 359
 void UARTstringWAIT(const unsigned char *data)
 {
 do
@@ -6670,7 +6672,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 377
+# 378
 void SetBaud(unsigned long Baud, unsigned char Parity)
 {
 unsigned char buf[50];

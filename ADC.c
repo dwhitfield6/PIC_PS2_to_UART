@@ -65,13 +65,18 @@ double ReadVoltage(void)
 {
     unsigned int temp;
     double voltage;
+    #ifndef RS232
     LATC &= ~DivON;//power voltage divider
+    #endif
+    
     temp = InternalADC_Read(2);
     DisableInternalADC();
+    #ifndef RS232
     LATC |= DivON;//release voltage divider
     //reference is 1.024 * reference multiplier and its 10 bits
     //therefore 1.024*Ref_Multiplier/1024 = 1000
     //the bottom 2 bits are the Ref_Multiplier
+    #endif
     if((FVRCON & 0x03) == 0x03)
     {
         //reference is 4 times higher

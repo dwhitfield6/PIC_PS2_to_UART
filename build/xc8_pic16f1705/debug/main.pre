@@ -6269,7 +6269,7 @@ typedef unsigned char bool;
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6294,7 +6294,7 @@ unsigned char ISNUMBER(unsigned char ascii);
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6315,6 +6315,7 @@ void UART_send_break(void);
 void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
+unsigned char READ_CONFIG_PIN(void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
@@ -6845,7 +6846,7 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 

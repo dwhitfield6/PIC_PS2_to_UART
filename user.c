@@ -70,7 +70,12 @@ void InitApp(void)
     SinLEDTRIS = OUTPUT;
     KeyLEDTRIS = OUTPUT;
     BatINTRIS  = INPUT;
+    #ifdef RS232
+    configTRIS = INPUT;
+    #else
     DivONTRIS  = OUTPUT;
+    #endif
+    
     RXTRIS     = INPUT;
 
     //turn on power LED and initialize the pins

@@ -2,9 +2,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "52 system.h
 [v _ConfigureOscillator `(v ~T0 @X0 0 ef ]
-"132 user.h
+"141 user.h
 [v _InitApp `(v ~T0 @X0 0 ef ]
-"133
+"142
 [v _Init_System `(v ~T0 @X0 0 ef ]
 "84 PS_2.h
 [v _PS_2_INIT `(v ~T0 @X0 0 ef ]
@@ -4698,8 +4698,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 [; ;MISC.h: 54: void delayUS(long US);
 [; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);
@@ -4715,8 +4715,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
 [; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
 [; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 "88 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -4741,6 +4741,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.h: 104: void UARTstringWAIT(const unsigned char *data);
 [; ;UART.h: 105: void SetBaud(unsigned long Baud, unsigned char Parity);
 [; ;UART.h: 106: void CloseUSART(void );
+[; ;UART.h: 107: unsigned char READ_CONFIG_PIN(void);
 [; ;system.h: 52: void ConfigureOscillator(void);
 "64 PS_2.h
 [v _PS_2_Read_Data_FirstTEMP `ui ~T0 @X0 1 e ]
@@ -6257,8 +6258,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FLASH.h: 71: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 [; ;FLASH.h: 72: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 [; ;FLASH.h: 73: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;user.h: 132: void InitApp(void);
-[; ;user.h: 133: void Init_System (void);
+[; ;user.h: 141: void InitApp(void);
+[; ;user.h: 142: void Init_System (void);
 [; ;ADC.h: 83: double ReadVoltage(void);
 [; ;ADC.h: 84: void DisableInternalADC(void);
 [; ;ADC.h: 85: unsigned int InternalADC_Read(unsigned char channel);

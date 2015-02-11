@@ -6266,7 +6266,7 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6276,14 +6276,14 @@ void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 void ShutDown_ADC(void);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
 
-# 132 "user.h"
+# 141 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6304,6 +6304,7 @@ void UART_send_break(void);
 void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
+unsigned char READ_CONFIG_PIN(void);
 
 # 52 "system.h"
 void ConfigureOscillator(void);
@@ -6331,13 +6332,12 @@ double ReadVoltage(void)
 {
 unsigned int temp;
 double voltage;
-LATC &= ~0b00000001;
+
+# 72
 temp = InternalADC_Read(2);
 DisableInternalADC();
-LATC |= 0b00000001;
 
-
-
+# 80
 if((FVRCON & 0x03) == 0x03)
 {
 
@@ -6352,7 +6352,7 @@ voltage = ((double)temp / 1000) * 5.7;
 return voltage;
 }
 
-# 94
+# 99
 unsigned int InternalADC_Read(unsigned char channel)
 {
 ADCON0 =0;
@@ -6371,13 +6371,13 @@ while(ADCON0 & 0b00000010);
 return ((ADRESH << 8) + ADRESL);
 }
 
-# 117
+# 122
 void DisableInternalADC(void)
 {
 ADCON0 &= ~0b00000001;
 }
 
-# 128
+# 133
 void ShutDown_ADC(void)
 {
 FVRCON =0;

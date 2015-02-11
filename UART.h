@@ -104,3 +104,4 @@ void UART_send_break(void);
 void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
+unsigned char READ_CONFIG_PIN(void);
