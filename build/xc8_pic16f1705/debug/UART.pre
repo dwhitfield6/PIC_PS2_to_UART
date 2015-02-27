@@ -6590,18 +6590,20 @@ if(data == '\n')
 {
 if(override)
 {
+while(!TXSTAbits.TRMT);
 TXREG = data;
 }
 }
 else
 {
+while(!TXSTAbits.TRMT);
 TXREG = data;
 }
 
-# 276
+# 279
 }
 
-# 283
+# 286
 void UARTstring(const unsigned char *data)
 {
 do
@@ -6614,7 +6616,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 300
+# 303
 char ReadUSART(void)
 {
 char data;
@@ -6629,14 +6631,14 @@ data = RCREG;
 return (data);
 }
 
-# 320
+# 323
 void UART_send_break(void)
 {
 TX1STA |= 0b00001000;
 TXREG = 'd';
 }
 
-# 332
+# 335
 void UART_send_break_timed(unsigned int US)
 {
 
@@ -6658,7 +6660,7 @@ RXPPS = 0b00010101;
 PPSLOCK =1;
 }
 
-# 359
+# 362
 void UARTstringWAIT(const unsigned char *data)
 {
 do
@@ -6672,7 +6674,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 378
+# 381
 void SetBaud(unsigned long Baud, unsigned char Parity)
 {
 unsigned char buf[50];

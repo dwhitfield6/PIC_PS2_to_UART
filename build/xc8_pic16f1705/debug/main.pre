@@ -6856,10 +6856,10 @@ void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 void ShutDown_ADC(void);
 
-# 84 "main.c"
+# 87 "main.c"
 unsigned char Version[] = {"1.2"};
 
-# 94
+# 97
 extern double BatteryVoltage;
 extern unsigned char Alarm;
 
@@ -6868,7 +6868,7 @@ unsigned int pwrLEDtoggle =0;
 unsigned char No_Keyboard =1;
 unsigned char No_Keyboard_old =1;
 
-# 106
+# 109
 void main(void)
 {
 unsigned char i=0;

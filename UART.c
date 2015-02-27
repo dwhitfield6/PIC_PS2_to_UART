@@ -9,6 +9,8 @@
  * 01/21/15     1.2         Added log.
  *                          Fixed Baud rate sting logic to save memory.
  *                          Added "keyboard" before every baud rate change.
+ *                          Added wait to let previous character send before
+ *                            before refilling the buffer.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -263,14 +265,17 @@ void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBi
     {
         if(override)
         {
+            while(!TXSTAbits.TRMT); //Wait for previous character to be output
             TXREG = data;      // Write the data byte to the USART
         }
     }
     else
     {
+        while(!TXSTAbits.TRMT); //Wait for previous character to be output
         TXREG = data;      // Write the data byte to the USART
     }
     #else
+    while(!TXSTAbits.TRMT); //Wait for previous character to be output
     TXREG = data;      // Write the data byte to the USART
     #endif
 }

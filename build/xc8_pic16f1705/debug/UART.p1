@@ -5369,420 +5369,434 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.c: 265: {
 "265
 {
-[; ;UART.c: 266: TXREG = data;
+[; ;UART.c: 266: while(!TXSTAbits.TRMT);
 "266
-[e = _TXREG _data ]
+[e $U 617  ]
+[e :U 618 ]
+[e :U 617 ]
+[e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 618  ]
+[e :U 619 ]
+[; ;UART.c: 267: TXREG = data;
 "267
-}
-[e :U 616 ]
+[e = _TXREG _data ]
 "268
 }
-[; ;UART.c: 267: }
-[; ;UART.c: 268: }
-[e $U 617  ]
+[e :U 616 ]
 "269
-[e :U 615 ]
-[; ;UART.c: 269: else
-[; ;UART.c: 270: {
-"270
-{
-[; ;UART.c: 271: TXREG = data;
-"271
-[e = _TXREG _data ]
-"272
 }
-[e :U 617 ]
-[; ;UART.c: 272: }
-[; ;UART.c: 276: }
-"276
+[; ;UART.c: 268: }
+[; ;UART.c: 269: }
+[e $U 620  ]
+"270
+[e :U 615 ]
+[; ;UART.c: 270: else
+[; ;UART.c: 271: {
+"271
+{
+[; ;UART.c: 272: while(!TXSTAbits.TRMT);
+"272
+[e $U 621  ]
+[e :U 622 ]
+[e :U 621 ]
+[e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 622  ]
+[e :U 623 ]
+[; ;UART.c: 273: TXREG = data;
+"273
+[e = _TXREG _data ]
+"274
+}
+[e :U 620 ]
+[; ;UART.c: 274: }
+[; ;UART.c: 279: }
+"279
 [e :UE 605 ]
 }
-"283
-[v _UARTstring `(v ~T0 @X0 1 ef1`*Cuc ]
-"284
-{
-[; ;UART.c: 283: void UARTstring(const unsigned char *data)
-[; ;UART.c: 284: {
-[e :U _UARTstring ]
-"283
-[v _data `*Cuc ~T0 @X0 1 r1 ]
-"284
-[f ]
-[; ;UART.c: 285: do
-"285
-[e :U 621 ]
-[; ;UART.c: 286: {
 "286
-{
-[; ;UART.c: 287: if(*data != 0)
+[v _UARTstring `(v ~T0 @X0 1 ef1`*Cuc ]
 "287
-[e $ ! != -> *U _data `i -> 0 `i 622  ]
-[; ;UART.c: 288: {
+{
+[; ;UART.c: 286: void UARTstring(const unsigned char *data)
+[; ;UART.c: 287: {
+[e :U _UARTstring ]
+"286
+[v _data `*Cuc ~T0 @X0 1 r1 ]
+"287
+[f ]
+[; ;UART.c: 288: do
 "288
-{
-[; ;UART.c: 289: UARTchar(*data, 0, 0);
+[e :U 627 ]
+[; ;UART.c: 289: {
 "289
-[e ( _UARTchar (3 , , *U _data -> -> 0 `i `uc -> -> 0 `i `uc ]
-[; ;UART.c: 290: while((!TX1STAbits.TRMT));
-"290
-[e $U 623  ]
-[e :U 624 ]
-[e :U 623 ]
-[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 624  ]
-[e :U 625 ]
-"291
-}
-[e :U 622 ]
-"292
-}
-[; ;UART.c: 291: }
-[; ;UART.c: 292: } while( *data++);
-[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 621  ]
-[e :U 620 ]
-[; ;UART.c: 293: }
-"293
-[e :UE 618 ]
-}
-"300
-[v _ReadUSART `(uc ~T0 @X0 1 ef ]
-"301
 {
-[; ;UART.c: 300: char ReadUSART(void)
-[; ;UART.c: 301: {
+[; ;UART.c: 290: if(*data != 0)
+"290
+[e $ ! != -> *U _data `i -> 0 `i 628  ]
+[; ;UART.c: 291: {
+"291
+{
+[; ;UART.c: 292: UARTchar(*data, 0, 0);
+"292
+[e ( _UARTchar (3 , , *U _data -> -> 0 `i `uc -> -> 0 `i `uc ]
+[; ;UART.c: 293: while((!TX1STAbits.TRMT));
+"293
+[e $U 629  ]
+[e :U 630 ]
+[e :U 629 ]
+[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 630  ]
+[e :U 631 ]
+"294
+}
+[e :U 628 ]
+"295
+}
+[; ;UART.c: 294: }
+[; ;UART.c: 295: } while( *data++);
+[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 627  ]
+[e :U 626 ]
+[; ;UART.c: 296: }
+"296
+[e :UE 624 ]
+}
+"303
+[v _ReadUSART `(uc ~T0 @X0 1 ef ]
+"304
+{
+[; ;UART.c: 303: char ReadUSART(void)
+[; ;UART.c: 304: {
 [e :U _ReadUSART ]
 [f ]
-"302
-[v _data `uc ~T0 @X0 1 a ]
-[; ;UART.c: 302: char data;
-[; ;UART.c: 304: if(RCSTAbits.OERR)
-"304
-[e $ ! != -> . . _RCSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 627  ]
-[; ;UART.c: 305: {
 "305
-{
-[; ;UART.c: 306: RCSTAbits.CREN = 0;
-"306
-[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
+[v _data `uc ~T0 @X0 1 a ]
+[; ;UART.c: 305: char data;
+[; ;UART.c: 307: if(RCSTAbits.OERR)
 "307
-}
-[e :U 627 ]
-[; ;UART.c: 307: }
-[; ;UART.c: 309: data = RCREG;
-"309
-[e = _data _RCREG ]
-[; ;UART.c: 311: return (data);
-"311
-[e ) _data ]
-[e $UE 626  ]
-[; ;UART.c: 312: }
-"312
-[e :UE 626 ]
-}
-"320
-[v _UART_send_break `(v ~T0 @X0 1 ef ]
-"321
+[e $ ! != -> . . _RCSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 633  ]
+[; ;UART.c: 308: {
+"308
 {
-[; ;UART.c: 320: void UART_send_break(void)
-[; ;UART.c: 321: {
+[; ;UART.c: 309: RCSTAbits.CREN = 0;
+"309
+[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
+"310
+}
+[e :U 633 ]
+[; ;UART.c: 310: }
+[; ;UART.c: 312: data = RCREG;
+"312
+[e = _data _RCREG ]
+[; ;UART.c: 314: return (data);
+"314
+[e ) _data ]
+[e $UE 632  ]
+[; ;UART.c: 315: }
+"315
+[e :UE 632 ]
+}
+"323
+[v _UART_send_break `(v ~T0 @X0 1 ef ]
+"324
+{
+[; ;UART.c: 323: void UART_send_break(void)
+[; ;UART.c: 324: {
 [e :U _UART_send_break ]
 [f ]
-[; ;UART.c: 322: TX1STA |= 0b00001000;
-"322
+[; ;UART.c: 325: TX1STA |= 0b00001000;
+"325
 [e =| _TX1STA -> -> 8 `i `uc ]
-[; ;UART.c: 323: TXREG = 'd';
-"323
+[; ;UART.c: 326: TXREG = 'd';
+"326
 [e = _TXREG -> -> 100 `ui `uc ]
-[; ;UART.c: 324: }
-"324
-[e :UE 628 ]
+[; ;UART.c: 327: }
+"327
+[e :UE 634 ]
 }
-"332
-[v _UART_send_break_timed `(v ~T0 @X0 1 ef1`ui ]
-"333
-{
-[; ;UART.c: 332: void UART_send_break_timed(unsigned int US)
-[; ;UART.c: 333: {
-[e :U _UART_send_break_timed ]
-"332
-[v _US `ui ~T0 @X0 1 r1 ]
-"333
-[f ]
-[; ;UART.c: 335: LATC |= 0b00000100;
 "335
-[e =| _LATC -> -> 4 `i `uc ]
-[; ;UART.c: 336: PPSLOCK =0;
+[v _UART_send_break_timed `(v ~T0 @X0 1 ef1`ui ]
 "336
-[e = _PPSLOCK -> -> 0 `i `uc ]
-[; ;UART.c: 337: RC2PPS = 0b00000000;
-"337
-[e = _RC2PPS -> -> 0 `i `uc ]
-[; ;UART.c: 338: PPSLOCK =1;
-"338
-[e = _PPSLOCK -> -> 1 `i `uc ]
-[; ;UART.c: 340: LATC &= ~0b00000100;
-"340
-[e =& _LATC -> ~ -> 4 `i `uc ]
-[; ;UART.c: 341: delayUS(US);
-"341
-[e ( _delayUS (1 -> _US `l ]
-[; ;UART.c: 342: LATC |= 0b00000100;
-"342
-[e =| _LATC -> -> 4 `i `uc ]
-[; ;UART.c: 344: PPSLOCK =0;
-"344
-[e = _PPSLOCK -> -> 0 `i `uc ]
-[; ;UART.c: 345: RC2PPS = 0b00010100;
-"345
-[e = _RC2PPS -> -> 20 `i `uc ]
-[; ;UART.c: 346: CKPPS = 0b00010010;
-"346
-[e = _CKPPS -> -> 18 `i `uc ]
-[; ;UART.c: 348: RXPPS = 0b00010101;
-"348
-[e = _RXPPS -> -> 21 `i `uc ]
-[; ;UART.c: 350: PPSLOCK =1;
-"350
-[e = _PPSLOCK -> -> 1 `i `uc ]
-[; ;UART.c: 351: }
-"351
-[e :UE 629 ]
-}
-"359
-[v _UARTstringWAIT `(v ~T0 @X0 1 ef1`*Cuc ]
-"360
 {
-[; ;UART.c: 359: void UARTstringWAIT(const unsigned char *data)
-[; ;UART.c: 360: {
-[e :U _UARTstringWAIT ]
-"359
-[v _data `*Cuc ~T0 @X0 1 r1 ]
-"360
+[; ;UART.c: 335: void UART_send_break_timed(unsigned int US)
+[; ;UART.c: 336: {
+[e :U _UART_send_break_timed ]
+"335
+[v _US `ui ~T0 @X0 1 r1 ]
+"336
 [f ]
-[; ;UART.c: 361: do
-"361
-[e :U 633 ]
-[; ;UART.c: 362: {
+[; ;UART.c: 338: LATC |= 0b00000100;
+"338
+[e =| _LATC -> -> 4 `i `uc ]
+[; ;UART.c: 339: PPSLOCK =0;
+"339
+[e = _PPSLOCK -> -> 0 `i `uc ]
+[; ;UART.c: 340: RC2PPS = 0b00000000;
+"340
+[e = _RC2PPS -> -> 0 `i `uc ]
+[; ;UART.c: 341: PPSLOCK =1;
+"341
+[e = _PPSLOCK -> -> 1 `i `uc ]
+[; ;UART.c: 343: LATC &= ~0b00000100;
+"343
+[e =& _LATC -> ~ -> 4 `i `uc ]
+[; ;UART.c: 344: delayUS(US);
+"344
+[e ( _delayUS (1 -> _US `l ]
+[; ;UART.c: 345: LATC |= 0b00000100;
+"345
+[e =| _LATC -> -> 4 `i `uc ]
+[; ;UART.c: 347: PPSLOCK =0;
+"347
+[e = _PPSLOCK -> -> 0 `i `uc ]
+[; ;UART.c: 348: RC2PPS = 0b00010100;
+"348
+[e = _RC2PPS -> -> 20 `i `uc ]
+[; ;UART.c: 349: CKPPS = 0b00010010;
+"349
+[e = _CKPPS -> -> 18 `i `uc ]
+[; ;UART.c: 351: RXPPS = 0b00010101;
+"351
+[e = _RXPPS -> -> 21 `i `uc ]
+[; ;UART.c: 353: PPSLOCK =1;
+"353
+[e = _PPSLOCK -> -> 1 `i `uc ]
+[; ;UART.c: 354: }
+"354
+[e :UE 635 ]
+}
 "362
-{
-[; ;UART.c: 363: delayUS(5000);
+[v _UARTstringWAIT `(v ~T0 @X0 1 ef1`*Cuc ]
 "363
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;UART.c: 364: if(*data != 0)
+{
+[; ;UART.c: 362: void UARTstringWAIT(const unsigned char *data)
+[; ;UART.c: 363: {
+[e :U _UARTstringWAIT ]
+"362
+[v _data `*Cuc ~T0 @X0 1 r1 ]
+"363
+[f ]
+[; ;UART.c: 364: do
 "364
-[e $ ! != -> *U _data `i -> 0 `i 634  ]
+[e :U 639 ]
 [; ;UART.c: 365: {
 "365
 {
-[; ;UART.c: 366: UARTchar(*data, 0, 0);
+[; ;UART.c: 366: delayUS(5000);
 "366
-[e ( _UARTchar (3 , , *U _data -> -> 0 `i `uc -> -> 0 `i `uc ]
-[; ;UART.c: 367: while((!TX1STAbits.TRMT));
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;UART.c: 367: if(*data != 0)
 "367
-[e $U 635  ]
-[e :U 636 ]
-[e :U 635 ]
-[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 636  ]
-[e :U 637 ]
+[e $ ! != -> *U _data `i -> 0 `i 640  ]
+[; ;UART.c: 368: {
 "368
-}
-[e :U 634 ]
-"369
-}
-[; ;UART.c: 368: }
-[; ;UART.c: 369: } while( *data++);
-[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 633  ]
-[e :U 632 ]
-[; ;UART.c: 370: }
-"370
-[e :UE 630 ]
-}
-"378
-[v _SetBaud `(v ~T0 @X0 1 ef2`ul`uc ]
-"379
 {
-[; ;UART.c: 378: void SetBaud(unsigned long Baud, unsigned char Parity)
-[; ;UART.c: 379: {
+[; ;UART.c: 369: UARTchar(*data, 0, 0);
+"369
+[e ( _UARTchar (3 , , *U _data -> -> 0 `i `uc -> -> 0 `i `uc ]
+[; ;UART.c: 370: while((!TX1STAbits.TRMT));
+"370
+[e $U 641  ]
+[e :U 642 ]
+[e :U 641 ]
+[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 642  ]
+[e :U 643 ]
+"371
+}
+[e :U 640 ]
+"372
+}
+[; ;UART.c: 371: }
+[; ;UART.c: 372: } while( *data++);
+[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 639  ]
+[e :U 638 ]
+[; ;UART.c: 373: }
+"373
+[e :UE 636 ]
+}
+"381
+[v _SetBaud `(v ~T0 @X0 1 ef2`ul`uc ]
+"382
+{
+[; ;UART.c: 381: void SetBaud(unsigned long Baud, unsigned char Parity)
+[; ;UART.c: 382: {
 [e :U _SetBaud ]
-"378
+"381
 [v _Baud `ul ~T0 @X0 1 r1 ]
 [v _Parity `uc ~T0 @X0 1 r2 ]
-"379
-[f ]
-"380
-[v _buf `uc ~T0 @X0 -> 50 `i a ]
-"381
-[v _Baudtemp `ul ~T0 @X0 1 a ]
-[; ;UART.c: 380: unsigned char buf[50];
-[; ;UART.c: 381: unsigned long Baudtemp=0;
-[e = _Baudtemp -> -> -> 0 `i `l `ul ]
 "382
-[v _Paritytemp `ul ~T0 @X0 1 a ]
-[; ;UART.c: 382: unsigned long Paritytemp=0;
-[e = _Paritytemp -> -> -> 0 `i `l `ul ]
+[f ]
 "383
-[v _temp `ul ~T0 @X0 1 a ]
+[v _buf `uc ~T0 @X0 -> 50 `i a ]
 "384
-[v _i `uc ~T0 @X0 1 a ]
-[; ;UART.c: 383: unsigned long temp;
-[; ;UART.c: 384: unsigned char i =0;
-[e = _i -> -> 0 `i `uc ]
-[; ;UART.c: 386: WriteBaud((0x1800 >> 5), Baud, Parity);
+[v _Baudtemp `ul ~T0 @X0 1 a ]
+[; ;UART.c: 383: unsigned char buf[50];
+[; ;UART.c: 384: unsigned long Baudtemp=0;
+[e = _Baudtemp -> -> -> 0 `i `l `ul ]
+"385
+[v _Paritytemp `ul ~T0 @X0 1 a ]
+[; ;UART.c: 385: unsigned long Paritytemp=0;
+[e = _Paritytemp -> -> -> 0 `i `l `ul ]
 "386
-[e ( _WriteBaud (3 , , -> >> -> 6144 `i -> 5 `i `ui _Baud _Parity ]
-[; ;UART.c: 387: temp = ReadBaud((0x1800 >> 5), 0);
+[v _temp `ul ~T0 @X0 1 a ]
 "387
-[e = _temp ( _ReadBaud (2 , -> >> -> 6144 `i -> 5 `i `ui -> -> 0 `i `uc ]
-[; ;UART.c: 388: Baudtemp = temp & 0x000FFFFF;
-"388
-[e = _Baudtemp & _temp -> -> 1048575 `l `ul ]
-[; ;UART.c: 389: Paritytemp = (unsigned char)((temp & 0x00F00000) >> 20);
+[v _i `uc ~T0 @X0 1 a ]
+[; ;UART.c: 386: unsigned long temp;
+[; ;UART.c: 387: unsigned char i =0;
+[e = _i -> -> 0 `i `uc ]
+[; ;UART.c: 389: WriteBaud((0x1800 >> 5), Baud, Parity);
 "389
-[e = _Paritytemp -> -> >> & _temp -> -> 15728640 `l `ul -> 20 `i `uc `ul ]
-[; ;UART.c: 391: InitUART(Baud, Parity);
+[e ( _WriteBaud (3 , , -> >> -> 6144 `i -> 5 `i `ui _Baud _Parity ]
+[; ;UART.c: 390: temp = ReadBaud((0x1800 >> 5), 0);
+"390
+[e = _temp ( _ReadBaud (2 , -> >> -> 6144 `i -> 5 `i `ui -> -> 0 `i `uc ]
+[; ;UART.c: 391: Baudtemp = temp & 0x000FFFFF;
 "391
-[e ( _InitUART (2 , _Baud _Parity ]
-[; ;UART.c: 392: UARTstringWAIT("\r\n");
+[e = _Baudtemp & _temp -> -> 1048575 `l `ul ]
+[; ;UART.c: 392: Paritytemp = (unsigned char)((temp & 0x00F00000) >> 20);
 "392
-[e ( _UARTstringWAIT (1 :s 1C ]
-[; ;UART.c: 393: delayUS(10000);
-"393
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;UART.c: 394: if((Baud != Baudtemp) || (Parity != Paritytemp))
+[e = _Paritytemp -> -> >> & _temp -> -> 15728640 `l `ul -> 20 `i `uc `ul ]
+[; ;UART.c: 394: InitUART(Baud, Parity);
 "394
-[e $ ! || != _Baud _Baudtemp != -> _Parity `ul _Paritytemp 639  ]
-[; ;UART.c: 395: {
+[e ( _InitUART (2 , _Baud _Parity ]
+[; ;UART.c: 395: UARTstringWAIT("\r\n");
 "395
-{
-[; ;UART.c: 396: UARTstringWAIT("KeyBoard Program Fail\r\n");
+[e ( _UARTstringWAIT (1 :s 1C ]
+[; ;UART.c: 396: delayUS(10000);
 "396
-[e ( _UARTstringWAIT (1 :s 2C ]
-[; ;UART.c: 397: delayUS(10000);
-"397
 [e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;UART.c: 397: if((Baud != Baudtemp) || (Parity != Paritytemp))
+"397
+[e $ ! || != _Baud _Baudtemp != -> _Parity `ul _Paritytemp 645  ]
+[; ;UART.c: 398: {
 "398
-}
-[e :U 639 ]
-[; ;UART.c: 398: }
-[; ;UART.c: 401: for(i =0;i<10;i++)
+{
+[; ;UART.c: 399: UARTstringWAIT("KeyBoard Program Fail\r\n");
+"399
+[e ( _UARTstringWAIT (1 :s 2C ]
+[; ;UART.c: 400: delayUS(10000);
+"400
+[e ( _delayUS (1 -> -> 10000 `i `l ]
 "401
+}
+[e :U 645 ]
+[; ;UART.c: 401: }
+[; ;UART.c: 404: for(i =0;i<10;i++)
+"404
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 10 `i 640  ]
-[e $U 641  ]
-"402
-[e :U 640 ]
-[; ;UART.c: 402: {
-{
-[; ;UART.c: 403: LATC |= 0b00010000;
-"403
-[e =| _LATC -> -> 16 `i `uc ]
-[; ;UART.c: 404: delayUS(10000);
-"404
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;UART.c: 405: LATC &= ~0b00010000;
+[e $ < -> _i `i -> 10 `i 646  ]
+[e $U 647  ]
 "405
-[e =& _LATC -> ~ -> 16 `i `uc ]
-[; ;UART.c: 406: delayUS(10000);
-"406
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-"407
-}
-"401
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 10 `i 640  ]
-[e :U 641 ]
-"407
-}
-[; ;UART.c: 407: }
-[; ;UART.c: 409: sprintf(buf,"KeyBoard Baud is %lu",Baud);
-"409
-[e ( _sprintf (1 , (. , &U _buf :s 3C _Baud ]
-[; ;UART.c: 410: UARTstringWAIT(buf);
-"410
-[e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
-[; ;UART.c: 411: if(Parity)
-"411
-[e $ ! != -> _Parity `i -> -> -> 0 `i `uc `i 643  ]
-[; ;UART.c: 412: {
-"412
-{
-[; ;UART.c: 413: switch (Parity)
-"413
-[e $U 645  ]
-[; ;UART.c: 414: {
-"414
-{
-[; ;UART.c: 415: case 1:
-"415
 [e :U 646 ]
-[; ;UART.c: 416: UARTstringWAIT(" with Odd parity bit\r\n");
-"416
-[e ( _UARTstringWAIT (1 :s 4C ]
-[; ;UART.c: 417: break;
-"417
-[e $U 644  ]
-[; ;UART.c: 418: case 2:
-"418
+[; ;UART.c: 405: {
+{
+[; ;UART.c: 406: LATC |= 0b00010000;
+"406
+[e =| _LATC -> -> 16 `i `uc ]
+[; ;UART.c: 407: delayUS(10000);
+"407
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;UART.c: 408: LATC &= ~0b00010000;
+"408
+[e =& _LATC -> ~ -> 16 `i `uc ]
+[; ;UART.c: 409: delayUS(10000);
+"409
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+"410
+}
+"404
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 10 `i 646  ]
 [e :U 647 ]
-[; ;UART.c: 419: UARTstringWAIT(" with Even parity bit\r\n");
+"410
+}
+[; ;UART.c: 410: }
+[; ;UART.c: 412: sprintf(buf,"KeyBoard Baud is %lu",Baud);
+"412
+[e ( _sprintf (1 , (. , &U _buf :s 3C _Baud ]
+[; ;UART.c: 413: UARTstringWAIT(buf);
+"413
+[e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
+[; ;UART.c: 414: if(Parity)
+"414
+[e $ ! != -> _Parity `i -> -> -> 0 `i `uc `i 649  ]
+[; ;UART.c: 415: {
+"415
+{
+[; ;UART.c: 416: switch (Parity)
+"416
+[e $U 651  ]
+[; ;UART.c: 417: {
+"417
+{
+[; ;UART.c: 418: case 1:
+"418
+[e :U 652 ]
+[; ;UART.c: 419: UARTstringWAIT(" with Odd parity bit\r\n");
 "419
-[e ( _UARTstringWAIT (1 :s 5C ]
+[e ( _UARTstringWAIT (1 :s 4C ]
 [; ;UART.c: 420: break;
 "420
-[e $U 644  ]
-[; ;UART.c: 421: case 3:
+[e $U 650  ]
+[; ;UART.c: 421: case 2:
 "421
-[e :U 648 ]
-[; ;UART.c: 422: UARTstringWAIT(" with Mark bit\r\n");
+[e :U 653 ]
+[; ;UART.c: 422: UARTstringWAIT(" with Even parity bit\r\n");
 "422
-[e ( _UARTstringWAIT (1 :s 6C ]
+[e ( _UARTstringWAIT (1 :s 5C ]
 [; ;UART.c: 423: break;
 "423
-[e $U 644  ]
-[; ;UART.c: 424: default:
+[e $U 650  ]
+[; ;UART.c: 424: case 3:
 "424
-[e :U 649 ]
-[; ;UART.c: 425: UARTstringWAIT(" with Space bit\r\n");
+[e :U 654 ]
+[; ;UART.c: 425: UARTstringWAIT(" with Mark bit\r\n");
 "425
-[e ( _UARTstringWAIT (1 :s 7C ]
+[e ( _UARTstringWAIT (1 :s 6C ]
 [; ;UART.c: 426: break;
 "426
-[e $U 644  ]
-"427
-}
-[; ;UART.c: 427: }
-[e $U 644  ]
-"413
-[e :U 645 ]
-[e [\ _Parity , $ -> -> 1 `i `uc 646
- , $ -> -> 2 `i `uc 647
- , $ -> -> 3 `i `uc 648
- 649 ]
-"427
-[e :U 644 ]
-"428
-}
-[; ;UART.c: 428: }
 [e $U 650  ]
+[; ;UART.c: 427: default:
+"427
+[e :U 655 ]
+[; ;UART.c: 428: UARTstringWAIT(" with Space bit\r\n");
+"428
+[e ( _UARTstringWAIT (1 :s 7C ]
+[; ;UART.c: 429: break;
 "429
-[e :U 643 ]
-[; ;UART.c: 429: else
-[; ;UART.c: 430: {
+[e $U 650  ]
 "430
-{
-[; ;UART.c: 431: UARTstringWAIT(" with no parity bit\r\n");
-"431
-[e ( _UARTstringWAIT (1 :s 8C ]
-"432
 }
+[; ;UART.c: 430: }
+[e $U 650  ]
+"416
+[e :U 651 ]
+[e [\ _Parity , $ -> -> 1 `i `uc 652
+ , $ -> -> 2 `i `uc 653
+ , $ -> -> 3 `i `uc 654
+ 655 ]
+"430
 [e :U 650 ]
-[; ;UART.c: 432: }
-[; ;UART.c: 433: delayUS(10000);
+"431
+}
+[; ;UART.c: 431: }
+[e $U 656  ]
+"432
+[e :U 649 ]
+[; ;UART.c: 432: else
+[; ;UART.c: 433: {
 "433
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;UART.c: 434: }
+{
+[; ;UART.c: 434: UARTstringWAIT(" with no parity bit\r\n");
 "434
-[e :UE 638 ]
+[e ( _UARTstringWAIT (1 :s 8C ]
+"435
+}
+[e :U 656 ]
+[; ;UART.c: 435: }
+[; ;UART.c: 436: delayUS(10000);
+"436
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;UART.c: 437: }
+"437
+[e :UE 644 ]
 }
 [p f _sprintf 8389648 ]
 [a 3C 75 101 121 66 111 97 114 100 32 66 97 117 100 32 105 115 32 37 108 117 0 ]

@@ -20,7 +20,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Keyboard_Connected `(uc ~T0 @X0 0 ef ]
 "92
 [v _Init_PS_2_Send `(uc ~T0 @X0 0 ef ]
-"94 main.c
+"97 main.c
 [v _BatteryVoltage `d ~T0 @X0 0 e ]
 "83 ADC.h
 [v _ReadVoltage `(d ~T0 @X0 0 ef ]
@@ -6264,7 +6264,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ADC.h: 84: void DisableInternalADC(void);
 [; ;ADC.h: 85: unsigned int InternalADC_Read(unsigned char channel);
 [; ;ADC.h: 86: void ShutDown_ADC(void);
-"84 main.c
+"87 main.c
 [v _Version `uc ~T0 @X0 -> 0 `x e ]
 [i _Version
 :U ..
@@ -6274,399 +6274,399 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[; ;main.c: 84: unsigned char Version[] = {"1.2"};
-[; ;main.c: 94: extern double BatteryVoltage;
-[; ;main.c: 95: extern unsigned char Alarm;
-"97
+[; ;main.c: 87: unsigned char Version[] = {"1.2"};
+[; ;main.c: 97: extern double BatteryVoltage;
+[; ;main.c: 98: extern unsigned char Alarm;
+"100
 [v _SinLEDtimer `ui ~T0 @X0 1 e ]
 [i _SinLEDtimer
 -> -> 0 `i `ui
 ]
-[; ;main.c: 97: unsigned int SinLEDtimer =0;
-"98
+[; ;main.c: 100: unsigned int SinLEDtimer =0;
+"101
 [v _pwrLEDtoggle `ui ~T0 @X0 1 e ]
 [i _pwrLEDtoggle
 -> -> 0 `i `ui
 ]
-[; ;main.c: 98: unsigned int pwrLEDtoggle =0;
-"99
+[; ;main.c: 101: unsigned int pwrLEDtoggle =0;
+"102
 [v _No_Keyboard `uc ~T0 @X0 1 e ]
 [i _No_Keyboard
 -> -> 1 `i `uc
 ]
-[; ;main.c: 99: unsigned char No_Keyboard =1;
-"100
+[; ;main.c: 102: unsigned char No_Keyboard =1;
+"103
 [v _No_Keyboard_old `uc ~T0 @X0 1 e ]
 [i _No_Keyboard_old
 -> -> 1 `i `uc
 ]
-[; ;main.c: 100: unsigned char No_Keyboard_old =1;
-"106
+[; ;main.c: 103: unsigned char No_Keyboard_old =1;
+"109
 [v _main `(v ~T0 @X0 1 ef ]
-"107
+"110
 {
-[; ;main.c: 106: void main(void)
-[; ;main.c: 107: {
+[; ;main.c: 109: void main(void)
+[; ;main.c: 110: {
 [e :U _main ]
 [f ]
-"108
-[v _i `uc ~T0 @X0 1 a ]
-[; ;main.c: 108: unsigned char i=0;
-[e = _i -> -> 0 `i `uc ]
-[; ;main.c: 110: ConfigureOscillator();
-"110
-[e ( _ConfigureOscillator ..  ]
-[; ;main.c: 111: InitApp();
 "111
-[e ( _InitApp ..  ]
-[; ;main.c: 112: Init_System();
-"112
-[e ( _Init_System ..  ]
-[; ;main.c: 113: PS_2_INIT();
+[v _i `uc ~T0 @X0 1 a ]
+[; ;main.c: 111: unsigned char i=0;
+[e = _i -> -> 0 `i `uc ]
+[; ;main.c: 113: ConfigureOscillator();
 "113
-[e ( _PS_2_INIT ..  ]
-[; ;main.c: 116: for(i =0;i<10;i++)
+[e ( _ConfigureOscillator ..  ]
+[; ;main.c: 114: InitApp();
+"114
+[e ( _InitApp ..  ]
+[; ;main.c: 115: Init_System();
+"115
+[e ( _Init_System ..  ]
+[; ;main.c: 116: PS_2_INIT();
 "116
+[e ( _PS_2_INIT ..  ]
+[; ;main.c: 119: for(i =0;i<10;i++)
+"119
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 588  ]
 [e $U 589  ]
-"117
-[e :U 588 ]
-[; ;main.c: 117: {
-{
-[; ;main.c: 118: LATC |= 0b00010000;
-"118
-[e =| _LATC -> -> 16 `i `uc ]
-[; ;main.c: 119: delayUS(10000);
-"119
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 120: LATC &= ~0b00010000;
 "120
-[e =& _LATC -> ~ -> 16 `i `uc ]
-[; ;main.c: 121: delayUS(10000);
+[e :U 588 ]
+[; ;main.c: 120: {
+{
+[; ;main.c: 121: LATC |= 0b00010000;
 "121
-[e ( _delayUS (1 -> -> 10000 `i `l ]
+[e =| _LATC -> -> 16 `i `uc ]
+[; ;main.c: 122: delayUS(10000);
 "122
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 123: LATC &= ~0b00010000;
+"123
+[e =& _LATC -> ~ -> 16 `i `uc ]
+[; ;main.c: 124: delayUS(10000);
+"124
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+"125
 }
-"116
+"119
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 588  ]
 [e :U 589 ]
-"122
+"125
 }
-[; ;main.c: 122: }
-[; ;main.c: 124: PS_2_DISABLE_INTERRUPT(0b00100000);
-"124
-[e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;main.c: 126: UARTstringWAIT("\r\n");
-"126
-[e ( _UARTstringWAIT (1 :s 1C ]
-[; ;main.c: 127: delayUS(10000);
+[; ;main.c: 125: }
+[; ;main.c: 127: PS_2_DISABLE_INTERRUPT(0b00100000);
 "127
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 128: UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
-"128
-[e ( _UARTstringWAIT (1 :s 2C ]
-[; ;main.c: 129: delayUS(5000);
+[e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
+[; ;main.c: 129: UARTstringWAIT("\r\n");
 "129
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;main.c: 130: UARTstringWAIT("Firmware Version: ");
+[e ( _UARTstringWAIT (1 :s 1C ]
+[; ;main.c: 130: delayUS(10000);
 "130
-[e ( _UARTstringWAIT (1 :s 3C ]
-[; ;main.c: 131: UARTstringWAIT(Version);
-"131
-[e ( _UARTstringWAIT (1 -> &U _Version `*Cuc ]
-[; ;main.c: 132: UARTstringWAIT("\r\n");
-"132
-[e ( _UARTstringWAIT (1 :s 4C ]
-[; ;main.c: 133: delayUS(5000);
-"133
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;main.c: 134: UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
-"134
-[e ( _UARTstringWAIT (1 :s 5C ]
-[; ;main.c: 135: delayUS(10000);
-"135
 [e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 138: if(!Keyboard_Connected())
+[; ;main.c: 131: UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
+"131
+[e ( _UARTstringWAIT (1 :s 2C ]
+[; ;main.c: 132: delayUS(5000);
+"132
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;main.c: 133: UARTstringWAIT("Firmware Version: ");
+"133
+[e ( _UARTstringWAIT (1 :s 3C ]
+[; ;main.c: 134: UARTstringWAIT(Version);
+"134
+[e ( _UARTstringWAIT (1 -> &U _Version `*Cuc ]
+[; ;main.c: 135: UARTstringWAIT("\r\n");
+"135
+[e ( _UARTstringWAIT (1 :s 4C ]
+[; ;main.c: 136: delayUS(5000);
+"136
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;main.c: 137: UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
+"137
+[e ( _UARTstringWAIT (1 :s 5C ]
+[; ;main.c: 138: delayUS(10000);
 "138
-[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 591  ]
-[; ;main.c: 139: {
-"139
-{
-[; ;main.c: 140: No_Keyboard =1;
-"140
-[e = _No_Keyboard -> -> 1 `i `uc ]
+[e ( _delayUS (1 -> -> 10000 `i `l ]
 [; ;main.c: 141: if(!Keyboard_Connected())
 "141
-[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 592  ]
+[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 591  ]
 [; ;main.c: 142: {
 "142
 {
 [; ;main.c: 143: No_Keyboard =1;
 "143
 [e = _No_Keyboard -> -> 1 `i `uc ]
+[; ;main.c: 144: if(!Keyboard_Connected())
 "144
-}
-[; ;main.c: 144: }
-[e $U 593  ]
+[e $ ! ! != -> ( _Keyboard_Connected ..  `i -> -> -> 0 `i `uc `i 592  ]
+[; ;main.c: 145: {
 "145
-[e :U 592 ]
-[; ;main.c: 145: else
-[; ;main.c: 146: {
-"146
 {
-[; ;main.c: 147: No_Keyboard = 0;
+[; ;main.c: 146: No_Keyboard =1;
+"146
+[e = _No_Keyboard -> -> 1 `i `uc ]
 "147
-[e = _No_Keyboard -> -> 0 `i `uc ]
+}
+[; ;main.c: 147: }
+[e $U 593  ]
 "148
+[e :U 592 ]
+[; ;main.c: 148: else
+[; ;main.c: 149: {
+"149
+{
+[; ;main.c: 150: No_Keyboard = 0;
+"150
+[e = _No_Keyboard -> -> 0 `i `uc ]
+"151
 }
 [e :U 593 ]
-"149
-}
-[; ;main.c: 148: }
-[; ;main.c: 149: }
-[e $U 594  ]
-"150
-[e :U 591 ]
-[; ;main.c: 150: else
-[; ;main.c: 151: {
-"151
-{
-[; ;main.c: 152: No_Keyboard =0;
 "152
-[e = _No_Keyboard -> -> 0 `i `uc ]
+}
+[; ;main.c: 151: }
+[; ;main.c: 152: }
+[e $U 594  ]
 "153
+[e :U 591 ]
+[; ;main.c: 153: else
+[; ;main.c: 154: {
+"154
+{
+[; ;main.c: 155: No_Keyboard =0;
+"155
+[e = _No_Keyboard -> -> 0 `i `uc ]
+"156
 }
 [e :U 594 ]
-[; ;main.c: 153: }
-[; ;main.c: 155: if(No_Keyboard)
-"155
-[e $ ! != -> _No_Keyboard `i -> -> -> 0 `i `uc `i 595  ]
-[; ;main.c: 156: {
-"156
-{
-[; ;main.c: 157: UARTstringWAIT("No Keyboard connected\r\n");
-"157
-[e ( _UARTstringWAIT (1 :s 6C ]
+[; ;main.c: 156: }
+[; ;main.c: 158: if(No_Keyboard)
 "158
-}
-[; ;main.c: 158: }
-[e $U 596  ]
+[e $ ! != -> _No_Keyboard `i -> -> -> 0 `i `uc `i 595  ]
+[; ;main.c: 159: {
 "159
-[e :U 595 ]
-[; ;main.c: 159: else
-[; ;main.c: 160: {
-"160
 {
-[; ;main.c: 161: UARTstringWAIT("Keyboard Connected\r\n");
+[; ;main.c: 160: UARTstringWAIT("No Keyboard connected\r\n");
+"160
+[e ( _UARTstringWAIT (1 :s 6C ]
 "161
-[e ( _UARTstringWAIT (1 :s 7C ]
-[; ;main.c: 162: if(!Init_PS_2_Send())
+}
+[; ;main.c: 161: }
+[e $U 596  ]
 "162
-[e $ ! ! != -> ( _Init_PS_2_Send ..  `i -> -> -> 0 `i `uc `i 597  ]
+[e :U 595 ]
+[; ;main.c: 162: else
 [; ;main.c: 163: {
 "163
 {
-[; ;main.c: 164: delayUS(10000);
+[; ;main.c: 164: UARTstringWAIT("Keyboard Connected\r\n");
 "164
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 165: UARTstringWAIT("Initialization Fail\r\n");
+[e ( _UARTstringWAIT (1 :s 7C ]
+[; ;main.c: 165: if(!Init_PS_2_Send())
 "165
-[e ( _UARTstringWAIT (1 :s 8C ]
+[e $ ! ! != -> ( _Init_PS_2_Send ..  `i -> -> -> 0 `i `uc `i 597  ]
+[; ;main.c: 166: {
 "166
-}
-[; ;main.c: 166: }
-[e $U 598  ]
-"167
-[e :U 597 ]
-[; ;main.c: 167: else
-[; ;main.c: 168: {
-"168
 {
-[; ;main.c: 169: UARTstringWAIT("Keyboard Pass!\r\n");
+[; ;main.c: 167: delayUS(10000);
+"167
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 168: UARTstringWAIT("Initialization Fail\r\n");
+"168
+[e ( _UARTstringWAIT (1 :s 8C ]
 "169
-[e ( _UARTstringWAIT (1 :s 9C ]
+}
+[; ;main.c: 169: }
+[e $U 598  ]
 "170
+[e :U 597 ]
+[; ;main.c: 170: else
+[; ;main.c: 171: {
+"171
+{
+[; ;main.c: 172: UARTstringWAIT("Keyboard Pass!\r\n");
+"172
+[e ( _UARTstringWAIT (1 :s 9C ]
+"173
 }
 [e :U 598 ]
-"171
+"174
 }
 [e :U 596 ]
-[; ;main.c: 170: }
-[; ;main.c: 171: }
-[; ;main.c: 172: BatteryVoltage = ReadVoltage();
-"172
-[e = _BatteryVoltage ( _ReadVoltage ..  ]
-[; ;main.c: 173: if(BatteryVoltage < 5.85 )
-"173
-[e $ ! < _BatteryVoltage .5.85 599  ]
-[; ;main.c: 174: {
-"174
-{
-[; ;main.c: 175: UARTstringWAIT("Voltage too Low!\r\n");
+[; ;main.c: 173: }
+[; ;main.c: 174: }
+[; ;main.c: 175: BatteryVoltage = ReadVoltage();
 "175
-[e ( _UARTstringWAIT (1 :s 10C ]
+[e = _BatteryVoltage ( _ReadVoltage ..  ]
+[; ;main.c: 176: if(BatteryVoltage < 5.85 )
 "176
-}
-[; ;main.c: 176: }
-[e $U 600  ]
+[e $ ! < _BatteryVoltage .5.85 599  ]
+[; ;main.c: 177: {
 "177
-[e :U 599 ]
-[; ;main.c: 177: else if (BatteryVoltage > 20.0)
-[e $ ! > _BatteryVoltage .20.0 601  ]
-[; ;main.c: 178: {
-"178
 {
-[; ;main.c: 179: UARTstringWAIT("Voltage too High!\r\n");
+[; ;main.c: 178: UARTstringWAIT("Voltage too Low!\r\n");
+"178
+[e ( _UARTstringWAIT (1 :s 10C ]
 "179
-[e ( _UARTstringWAIT (1 :s 11C ]
+}
+[; ;main.c: 179: }
+[e $U 600  ]
 "180
+[e :U 599 ]
+[; ;main.c: 180: else if (BatteryVoltage > 20.0)
+[e $ ! > _BatteryVoltage .20.0 601  ]
+[; ;main.c: 181: {
+"181
+{
+[; ;main.c: 182: UARTstringWAIT("Voltage too High!\r\n");
+"182
+[e ( _UARTstringWAIT (1 :s 11C ]
+"183
 }
 [e :U 601 ]
-"181
-[e :U 600 ]
-[; ;main.c: 180: }
-[; ;main.c: 181: PS_2_ENABLE_INTERRUPT(0b00100000);
-[e ( _PS_2_ENABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;main.c: 182: No_Keyboard_old = No_Keyboard;
-"182
-[e = _No_Keyboard_old _No_Keyboard ]
-[; ;main.c: 184: while(1)
 "184
-[e :U 603 ]
-[; ;main.c: 185: {
+[e :U 600 ]
+[; ;main.c: 183: }
+[; ;main.c: 184: PS_2_ENABLE_INTERRUPT(0b00100000);
+[e ( _PS_2_ENABLE_INTERRUPT (1 -> -> 32 `i `uc ]
+[; ;main.c: 185: No_Keyboard_old = No_Keyboard;
 "185
-{
-[; ;main.c: 186: PS_2_Update();
-"186
-[e ( _PS_2_Update ..  ]
-[; ;main.c: 187: if(No_Keyboard == 0 && No_Keyboard_old == 1)
+[e = _No_Keyboard_old _No_Keyboard ]
+[; ;main.c: 187: while(1)
 "187
-[e $ ! && == -> _No_Keyboard `i -> 0 `i == -> _No_Keyboard_old `i -> 1 `i 605  ]
+[e :U 603 ]
 [; ;main.c: 188: {
 "188
 {
-[; ;main.c: 189: UARTstringWAIT("Keyboard Connected\r\n");
+[; ;main.c: 189: PS_2_Update();
 "189
-[e ( _UARTstringWAIT (1 :s 12C ]
-[; ;main.c: 190: if(!Init_PS_2_Send())
+[e ( _PS_2_Update ..  ]
+[; ;main.c: 190: if(No_Keyboard == 0 && No_Keyboard_old == 1)
 "190
-[e $ ! ! != -> ( _Init_PS_2_Send ..  `i -> -> -> 0 `i `uc `i 606  ]
+[e $ ! && == -> _No_Keyboard `i -> 0 `i == -> _No_Keyboard_old `i -> 1 `i 605  ]
 [; ;main.c: 191: {
 "191
 {
-[; ;main.c: 192: delayUS(10000);
+[; ;main.c: 192: UARTstringWAIT("Keyboard Connected\r\n");
 "192
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 193: UARTstringWAIT("Initialization Fail\r\n");
+[e ( _UARTstringWAIT (1 :s 12C ]
+[; ;main.c: 193: if(!Init_PS_2_Send())
 "193
-[e ( _UARTstringWAIT (1 :s 13C ]
+[e $ ! ! != -> ( _Init_PS_2_Send ..  `i -> -> -> 0 `i `uc `i 606  ]
+[; ;main.c: 194: {
 "194
-}
-[; ;main.c: 194: }
-[e $U 607  ]
-"195
-[e :U 606 ]
-[; ;main.c: 195: else
-[; ;main.c: 196: {
-"196
 {
-[; ;main.c: 197: UARTstringWAIT("Keyboard Pass!\r\n");
+[; ;main.c: 195: delayUS(10000);
+"195
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 196: UARTstringWAIT("Initialization Fail\r\n");
+"196
+[e ( _UARTstringWAIT (1 :s 13C ]
 "197
-[e ( _UARTstringWAIT (1 :s 14C ]
+}
+[; ;main.c: 197: }
+[e $U 607  ]
 "198
+[e :U 606 ]
+[; ;main.c: 198: else
+[; ;main.c: 199: {
+"199
+{
+[; ;main.c: 200: UARTstringWAIT("Keyboard Pass!\r\n");
+"200
+[e ( _UARTstringWAIT (1 :s 14C ]
+"201
 }
 [e :U 607 ]
-"199
+"202
 }
 [e :U 605 ]
-[; ;main.c: 198: }
-[; ;main.c: 199: }
-[; ;main.c: 200: BatteryVoltage = ReadVoltage();
-"200
-[e = _BatteryVoltage ( _ReadVoltage ..  ]
-[; ;main.c: 201: if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
-"201
-[e $ ! || < _BatteryVoltage .5.85 > _BatteryVoltage .20.0 608  ]
-[; ;main.c: 202: {
-"202
-{
-[; ;main.c: 203: pwrLEDtoggle++;
+[; ;main.c: 201: }
+[; ;main.c: 202: }
+[; ;main.c: 203: BatteryVoltage = ReadVoltage();
 "203
-[e ++ _pwrLEDtoggle -> -> 1 `i `ui ]
-[; ;main.c: 204: if(pwrLEDtoggle > 1000)
+[e = _BatteryVoltage ( _ReadVoltage ..  ]
+[; ;main.c: 204: if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
 "204
-[e $ ! > _pwrLEDtoggle -> -> 1000 `i `ui 609  ]
+[e $ ! || < _BatteryVoltage .5.85 > _BatteryVoltage .20.0 608  ]
 [; ;main.c: 205: {
 "205
 {
-[; ;main.c: 206: LATC ^= 0b00000010;
+[; ;main.c: 206: pwrLEDtoggle++;
 "206
-[e =^ _LATC -> -> 2 `i `uc ]
-[; ;main.c: 207: pwrLEDtoggle = 0;
+[e ++ _pwrLEDtoggle -> -> 1 `i `ui ]
+[; ;main.c: 207: if(pwrLEDtoggle > 1000)
 "207
-[e = _pwrLEDtoggle -> -> 0 `i `ui ]
+[e $ ! > _pwrLEDtoggle -> -> 1000 `i `ui 609  ]
+[; ;main.c: 208: {
 "208
+{
+[; ;main.c: 209: LATC ^= 0b00000010;
+"209
+[e =^ _LATC -> -> 2 `i `uc ]
+[; ;main.c: 210: pwrLEDtoggle = 0;
+"210
+[e = _pwrLEDtoggle -> -> 0 `i `ui ]
+"211
 }
 [e :U 609 ]
-"209
-}
-[; ;main.c: 208: }
-[; ;main.c: 209: }
-[e $U 610  ]
-"210
-[e :U 608 ]
-[; ;main.c: 210: else
-[; ;main.c: 211: {
-"211
-{
-[; ;main.c: 212: LATC |= 0b00000010;
 "212
-[e =| _LATC -> -> 2 `i `uc ]
+}
+[; ;main.c: 211: }
+[; ;main.c: 212: }
+[e $U 610  ]
 "213
+[e :U 608 ]
+[; ;main.c: 213: else
+[; ;main.c: 214: {
+"214
+{
+[; ;main.c: 215: LATC |= 0b00000010;
+"215
+[e =| _LATC -> -> 2 `i `uc ]
+"216
 }
 [e :U 610 ]
-[; ;main.c: 213: }
-[; ;main.c: 214: if(SinLEDtimer >= 100)
-"214
-[e $ ! >= _SinLEDtimer -> -> 100 `i `ui 611  ]
-[; ;main.c: 215: {
-"215
-{
-[; ;main.c: 216: LATC &= ~0b00001000;
-"216
-[e =& _LATC -> ~ -> 8 `i `uc ]
+[; ;main.c: 216: }
+[; ;main.c: 217: if(SinLEDtimer >= 100)
 "217
-}
-[; ;main.c: 217: }
-[e $U 612  ]
+[e $ ! >= _SinLEDtimer -> -> 100 `i `ui 611  ]
+[; ;main.c: 218: {
 "218
-[e :U 611 ]
-[; ;main.c: 218: else
-[; ;main.c: 219: {
-"219
 {
-[; ;main.c: 220: SinLEDtimer++;
+[; ;main.c: 219: LATC &= ~0b00001000;
+"219
+[e =& _LATC -> ~ -> 8 `i `uc ]
 "220
-[e ++ _SinLEDtimer -> -> 1 `i `ui ]
+}
+[; ;main.c: 220: }
+[e $U 612  ]
 "221
+[e :U 611 ]
+[; ;main.c: 221: else
+[; ;main.c: 222: {
+"222
+{
+[; ;main.c: 223: SinLEDtimer++;
+"223
+[e ++ _SinLEDtimer -> -> 1 `i `ui ]
+"224
 }
 [e :U 612 ]
-[; ;main.c: 221: }
-[; ;main.c: 222: No_Keyboard_old = No_Keyboard;
-"222
+[; ;main.c: 224: }
+[; ;main.c: 225: No_Keyboard_old = No_Keyboard;
+"225
 [e = _No_Keyboard_old _No_Keyboard ]
-"223
+"226
 }
 [e :U 602 ]
-"184
+"187
 [e $U 603  ]
 [e :U 604 ]
-[; ;main.c: 223: }
-[; ;main.c: 224: }
-"224
+[; ;main.c: 226: }
+[; ;main.c: 227: }
+"227
 [e :UE 587 ]
 }
 [a 3C 70 105 114 109 119 97 114 101 32 86 101 114 115 105 111 110 58 32 0 ]
