@@ -12,6 +12,9 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef UART_H
+#define	UART_H
+
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -105,3 +108,15 @@ void UARTstringWAIT(const unsigned char *data);
 void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 unsigned char READ_CONFIG_PIN(void);
+
+/******************************************************************************/
+/* Printf messages                                                            */
+/******************************************************************************/
+const unsigned char NoParityMSG[]   = {" with No parity bit"};
+const unsigned char OddParityMSG[]  = {" with Odd parity bit"};
+const unsigned char EvenParityMSG[] = {" with Even parity bit"};
+const unsigned char MarkParityMSG[] = {" with Mark bit"};
+const unsigned char SpaceParityMSG[] = {" with Space bit"};
+
+
+#endif	/* UART_H */

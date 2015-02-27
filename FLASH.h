@@ -12,6 +12,9 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef FLASH_H
+#define	FLASH_H
+
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -71,3 +74,5 @@ void BlockErase(unsigned int row);
 void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
+
+#endif	/* FLASH_H */

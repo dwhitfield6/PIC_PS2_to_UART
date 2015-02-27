@@ -6334,22 +6334,18 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 141 "user.h"
+# 144 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 52 "system.h"
+# 55 "system.h"
 void ConfigureOscillator(void);
 
-# 141 "user.h"
-void InitApp(void);
-void Init_System (void);
-
-# 88 "UART.h"
+# 91 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
-# 95
+# 98
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
@@ -6364,17 +6360,23 @@ void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 unsigned char READ_CONFIG_PIN(void);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
 
-# 57 "FLASH.h"
+
+
+const unsigned char NoParityMSG[] = {" with No parity bit"};
+const unsigned char OddParityMSG[] = {" with Odd parity bit"};
+const unsigned char EvenParityMSG[] = {" with Even parity bit"};
+const unsigned char MarkParityMSG[] = {" with Mark bit"};
+const unsigned char SpaceParityMSG[] = {" with Space bit"};
+
+# 60 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
-# 67
+# 70
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6383,31 +6385,24 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 54 "MISC.h"
+# 56 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
-void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-unsigned char StringContains(unsigned char* This, const unsigned char* That);
-unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-int GetEnteredNumber(unsigned char* This);
-void RemoveSpaces(unsigned char* This);
-void lowercase(unsigned char* Input);
-unsigned char StringAddEqual(unsigned char* Input);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
+unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 
-# 34 "Timer.h"
+# 37 "Timer.h"
 void Timer2Init(unsigned char time);
+void Timer2ON(void);
+void Timer2OFF(void);
+void Timer2Reset(void);
 
-# 53 "user.c"
-unsigned char Alarm =0;
+# 52 "user.c"
+extern const unsigned char Version[];
 
-# 64
+# 62
 void InitApp(void)
 {
 LATC =0;
@@ -6420,7 +6415,7 @@ TRISAbits.TRISA2 = 1;
 
 TRISCbits.TRISC0 = 1;
 
-# 79
+# 77
 TRISCbits.TRISC5 = 1;
 
 
@@ -6441,7 +6436,7 @@ WPUC = 0b00100000;
 WPUA = 0;
 }
 
-# 105
+# 103
 void Init_System (void)
 {
 unsigned long temp =0;
@@ -6459,6 +6454,18 @@ Baud = 9600;
 Parity = 0;
 }
 InitUART(Baud, Parity);
+
+
+delayUS(10000);
+UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
+delayUS(10000);
+UARTstringWAIT("Firmware Version: ");
+UARTstringWAIT(Version);
+UARTstringWAIT("\r\n");
+delayUS(10000);
+UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
+delayUS(10000);
+
 UARTstringWAIT("\r\n");
 delayUS(10000);
 sprintf(buf,"KeyBoard Baud is %lu",Baud);
@@ -6468,25 +6475,25 @@ if(Parity)
 switch (Parity)
 {
 case 1:
-UARTstringWAIT(" with Odd parity bit\r\n");
+UARTstringWAIT(OddParityMSG);
 break;
 case 2:
-UARTstringWAIT(" with Even parity bit\r\n");
+UARTstringWAIT(EvenParityMSG);
 break;
 case 3:
-UARTstringWAIT(" with Mark bit\r\n");
+UARTstringWAIT(MarkParityMSG);
 break;
 default:
-UARTstringWAIT(" with Space bit\r\n");
+UARTstringWAIT(SpaceParityMSG);
 break;
 }
 }
 else
 {
-UARTstringWAIT(" with no parity bit\r\n");
+UARTstringWAIT(NoParityMSG);
 }
+UARTstringWAIT("\r\n");
 delayUS(10000);
-
 INTCON |= 0x08;
 INTCONbits.GIE = 1;
 }

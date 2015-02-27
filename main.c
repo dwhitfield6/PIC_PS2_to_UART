@@ -45,6 +45,10 @@
  *                          Add code for 'Config' Pin on RS232 system.
  *                          Use device macro to define the use of pin RC0.
  *                          Tagged
+ * 02/26/15     1.3_DW0     Added wait to let previous character send before
+ *                            before refilling the buffer.
+ *                          Delete the check keyboard routine.
+ *                          Add code for print screen button rejection.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -84,7 +88,7 @@
 /* Version number                                                             */
 /******************************************************************************/
 
-unsigned char Version[] = {"1.2"};
+const unsigned char Version[] = {"1.3_DW0"};
 
 /******************************************************************************/
 /* Defines                                           */
@@ -93,14 +97,10 @@ unsigned char Version[] = {"1.2"};
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
-
-extern double BatteryVoltage;
-extern unsigned char Alarm;
-
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
-unsigned char No_Keyboard =TRUE;
-unsigned char No_Keyboard_old =TRUE;
+unsigned char Alarm;
+double BatteryVoltage = 0.0;
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -123,106 +123,55 @@ void main(void)
        LATC &= ~KeyLED;
        delayUS(10000);
     }
-
-    PS_2_DISABLE_INTERRUPT(CLK);
-    //let the host system initialize
-    UARTstringWAIT("\r\n");
-    delayUS(Word_Spacing);
-    UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
-    delayUS(Character_Spacing);
-    UARTstringWAIT("Firmware Version: ");
-    UARTstringWAIT(Version);
-    UARTstringWAIT("\r\n");
-    delayUS(Character_Spacing);
-    UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
-    delayUS(Word_Spacing);
-
-    //check twice for a disconnecteed keyboard then print
-    if(!Keyboard_Connected())
-    {
-        No_Keyboard =TRUE;
-        if(!Keyboard_Connected())
-        {
-            No_Keyboard =TRUE;
-        }
-        else
-        {
-            No_Keyboard = FALSE;
-        }
-    }
-    else
-    {
-        No_Keyboard =FALSE;
-    }
-
-    if(No_Keyboard)
-    {
-        UARTstringWAIT("No Keyboard connected\r\n");
-    }
-    else
-    {
-        UARTstringWAIT("Keyboard Connected\r\n");
-        if(!Init_PS_2_Send())
-        {
-            delayUS(Word_Spacing);
-            UARTstringWAIT("Initialization Fail\r\n");
-        }
-        else
-        {
-            UARTstringWAIT("Keyboard Pass!\r\n");
-        }
-    }
+        
     BatteryVoltage = ReadVoltage();
     if(BatteryVoltage < VoltageLow )
     {
-        UARTstringWAIT("Voltage too Low!\r\n");
+        UARTstringWAIT(VoltageMSG);
+        UARTstringWAIT("Low!\r\n");
     }
     else if (BatteryVoltage > VoltageHigh)
     {
-        UARTstringWAIT("Voltage too High!\r\n");
+        UARTstringWAIT(VoltageMSG);
+        UARTstringWAIT("High!\r\n");
     }
+
     PS_2_ENABLE_INTERRUPT(CLK);
-    No_Keyboard_old = No_Keyboard;
-    
+    #ifndef ARDUINO
+    PIE1bits.RCIE = 1;//rx interrupt enable
+    #endif
+
     while(1)
     {
-        PS_2_Update();
-        if(No_Keyboard == FALSE && No_Keyboard_old == TRUE)
-        {
-            UARTstringWAIT("Keyboard Connected\r\n");
-            if(!Init_PS_2_Send())
-            {
-                delayUS(Word_Spacing);
-                UARTstringWAIT("Initialization Fail\r\n");
-            }
-            else
-            {
-                UARTstringWAIT("Keyboard Pass!\r\n");
-            }
-        }
         BatteryVoltage = ReadVoltage();
+        delayUS(20);
         if(BatteryVoltage < VoltageLow || BatteryVoltage > VoltageHigh)
         {
-            pwrLEDtoggle++;
-            if(pwrLEDtoggle > pwrLEDtime)
-            {
-                LATC ^= pwrLED;
-                pwrLEDtoggle = 0;
-            }
+            Alarm = 1;
         }
         else
         {
+            Alarm = 0;
             LATC |= pwrLED;
         }
-        if(SinLEDtimer >= SinLEDTimeOut)
+        if(Alarm)
         {
-            LATC &= ~SinLED;
+            pwrLEDtoggle++;
+            if(pwrLEDtoggle == pwrLEDFlashRate)
+            {
+               pwrLEDtoggle = 0;
+               LATC ^= pwrLED;
+            }            
         }
-        else
+
+        if(SinLEDtimer < SinLEDTimeOut)
         {
             SinLEDtimer++;
         }
-        No_Keyboard_old = No_Keyboard;
+        else
+        {
+            LATC &= ~SinLED;
+        }                
     }
 }
 

@@ -24,6 +24,7 @@
  *                            of release.
  *                          Fixed Baud rate sting logic to save memory.
  *                          Added "keyboard" before every baud rate change.
+ * 02/27/15     1.3         Complete redesign.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -55,22 +56,16 @@
 #include "MISC.h"
 #include "UART.h"
 #include "FLASH.h"
+#include "Timer.h"
 
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
-
-extern unsigned int PS_2_Read_Data_FirstTEMP;
-extern unsigned int PS_2_Read_Data_SecondTEMP;
-extern unsigned int PS_2_Read_Data_ThirdTEMP;
-extern unsigned int PS_2_Read_Data_ForthTEMP;
+extern unsigned char PS_2_ScanCodes[PS2_ScanCode_Limit];
+extern unsigned char PS_2_Buffer_items;
 extern unsigned int PS_2_Read_Data_First;
 extern unsigned int PS_2_Read_Data_Second;
 extern unsigned int PS_2_Read_Data_Third;
-extern unsigned int PS_2_Read_Data_Forth;
-extern unsigned char PS_2_bits;
-extern unsigned char No_Keyboard;
-extern unsigned int Read_Timer;
 
 unsigned char i=0;
 unsigned char CapsCount=0;
@@ -88,7 +83,7 @@ unsigned char RControl=0;
 unsigned char LControl=0;
 unsigned char Delete=0;
 unsigned char BAUDMODE=0;
-volatile unsigned char ECHO=0;
+unsigned char ECHO =0;
 unsigned long BaudTyped=0;
 unsigned char ParityTyped=0;
 
@@ -107,7 +102,7 @@ void PS_2_INIT(void)
     //turn both pins to inputs and turn on the interrupt
     Clock_TRIS(INPUT);
     Data_TRIS(INPUT);
-    INIT_PS_2_INTERRUPT(CLK);
+    Timer2Init(Read_Timer_Timeout);
 }
 
 /******************************************************************************/
@@ -180,14 +175,12 @@ void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
         //clock pin is RA5
         //IOCAP |= CLK;//interrupt on Change positive edge
         IOCAN &= ~CLK;//disable interrupt on Change negative edge
-        IOCAF &= ~CLK;//clear flag
     }
     else
     {
         //data pin is RA4
         //IOCAP |= DATA;//interrupt on Change positive edge
         IOCAN &= ~DATA;//disable interrupt on Change negative edge
-        IOCAF &= ~DATA;//clear flag
     }
 }
 
@@ -202,7 +195,6 @@ void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
     {
         //clock pin is RA5
         //IOCAP |= CLK;//interrupt on Change positive edge
-        IOCAF &= ~CLK;//clear flag
         IOCAN |= CLK;//disable interrupt on Change negative edge
 
     }
@@ -210,7 +202,6 @@ void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
     {
         //data pin is RA4
         //IOCAP |= DATA;//interrupt on Change positive edge
-        IOCAF &= ~DATA;//clear flag
         IOCAN |= DATA;//disable interrupt on Change negative edge
 
     }
@@ -256,551 +247,502 @@ unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
  *   the keyboard character is ready to be decoded. This function is big and
  *   takes a lot of time to complete.
 /******************************************************************************/
-void PS_2_Update(void)
+void Process_PS2_ScanCode(void)
 {
     unsigned char temp =0;
     unsigned char buf[60];
-    //no new key pressed
-    if(Read_Timer < Read_Timer_Timeout)
-    {
-        Read_Timer++;
-    }
-    else
-    {
-        PS_2_bits = 0;
-    }
 
-    if(Read_Timer == Read_Timer_Timeout && PS_2_bits != 0)
+    if(PS_2_Buffer_items != 0)
     {
         //new key is pressed
-        PS_2_DISABLE_INTERRUPT(CLK);
-        PIE1bits.RCIE = 0;//rx interrupt disable
+        while(PS_2_Buffer_items != 0)
+        {
+            //Process all of the ScanCodes in the Buffer
+            if(PS_2_ScanCodes[0])
+            {
+                //there is a scancode here
+                PS_2_Read_Data_First    = PS_2_ScanCodes[0];
+                if(PS_2_Read_Data_First == 0xF0)
+                {
+                    PS_2_Read_Data_First    = PS_2_ScanCodes[0];
+                    PS_2_Read_Data_Second   = PS_2_ScanCodes[1];
+                    PS_2_Buffer_items -= 2;
+                    BufferShiftBack(PS_2_ScanCodes,2,PS2_ScanCode_Limit);
+                }
+                else if(PS_2_Read_Data_First == 0xE0)
+                {
+                    PS_2_Read_Data_Second   = PS_2_ScanCodes[1];
+                    if(PS_2_Read_Data_Second == 0x12)
+                    {
+                        //printscreen button not used
+                        PS_2_Read_Data_First = 0;
+                        PS_2_Read_Data_Second = 0;
+                        PS_2_Buffer_items -= 4;
+                        BufferShiftBack(PS_2_ScanCodes,4,PS2_ScanCode_Limit);
+                    }
+                    if(PS_2_Read_Data_Second == 0xF0)
+                    {
+                        PS_2_Read_Data_Third   = PS_2_ScanCodes[2];
+                        if(PS_2_Read_Data_Third == 0x7C)
+                        {
+                            //printscreen button not used
+                            PS_2_Read_Data_First = 0;
+                            PS_2_Read_Data_Second = 0;
+                            PS_2_Read_Data_Third = 0;
+                            PS_2_Buffer_items -= 6;
+                            BufferShiftBack(PS_2_ScanCodes,6,PS2_ScanCode_Limit);
+                        }
+                        else
+                        {
+                            PS_2_Buffer_items -= 3;
+                            BufferShiftBack(PS_2_ScanCodes,3,PS2_ScanCode_Limit);
+                        }
+                    }
+                    else
+                    {
+                        PS_2_Buffer_items -= 2;
+                        BufferShiftBack(PS_2_ScanCodes,2,PS2_ScanCode_Limit);
+                    }
+                }
+                else
+                {
+                    PS_2_Buffer_items -= 1;
+                    BufferShiftBack(PS_2_ScanCodes,1,PS2_ScanCode_Limit);
+                }
 
-        if(PS_2_bits >= PS_2_NUMBITS)
-        {
-            //single byte key
-            //packet received
-            PS_2_Read_Data_First = PS_2_Read_Data_FirstTEMP;
-            if(CheckSum_byte((PS_2_Read_Data_First >> 2) & 0xFF , Odd) == ((PS_2_Read_Data_First & 0x02)>> 1))
-            {
-                // CheckSum PASS
-                PS_2_Read_Data_First = ((PS_2_Read_Data_First >> 2) & 0xFF);
-                PS_2_Read_Data_First = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_First);
-                No_Keyboard = FALSE;
-            }
-            else
-            {
-                //bad keycode
-                PS_2_Read_Data_First =0;
-            }
-        }
-        if(PS_2_bits >= (PS_2_NUMBITS_2))
-        {
-            //double byte key
-            //packet received
-            PS_2_Read_Data_Second = PS_2_Read_Data_SecondTEMP;
-            if(CheckSum_byte((PS_2_Read_Data_Second >> 2) & 0xFF , Odd) == ((PS_2_Read_Data_Second & 0x02)>> 1))
-            {
-                // CheckSum PASS
-                PS_2_Read_Data_Second = ((PS_2_Read_Data_Second >> 2) & 0xFF);
-                PS_2_Read_Data_Second = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Second);
-                No_Keyboard = FALSE;
-            }
-            else
-            {
-                //bad keycode
-                PS_2_Read_Data_First =0;
-                PS_2_Read_Data_Second =0;
-            }
-        }
-        if(PS_2_bits >= (PS_2_NUMBITS_3))
-        {
-            //three byte key
-            //packet received
-            PS_2_Read_Data_Third = PS_2_Read_Data_ThirdTEMP;
-            if(CheckSum_byte((PS_2_Read_Data_Third >> 2) & 0xFF , Odd) == ((PS_2_Read_Data_Third & 0x02)>> 1))
-            {
-                // CheckSum PASS
-                PS_2_Read_Data_Third = ((PS_2_Read_Data_Third >> 2) & 0xFF);
-                PS_2_Read_Data_Third = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Third);
-                No_Keyboard = FALSE;
-            }
-            else
-            {
-                //bad key code
-                PS_2_Read_Data_First =0;
-                PS_2_Read_Data_Second =0;
-                PS_2_Read_Data_Third =0;
-            }
-        }
-        if(PS_2_bits >= (PS_2_NUMBITS_4))
-        {
-            //this is part of 2 different codes
-            //packet received
-            PS_2_Read_Data_Forth = PS_2_Read_Data_ForthTEMP;
-            if(CheckSum_byte((PS_2_Read_Data_Forth >> 2) & 0xFF , Odd) == ((PS_2_Read_Data_Forth & 0x02)>> 1))
-            {
-                // CheckSum PASS
-                PS_2_Read_Data_Forth = ((PS_2_Read_Data_Forth >> 2) & 0xFF);
-                PS_2_Read_Data_Forth = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Forth);
-                No_Keyboard = FALSE;
-            }
-            else
-            {
-                //bad key code
-                PS_2_Read_Data_First =0;
-                PS_2_Read_Data_Second =0;
-                PS_2_Read_Data_Third =0;
-                PS_2_Read_Data_Forth =0;
-            }
-        }
-
-        if(PS_2_Read_Data_Forth)
-        {
-            if(PS_2_Read_Data_First != 0xF0 && PS_2_Read_Data_Second != 0xF0 &&
-                    PS_2_Read_Data_Third != 0xF0 && PS_2_Read_Data_Forth != 0xF0)
-            {
-                //none are released codes
-                NOP();
-            }
-        }
-        else if(PS_2_Read_Data_Third)
-        {
-            //it is a three byte key
-            if(PS_2_Read_Data_First == 0xF0 && PS_2_Read_Data_Third != 0xF0 &&
-                    PS_2_Read_Data_First != 0xE0 &&
-                    PS_2_Read_Data_Second != 0xE0 &&
-                    PS_2_Read_Data_Third != 0xE0)
-            {
-                //Typed a second key before the first one was released
-                if(Decode_Scan_Code_Shift(PS_2_Read_Data_Third))
+                /* Processing Start*/
+                if(PS_2_Read_Data_Third)
                 {
-                    //there is a real ascii key for this
-                    PS_2_Read_Data_First = PS_2_Read_Data_Third;
-                    PS_2_Read_Data_Second = 0;
-                    PS_2_Read_Data_Third = 0;
-                }
-            }
-            if(PS_2_Read_Data_First == 0xE0)
-            {
-                if(PS_2_Read_Data_Second == 0xF0)
-                {
-                    if(PS_2_Read_Data_Third == 0x11 )//right ALT Key
+                    //it is a three byte key
+                    if(PS_2_Read_Data_First == 0xE0)
                     {
-                        LALT = 0;
-                    }
-                    else if(PS_2_Read_Data_Third == 0x14 )//right Control Key
-                    {
-                        LControl = 0;
-                    }
-                    else if(PS_2_Read_Data_Third == 0x71 )//delete Key
-                    {
-                        Delete = 0;
+                        if(PS_2_Read_Data_Second == 0xF0)
+                        {
+                            if(PS_2_Read_Data_Third == 0x11 )//right ALT Key
+                            {
+                                LALT = 0;
+                            }
+                            else if(PS_2_Read_Data_Third == 0x14 )//right Control Key
+                            {
+                                LControl = 0;
+                            }
+                            else if(PS_2_Read_Data_Third == 0x71 )//delete Key
+                            {
+                                Delete = 0;
+                            }
+                        }
                     }
                 }
-            }
-        }
-        else if(PS_2_Read_Data_Second)
-        {
-            //it is a 2 byte key
-            if(PS_2_Read_Data_First == 0xF0)
-            {
-                //released key
-                if(PS_2_Read_Data_Second == 0x12)//right shift released
+                else if(PS_2_Read_Data_Second)
                 {
-                    Right_Shift_Key =0;
-                }
-                else if(PS_2_Read_Data_Second == 0x59)//left shift released
-                {
-                    Left_Shift_Key =0;
-                }
-                else if(PS_2_Read_Data_Second == 0x14)//left Control Key
-                {
-                    RControl =0;
-                }
-                else if(PS_2_Read_Data_Second == 0x11 )//left ALT Key
-                {
-                    RALT =0;
-                }
-                if(PS_2_Read_Data_Second == 0x59 || PS_2_Read_Data_Second == 0x12)
-                {
-                    if(Right_Shift_Key == 0 && Left_Shift_Key == 0)
+                    //it is a 2 byte key
+                    if(PS_2_Read_Data_First == 0xF0)
                     {
+                        //released key
+                        if(PS_2_Read_Data_Second == 0x12)//right shift released
+                        {
+                            Right_Shift_Key =0;
+                        }
+                        else if(PS_2_Read_Data_Second == 0x59)//left shift released
+                        {
+                            Left_Shift_Key =0;
+                        }
+                        else if(PS_2_Read_Data_Second == 0x14)//left Control Key
+                        {
+                            RControl =0;
+                        }
+                        else if(PS_2_Read_Data_Second == 0x11 )//left ALT Key
+                        {
+                            RALT =0;
+                        }
+                        if(PS_2_Read_Data_Second == 0x59 || PS_2_Read_Data_Second == 0x12)
+                        {
+                            if(Right_Shift_Key == 0 && Left_Shift_Key == 0)
+                            {
+                                if(!Send_PS2(0xED))//Command LED
+                                {
+                                    if(!Send_PS2(0x00))//CAPS LED
+                                    {
+                                        Shift_Key = 0;//release shift key
+                                    }
+                                }
+                                if(Caps_Lock)
+                                {
+                                    CapsCount=0;
+                                    while(CapsCount<10)
+                                    {
+                                        if(!Send_PS2(0xED))//Command LED
+                                        {
+                                            if(!Send_PS2(0x04))//CAPS LED
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        CapsCount++;
+                                    }
+                                }
+                                else
+                                {
+                                    CapsCount=0;
+                                    while(CapsCount<10)
+                                    {
+                                        if(!Send_PS2(0xED))//Command LED
+                                        {
+                                            if(!Send_PS2(0x00))//CAPS LED
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        CapsCount++;
+                                    }
+                                }
+                            }
+                        }
+                        else if(PS_2_Read_Data_Second == 0x58)//CAPS Lock
+                        {
+                            Caps_Lock_Key = 0;
+                        }
+                    }
+                    else if(PS_2_Read_Data_First == 0xE0)
+                    {
+                        //it has an E0 first
+                        if(PS_2_Read_Data_Second == 0x11 )//right ALT Key
+                        {
+                            LALT = 1;
+                        }
+                        else if(PS_2_Read_Data_Second == 0x14 )//right Control Key
+                        {
+                            LControl = 1;
+                        }
+                        else if(PS_2_Read_Data_Second == 0x71 )//delete Key
+                        {
+                            Delete = 1;
+                        }
+                        if(((RControl || LControl) + (LALT || RALT) + Delete) != 3)
+                        {
+                            //include delete
+                            temp = Decode_Scan_Code_FunctionE0(PS_2_Read_Data_Second);
+                        }
+                    }
+                }
+                if(PS_2_Read_Data_First != 0 && PS_2_Read_Data_Second == 0 &&
+                        PS_2_Read_Data_Third == 0)
+                {
+                    //one byte key
+                    if(PS_2_Read_Data_First == 0x12)//Right shift key pressed
+                    {
+                        Right_Shift_Key = 1;
+                    }
+                    else if(PS_2_Read_Data_First == 0x59)//left shift key pressed
+                    {
+                        Left_Shift_Key = 1;
+                    }
+                    if((Right_Shift_Key == 1 && Right_Shift_Key_old == 0) || (Left_Shift_Key == 1 && Left_Shift_Key_old == 0))
+                    {
+                        //this is a new press
                         if(!Send_PS2(0xED))//Command LED
                         {
-                            if(!Send_PS2(0x00))//CAPS LED
+                            if(Caps_Lock)
                             {
-                                Shift_Key = 0;//release shift key
-                            }
-                        }
-                        if(Caps_Lock)
-                        {
-                            CapsCount=0;
-                            while(CapsCount<10)
-                            {
-                                if(!Send_PS2(0xED))//Command LED
+                                CapsCount=0;
+                                while(CapsCount<10)
                                 {
-                                    if(!Send_PS2(0x04))//CAPS LED
+                                    if(!Send_PS2(0xED))//Command LED
                                     {
-                                        break;
+                                        if(!Send_PS2(0x05))//CAPS LED
+                                        {
+                                            Shift_Key = 1;//release shift key
+                                            break;
+                                        }
                                     }
-                                }
-                                CapsCount++;
-                            }
-                        }
-                        else
-                        {
-                            CapsCount=0;
-                            while(CapsCount<10)
-                            {
-                                if(!Send_PS2(0xED))//Command LED
-                                {
-                                    if(!Send_PS2(0x00))//CAPS LED
-                                    {
-                                        break;
-                                    }
-                                }
-                                CapsCount++;
-                            }
-                        }
-                    }
-                }
-                else if(PS_2_Read_Data_Second == 0x58)//CAPS Lock
-                {
-                    Caps_Lock_Key = 0;
-                }
-            }
-            else if(PS_2_Read_Data_First == 0xE0)
-            {
-                //it has an E0 first
-                if(PS_2_Read_Data_Second == 0x11 )//right ALT Key
-                {
-                    LALT = 1;
-                }
-                else if(PS_2_Read_Data_Second == 0x14 )//right Control Key
-                {
-                    LControl = 1;
-                }
-                else if(PS_2_Read_Data_Second == 0x71 )//delete Key
-                {
-                    Delete = 1;
-                }
-                if(((RControl || LControl) + (LALT || RALT) + Delete) != 3)
-                {
-                    //include delete
-                    temp = Decode_Scan_Code_FunctionE0(PS_2_Read_Data_Second);
-                }
-            }
-        }
-        if(PS_2_Read_Data_First && PS_2_Read_Data_Second == 0 &&
-                PS_2_Read_Data_Third == 0 && PS_2_Read_Data_Forth == 0)
-        {
-            //one byte key
-            if(PS_2_Read_Data_First == 0x12)//Right shift key pressed
-            {
-                Right_Shift_Key = 1;
-            }
-            else if(PS_2_Read_Data_First == 0x59)//left shift key pressed
-            {
-                Left_Shift_Key = 1;
-            }
-            if((Right_Shift_Key == 1 && Right_Shift_Key_old == 0) || (Left_Shift_Key == 1 && Left_Shift_Key_old == 0))
-            {
-                //this is a new press
-                if(!Send_PS2(0xED))//Command LED
-                {
-                    if(Caps_Lock)
-                    {
-                        CapsCount=0;
-                        while(CapsCount<10)
-                        {
-                            if(!Send_PS2(0xED))//Command LED
-                            {
-                                if(!Send_PS2(0x05))//CAPS LED
-                                {
-                                    Shift_Key = 1;//release shift key
-                                    break;
-                                }
-                            }
-                            CapsCount++;
-                        }
-                    }
-                    else
-                    {
-                        CapsCount=0;
-                        while(CapsCount<10)
-                        {
-                            if(!Send_PS2(0xED))//Command LED
-                            {
-                                if(!Send_PS2(0x01))//CAPS LED
-                                {
-                                    Shift_Key = 1;//release shift key
-                                    break;
-                                }
-                            }
-                            CapsCount++;
-                        }
-                    }
-                }
-            }
-            if(PS_2_Read_Data_First == 0x14 )//left Control Key
-            {
-                RControl = 1;
-            }
-            else if(PS_2_Read_Data_First == 0x11 )//left ALT Key
-            {
-                RALT = 1;
-            }
-            else if(PS_2_Read_Data_First == 0xEE )//ECHO
-            {
-                ECHO = 1;
-            }
-            else if(PS_2_Read_Data_First == 0x58)//CAPS Lock
-            {
-                Caps_Lock_Key = 1;
-                if(Caps_Lock_Key_old == 0)
-                {
-                    if(Caps_Lock)
-                    {
-                        if(Shift_Key)
-                        {
-                            CapsCount=0;
-                            while(CapsCount<10)
-                            {
-                                if(!Send_PS2(0xED))//Command LED
-                                {
-                                    if(!Send_PS2(0x01))//CAPS LED
-                                    {
-                                        Caps_Lock =0;
-                                        break;
-                                    }
-                                }
-                                CapsCount++;
-                            }
-                        }
-                        else
-                        {
-                            CapsCount=0;
-                            while(CapsCount<10)
-                            {
-                                if(!Send_PS2(0xED))//Command LED
-                                {
-                                    if(!Send_PS2(0x00))//CAPS LED
-                                    {
-                                        Caps_Lock =0;
-                                        break;
-                                    }
-                                }
-                                CapsCount++;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if(Shift_Key)
-                        {
-                            CapsCount=0;
-                            while(CapsCount<10)
-                            {
-                                if(!Send_PS2(0xED))//Command LED
-                                {
-                                    if(!Send_PS2(0x05))//CAPS LED
-                                    {
-                                        Caps_Lock =1;
-                                        break;
-                                    }
-                                }
-                                CapsCount++;
-                            }
-                        }
-                        else
-                        {
-                            CapsCount=0;
-                            while(CapsCount<10)
-                            {
-                                if(!Send_PS2(0xED))//Command LED
-                                {
-                                    if(!Send_PS2(0x04))//CAPS LED
-                                    {
-                                        Caps_Lock =1;
-                                        break;
-                                    }
-                                }
-                                CapsCount++;
-                            }
-                        }
-                    }
-                }
-
-            }
-            else
-            {
-                if(Shift_Key ==1)
-                {
-                    //shift key is pressed
-                    temp = Decode_Scan_Code_Shift(PS_2_Read_Data_First);
-                    if(Caps_Lock)
-                    {
-                        //lowercase the letters
-                        if(temp >= 'A' && temp <= 'Z')
-                        {
-                            temp += 32;
-                        }
-                    }
-                }
-                else
-                {
-                    temp = Decode_Scan_Code(PS_2_Read_Data_First);
-                    if(Caps_Lock)
-                    {
-                        //capitalize the letters
-                        if(temp >= 'a' && temp <= 'z')
-                        {
-                            temp -= 32;
-                        }
-                    }
-                }
-                if(!temp)
-                {
-                    //it isnt an ascii represented value
-                    temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
-                }
-            }
-        }
-        if(((RControl || LControl) + (LALT || RALT) + Delete) == 3)
-        {
-            //control alt delete is pressed at the same time
-            UARTstringWAIT("\r\n");
-            delayUS(Word_Spacing);
-            if(!BAUDMODE)
-            {
-                BaudTyped =0;
-                ParityTyped =0;
-                BAUDMODE = 1;
-                UARTstringWAIT("Enter Baud rate\r\n");
-                delayUS(Word_Spacing);
-                UARTchar('>' , NO, 0);
-
-            }
-            else
-            {
-                BaudTyped = 9600;
-                UARTstringWAIT("KeyBoard Reset to 9600 with no parity bit\r\n");
-                delayUS(Word_Spacing);
-                SetBaud(BaudTyped, 0);
-                BAUDMODE = 0;
-            }
-            RControl =0;
-            LControl =0;
-            LALT =0;
-            RALT =0;
-            Delete =0;
-        }
-        if(temp)
-        {
-            //there is a value to print
-            if(temp == 0x01)
-            {
-                //break character
-                //UART_send_break();
-                UART_send_break_timed(100000);
-            }
-            else
-            {
-                if(!BAUDMODE)
-                {
-                    UARTchar(temp, NO, 0);
-                    if(temp == '\r')
-                    {
-                        delayUS(Character_Spacing);
-                        UARTchar('\n', NO, 0);
-                        delayUS(Word_Spacing);
-                    }
-                }
-                else
-                {
-                    if(ISNUMBER(temp))
-                    {
-                        BaudTyped*=10;
-                        BaudTyped += temp - 48;
-                        UARTchar(temp, NO, 0);
-                    }
-                    else if(temp == 'o' || temp == 'O')
-                    {
-                        ParityTyped = 1;//odd parity
-                        UARTchar(temp, NO, 0);
-                    }
-                    else if(temp == 'e' || temp == 'E')
-                    {
-                        ParityTyped = 2;//even parity
-                        UARTchar(temp, NO, 0);
-                    }
-                    else if(temp == 'm' || temp == 'M')
-                    {
-                        ParityTyped = 3;//mark
-                        UARTchar(temp, NO, 0);
-                    }
-                    else if(temp == 's' || temp == 'S')
-                    {
-                        ParityTyped = 4;//space
-                        UARTchar(temp, NO, 0);
-                    }
-                    else if(temp == '\r')
-                    {
-                        UARTstringWAIT("\r\n");
-                        delayUS(Word_Spacing);
-                        if(BaudTyped >=2400 && BaudTyped <= 115200)
-                        {
-                            sprintf(buf,"KeyBoard Baud will be set to %lu",BaudTyped);
-                            UARTstringWAIT(buf);
-                            if(ParityTyped)
-                            {
-                                switch (ParityTyped)
-                                {
-                                    case 1:
-                                        UARTstringWAIT(" with Odd parity bit\r\n");//Odd parity
-                                        break;
-                                    case 2:
-                                        UARTstringWAIT(" with Even parity bit\r\n");//Even parity
-                                        break;
-                                    case 3:
-                                        UARTstringWAIT(" with Mark bit\r\n");//mark
-                                        break;
-                                    default:
-                                        UARTstringWAIT(" with Space bit\r\n");//Space
-                                        break;
+                                    CapsCount++;
                                 }
                             }
                             else
                             {
-                                 UARTstringWAIT(" with no parity bit\r\n");
+                                CapsCount=0;
+                                while(CapsCount<10)
+                                {
+                                    if(!Send_PS2(0xED))//Command LED
+                                    {
+                                        if(!Send_PS2(0x01))//CAPS LED
+                                        {
+                                            Shift_Key = 1;//release shift key
+                                            break;
+                                        }
+                                    }
+                                    CapsCount++;
+                                }
                             }
-                            SetBaud(BaudTyped, ParityTyped);
+                        }
+                    }
+                    if(PS_2_Read_Data_First == 0x14 )//left Control Key
+                    {
+                        RControl = 1;
+                    }
+                    else if(PS_2_Read_Data_First == 0x11 )//left ALT Key
+                    {
+                        RALT = 1;
+                    }
+                    else if(PS_2_Read_Data_First == 0xEE )//ECHO
+                    {
+                        ECHO = 1;
+                    }
+                    else if(PS_2_Read_Data_First == 0x58)//CAPS Lock
+                    {
+                        Caps_Lock_Key = 1;
+                        if(Caps_Lock_Key_old == 0)
+                        {
+                            if(Caps_Lock)
+                            {
+                                if(Shift_Key)
+                                {
+                                    CapsCount=0;
+                                    while(CapsCount<10)
+                                    {
+                                        if(!Send_PS2(0xED))//Command LED
+                                        {
+                                            if(!Send_PS2(0x01))//CAPS LED
+                                            {
+                                                Caps_Lock =0;
+                                                break;
+                                            }
+                                        }
+                                        CapsCount++;
+                                    }
+                                }
+                                else
+                                {
+                                    CapsCount=0;
+                                    while(CapsCount<10)
+                                    {
+                                        if(!Send_PS2(0xED))//Command LED
+                                        {
+                                            if(!Send_PS2(0x00))//CAPS LED
+                                            {
+                                                Caps_Lock =0;
+                                                break;
+                                            }
+                                        }
+                                        CapsCount++;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if(Shift_Key)
+                                {
+                                    CapsCount=0;
+                                    while(CapsCount<10)
+                                    {
+                                        if(!Send_PS2(0xED))//Command LED
+                                        {
+                                            if(!Send_PS2(0x05))//CAPS LED
+                                            {
+                                                Caps_Lock =1;
+                                                break;
+                                            }
+                                        }
+                                        CapsCount++;
+                                    }
+                                }
+                                else
+                                {
+                                    CapsCount=0;
+                                    while(CapsCount<10)
+                                    {
+                                        if(!Send_PS2(0xED))//Command LED
+                                        {
+                                            if(!Send_PS2(0x04))//CAPS LED
+                                            {
+                                                Caps_Lock =1;
+                                                break;
+                                            }
+                                        }
+                                        CapsCount++;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        if(Shift_Key ==1)
+                        {
+                            //shift key is pressed
+                            temp = Decode_Scan_Code_Shift(PS_2_Read_Data_First);
+                            if(Caps_Lock)
+                            {
+                                //lowercase the letters
+                                if(temp >= 'A' && temp <= 'Z')
+                                {
+                                    temp += 32;
+                                }
+                            }
                         }
                         else
                         {
-                            UARTstringWAIT("KeyBoard Baud Out of Range\r\n");
-                            delayUS(Word_Spacing);
+                            temp = Decode_Scan_Code(PS_2_Read_Data_First);
+                            if(Caps_Lock)
+                            {
+                                //capitalize the letters
+                                if(temp >= 'a' && temp <= 'z')
+                                {
+                                    temp -= 32;
+                                }
+                            }
                         }
-                        BAUDMODE=0;
+                        if(!temp)
+                        {
+                            //it isnt an ascii represented value
+                            temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
+                        }
                     }
                 }
+                
+                if(((RControl || LControl) + (LALT || RALT) + Delete) == 3)
+                {
+                    //control alt delete is pressed at the same time
+                    UARTstringWAIT("\r\n");
+                    delayUS(Word_Spacing);
+                    if(!BAUDMODE)
+                    {
+                        BaudTyped =0;
+                        ParityTyped =0;
+                        BAUDMODE = 1;
+                        UARTstringWAIT("Enter Baud rate \r\n");
+                        delayUS(Word_Spacing);
+                        UARTchar('>' , NO, 0);
+
+                    }
+                    else
+                    {
+                        BaudTyped = 9600;
+                        UARTstringWAIT("KeyBoard Reset to 9600");
+                        UARTstringWAIT(NoParityMSG);
+                        UARTstringWAIT("\r\n");
+                        delayUS(Word_Spacing);
+                        SetBaud(BaudTyped, 0);
+                        BAUDMODE = 0;
+                    }
+                    RControl =0;
+                    LControl =0;
+                    LALT =0;
+                    RALT =0;
+                    Delete =0;
+                }
+
+                if(temp)
+                {
+                    //there is a value to print
+                    if(temp == 0x01)
+                    {
+                        //break character
+                        UART_send_break();
+                        UART_send_break_timed(100000);
+                    }
+                    else
+                    {
+                        if(!BAUDMODE)
+                        {
+                            UARTchar(temp, NO, 0);
+                            if(temp == '\r')
+                            {
+                                delayUS(Character_Spacing);
+                                UARTchar('\n', NO, 0);
+                                delayUS(Word_Spacing);
+                            }
+                        }
+                        else
+                        {
+                            if(ISNUMBER(temp))
+                            {
+                                BaudTyped*=10;
+                                BaudTyped += temp - 48;
+                                UARTchar(temp, NO, 0);
+                            }
+                            else if(temp == 'o' || temp == 'O')
+                            {
+                                ParityTyped = 1;//odd parity
+                                UARTchar(temp, NO, 0);
+                            }
+                            else if(temp == 'e' || temp == 'E')
+                            {
+                                ParityTyped = 2;//even parity
+                                UARTchar(temp, NO, 0);
+                            }
+                            else if(temp == 'm' || temp == 'M')
+                            {
+                                ParityTyped = 3;//mark
+                                UARTchar(temp, NO, 0);
+                            }
+                            else if(temp == 's' || temp == 'S')
+                            {
+                                ParityTyped = 4;//space
+                                UARTchar(temp, NO, 0);
+                            }
+                            else if(temp == '\r')
+                            {
+                                UARTstringWAIT("\r\n");
+                                delayUS(Word_Spacing);
+                                if(BaudTyped >=2400 && BaudTyped <= 115200)
+                                {
+                                    sprintf(buf,"KeyBoard Baud will be set to %lu",BaudTyped);
+                                    UARTstringWAIT(buf);
+                                    if(ParityTyped)
+                                    {
+                                        switch (ParityTyped)
+                                        {
+                                            case 1:
+                                                UARTstringWAIT(OddParityMSG);//Odd parity
+                                                break;
+                                            case 2:
+                                                UARTstringWAIT(EvenParityMSG);//Even parity
+                                                break;
+                                            case 3:
+                                                UARTstringWAIT(MarkParityMSG);//Mark parity
+                                                break;
+                                            default:
+                                                UARTstringWAIT(SpaceParityMSG);//Space parity
+                                                break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        UARTstringWAIT(NoParityMSG);
+                                    }
+                                    UARTstringWAIT("\r\n");
+                                    SetBaud(BaudTyped, ParityTyped);
+                                }
+                                else
+                                {
+                                    UARTstringWAIT("KeyBoard Baud Out of Range\r\n");
+                                    delayUS(Word_Spacing);
+                                }
+                                BAUDMODE=0;
+                            }
+                        }
+                    }
+                }
+
+                /* Processing Finish */
+                temp =0;
+                PS_2_Read_Data_First =0;
+                PS_2_Read_Data_Second =0;
+                PS_2_Read_Data_Third =0;
+                Caps_Lock_Key_old = Caps_Lock_Key;
+                Right_Shift_Key_old = Right_Shift_Key;
+                Left_Shift_Key_old = Left_Shift_Key;
+                LATC &= ~KeyLED;
+            }
+            else
+            {
+                // We have an error so clear all data
+                cleanBuffer(PS_2_ScanCodes, PS2_ScanCode_Limit);
+                PS_2_Buffer_items = 0;
             }
         }
-        PS_2_Read_Data_First =0;
-        PS_2_Read_Data_Second =0;
-        PS_2_Read_Data_Third =0;
-        PS_2_Read_Data_Forth =0;
-        PS_2_Read_Data_FirstTEMP =0;
-        PS_2_Read_Data_SecondTEMP =0;
-        PS_2_Read_Data_ThirdTEMP =0;
-        PS_2_Read_Data_ForthTEMP =0;
-        Caps_Lock_Key_old = Caps_Lock_Key;
-        Right_Shift_Key_old = Right_Shift_Key;
-        Left_Shift_Key_old = Left_Shift_Key;
-        LATC &= ~KeyLED;
-        PIE1bits.RCIE = 1;//rx interrupt enable
-        PS_2_ENABLE_INTERRUPT(CLK);
     }
 }
 
@@ -922,7 +864,6 @@ unsigned char Send_PS2(unsigned char command)
         timeout=0;
         while(!READ_PS_2_PIN(CLK))//wait till clock is brought high
         {
-            NOP();
             timeout++;
             if(timeout > PS_2_send_timeout)
             {
@@ -956,7 +897,6 @@ unsigned char Send_PS2(unsigned char command)
     timeout=0;
     while(!READ_PS_2_PIN(CLK))//wait till clock is brought high
     {
-            NOP();
             timeout++;
             if(timeout > PS_2_send_timeout)
             {
@@ -968,7 +908,6 @@ unsigned char Send_PS2(unsigned char command)
     timeout=0;
     while(READ_PS_2_PIN(CLK))//wait till clock is brought high
     {
-            NOP();
             timeout++;
             if(timeout > PS_2_send_timeout)
             {
@@ -983,7 +922,6 @@ unsigned char Send_PS2(unsigned char command)
     timeout=0;
     while(READ_PS_2_PIN(DATA))//wait till data is brought low
     {
-            NOP();
             timeout++;
             if(timeout > PS_2_send_timeout)
             {
@@ -995,7 +933,6 @@ unsigned char Send_PS2(unsigned char command)
     timeout=0;
     while(READ_PS_2_PIN(CLK))//wait till clock is brought low
     {
-            NOP();
             timeout++;
             if(timeout > PS_2_send_timeout)
             {
@@ -1007,7 +944,6 @@ unsigned char Send_PS2(unsigned char command)
     timeout=0;
     while(!READ_PS_2_PIN(DATA))//wait till data is brought HIGH
     {
-            NOP();
             timeout++;
             if(timeout > PS_2_send_timeout)
             {
@@ -1019,7 +955,6 @@ unsigned char Send_PS2(unsigned char command)
     timeout=0;
     while(!READ_PS_2_PIN(CLK))//wait till clock is brought HIGH
     {
-            NOP();
             timeout++;
             if(timeout > PS_2_send_timeout)
             {
@@ -1032,9 +967,21 @@ unsigned char Send_PS2(unsigned char command)
     //pass
     Clock_TRIS(INPUT);
     Data_TRIS(INPUT);
-    PS_2_ENABLE_INTERRUPT(CLK);
     return 0;
 }
+
+/******************************************************************************/
+/* ResendLast
+ *
+ * The function tells the keyboard to retransmit the last character.
+/******************************************************************************/
+void ResendLast(void)
+{
+    PS_2_DISABLE_INTERRUPT(CLK);    
+    //Resend last code
+    Send_PS2(0xFE);
+}
+
 
 /******************************************************************************/
 /* Init_PS_2_Send
@@ -1127,8 +1074,6 @@ unsigned char Init_PS_2_Send(void)
     {
         return 0;
     }
-    
-    PS_2_ENABLE_INTERRUPT(CLK);
     return 1;
 }
 
@@ -1146,8 +1091,7 @@ unsigned char Keyboard_Connected(void)
     PS_2_ENABLE_INTERRUPT(CLK);
     for(i=0;i<Connected_Wait;i++)
     {
-        PS_2_Update();
-        delayUS(10);
+        delayUS(1);
         if(ECHO)
         {
             break;
@@ -1162,4 +1106,28 @@ unsigned char Keyboard_Connected(void)
     {
         return 0;
     }
+}
+
+/******************************************************************************/
+/* PS2RawToScan
+ *
+ * The function converts the Raw PS2 data to scan codes;
+/******************************************************************************/
+unsigned int PS2RawToScan(unsigned int Raw)
+{
+    unsigned int temp;
+    
+    if(CheckSum_byte((Raw >> 2) & 0xFF , Odd) == ((Raw & 0x02)>> 1))
+    {
+        // CheckSum PASS
+        temp = ((Raw >> 2) & 0xFF);
+        temp = (unsigned int) Reverse_Byte((unsigned char) temp);
+
+    }
+    else
+    {
+        //bad keycode
+        temp = 0;
+    }
+    return temp;
 }

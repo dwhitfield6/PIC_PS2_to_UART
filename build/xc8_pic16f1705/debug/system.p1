@@ -4674,7 +4674,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;system.h: 52: void ConfigureOscillator(void);
+[; ;system.h: 55: void ConfigureOscillator(void);
 "40 system.c
 [v _ConfigureOscillator `(v ~T0 @X0 1 ef ]
 "41

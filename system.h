@@ -12,6 +12,9 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef SYSTEM_H
+#define	SYSTEM_H
+
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -50,3 +53,6 @@
 /******************************************************************************/
 
 void ConfigureOscillator(void); /* Handles clock switching/osc initialization */
+
+
+#endif	/* SYSTEM_H */

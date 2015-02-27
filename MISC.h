@@ -46,6 +46,8 @@
 #define SYS_FREQ_US 32
 #define Even 2
 #define Odd 3
+#define PASS 1
+#define FAIL 0
 
 /******************************************************************************/
 /* Function prototypes                                                        */
@@ -53,14 +55,7 @@
 
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
-void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-unsigned char StringContains(unsigned char* This, const unsigned char* That);
-unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-int GetEnteredNumber(unsigned char* This);
-void RemoveSpaces(unsigned char* This);
-void lowercase(unsigned char* Input);
-unsigned char StringAddEqual(unsigned char* Input);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
+unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);

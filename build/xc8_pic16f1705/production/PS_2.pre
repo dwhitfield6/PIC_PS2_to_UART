@@ -6334,31 +6334,26 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 141 "user.h"
+# 144 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 52 "system.h"
+# 55 "system.h"
 void ConfigureOscillator(void);
 
-# 64 "PS_2.h"
-unsigned int PS_2_Read_Data_FirstTEMP;
-unsigned int PS_2_Read_Data_SecondTEMP;
-unsigned int PS_2_Read_Data_ThirdTEMP;
-unsigned int PS_2_Read_Data_ForthTEMP;
+# 80 "PS_2.h"
+unsigned char PS_2_ScanCodes[12];
+unsigned char PS_2_Buffer_items = 0;
 unsigned int PS_2_Read_Data_First =0;
 unsigned int PS_2_Read_Data_Second =0;
 unsigned int PS_2_Read_Data_Third =0;
-unsigned int PS_2_Read_Data_Forth =0;
-unsigned char PS_2_bits =0;
-unsigned int Read_Timer = 20;
 
-# 79
+# 90
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK);
-void PS_2_Update(void);
+void Process_PS2_ScanCode(void);
 void PS_2_INIT(void);
 unsigned char Decode_Scan_Code(unsigned char Code);
 unsigned char Decode_Scan_Code_Shift(unsigned char Code);
@@ -6368,7 +6363,11 @@ void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK);
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK);
 unsigned char Send_PS2(unsigned char command);
 unsigned char Init_PS_2_Send(void);
+
 unsigned char Keyboard_Connected(void);
+
+unsigned int PS2RawToScan(unsigned int Raw);
+void ResendLast(void);
 
 
 const unsigned char ScanCode[113] = {
@@ -6848,36 +6847,19 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0' ,
 0x17 };
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 54 "MISC.h"
+# 56 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
-void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-unsigned char StringContains(unsigned char* This, const unsigned char* That);
-unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-int GetEnteredNumber(unsigned char* This);
-void RemoveSpaces(unsigned char* This);
-void lowercase(unsigned char* Input);
-unsigned char StringAddEqual(unsigned char* Input);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
+unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 141 "user.h"
-void InitApp(void);
-void Init_System (void);
-
-# 88 "UART.h"
+# 91 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
-# 95
+# 98
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
@@ -6892,17 +6874,23 @@ void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 unsigned char READ_CONFIG_PIN(void);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
 
-# 57 "FLASH.h"
+
+
+const unsigned char NoParityMSG[] = {" with No parity bit"};
+const unsigned char OddParityMSG[] = {" with Odd parity bit"};
+const unsigned char EvenParityMSG[] = {" with Even parity bit"};
+const unsigned char MarkParityMSG[] = {" with Mark bit"};
+const unsigned char SpaceParityMSG[] = {" with Space bit"};
+
+# 60 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
-# 67
+# 70
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6911,18 +6899,18 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 63 "PS_2.c"
-extern unsigned int PS_2_Read_Data_FirstTEMP;
-extern unsigned int PS_2_Read_Data_SecondTEMP;
-extern unsigned int PS_2_Read_Data_ThirdTEMP;
-extern unsigned int PS_2_Read_Data_ForthTEMP;
+# 37 "Timer.h"
+void Timer2Init(unsigned char time);
+void Timer2ON(void);
+void Timer2OFF(void);
+void Timer2Reset(void);
+
+# 64 "PS_2.c"
+extern unsigned char PS_2_ScanCodes[12];
+extern unsigned char PS_2_Buffer_items;
 extern unsigned int PS_2_Read_Data_First;
 extern unsigned int PS_2_Read_Data_Second;
 extern unsigned int PS_2_Read_Data_Third;
-extern unsigned int PS_2_Read_Data_Forth;
-extern unsigned char PS_2_bits;
-extern unsigned char No_Keyboard;
-extern unsigned int Read_Timer;
 
 unsigned char i=0;
 unsigned char CapsCount=0;
@@ -6940,20 +6928,20 @@ unsigned char RControl=0;
 unsigned char LControl=0;
 unsigned char Delete=0;
 unsigned char BAUDMODE=0;
-volatile unsigned char ECHO=0;
+unsigned char ECHO =0;
 unsigned long BaudTyped=0;
 unsigned char ParityTyped=0;
 
-# 105
+# 100
 void PS_2_INIT(void)
 {
 
 Clock_TRIS(1);
 Data_TRIS(1);
-INIT_PS_2_INTERRUPT(0b00100000);
+Timer2Init(255);
 }
 
-# 118
+# 113
 void Clock_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6966,7 +6954,7 @@ TRISAbits.TRISA5 = 1;
 }
 }
 
-# 135
+# 130
 void Data_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6979,7 +6967,7 @@ TRISAbits.TRISA4 = 1;
 }
 }
 
-# 153
+# 148
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
 {
 IOCAP =0;
@@ -6998,7 +6986,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-# 176
+# 171
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7006,25 +6994,22 @@ if(DATA_CLK == 0b00100000)
 
 
 IOCAN &= ~0b00100000;
-IOCAF &= ~0b00100000;
 }
 else
 {
 
 
 IOCAN &= ~0b00010000;
-IOCAF &= ~0b00010000;
 }
 }
 
-# 199
+# 192
 void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
 {
 
 
-IOCAF &= ~0b00100000;
 IOCAN |= 0b00100000;
 
 }
@@ -7032,13 +7017,12 @@ else
 {
 
 
-IOCAF &= ~0b00010000;
 IOCAN |= 0b00010000;
 
 }
 }
 
-# 224
+# 215
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7067,132 +7051,54 @@ return 0;
 }
 }
 
-# 259
-void PS_2_Update(void)
+# 250
+void Process_PS2_ScanCode(void)
 {
 unsigned char temp =0;
 unsigned char buf[60];
 
-if(Read_Timer < 20)
+if(PS_2_Buffer_items != 0)
 {
-Read_Timer++;
+
+while(PS_2_Buffer_items != 0)
+{
+
+if(PS_2_ScanCodes[0])
+{
+
+PS_2_Read_Data_First = PS_2_ScanCodes[0];
+if(PS_2_Read_Data_First == 0xF0)
+{
+PS_2_Read_Data_First = PS_2_ScanCodes[0];
+PS_2_Read_Data_Second = PS_2_ScanCodes[1];
+if(PS_2_Read_Data_Second == 0xE0)
+{
+PS_2_Read_Data_Third = PS_2_ScanCodes[2];
+PS_2_Buffer_items -= 3;
+BufferShiftBack(PS_2_ScanCodes,3,12);
 }
 else
 {
-PS_2_bits = 0;
+PS_2_Buffer_items -= 2;
+BufferShiftBack(PS_2_ScanCodes,2,12);
 }
-
-if(Read_Timer == 20 && PS_2_bits != 0)
+}
+else if(PS_2_Read_Data_First == 0xE0)
 {
-
-PS_2_DISABLE_INTERRUPT(0b00100000);
-PIE1bits.RCIE = 0;
-
-if(PS_2_bits >= 11)
-{
-
-
-PS_2_Read_Data_First = PS_2_Read_Data_FirstTEMP;
-if(CheckSum_byte((PS_2_Read_Data_First >> 2) & 0xFF , 3) == ((PS_2_Read_Data_First & 0x02)>> 1))
-{
-
-PS_2_Read_Data_First = ((PS_2_Read_Data_First >> 2) & 0xFF);
-PS_2_Read_Data_First = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_First);
-No_Keyboard = 0;
+PS_2_Read_Data_Second = PS_2_ScanCodes[1];
+PS_2_Buffer_items -= 2;
+BufferShiftBack(PS_2_ScanCodes,2,12);
 }
 else
 {
+PS_2_Buffer_items -= 1;
+BufferShiftBack(PS_2_ScanCodes,1,12);
+}
 
-PS_2_Read_Data_First =0;
-}
-}
-if(PS_2_bits >= (22))
+
+if(PS_2_Read_Data_Third)
 {
 
-
-PS_2_Read_Data_Second = PS_2_Read_Data_SecondTEMP;
-if(CheckSum_byte((PS_2_Read_Data_Second >> 2) & 0xFF , 3) == ((PS_2_Read_Data_Second & 0x02)>> 1))
-{
-
-PS_2_Read_Data_Second = ((PS_2_Read_Data_Second >> 2) & 0xFF);
-PS_2_Read_Data_Second = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Second);
-No_Keyboard = 0;
-}
-else
-{
-
-PS_2_Read_Data_First =0;
-PS_2_Read_Data_Second =0;
-}
-}
-if(PS_2_bits >= (33))
-{
-
-
-PS_2_Read_Data_Third = PS_2_Read_Data_ThirdTEMP;
-if(CheckSum_byte((PS_2_Read_Data_Third >> 2) & 0xFF , 3) == ((PS_2_Read_Data_Third & 0x02)>> 1))
-{
-
-PS_2_Read_Data_Third = ((PS_2_Read_Data_Third >> 2) & 0xFF);
-PS_2_Read_Data_Third = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Third);
-No_Keyboard = 0;
-}
-else
-{
-
-PS_2_Read_Data_First =0;
-PS_2_Read_Data_Second =0;
-PS_2_Read_Data_Third =0;
-}
-}
-if(PS_2_bits >= (44))
-{
-
-
-PS_2_Read_Data_Forth = PS_2_Read_Data_ForthTEMP;
-if(CheckSum_byte((PS_2_Read_Data_Forth >> 2) & 0xFF , 3) == ((PS_2_Read_Data_Forth & 0x02)>> 1))
-{
-
-PS_2_Read_Data_Forth = ((PS_2_Read_Data_Forth >> 2) & 0xFF);
-PS_2_Read_Data_Forth = (unsigned int) Reverse_Byte((unsigned char) PS_2_Read_Data_Forth);
-No_Keyboard = 0;
-}
-else
-{
-
-PS_2_Read_Data_First =0;
-PS_2_Read_Data_Second =0;
-PS_2_Read_Data_Third =0;
-PS_2_Read_Data_Forth =0;
-}
-}
-
-if(PS_2_Read_Data_Forth)
-{
-if(PS_2_Read_Data_First != 0xF0 && PS_2_Read_Data_Second != 0xF0 &&
-PS_2_Read_Data_Third != 0xF0 && PS_2_Read_Data_Forth != 0xF0)
-{
-
-__nop();
-}
-}
-else if(PS_2_Read_Data_Third)
-{
-
-if(PS_2_Read_Data_First == 0xF0 && PS_2_Read_Data_Third != 0xF0 &&
-PS_2_Read_Data_First != 0xE0 &&
-PS_2_Read_Data_Second != 0xE0 &&
-PS_2_Read_Data_Third != 0xE0)
-{
-
-if(Decode_Scan_Code_Shift(PS_2_Read_Data_Third))
-{
-
-PS_2_Read_Data_First = PS_2_Read_Data_Third;
-PS_2_Read_Data_Second = 0;
-PS_2_Read_Data_Third = 0;
-}
-}
 if(PS_2_Read_Data_First == 0xE0)
 {
 if(PS_2_Read_Data_Second == 0xF0)
@@ -7304,8 +7210,8 @@ temp = Decode_Scan_Code_FunctionE0(PS_2_Read_Data_Second);
 }
 }
 }
-if(PS_2_Read_Data_First && PS_2_Read_Data_Second == 0 &&
-PS_2_Read_Data_Third == 0 && PS_2_Read_Data_Forth == 0)
+if(PS_2_Read_Data_First != 0 && PS_2_Read_Data_Second == 0 &&
+PS_2_Read_Data_Third == 0)
 {
 
 if(PS_2_Read_Data_First == 0x12)
@@ -7479,6 +7385,7 @@ temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
 }
 }
 }
+
 if(((RControl || LControl) + (LALT || RALT) + Delete) == 3)
 {
 
@@ -7489,7 +7396,7 @@ if(!BAUDMODE)
 BaudTyped =0;
 ParityTyped =0;
 BAUDMODE = 1;
-UARTstringWAIT("Enter Baud rate\r\n");
+UARTstringWAIT("Enter Baud rate \r\n");
 delayUS(10000);
 UARTchar('>' , 0, 0);
 
@@ -7497,7 +7404,9 @@ UARTchar('>' , 0, 0);
 else
 {
 BaudTyped = 9600;
-UARTstringWAIT("KeyBoard Reset to 9600 with no parity bit\r\n");
+UARTstringWAIT("KeyBoard Reset to 9600");
+UARTstringWAIT(NoParityMSG);
+UARTstringWAIT("\r\n");
 delayUS(10000);
 SetBaud(BaudTyped, 0);
 BAUDMODE = 0;
@@ -7508,13 +7417,14 @@ LALT =0;
 RALT =0;
 Delete =0;
 }
+
 if(temp)
 {
 
 if(temp == 0x01)
 {
 
-
+UART_send_break();
 UART_send_break_timed(100000);
 }
 else
@@ -7570,23 +7480,24 @@ if(ParityTyped)
 switch (ParityTyped)
 {
 case 1:
-UARTstringWAIT(" with Odd parity bit\r\n");
+UARTstringWAIT(OddParityMSG);
 break;
 case 2:
-UARTstringWAIT(" with Even parity bit\r\n");
+UARTstringWAIT(EvenParityMSG);
 break;
 case 3:
-UARTstringWAIT(" with Mark bit\r\n");
+UARTstringWAIT(MarkParityMSG);
 break;
 default:
-UARTstringWAIT(" with Space bit\r\n");
+UARTstringWAIT(SpaceParityMSG);
 break;
 }
 }
 else
 {
-UARTstringWAIT(" with no parity bit\r\n");
+UARTstringWAIT(NoParityMSG);
 }
+UARTstringWAIT("\r\n");
 SetBaud(BaudTyped, ParityTyped);
 }
 else
@@ -7599,24 +7510,28 @@ BAUDMODE=0;
 }
 }
 }
+
+
+temp =0;
 PS_2_Read_Data_First =0;
 PS_2_Read_Data_Second =0;
 PS_2_Read_Data_Third =0;
-PS_2_Read_Data_Forth =0;
-PS_2_Read_Data_FirstTEMP =0;
-PS_2_Read_Data_SecondTEMP =0;
-PS_2_Read_Data_ThirdTEMP =0;
-PS_2_Read_Data_ForthTEMP =0;
 Caps_Lock_Key_old = Caps_Lock_Key;
 Right_Shift_Key_old = Right_Shift_Key;
 Left_Shift_Key_old = Left_Shift_Key;
 LATC &= ~0b00010000;
-PIE1bits.RCIE = 1;
-PS_2_ENABLE_INTERRUPT(0b00100000);
+}
+else
+{
+
+cleanBuffer(PS_2_ScanCodes, 12);
+PS_2_Buffer_items = 0;
+}
+}
 }
 }
 
-# 812
+# 734
 unsigned char Decode_Scan_Code(unsigned char Code)
 {
 Code -= 13;
@@ -7630,7 +7545,7 @@ return 0;
 }
 }
 
-# 831
+# 753
 unsigned char Decode_Scan_Code_Shift(unsigned char Code)
 {
 Code -= 13;
@@ -7644,7 +7559,7 @@ return 0;
 }
 }
 
-# 850
+# 772
 unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
 {
 Code -= 17;
@@ -7658,7 +7573,7 @@ return 0;
 }
 }
 
-# 869
+# 791
 unsigned char Decode_Scan_Code_Function(unsigned char Code)
 {
 if(Code <=131)
@@ -7671,7 +7586,7 @@ return 0;
 }
 }
 
-# 886
+# 808
 unsigned char Send_PS2(unsigned char command)
 {
 unsigned char i=0;
@@ -7711,7 +7626,6 @@ command >> = 1;
 timeout=0;
 while(!READ_PS_2_PIN(0b00100000))
 {
-__nop();
 timeout++;
 if(timeout > 15000)
 {
@@ -7745,7 +7659,6 @@ LATA &= ~0b00010000;
 timeout=0;
 while(!READ_PS_2_PIN(0b00100000))
 {
-__nop();
 timeout++;
 if(timeout > 15000)
 {
@@ -7757,7 +7670,6 @@ return 1;
 timeout=0;
 while(READ_PS_2_PIN(0b00100000))
 {
-__nop();
 timeout++;
 if(timeout > 15000)
 {
@@ -7772,7 +7684,6 @@ Data_TRIS(1);
 timeout=0;
 while(READ_PS_2_PIN(0b00010000))
 {
-__nop();
 timeout++;
 if(timeout > 15000)
 {
@@ -7784,7 +7695,6 @@ return 1;
 timeout=0;
 while(READ_PS_2_PIN(0b00100000))
 {
-__nop();
 timeout++;
 if(timeout > 15000)
 {
@@ -7796,7 +7706,6 @@ return 1;
 timeout=0;
 while(!READ_PS_2_PIN(0b00010000))
 {
-__nop();
 timeout++;
 if(timeout > 15000)
 {
@@ -7808,7 +7717,6 @@ return 1;
 timeout=0;
 while(!READ_PS_2_PIN(0b00100000))
 {
-__nop();
 timeout++;
 if(timeout > 15000)
 {
@@ -7821,11 +7729,18 @@ return 1;
 
 Clock_TRIS(1);
 Data_TRIS(1);
-PS_2_ENABLE_INTERRUPT(0b00100000);
 return 0;
 }
 
-# 1046
+# 958
+void ResendLast(void)
+{
+PS_2_DISABLE_INTERRUPT(0b00100000);
+
+Send_PS2(0xFE);
+}
+
+# 973
 unsigned char Init_PS_2_Send(void)
 {
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -7910,12 +7825,10 @@ if(Send_PS2(0x2F))
 {
 return 0;
 }
-
-PS_2_ENABLE_INTERRUPT(0b00100000);
 return 1;
 }
 
-# 1141
+# 1066
 unsigned char Keyboard_Connected(void)
 {
 unsigned long i=0;
@@ -7924,8 +7837,7 @@ Send_PS2(0xEE);
 PS_2_ENABLE_INTERRUPT(0b00100000);
 for(i=0;i<5000;i++)
 {
-PS_2_Update();
-delayUS(10);
+delayUS(1);
 if(ECHO)
 {
 break;
@@ -7940,4 +7852,24 @@ else
 {
 return 0;
 }
+}
+
+# 1096
+unsigned int PS2RawToScan(unsigned int Raw)
+{
+unsigned int temp;
+
+if(CheckSum_byte((Raw >> 2) & 0xFF , 3) == ((Raw & 0x02)>> 1))
+{
+
+temp = ((Raw >> 2) & 0xFF);
+temp = (unsigned int) Reverse_Byte((unsigned char) temp);
+
+}
+else
+{
+
+temp = 0;
+}
+return temp;
 }

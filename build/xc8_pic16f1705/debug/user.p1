@@ -46,14 +46,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _WPUC `Vuc ~T0 @X0 0 e@526 ]
 "3727
 [v _WPUA `Vuc ~T0 @X0 0 e@524 ]
-"73 FLASH.h
+"76 FLASH.h
 [v _ReadBaud `(ul ~T0 @X0 0 ef2`ui`uc ]
-"95 UART.h
+"98 UART.h
 [v _InitUART `(v ~T0 @X0 0 ef2`ul`uc ]
-"104
-[v _UARTstringWAIT `(v ~T0 @X0 0 ef1`*Cuc ]
-"54 MISC.h
+"56 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
+"107 UART.h
+[v _UARTstringWAIT `(v ~T0 @X0 0 ef1`*Cuc ]
+"52 user.c
+[v _Version `Cuc ~T0 @X0 -> 0 `x e ]
 "205 C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "335 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
@@ -4771,313 +4773,459 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 201: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 205: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 206: extern int printf(const char *, ...);
-[; ;user.h: 141: void InitApp(void);
-[; ;user.h: 142: void Init_System (void);
-[; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 141: void InitApp(void);
-[; ;user.h: 142: void Init_System (void);
-"88 UART.h
+[; ;user.h: 144: void InitApp(void);
+[; ;user.h: 145: void Init_System (void);
+[; ;system.h: 55: void ConfigureOscillator(void);
+"91 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
 -> -> -> 9600 `i `l `ul
 ]
-[; ;UART.h: 88: unsigned long BAUD = 9600;
-"89
+[; ;UART.h: 91: unsigned long BAUD = 9600;
+"92
 [v _PARITY `uc ~T0 @X0 1 e ]
 [i _PARITY
 -> -> 0 `i `uc
 ]
-[; ;UART.h: 89: unsigned char PARITY = 0;
-[; ;UART.h: 95: void InitUART(unsigned long Baud, unsigned char parity);
-[; ;UART.h: 96: void UARTstring(const unsigned char *data);
-[; ;UART.h: 97: void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
-[; ;UART.h: 98: void OpenUSART( unsigned char config, unsigned int spbrg);
-[; ;UART.h: 99: char ReadUSART(void);
-[; ;UART.h: 100: void baudUSART (unsigned char baudconfig);
+[; ;UART.h: 92: unsigned char PARITY = 0;
+[; ;UART.h: 98: void InitUART(unsigned long Baud, unsigned char parity);
+[; ;UART.h: 99: void UARTstring(const unsigned char *data);
+[; ;UART.h: 100: void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
 [; ;UART.h: 101: void OpenUSART( unsigned char config, unsigned int spbrg);
-[; ;UART.h: 102: void UART_send_break_timed(unsigned int US);
-[; ;UART.h: 103: void UART_send_break(void);
-[; ;UART.h: 104: void UARTstringWAIT(const unsigned char *data);
-[; ;UART.h: 105: void SetBaud(unsigned long Baud, unsigned char Parity);
-[; ;UART.h: 106: void CloseUSART(void );
-[; ;UART.h: 107: unsigned char READ_CONFIG_PIN(void);
-[; ;system.h: 52: void ConfigureOscillator(void);
-"57 FLASH.h
+[; ;UART.h: 102: char ReadUSART(void);
+[; ;UART.h: 103: void baudUSART (unsigned char baudconfig);
+[; ;UART.h: 104: void OpenUSART( unsigned char config, unsigned int spbrg);
+[; ;UART.h: 105: void UART_send_break_timed(unsigned int US);
+[; ;UART.h: 106: void UART_send_break(void);
+[; ;UART.h: 107: void UARTstringWAIT(const unsigned char *data);
+[; ;UART.h: 108: void SetBaud(unsigned long Baud, unsigned char Parity);
+[; ;UART.h: 109: void CloseUSART(void );
+[; ;UART.h: 110: unsigned char READ_CONFIG_PIN(void);
+"115
+[v _NoParityMSG `Cuc ~T0 @X0 -> 0 `x e ]
+[i _NoParityMSG
+:U ..
+-> 32 `c
+-> 119 `c
+-> 105 `c
+-> 116 `c
+-> 104 `c
+-> 32 `c
+-> 78 `c
+-> 111 `c
+-> 32 `c
+-> 112 `c
+-> 97 `c
+-> 114 `c
+-> 105 `c
+-> 116 `c
+-> 121 `c
+-> 32 `c
+-> 98 `c
+-> 105 `c
+-> 116 `c
+-> 0 `c
+..
+]
+[; ;UART.h: 115: const unsigned char NoParityMSG[] = {" with No parity bit"};
+"116
+[v _OddParityMSG `Cuc ~T0 @X0 -> 0 `x e ]
+[i _OddParityMSG
+:U ..
+-> 32 `c
+-> 119 `c
+-> 105 `c
+-> 116 `c
+-> 104 `c
+-> 32 `c
+-> 79 `c
+-> 100 `c
+-> 100 `c
+-> 32 `c
+-> 112 `c
+-> 97 `c
+-> 114 `c
+-> 105 `c
+-> 116 `c
+-> 121 `c
+-> 32 `c
+-> 98 `c
+-> 105 `c
+-> 116 `c
+-> 0 `c
+..
+]
+[; ;UART.h: 116: const unsigned char OddParityMSG[] = {" with Odd parity bit"};
+"117
+[v _EvenParityMSG `Cuc ~T0 @X0 -> 0 `x e ]
+[i _EvenParityMSG
+:U ..
+-> 32 `c
+-> 119 `c
+-> 105 `c
+-> 116 `c
+-> 104 `c
+-> 32 `c
+-> 69 `c
+-> 118 `c
+-> 101 `c
+-> 110 `c
+-> 32 `c
+-> 112 `c
+-> 97 `c
+-> 114 `c
+-> 105 `c
+-> 116 `c
+-> 121 `c
+-> 32 `c
+-> 98 `c
+-> 105 `c
+-> 116 `c
+-> 0 `c
+..
+]
+[; ;UART.h: 117: const unsigned char EvenParityMSG[] = {" with Even parity bit"};
+"118
+[v _MarkParityMSG `Cuc ~T0 @X0 -> 0 `x e ]
+[i _MarkParityMSG
+:U ..
+-> 32 `c
+-> 119 `c
+-> 105 `c
+-> 116 `c
+-> 104 `c
+-> 32 `c
+-> 77 `c
+-> 97 `c
+-> 114 `c
+-> 107 `c
+-> 32 `c
+-> 98 `c
+-> 105 `c
+-> 116 `c
+-> 0 `c
+..
+]
+[; ;UART.h: 118: const unsigned char MarkParityMSG[] = {" with Mark bit"};
+"119
+[v _SpaceParityMSG `Cuc ~T0 @X0 -> 0 `x e ]
+[i _SpaceParityMSG
+:U ..
+-> 32 `c
+-> 119 `c
+-> 105 `c
+-> 116 `c
+-> 104 `c
+-> 32 `c
+-> 83 `c
+-> 112 `c
+-> 97 `c
+-> 99 `c
+-> 101 `c
+-> 32 `c
+-> 98 `c
+-> 105 `c
+-> 116 `c
+-> 0 `c
+..
+]
+[; ;UART.h: 119: const unsigned char SpaceParityMSG[] = {" with Space bit"};
+"60 FLASH.h
 [v _MEM `ui ~T0 @X0 -> 2 `i e ]
 [i _MEM
 :U ..
-"59
+"62
 -> -> 0 `i `ui
-"60
+"63
 -> -> 9600 `i `ui
 ..
 ]
-[; ;FLASH.h: 57: unsigned int MEM[2] =
-[; ;FLASH.h: 58: {
-[; ;FLASH.h: 59: 0,
-[; ;FLASH.h: 60: 9600,
-[; ;FLASH.h: 61: };
-[; ;FLASH.h: 67: unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
-[; ;FLASH.h: 68: unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
-[; ;FLASH.h: 69: void UNLOCK(void);
-[; ;FLASH.h: 70: void BlockErase(unsigned int row);
-[; ;FLASH.h: 71: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
-[; ;FLASH.h: 72: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
-[; ;FLASH.h: 73: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;system.h: 52: void ConfigureOscillator(void);
-[; ;MISC.h: 54: void delayUS(long US);
-[; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 56: void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-[; ;MISC.h: 57: unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 58: unsigned char StringContains(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 59: unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 60: int GetEnteredNumber(unsigned char* This);
-[; ;MISC.h: 61: void RemoveSpaces(unsigned char* This);
-[; ;MISC.h: 62: void lowercase(unsigned char* Input);
-[; ;MISC.h: 63: unsigned char StringAddEqual(unsigned char* Input);
-[; ;MISC.h: 64: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
-[; ;Timer.h: 34: void Timer2Init(unsigned char time);
-"53 user.c
-[v _Alarm `uc ~T0 @X0 1 e ]
-[i _Alarm
--> -> 0 `i `uc
-]
-[; ;user.c: 53: unsigned char Alarm =0;
-"64
+[; ;FLASH.h: 60: unsigned int MEM[2] =
+[; ;FLASH.h: 61: {
+[; ;FLASH.h: 62: 0,
+[; ;FLASH.h: 63: 9600,
+[; ;FLASH.h: 64: };
+[; ;FLASH.h: 70: unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
+[; ;FLASH.h: 71: unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
+[; ;FLASH.h: 72: void UNLOCK(void);
+[; ;FLASH.h: 73: void BlockErase(unsigned int row);
+[; ;FLASH.h: 74: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
+[; ;FLASH.h: 75: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
+[; ;FLASH.h: 76: unsigned long ReadBaud(unsigned int row, unsigned char column);
+[; ;MISC.h: 56: void delayUS(long US);
+[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;Timer.h: 37: void Timer2Init(unsigned char time);
+[; ;Timer.h: 38: void Timer2ON(void);
+[; ;Timer.h: 39: void Timer2OFF(void);
+[; ;Timer.h: 40: void Timer2Reset(void);
+[; ;user.c: 52: extern const unsigned char Version[];
+"62 user.c
 [v _InitApp `(v ~T0 @X0 1 ef ]
-"65
+"63
 {
-[; ;user.c: 64: void InitApp(void)
-[; ;user.c: 65: {
+[; ;user.c: 62: void InitApp(void)
+[; ;user.c: 63: {
 [e :U _InitApp ]
 [f ]
-[; ;user.c: 66: LATC =0;
-"66
+[; ;user.c: 64: LATC =0;
+"64
 [e = _LATC -> -> 0 `i `uc ]
-[; ;user.c: 67: LATA =0;
-"67
+[; ;user.c: 65: LATA =0;
+"65
 [e = _LATA -> -> 0 `i `uc ]
-[; ;user.c: 68: TRISCbits.TRISC2 = 0;
-"68
+[; ;user.c: 66: TRISCbits.TRISC2 = 0;
+"66
 [e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-[; ;user.c: 69: TRISCbits.TRISC1 = 0;
-"69
+[; ;user.c: 67: TRISCbits.TRISC1 = 0;
+"67
 [e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
-[; ;user.c: 70: TRISCbits.TRISC3 = 0;
-"70
+[; ;user.c: 68: TRISCbits.TRISC3 = 0;
+"68
 [e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-[; ;user.c: 71: TRISCbits.TRISC4 = 0;
-"71
+[; ;user.c: 69: TRISCbits.TRISC4 = 0;
+"69
 [e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
-[; ;user.c: 72: TRISAbits.TRISA2 = 1;
-"72
+[; ;user.c: 70: TRISAbits.TRISA2 = 1;
+"70
 [e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-[; ;user.c: 74: TRISCbits.TRISC0 = 1;
-"74
+[; ;user.c: 72: TRISCbits.TRISC0 = 1;
+"72
 [e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
-[; ;user.c: 79: TRISCbits.TRISC5 = 1;
-"79
+[; ;user.c: 77: TRISCbits.TRISC5 = 1;
+"77
 [e = . . _TRISCbits 0 5 -> -> 1 `i `uc ]
-[; ;user.c: 82: LATC |= 0b00000010;
-"82
+[; ;user.c: 80: LATC |= 0b00000010;
+"80
 [e =| _LATC -> -> 2 `i `uc ]
-[; ;user.c: 83: PPSLOCK =0;
-"83
+[; ;user.c: 81: PPSLOCK =0;
+"81
 [e = _PPSLOCK -> -> 0 `i `uc ]
-[; ;user.c: 84: RC2PPS = 0b00010100;
-"84
+[; ;user.c: 82: RC2PPS = 0b00010100;
+"82
 [e = _RC2PPS -> -> 20 `i `uc ]
-[; ;user.c: 85: CKPPS = 0b00010010;
-"85
+[; ;user.c: 83: CKPPS = 0b00010010;
+"83
 [e = _CKPPS -> -> 18 `i `uc ]
-[; ;user.c: 87: RXPPS = 0b00010101;
-"87
+[; ;user.c: 85: RXPPS = 0b00010101;
+"85
 [e = _RXPPS -> -> 21 `i `uc ]
-[; ;user.c: 89: PPSLOCK =1;
-"89
+[; ;user.c: 87: PPSLOCK =1;
+"87
 [e = _PPSLOCK -> -> 1 `i `uc ]
-[; ;user.c: 91: ANSELA &= ~0xFF;
-"91
+[; ;user.c: 89: ANSELA &= ~0xFF;
+"89
 [e =& _ANSELA -> ~ -> 255 `i `uc ]
-[; ;user.c: 92: ANSELA |= 0b00000100;
-"92
+[; ;user.c: 90: ANSELA |= 0b00000100;
+"90
 [e =| _ANSELA -> -> 4 `i `uc ]
-[; ;user.c: 93: ANSELC &= ~0xFF;
-"93
+[; ;user.c: 91: ANSELC &= ~0xFF;
+"91
 [e =& _ANSELC -> ~ -> 255 `i `uc ]
-[; ;user.c: 94: OPTION_REGbits.nWPUEN = 0;
-"94
+[; ;user.c: 92: OPTION_REGbits.nWPUEN = 0;
+"92
 [e = . . _OPTION_REGbits 0 5 -> -> 0 `i `uc ]
-[; ;user.c: 95: WPUC = 0b00100000;
-"95
+[; ;user.c: 93: WPUC = 0b00100000;
+"93
 [e = _WPUC -> -> 32 `i `uc ]
-[; ;user.c: 96: WPUA = 0;
-"96
+[; ;user.c: 94: WPUA = 0;
+"94
 [e = _WPUA -> -> 0 `i `uc ]
-[; ;user.c: 97: }
-"97
+[; ;user.c: 95: }
+"95
 [e :UE 588 ]
 }
-"105
+"103
 [v _Init_System `(v ~T0 @X0 1 ef ]
-"106
+"104
 {
-[; ;user.c: 105: void Init_System (void)
-[; ;user.c: 106: {
+[; ;user.c: 103: void Init_System (void)
+[; ;user.c: 104: {
 [e :U _Init_System ]
 [f ]
-"107
+"105
 [v _temp `ul ~T0 @X0 1 a ]
-[; ;user.c: 107: unsigned long temp =0;
+[; ;user.c: 105: unsigned long temp =0;
 [e = _temp -> -> -> 0 `i `l `ul ]
-"108
+"106
 [v _Baud `ul ~T0 @X0 1 a ]
-[; ;user.c: 108: unsigned long Baud =0;
+[; ;user.c: 106: unsigned long Baud =0;
 [e = _Baud -> -> -> 0 `i `l `ul ]
-"109
+"107
 [v _Parity `uc ~T0 @X0 1 a ]
-[; ;user.c: 109: unsigned char Parity =0;
+[; ;user.c: 107: unsigned char Parity =0;
 [e = _Parity -> -> 0 `i `uc ]
-"110
+"108
 [v _buf `uc ~T0 @X0 -> 60 `i a ]
-[; ;user.c: 110: unsigned char buf[60];
-[; ;user.c: 112: temp = ReadBaud((0x1800 >> 5),0);
-"112
+[; ;user.c: 108: unsigned char buf[60];
+[; ;user.c: 110: temp = ReadBaud((0x1800 >> 5),0);
+"110
 [e = _temp ( _ReadBaud (2 , -> >> -> 6144 `i -> 5 `i `ui -> -> 0 `i `uc ]
-[; ;user.c: 113: Baud = temp & 0x000FFFFF;
-"113
+[; ;user.c: 111: Baud = temp & 0x000FFFFF;
+"111
 [e = _Baud & _temp -> -> 1048575 `l `ul ]
-[; ;user.c: 114: Parity = (unsigned char)((temp & 0x00F00000) >> 20);
-"114
+[; ;user.c: 112: Parity = (unsigned char)((temp & 0x00F00000) >> 20);
+"112
 [e = _Parity -> >> & _temp -> -> 15728640 `l `ul -> 20 `i `uc ]
-[; ;user.c: 115: if(Baud <2400 || Baud > 115200)
-"115
+[; ;user.c: 113: if(Baud <2400 || Baud > 115200)
+"113
 [e $ ! || < _Baud -> -> -> 2400 `i `l `ul > _Baud -> -> 115200 `l `ul 590  ]
-[; ;user.c: 116: {
-"116
+[; ;user.c: 114: {
+"114
 {
-[; ;user.c: 118: Baud = 9600;
-"118
+[; ;user.c: 116: Baud = 9600;
+"116
 [e = _Baud -> -> -> 9600 `i `l `ul ]
-[; ;user.c: 119: Parity = 0;
-"119
+[; ;user.c: 117: Parity = 0;
+"117
 [e = _Parity -> -> 0 `i `uc ]
-"120
+"118
 }
 [e :U 590 ]
-[; ;user.c: 120: }
-[; ;user.c: 121: InitUART(Baud, Parity);
-"121
+[; ;user.c: 118: }
+[; ;user.c: 119: InitUART(Baud, Parity);
+"119
 [e ( _InitUART (2 , _Baud _Parity ]
-[; ;user.c: 122: UARTstringWAIT("\r\n");
+[; ;user.c: 122: delayUS(10000);
 "122
-[e ( _UARTstringWAIT (1 :s 1C ]
-[; ;user.c: 123: delayUS(10000);
-"123
 [e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 124: sprintf(buf,"KeyBoard Baud is %lu",Baud);
+[; ;user.c: 123: UARTstringWAIT("\r\nPS/2 Keyboard to RS-232\r\n");
+"123
+[e ( _UARTstringWAIT (1 :s 1C ]
+[; ;user.c: 124: delayUS(10000);
 "124
-[e ( _sprintf (1 , (. , &U _buf :s 2C _Baud ]
-[; ;user.c: 125: UARTstringWAIT(buf);
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;user.c: 125: UARTstringWAIT("Firmware Version: ");
 "125
-[e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
-[; ;user.c: 126: if(Parity)
+[e ( _UARTstringWAIT (1 :s 2C ]
+[; ;user.c: 126: UARTstringWAIT(Version);
 "126
-[e $ ! != -> _Parity `i -> -> -> 0 `i `uc `i 591  ]
-[; ;user.c: 127: {
+[e ( _UARTstringWAIT (1 &U _Version ]
+[; ;user.c: 127: UARTstringWAIT("\r\n");
 "127
-{
-[; ;user.c: 128: switch (Parity)
-"128
-[e $U 593  ]
-[; ;user.c: 129: {
-"129
-{
-[; ;user.c: 130: case 1:
-"130
-[e :U 594 ]
-[; ;user.c: 131: UARTstringWAIT(" with Odd parity bit\r\n");
-"131
 [e ( _UARTstringWAIT (1 :s 3C ]
-[; ;user.c: 132: break;
-"132
-[e $U 592  ]
-[; ;user.c: 133: case 2:
-"133
-[e :U 595 ]
-[; ;user.c: 134: UARTstringWAIT(" with Even parity bit\r\n");
-"134
-[e ( _UARTstringWAIT (1 :s 4C ]
-[; ;user.c: 135: break;
-"135
-[e $U 592  ]
-[; ;user.c: 136: case 3:
-"136
-[e :U 596 ]
-[; ;user.c: 137: UARTstringWAIT(" with Mark bit\r\n");
-"137
-[e ( _UARTstringWAIT (1 :s 5C ]
-[; ;user.c: 138: break;
-"138
-[e $U 592  ]
-[; ;user.c: 139: default:
-"139
-[e :U 597 ]
-[; ;user.c: 140: UARTstringWAIT(" with Space bit\r\n");
-"140
-[e ( _UARTstringWAIT (1 :s 6C ]
-[; ;user.c: 141: break;
-"141
-[e $U 592  ]
-"142
-}
-[; ;user.c: 142: }
-[e $U 592  ]
+[; ;user.c: 128: delayUS(10000);
 "128
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;user.c: 129: UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
+"129
+[e ( _UARTstringWAIT (1 :s 4C ]
+[; ;user.c: 130: delayUS(10000);
+"130
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;user.c: 132: UARTstringWAIT("\r\n");
+"132
+[e ( _UARTstringWAIT (1 :s 5C ]
+[; ;user.c: 133: delayUS(10000);
+"133
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;user.c: 134: sprintf(buf,"KeyBoard Baud is %lu",Baud);
+"134
+[e ( _sprintf (1 , (. , &U _buf :s 6C _Baud ]
+[; ;user.c: 135: UARTstringWAIT(buf);
+"135
+[e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
+[; ;user.c: 136: if(Parity)
+"136
+[e $ ! != -> _Parity `i -> -> -> 0 `i `uc `i 591  ]
+[; ;user.c: 137: {
+"137
+{
+[; ;user.c: 138: switch (Parity)
+"138
+[e $U 593  ]
+[; ;user.c: 139: {
+"139
+{
+[; ;user.c: 140: case 1:
+"140
+[e :U 594 ]
+[; ;user.c: 141: UARTstringWAIT(OddParityMSG);
+"141
+[e ( _UARTstringWAIT (1 &U _OddParityMSG ]
+[; ;user.c: 142: break;
+"142
+[e $U 592  ]
+[; ;user.c: 143: case 2:
+"143
+[e :U 595 ]
+[; ;user.c: 144: UARTstringWAIT(EvenParityMSG);
+"144
+[e ( _UARTstringWAIT (1 &U _EvenParityMSG ]
+[; ;user.c: 145: break;
+"145
+[e $U 592  ]
+[; ;user.c: 146: case 3:
+"146
+[e :U 596 ]
+[; ;user.c: 147: UARTstringWAIT(MarkParityMSG);
+"147
+[e ( _UARTstringWAIT (1 &U _MarkParityMSG ]
+[; ;user.c: 148: break;
+"148
+[e $U 592  ]
+[; ;user.c: 149: default:
+"149
+[e :U 597 ]
+[; ;user.c: 150: UARTstringWAIT(SpaceParityMSG);
+"150
+[e ( _UARTstringWAIT (1 &U _SpaceParityMSG ]
+[; ;user.c: 151: break;
+"151
+[e $U 592  ]
+"152
+}
+[; ;user.c: 152: }
+[e $U 592  ]
+"138
 [e :U 593 ]
 [e [\ _Parity , $ -> -> 1 `i `uc 594
  , $ -> -> 2 `i `uc 595
  , $ -> -> 3 `i `uc 596
  597 ]
-"142
+"152
 [e :U 592 ]
-"143
+"153
 }
-[; ;user.c: 143: }
+[; ;user.c: 153: }
 [e $U 598  ]
-"144
+"154
 [e :U 591 ]
-[; ;user.c: 144: else
-[; ;user.c: 145: {
-"145
+[; ;user.c: 154: else
+[; ;user.c: 155: {
+"155
 {
-[; ;user.c: 146: UARTstringWAIT(" with no parity bit\r\n");
-"146
-[e ( _UARTstringWAIT (1 :s 7C ]
-"147
+[; ;user.c: 156: UARTstringWAIT(NoParityMSG);
+"156
+[e ( _UARTstringWAIT (1 &U _NoParityMSG ]
+"157
 }
 [e :U 598 ]
-[; ;user.c: 147: }
-[; ;user.c: 148: delayUS(10000);
-"148
+[; ;user.c: 157: }
+[; ;user.c: 158: UARTstringWAIT("\r\n");
+"158
+[e ( _UARTstringWAIT (1 :s 7C ]
+[; ;user.c: 159: delayUS(10000);
+"159
 [e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 150: INTCON |= 0x08;
-"150
+[; ;user.c: 160: INTCON |= 0x08;
+"160
 [e =| _INTCON -> -> 8 `i `uc ]
-[; ;user.c: 151: INTCONbits.GIE = 1;
-"151
+[; ;user.c: 161: INTCONbits.GIE = 1;
+"161
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;user.c: 152: }
-"152
+[; ;user.c: 162: }
+"162
 [e :UE 589 ]
 }
 [p f _sprintf 8389648 ]
-[a 2C 75 101 121 66 111 97 114 100 32 66 97 117 100 32 105 115 32 37 108 117 0 ]
-[a 7C 32 119 105 116 104 32 110 111 32 112 97 114 105 116 121 32 98 105 116 13 10 0 ]
-[a 4C 32 119 105 116 104 32 69 118 101 110 32 112 97 114 105 116 121 32 98 105 116 13 10 0 ]
-[a 3C 32 119 105 116 104 32 79 100 100 32 112 97 114 105 116 121 32 98 105 116 13 10 0 ]
-[a 5C 32 119 105 116 104 32 77 97 114 107 32 98 105 116 13 10 0 ]
-[a 6C 32 119 105 116 104 32 83 112 97 99 101 32 98 105 116 13 10 0 ]
-[a 1C 13 10 0 ]
+[a 6C 75 101 121 66 111 97 114 100 32 66 97 117 100 32 105 115 32 37 108 117 0 ]
+[a 2C 70 105 114 109 119 97 114 101 32 86 101 114 115 105 111 110 58 32 0 ]
+[a 1C 13 10 80 83 47 50 32 75 101 121 98 111 97 114 100 32 116 111 32 82 83 45 50 51 50 13 10 0 ]
+[a 4C 84 111 32 67 104 97 110 103 101 32 66 65 85 68 32 104 105 116 32 34 67 78 84 32 43 32 65 76 84 32 43 32 68 69 76 34 13 10 0 ]
+[a 3C 13 10 0 ]
+[a 5C 13 10 0 ]
+[a 7C 13 10 0 ]

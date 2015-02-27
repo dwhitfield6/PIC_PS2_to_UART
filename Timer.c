@@ -40,13 +40,45 @@
 /******************************************************************************/
 void Timer2Init(unsigned char time)
 {
-    unsigned char postscaler =0xF;// postsclaer divide by 16
-    unsigned char prescaler =3;// divid by 64
+    unsigned char postscaler =0xF;// postscaler divide by 6
+    unsigned char prescaler =3;// divide by 64
     CCP2CONbits.CCP2M = 0b1010;//generate software interrupt only 
     PR2 = time;        
     T2CON |= postscaler << 3;
     T2CON |= prescaler;
     
-    T2CONbits.TMR2ON = 1;//timer2 on
-    PIE1bits.TMR2IE = 1;//enable timer 2 interupt
+    Timer2ON();         //timer2 on
+    PIE1bits.TMR2IE = 0;//disable timer 2 interupt
+}
+
+/******************************************************************************/
+/* Timer2ON
+ *
+ * This function turns on Timer 2.
+/******************************************************************************/
+void Timer2ON(void)
+{
+    T2CONbits.TMR2ON = 1;
+}
+
+
+/******************************************************************************/
+/* Timer2OFF
+ *
+ * This function turns off Timer 2.
+/******************************************************************************/
+void Timer2OFF(void)
+{
+    T2CONbits.TMR2ON = 0;
+}
+
+
+/******************************************************************************/
+/* Timer2Reset
+ *
+ * The function resets Timer 2.
+/******************************************************************************/
+void Timer2Reset(void)
+{
+    TMR2 = 0;
 }

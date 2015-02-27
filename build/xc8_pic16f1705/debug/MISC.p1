@@ -4673,23 +4673,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;system.h: 52: void ConfigureOscillator(void);
-[; ;MISC.h: 54: void delayUS(long US);
-[; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 56: void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-[; ;MISC.h: 57: unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 58: unsigned char StringContains(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 59: unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 60: int GetEnteredNumber(unsigned char* This);
-[; ;MISC.h: 61: void RemoveSpaces(unsigned char* This);
-[; ;MISC.h: 62: void lowercase(unsigned char* Input);
-[; ;MISC.h: 63: unsigned char StringAddEqual(unsigned char* Input);
-[; ;MISC.h: 64: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
-[; ;system.h: 52: void ConfigureOscillator(void);
-[; ;user.h: 141: void InitApp(void);
-[; ;user.h: 142: void Init_System (void);
+[; ;system.h: 55: void ConfigureOscillator(void);
+[; ;MISC.h: 56: void delayUS(long US);
+[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;user.h: 144: void InitApp(void);
+[; ;user.h: 145: void Init_System (void);
 "49 MISC.c
 [v _delayUS `(v ~T0 @X0 1 ef1`l ]
 "50
@@ -4990,4 +4982,130 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.c: 152: }
 "152
 [e :UE 608 ]
+}
+"159
+[v _cleanBuffer `(v ~T0 @X0 1 ef2`*uc`i ]
+"160
+{
+[; ;MISC.c: 159: void cleanBuffer(unsigned char* data, int count)
+[; ;MISC.c: 160: {
+[e :U _cleanBuffer ]
+"159
+[v _data `*uc ~T0 @X0 1 r1 ]
+[v _count `i ~T0 @X0 1 r2 ]
+"160
+[f ]
+"161
+[v _i `uc ~T0 @X0 1 a ]
+[; ;MISC.c: 161: unsigned char i=0;
+[e = _i -> -> 0 `i `uc ]
+[; ;MISC.c: 162: for(i=0; i<count;i++)
+"162
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 614  ]
+"163
+[e :U 611 ]
+[; ;MISC.c: 163: {
+{
+[; ;MISC.c: 164: data[i]= 0;
+"164
+[e = *U + _data * -> _i `ux -> -> # *U _data `ui `ux -> -> 0 `i `uc ]
+"165
+}
+"162
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 614 ]
+[e $ < -> _i `i _count 611  ]
+[e :U 612 ]
+"165
+}
+[; ;MISC.c: 165: }
+[; ;MISC.c: 166: }
+"166
+[e :UE 610 ]
+}
+"175
+[v _BufferShiftBack `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
+"176
+{
+[; ;MISC.c: 175: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size)
+[; ;MISC.c: 176: {
+[e :U _BufferShiftBack ]
+"175
+[v _buffer `*uc ~T0 @X0 1 r1 ]
+[v _shift `uc ~T0 @X0 1 r2 ]
+[v _size `uc ~T0 @X0 1 r3 ]
+"176
+[f ]
+"177
+[v _i `uc ~T0 @X0 1 a ]
+[; ;MISC.c: 177: unsigned char i=0;
+[e = _i -> -> 0 `i `uc ]
+[; ;MISC.c: 178: if(shift > size)
+"178
+[e $ ! > -> _shift `i -> _size `i 616  ]
+[; ;MISC.c: 179: {
+"179
+{
+[; ;MISC.c: 180: return 0;
+"180
+[e ) -> -> 0 `i `uc ]
+[e $UE 615  ]
+"181
+}
+[e :U 616 ]
+[; ;MISC.c: 181: }
+[; ;MISC.c: 182: for(i = 0; i < size; i++)
+"182
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 620  ]
+"183
+[e :U 617 ]
+[; ;MISC.c: 183: {
+{
+[; ;MISC.c: 184: if(i < (size - shift))
+"184
+[e $ ! < -> _i `i - -> _size `i -> _shift `i 621  ]
+[; ;MISC.c: 185: {
+"185
+{
+[; ;MISC.c: 186: buffer[i] = buffer[i+shift];
+"186
+[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux *U + _buffer * -> + -> _i `i -> _shift `i `x -> -> # *U _buffer `i `x ]
+"187
+}
+[; ;MISC.c: 187: }
+[e $U 622  ]
+"188
+[e :U 621 ]
+[; ;MISC.c: 188: else
+[; ;MISC.c: 189: {
+"189
+{
+[; ;MISC.c: 190: buffer[i] = 0;
+"190
+[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux -> -> 0 `i `uc ]
+"191
+}
+[e :U 622 ]
+"192
+}
+"182
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 620 ]
+[e $ < -> _i `i -> _size `i 617  ]
+[e :U 618 ]
+"192
+}
+[; ;MISC.c: 191: }
+[; ;MISC.c: 192: }
+[; ;MISC.c: 193: return 1;
+"193
+[e ) -> -> 1 `i `uc ]
+[e $UE 615  ]
+[; ;MISC.c: 194: }
+"194
+[e :UE 615 ]
 }

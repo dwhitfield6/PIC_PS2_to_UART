@@ -6266,7 +6266,7 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 52 "system.h"
+# 55 "system.h"
 void ConfigureOscillator(void);
 
 # 40 "system.c"

@@ -150,3 +150,45 @@ unsigned char READ_CONFIG_PIN(void)
         }
         return 0;
 }
+
+/******************************************************************************/
+/* cleanBuffer
+ *
+ * This function sets an amount of data in the array as 0.
+/******************************************************************************/
+void cleanBuffer(unsigned char* data, int count)
+{
+    unsigned char i=0;
+    for(i=0; i<count;i++)
+    {
+        data[i]= 0;
+    }
+}
+
+/******************************************************************************/
+/* BufferShiftBack 
+ *
+ * This function shifts all of the elements in the buffer to the left the
+ * designated amount of times. The Buffer is filled with zeros on the right
+ * end.
+/******************************************************************************/
+unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size)
+{
+    unsigned char i=0;
+    if(shift > size)
+    {
+        return FAIL;
+    }
+    for(i = 0; i < size; i++)
+    {
+        if(i < (size - shift))
+        {
+            buffer[i] = buffer[i+shift];
+        }
+        else
+        {
+            buffer[i] = 0;
+        }
+    }
+    return PASS;
+}

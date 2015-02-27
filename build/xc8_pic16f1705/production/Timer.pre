@@ -6266,8 +6266,11 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 34 "Timer.h"
+# 37 "Timer.h"
 void Timer2Init(unsigned char time);
+void Timer2ON(void);
+void Timer2OFF(void);
+void Timer2Reset(void);
 
 # 41 "Timer.c"
 void Timer2Init(unsigned char time)
@@ -6279,6 +6282,24 @@ PR2 = time;
 T2CON |= postscaler << 3;
 T2CON |= prescaler;
 
+Timer2ON();
+PIE1bits.TMR2IE = 0;
+}
+
+# 59
+void Timer2ON(void)
+{
 T2CONbits.TMR2ON = 1;
-PIE1bits.TMR2IE = 1;
+}
+
+# 70
+void Timer2OFF(void)
+{
+T2CONbits.TMR2ON = 0;
+}
+
+# 81
+void Timer2Reset(void)
+{
+TMR2 = 0;
 }

@@ -16,7 +16,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PMCON2 `Vuc ~T0 @X0 0 e@406 ]
 "335
 [v _INTCON `Vuc ~T0 @X0 0 e@11 ]
-"54 MISC.h
+"56 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
@@ -4687,45 +4687,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;system.h: 52: void ConfigureOscillator(void);
-"57 FLASH.h
+[; ;system.h: 55: void ConfigureOscillator(void);
+"60 FLASH.h
 [v _MEM `ui ~T0 @X0 -> 2 `i e ]
 [i _MEM
 :U ..
-"59
+"62
 -> -> 0 `i `ui
-"60
+"63
 -> -> 9600 `i `ui
 ..
 ]
-[; ;FLASH.h: 57: unsigned int MEM[2] =
-[; ;FLASH.h: 58: {
-[; ;FLASH.h: 59: 0,
-[; ;FLASH.h: 60: 9600,
-[; ;FLASH.h: 61: };
-[; ;FLASH.h: 67: unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
-[; ;FLASH.h: 68: unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
-[; ;FLASH.h: 69: void UNLOCK(void);
-[; ;FLASH.h: 70: void BlockErase(unsigned int row);
-[; ;FLASH.h: 71: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
-[; ;FLASH.h: 72: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
-[; ;FLASH.h: 73: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;user.h: 141: void InitApp(void);
-[; ;user.h: 142: void Init_System (void);
-[; ;system.h: 52: void ConfigureOscillator(void);
-[; ;MISC.h: 54: void delayUS(long US);
-[; ;MISC.h: 55: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 56: void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-[; ;MISC.h: 57: unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 58: unsigned char StringContains(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 59: unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-[; ;MISC.h: 60: int GetEnteredNumber(unsigned char* This);
-[; ;MISC.h: 61: void RemoveSpaces(unsigned char* This);
-[; ;MISC.h: 62: void lowercase(unsigned char* Input);
-[; ;MISC.h: 63: unsigned char StringAddEqual(unsigned char* Input);
-[; ;MISC.h: 64: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 65: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 66: unsigned char ISNUMBER(unsigned char ascii);
+[; ;FLASH.h: 60: unsigned int MEM[2] =
+[; ;FLASH.h: 61: {
+[; ;FLASH.h: 62: 0,
+[; ;FLASH.h: 63: 9600,
+[; ;FLASH.h: 64: };
+[; ;FLASH.h: 70: unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
+[; ;FLASH.h: 71: unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
+[; ;FLASH.h: 72: void UNLOCK(void);
+[; ;FLASH.h: 73: void BlockErase(unsigned int row);
+[; ;FLASH.h: 74: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
+[; ;FLASH.h: 75: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
+[; ;FLASH.h: 76: unsigned long ReadBaud(unsigned int row, unsigned char column);
+[; ;user.h: 144: void InitApp(void);
+[; ;user.h: 145: void Init_System (void);
+[; ;MISC.h: 56: void delayUS(long US);
+[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 "43 FLASH.c
 [v _ReadFlash_2Byte `(ui ~T0 @X0 1 ef2`ui`uc ]
 "44

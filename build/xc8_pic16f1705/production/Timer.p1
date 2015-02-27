@@ -17,6 +17,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PR2 `Vuc ~T0 @X0 0 e@27 ]
 "921
 [v _T2CON `Vuc ~T0 @X0 0 e@28 ]
+"38 Timer.h
+[v _Timer2ON `(v ~T0 @X0 0 ef ]
+"1090 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
+[s S64 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S64 . TMR1IE TMR2IE CCP1IE SSP1IE TXIE RCIE ADIE TMR1GIE ]
+"1100
+[s S65 :2 `uc 1 :1 `uc 1 ]
+[n S65 . . CCPIE ]
+"1089
+[u S63 `S64 1 `S65 1 ]
+[n S63 . . . ]
+"1105
+[v _PIE1bits `VS63 ~T0 @X0 0 e@145 ]
 "927
 [s S57 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
 [n S57 . T2CKPS TMR2ON T2OUTPS ]
@@ -28,17 +41,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S56 . . . ]
 "942
 [v _T2CONbits `VS56 ~T0 @X0 0 e@28 ]
-"1090
-[s S64 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S64 . TMR1IE TMR2IE CCP1IE SSP1IE TXIE RCIE ADIE TMR1GIE ]
-"1100
-[s S65 :2 `uc 1 :1 `uc 1 ]
-[n S65 . . CCPIE ]
-"1089
-[u S63 `S64 1 `S65 1 ]
-[n S63 . . . ]
-"1105
-[v _PIE1bits `VS63 ~T0 @X0 0 e@145 ]
+"883
+[v _TMR2 `Vuc ~T0 @X0 0 e@26 ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16f1705.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -4708,7 +4712,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;Timer.h: 34: void Timer2Init(unsigned char time);
+[; ;Timer.h: 37: void Timer2Init(unsigned char time);
+[; ;Timer.h: 38: void Timer2ON(void);
+[; ;Timer.h: 39: void Timer2OFF(void);
+[; ;Timer.h: 40: void Timer2Reset(void);
 "41 Timer.c
 [v _Timer2Init `(v ~T0 @X0 1 ef1`uc ]
 "42
@@ -4740,13 +4747,58 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Timer.c: 48: T2CON |= prescaler;
 "48
 [e =| _T2CON _prescaler ]
-[; ;Timer.c: 50: T2CONbits.TMR2ON = 1;
+[; ;Timer.c: 50: Timer2ON();
 "50
-[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
-[; ;Timer.c: 51: PIE1bits.TMR2IE = 1;
+[e ( _Timer2ON ..  ]
+[; ;Timer.c: 51: PIE1bits.TMR2IE = 0;
 "51
-[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
+[e = . . _PIE1bits 0 1 -> -> 0 `i `uc ]
 [; ;Timer.c: 52: }
 "52
 [e :UE 587 ]
+}
+"59
+[v _Timer2ON `(v ~T0 @X0 1 ef ]
+"60
+{
+[; ;Timer.c: 59: void Timer2ON(void)
+[; ;Timer.c: 60: {
+[e :U _Timer2ON ]
+[f ]
+[; ;Timer.c: 61: T2CONbits.TMR2ON = 1;
+"61
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+[; ;Timer.c: 62: }
+"62
+[e :UE 588 ]
+}
+"70
+[v _Timer2OFF `(v ~T0 @X0 1 ef ]
+"71
+{
+[; ;Timer.c: 70: void Timer2OFF(void)
+[; ;Timer.c: 71: {
+[e :U _Timer2OFF ]
+[f ]
+[; ;Timer.c: 72: T2CONbits.TMR2ON = 0;
+"72
+[e = . . _T2CONbits 0 1 -> -> 0 `i `uc ]
+[; ;Timer.c: 73: }
+"73
+[e :UE 589 ]
+}
+"81
+[v _Timer2Reset `(v ~T0 @X0 1 ef ]
+"82
+{
+[; ;Timer.c: 81: void Timer2Reset(void)
+[; ;Timer.c: 82: {
+[e :U _Timer2Reset ]
+[f ]
+[; ;Timer.c: 83: TMR2 = 0;
+"83
+[e = _TMR2 -> -> 0 `i `uc ]
+[; ;Timer.c: 84: }
+"84
+[e :UE 590 ]
 }

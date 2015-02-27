@@ -16,6 +16,9 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef USER_H
+#define	USER_H
+
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -89,13 +92,13 @@
  *
 /******************************************************************************/
 
-#define SinLEDTimeOut 100
-#define pwrLEDtime    1000
+#define SinLEDTimeOut       100
+#define pwrLEDFlashRate     100
 #define BlinkDelay    4
 
 #ifdef RS232
-#define VoltageLow 5.85
-#define VoltageHigh 20.0
+#define VoltageLow 6.55
+#define VoltageHigh 30.0
 #else
 #define VoltageLow 4.65
 #define VoltageHigh 5.35
@@ -140,3 +143,6 @@
 
 void InitApp(void);        
 void Init_System (void);
+
+
+#endif	/* USER_H */

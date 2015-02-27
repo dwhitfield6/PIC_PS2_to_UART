@@ -39,6 +39,8 @@
 #include "UART.h"
 #include "FLASH.h"
 #include "user.h"
+#include "Timer.h"
+#include "MISC.h"
 
 /******************************************************************************/
 /* Interrupt Routines                                                         */
@@ -54,16 +56,14 @@
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
 
-extern unsigned int PS_2_Read_Data_FirstTEMP;
-extern unsigned int PS_2_Read_Data_SecondTEMP;
-extern unsigned int PS_2_Read_Data_ThirdTEMP;
-extern unsigned int PS_2_Read_Data_ForthTEMP;
-extern unsigned char PS_2_bits;
-extern unsigned int Read_Timer;
-extern unsigned char Alarm;
+extern unsigned char PS_2_ScanCodes[PS2_ScanCode_Limit];
+extern unsigned char PS_2_Buffer_items;
 extern unsigned int SinLEDtimer;
 
-unsigned char blinkdelay =0;
+unsigned int PS_2_Read_Data_TEMP = 0;
+unsigned char PS_2_bits = 0;
+
+unsigned char ResendLastFlag = 0;
 
 
 /******************************************************************************/
@@ -72,56 +72,55 @@ unsigned char blinkdelay =0;
 void interrupt isr(void)
 {
     unsigned char rx;
-    unsigned char Rx_fault =0;   
+    unsigned char Rx_fault =0;
+    unsigned char ScanTemp;
 
     if(IOCAF & CLK)
     {
         //Change on PS_2 clk pin
+        PS_2_DISABLE_INTERRUPT(CLK);
+        PIE1bits.TMR2IE = 0;//disable timer 2 interrupt
+        PIE1bits.RCIE = 0;  //disable UART receive interrupt
         LATC |= KeyLED;
-        if(PS_2_bits <PS_2_NUMBITS_4)
+        PS_2_bits++;
+        PS_2_Read_Data_TEMP <<= 1;
+        NOP();
+        if(READ_PS_2_PIN(DATA))
         {
-            if(PS_2_bits <PS_2_NUMBITS )
-            {
-                PS_2_Read_Data_FirstTEMP <<= 1;
-                if(READ_PS_2_PIN(DATA))
-                {
-                    PS_2_Read_Data_FirstTEMP++;
-                }
-                PS_2_Read_Data_SecondTEMP = 0;
-                PS_2_Read_Data_ThirdTEMP = 0;
-            }
-            else if(PS_2_bits <PS_2_NUMBITS_2 )
-            {
-                PS_2_Read_Data_SecondTEMP <<= 1;
-                if(READ_PS_2_PIN(DATA))
-                {
-                    PS_2_Read_Data_SecondTEMP++;
-                }
-            }
-            else if(PS_2_bits <PS_2_NUMBITS_3 )
-            {
-                PS_2_Read_Data_ThirdTEMP <<= 1;
-                if(READ_PS_2_PIN(DATA))
-                {
-                    PS_2_Read_Data_ThirdTEMP++;
-                }
-            }
-            else
-            {
-                PS_2_Read_Data_ForthTEMP <<= 1;
-                if(READ_PS_2_PIN(DATA))
-                {
-                    PS_2_Read_Data_ForthTEMP++;
-                }
-            }
-            PS_2_bits++;
-            Read_Timer = 0;
+            PS_2_Read_Data_TEMP++;
         }
-        IOCAF &= ~CLK;
+        if(PS_2_bits == PS_2_NUMBITS)
+        {
+            if(PS_2_Buffer_items < PS2_ScanCode_Limit)
+            {
+                ScanTemp = (unsigned char) PS2RawToScan(PS_2_Read_Data_TEMP);
+                if(ScanTemp)
+                {
+                    // Passed checksum
+                    PS_2_ScanCodes[PS_2_Buffer_items] = ScanTemp;
+                    PS_2_Buffer_items++;
+                }
+                else
+                {
+                    // Resend last character
+                    ResendLastFlag = 1;
+                }
+                
+            }
+            PS_2_bits = 0;            
+            PS_2_Read_Data_TEMP = 0;
+        }
+        Timer2Reset();
+        PIR1bits.TMR2IF = 0;
+        PIE1bits.TMR2IE = 1;//enable timer 2 interupt
+        Timer2ON();
+        IOCAF &= ~CLK; /* Clear the flag */
+        PS_2_ENABLE_INTERRUPT(CLK);
     }
     else if (IOCAF & DATA)
     {
-        IOCAF &= ~DATA;
+        PS_2_DISABLE_INTERRUPT(DATA);
+        IOCAF &= ~DATA; /* Clear the flag */
     }
     else if (PIR1bits.RCIF)
     {
@@ -172,26 +171,25 @@ void interrupt isr(void)
     {
         //Not used in this version
         PIE1bits.TMR2IE = 0;//disable timer 2 interupt
-        blinkdelay++;LATC ^= pwrLED;
-        if(blinkdelay > BlinkDelay)
+        Timer2OFF();
+        PS_2_DISABLE_INTERRUPT(CLK);
+        PS_2_bits = 0;
+        PS_2_Read_Data_TEMP = 0;
+        if(ResendLastFlag)
         {
-            if(Alarm)
-            {
-                NOP();
-            }
-            else
-            {
-                LATC |= pwrLED;
-            }
-            blinkdelay =0;
+            // Send the Resend command
+            ResendLast();
+            ResendLastFlag = 0;
         }
+        else
+        {
+            Process_PS2_ScanCode();
+        }
+        #ifndef ARDUINO
+        PIE1bits.RCIE = 1;//rx interrupt enable
+        #endif
+        PS_2_ENABLE_INTERRUPT(CLK);
         PIR1bits.TMR2IF =0;
-        //PIE1bits.TMR2IE = 1;//enable timer 2 interupt
-    }
-    else
-    {
-        /* Unhandled interrupts */
-        NOP();
     }
 }
 #endif

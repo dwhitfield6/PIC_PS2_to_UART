@@ -6266,43 +6266,26 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 52 "system.h"
+# 55 "system.h"
 void ConfigureOscillator(void);
 
-# 141 "user.h"
+# 144 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 54 "MISC.h"
+# 56 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
-void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-unsigned char StringContains(unsigned char* This, const unsigned char* That);
-unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-int GetEnteredNumber(unsigned char* This);
-void RemoveSpaces(unsigned char* This);
-void lowercase(unsigned char* Input);
-unsigned char StringAddEqual(unsigned char* Input);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
+unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 141 "user.h"
-void InitApp(void);
-void Init_System (void);
-
-# 88 "UART.h"
+# 91 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
-# 95
+# 98
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
@@ -6317,27 +6300,28 @@ void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 unsigned char READ_CONFIG_PIN(void);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
 
-# 64 "PS_2.h"
-unsigned int PS_2_Read_Data_FirstTEMP;
-unsigned int PS_2_Read_Data_SecondTEMP;
-unsigned int PS_2_Read_Data_ThirdTEMP;
-unsigned int PS_2_Read_Data_ForthTEMP;
+
+
+const unsigned char NoParityMSG[] = {" with No parity bit"};
+const unsigned char OddParityMSG[] = {" with Odd parity bit"};
+const unsigned char EvenParityMSG[] = {" with Even parity bit"};
+const unsigned char MarkParityMSG[] = {" with Mark bit"};
+const unsigned char SpaceParityMSG[] = {" with Space bit"};
+
+# 80 "PS_2.h"
+unsigned char PS_2_ScanCodes[12];
+unsigned char PS_2_Buffer_items = 0;
 unsigned int PS_2_Read_Data_First =0;
 unsigned int PS_2_Read_Data_Second =0;
 unsigned int PS_2_Read_Data_Third =0;
-unsigned int PS_2_Read_Data_Forth =0;
-unsigned char PS_2_bits =0;
-unsigned int Read_Timer = 20;
 
-# 79
+# 90
 void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK);
-void PS_2_Update(void);
+void Process_PS2_ScanCode(void);
 void PS_2_INIT(void);
 unsigned char Decode_Scan_Code(unsigned char Code);
 unsigned char Decode_Scan_Code_Shift(unsigned char Code);
@@ -6347,7 +6331,11 @@ void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK);
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK);
 unsigned char Send_PS2(unsigned char command);
 unsigned char Init_PS_2_Send(void);
+
 unsigned char Keyboard_Connected(void);
+
+unsigned int PS2RawToScan(unsigned int Raw);
+void ResendLast(void);
 
 
 const unsigned char ScanCode[113] = {
@@ -6827,17 +6815,14 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0' ,
 0x17 };
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 57 "FLASH.h"
+# 60 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
-# 67
+# 70
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6846,29 +6831,27 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 141 "user.h"
-void InitApp(void);
-void Init_System (void);
-
-# 83 "ADC.h"
+# 85 "ADC.h"
 double ReadVoltage(void);
 void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 void ShutDown_ADC(void);
 
-# 87 "main.c"
-unsigned char Version[] = {"1.2"};
 
-# 97
-extern double BatteryVoltage;
-extern unsigned char Alarm;
 
+
+const unsigned char VoltageMSG[] = {"Voltage too "};
+
+# 90 "main.c"
+const unsigned char Version[] = {"1.3_DW0"};
+
+# 99
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
-unsigned char No_Keyboard =1;
-unsigned char No_Keyboard_old =1;
+unsigned char Alarm;
+double BatteryVoltage = 0.0;
 
-# 109
+# 108
 void main(void)
 {
 unsigned char i=0;
@@ -6887,105 +6870,54 @@ LATC &= ~0b00010000;
 delayUS(10000);
 }
 
-PS_2_DISABLE_INTERRUPT(0b00100000);
-
-UARTstringWAIT("\r\n");
-delayUS(10000);
-UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
-delayUS(5000);
-UARTstringWAIT("Firmware Version: ");
-UARTstringWAIT(Version);
-UARTstringWAIT("\r\n");
-delayUS(5000);
-UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
-delayUS(10000);
-
-
-if(!Keyboard_Connected())
-{
-No_Keyboard =1;
-if(!Keyboard_Connected())
-{
-No_Keyboard =1;
-}
-else
-{
-No_Keyboard = 0;
-}
-}
-else
-{
-No_Keyboard =0;
-}
-
-if(No_Keyboard)
-{
-UARTstringWAIT("No Keyboard connected\r\n");
-}
-else
-{
-UARTstringWAIT("Keyboard Connected\r\n");
-if(!Init_PS_2_Send())
-{
-delayUS(10000);
-UARTstringWAIT("Initialization Fail\r\n");
-}
-else
-{
-UARTstringWAIT("Keyboard Pass!\r\n");
-}
-}
 BatteryVoltage = ReadVoltage();
-if(BatteryVoltage < 5.85 )
+if(BatteryVoltage < 6.55 )
 {
-UARTstringWAIT("Voltage too Low!\r\n");
+UARTstringWAIT(VoltageMSG);
+UARTstringWAIT("Low!\r\n");
 }
-else if (BatteryVoltage > 20.0)
+else if (BatteryVoltage > 30.0)
 {
-UARTstringWAIT("Voltage too High!\r\n");
+UARTstringWAIT(VoltageMSG);
+UARTstringWAIT("High!\r\n");
 }
+
 PS_2_ENABLE_INTERRUPT(0b00100000);
-No_Keyboard_old = No_Keyboard;
+
+PIE1bits.RCIE = 1;
+
 
 while(1)
 {
-PS_2_Update();
-if(No_Keyboard == 0 && No_Keyboard_old == 1)
-{
-UARTstringWAIT("Keyboard Connected\r\n");
-if(!Init_PS_2_Send())
-{
-delayUS(10000);
-UARTstringWAIT("Initialization Fail\r\n");
-}
-else
-{
-UARTstringWAIT("Keyboard Pass!\r\n");
-}
-}
 BatteryVoltage = ReadVoltage();
-if(BatteryVoltage < 5.85 || BatteryVoltage > 20.0)
+delayUS(20);
+if(BatteryVoltage < 6.55 || BatteryVoltage > 30.0)
 {
-pwrLEDtoggle++;
-if(pwrLEDtoggle > 1000)
-{
-LATC ^= 0b00000010;
-pwrLEDtoggle = 0;
-}
+Alarm = 1;
 }
 else
 {
+Alarm = 0;
 LATC |= 0b00000010;
 }
-if(SinLEDtimer >= 100)
+if(Alarm)
 {
-LATC &= ~0b00001000;
+pwrLEDtoggle++;
+if(pwrLEDtoggle == 100)
+{
+pwrLEDtoggle = 0;
+LATC ^= 0b00000010;
 }
-else
+}
+
+if(SinLEDtimer < 100)
 {
 SinLEDtimer++;
 }
-No_Keyboard_old = No_Keyboard;
+else
+{
+LATC &= ~0b00001000;
+}
 }
 }
 

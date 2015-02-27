@@ -12,6 +12,8 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef ADC_H
+#define	ADC_H
 
 #if defined(__XC)
     #include <xc.h>        /* XC8 General Include File */
@@ -84,3 +86,10 @@ double ReadVoltage(void);
 void DisableInternalADC(void);
 unsigned int InternalADC_Read(unsigned char channel);
 void ShutDown_ADC(void);
+
+/******************************************************************************/
+/* Printf messages                                                            */
+/******************************************************************************/
+const unsigned char VoltageMSG[] = {"Voltage too "};
+
+#endif	/* ADC_H */

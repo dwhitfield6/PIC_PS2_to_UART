@@ -6266,17 +6266,17 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdbool.h"
 typedef unsigned char bool;
 
-# 52 "system.h"
+# 55 "system.h"
 void ConfigureOscillator(void);
 
-# 57 "FLASH.h"
+# 60 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
-# 67
+# 70
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6285,27 +6285,17 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 141 "user.h"
+# 144 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 54 "MISC.h"
+# 56 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
-void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-unsigned char StringContains(unsigned char* This, const unsigned char* That);
-unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-int GetEnteredNumber(unsigned char* This);
-void RemoveSpaces(unsigned char* This);
-void lowercase(unsigned char* Input);
-unsigned char StringAddEqual(unsigned char* Input);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
+unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 
 # 43 "FLASH.c"
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column)

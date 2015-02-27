@@ -12,6 +12,9 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef TIMER_H
+#define	TIMER_H
+
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -32,3 +35,8 @@
 /******************************************************************************/
 
 void Timer2Init(unsigned char time);
+void Timer2ON(void);
+void Timer2OFF(void);
+void Timer2Reset(void);
+
+#endif	/* TIMER_H */

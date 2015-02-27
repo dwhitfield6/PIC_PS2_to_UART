@@ -49,9 +49,7 @@
 /******************************************************************************/
 /* User Global Variable Declaration                                           */
 /******************************************************************************/
-
-unsigned char Alarm =0;
-
+extern const unsigned char Version[];
 /******************************************************************************/
 /* Functions
 /******************************************************************************/
@@ -119,6 +117,18 @@ void Init_System (void)
         Parity = 0;
     }
     InitUART(Baud, Parity);
+
+    //Start message
+    delayUS(Word_Spacing);
+    UARTstringWAIT("\r\nPS/2 Keyboard to RS-232\r\n");
+    delayUS(Word_Spacing);
+    UARTstringWAIT("Firmware Version: ");
+    UARTstringWAIT(Version);
+    UARTstringWAIT("\r\n");
+    delayUS(Word_Spacing);
+    UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
+    delayUS(Word_Spacing);
+
     UARTstringWAIT("\r\n");
     delayUS(Word_Spacing);
     sprintf(buf,"KeyBoard Baud is %lu",Baud);
@@ -128,25 +138,25 @@ void Init_System (void)
         switch (Parity)
         {
             case 1:
-                UARTstringWAIT(" with Odd parity bit\r\n");//Odd parity
+                UARTstringWAIT(OddParityMSG);//Odd parity
                 break;
             case 2:
-                UARTstringWAIT(" with Even parity bit\r\n");//Even parity
+                UARTstringWAIT(EvenParityMSG);//Even parity
                 break;
             case 3:
-                UARTstringWAIT(" with Mark bit\r\n");//mark
+                UARTstringWAIT(MarkParityMSG);//Mark parity
                 break;
             default:
-                UARTstringWAIT(" with Space bit\r\n");//Space
+                UARTstringWAIT(SpaceParityMSG);//Space parity
                 break;
         }
     }
     else
     {
-        UARTstringWAIT(" with no parity bit\r\n");
+        UARTstringWAIT(NoParityMSG);
     }
+    UARTstringWAIT("\r\n");
     delayUS(Word_Spacing);
-    //Timer2Init(0xFF);
     INTCON |= iocie;// int on change
     INTCONbits.GIE = 1;
 }

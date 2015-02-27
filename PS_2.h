@@ -12,6 +12,9 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef PS_2_H
+#define	PS_2_H
+
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -33,10 +36,27 @@
 /* PS/2 scan code Timer
  *
  * This parameter modifies the timeout. If the value is too small and then we
- *   get repeat letters. If it is too big then we miss scan codes.
+ *  get repeat letters. If it is too big then we miss scan codes. Largest is
+ *  255.
 /******************************************************************************/
 
-#define Read_Timer_Timeout 20
+#define Read_Timer_Timeout 255
+
+/******************************************************************************/
+/* PS2_ScanCode_Limit
+ *
+ * Maximum number of Scan code items currently in the que.
+/******************************************************************************/
+
+#define PS2_ScanCode_Limit 12
+
+/******************************************************************************/
+/* KeyboardConnectedTimeout
+ *
+ * Length of loopcounts to wait before checking if the keyboard is connected.
+/******************************************************************************/
+
+#define KeyboardConnectedTimeout 1000
 
 /******************************************************************************/
 /* Defines                                                                    */
@@ -49,9 +69,6 @@
 #define CLK 0b00100000
 #define DATA 0b00010000
 #define PS_2_NUMBITS   11
-#define PS_2_NUMBITS_2 22
-#define PS_2_NUMBITS_3 33
-#define PS_2_NUMBITS_4 44
 #define PS_2_send_timeout 15000
 #define Connected_Wait    5000
 #define TRUE 1
@@ -60,17 +77,11 @@
 /******************************************************************************/
 /* Global Variables                                                           */
 /******************************************************************************/
-
-unsigned int PS_2_Read_Data_FirstTEMP;
-unsigned int PS_2_Read_Data_SecondTEMP;
-unsigned int PS_2_Read_Data_ThirdTEMP;
-unsigned int PS_2_Read_Data_ForthTEMP;
+unsigned char PS_2_ScanCodes[PS2_ScanCode_Limit];
+unsigned char PS_2_Buffer_items = 0;
 unsigned int PS_2_Read_Data_First =0;
 unsigned int PS_2_Read_Data_Second =0;
 unsigned int PS_2_Read_Data_Third =0;
-unsigned int PS_2_Read_Data_Forth =0;
-unsigned char PS_2_bits =0;
-unsigned int Read_Timer = Read_Timer_Timeout;
 
 /******************************************************************************/
 /* Function prototypes                                                        */
@@ -80,7 +91,7 @@ void Clock_TRIS(unsigned char direction);
 void Data_TRIS(unsigned char direction);
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK);
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK);
-void PS_2_Update(void);
+void Process_PS2_ScanCode(void);
 void PS_2_INIT(void);
 unsigned char Decode_Scan_Code(unsigned char Code);
 unsigned char Decode_Scan_Code_Shift(unsigned char Code);
@@ -90,7 +101,11 @@ void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK);
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK);
 unsigned char Send_PS2(unsigned char command);
 unsigned char Init_PS_2_Send(void);
+#ifndef ReducedMem
 unsigned char Keyboard_Connected(void);
+#endif
+unsigned int PS2RawToScan(unsigned int Raw);
+void ResendLast(void);
 
 //offset is 13
 const unsigned char ScanCode[113] = {
@@ -569,3 +584,6 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0'    ,
 '\0'    ,
 0x17    };//page down
+
+
+#endif	/* PS_2_H */

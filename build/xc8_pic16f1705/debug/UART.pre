@@ -6334,25 +6334,18 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 52 "system.h"
+# 55 "system.h"
 void ConfigureOscillator(void);
 
-# 141 "user.h"
+# 144 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 141 "user.h"
-void InitApp(void);
-void Init_System (void);
-
-# 88 "UART.h"
+# 91 "UART.h"
 unsigned long BAUD = 9600;
 unsigned char PARITY = 0;
 
-# 95
+# 98
 void InitUART(unsigned long Baud, unsigned char parity);
 void UARTstring(const unsigned char *data);
 void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data);
@@ -6367,35 +6360,31 @@ void SetBaud(unsigned long Baud, unsigned char Parity);
 void CloseUSART(void );
 unsigned char READ_CONFIG_PIN(void);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
 
-# 54 "MISC.h"
+
+
+const unsigned char NoParityMSG[] = {" with No parity bit"};
+const unsigned char OddParityMSG[] = {" with Odd parity bit"};
+const unsigned char EvenParityMSG[] = {" with Even parity bit"};
+const unsigned char MarkParityMSG[] = {" with Mark bit"};
+const unsigned char SpaceParityMSG[] = {" with Space bit"};
+
+# 56 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
-void BufferCopy(unsigned char* from, unsigned char* to, char count, char shift);
-unsigned char StringMatch(unsigned char* This, const unsigned char* That);
-unsigned char StringContains(unsigned char* This, const unsigned char* That);
-unsigned char StartsWith(unsigned char* This, const unsigned char* That);
-int GetEnteredNumber(unsigned char* This);
-void RemoveSpaces(unsigned char* This);
-void lowercase(unsigned char* Input);
-unsigned char StringAddEqual(unsigned char* Input);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
+unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 
-# 52 "system.h"
-void ConfigureOscillator(void);
-
-# 57 "FLASH.h"
+# 60 "FLASH.h"
 unsigned int MEM[2] =
 {
 0,
 9600,
 };
 
-# 67
+# 70
 unsigned int ReadFlash_2Byte(unsigned int row, unsigned char column);
 unsigned long ReadFlash_4Byte(unsigned int row, unsigned char column);
 void UNLOCK(void);
@@ -6404,10 +6393,10 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 49 "UART.c"
+# 51 "UART.c"
 extern unsigned char BAUDMODE;
 
-# 60
+# 62
 void CloseUSART(void )
 {
 RCSTA&=0b01001111;
@@ -6415,7 +6404,7 @@ TX1STAbits.TXEN=0;
 PIE1&=0b11001111;
 }
 
-# 73
+# 75
 void InitUART(unsigned long Baud, unsigned char parity)
 {
 unsigned long temp;
@@ -6423,7 +6412,7 @@ unsigned char config;
 unsigned int spbrg;
 unsigned char baudconfig;
 
-# 88
+# 90
 LATC |= 0b00000100;
 PPSLOCK =0;
 RC2PPS = 0b00000000;
@@ -6435,9 +6424,6 @@ baudconfig =0;
 
 
 config |= 0b00000000;
-
-config |= 0b01000000;
-
 config |= 0b00000000;
 config |= 0b00001000;
 config |= 0b00010000;
@@ -6479,14 +6465,14 @@ PIR1bits.RCIF = 0;
 INTCONbits.PEIE = 1;
 }
 
-# 148
+# 147
 void baudUSART (unsigned char baudconfig)
 {
 BAUD1CON =0;
 BAUD1CON = baudconfig;
 }
 
-# 159
+# 158
 void OpenUSART( unsigned char config, unsigned int spbrg)
 {
 TX1STA = 0;
@@ -6555,7 +6541,7 @@ TX1STAbits.TXEN = 1;
 RC1STAbits.SPEN = 1;
 }
 
-# 232
+# 231
 void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data)
 {
 if(TXSTAbits.TX9)
@@ -6600,10 +6586,10 @@ while(!TXSTAbits.TRMT);
 TXREG = data;
 }
 
-# 279
+# 278
 }
 
-# 286
+# 285
 void UARTstring(const unsigned char *data)
 {
 do
@@ -6616,7 +6602,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 303
+# 302
 char ReadUSART(void)
 {
 char data;
@@ -6631,14 +6617,14 @@ data = RCREG;
 return (data);
 }
 
-# 323
+# 322
 void UART_send_break(void)
 {
 TX1STA |= 0b00001000;
 TXREG = 'd';
 }
 
-# 335
+# 334
 void UART_send_break_timed(unsigned int US)
 {
 
@@ -6660,7 +6646,7 @@ RXPPS = 0b00010101;
 PPSLOCK =1;
 }
 
-# 362
+# 361
 void UARTstringWAIT(const unsigned char *data)
 {
 do
@@ -6674,7 +6660,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 381
+# 380
 void SetBaud(unsigned long Baud, unsigned char Parity)
 {
 unsigned char buf[50];
@@ -6713,22 +6699,23 @@ if(Parity)
 switch (Parity)
 {
 case 1:
-UARTstringWAIT(" with Odd parity bit\r\n");
+UARTstringWAIT(OddParityMSG);
 break;
 case 2:
-UARTstringWAIT(" with Even parity bit\r\n");
+UARTstringWAIT(EvenParityMSG);
 break;
 case 3:
-UARTstringWAIT(" with Mark bit\r\n");
+UARTstringWAIT(MarkParityMSG);
 break;
 default:
-UARTstringWAIT(" with Space bit\r\n");
+UARTstringWAIT(SpaceParityMSG);
 break;
 }
 }
 else
 {
-UARTstringWAIT(" with no parity bit\r\n");
+UARTstringWAIT(NoParityMSG);
 }
+UARTstringWAIT("\r\n");
 delayUS(10000);
 }

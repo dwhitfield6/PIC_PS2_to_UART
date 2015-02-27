@@ -98,9 +98,6 @@ void InitUART(unsigned long Baud, unsigned char parity)
 
     //-----configure USART -----
     config |= USART_TX_INT_OFF;
-    #ifndef ARDUINO
-    config |= USART_RX_INT_ON;
-    #endif
     config |= USART_ASYNCH_MODE;
     config |= USART_CONT_RX;//single mode
     config |= USART_BRGH_HIGH;
@@ -418,22 +415,23 @@ void SetBaud(unsigned long Baud, unsigned char Parity)
         switch (Parity)
         {
             case 1:
-                UARTstringWAIT(" with Odd parity bit\r\n");//Odd parity
+                UARTstringWAIT(OddParityMSG);//Odd parity
                 break;
             case 2:
-                UARTstringWAIT(" with Even parity bit\r\n");//Even parity
+                UARTstringWAIT(EvenParityMSG);//Even parity
                 break;
             case 3:
-                UARTstringWAIT(" with Mark bit\r\n");//mark
+                UARTstringWAIT(MarkParityMSG);//Mark parity
                 break;
             default:
-                UARTstringWAIT(" with Space bit\r\n");//Space
+                UARTstringWAIT(SpaceParityMSG);//Space parity
                 break;
         }
     }
     else
     {
-        UARTstringWAIT(" with no parity bit\r\n");
+        UARTstringWAIT(NoParityMSG);
     }
+    UARTstringWAIT("\r\n");
     delayUS(Word_Spacing);
 }
