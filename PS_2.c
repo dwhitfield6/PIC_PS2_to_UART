@@ -25,6 +25,7 @@
  *                          Fixed Baud rate sting logic to save memory.
  *                          Added "keyboard" before every baud rate change.
  * 02/27/15     1.3         Complete redesign.
+ *                          Momentarily turn on all keyboard leds at power on.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -103,6 +104,7 @@ void PS_2_INIT(void)
     Clock_TRIS(INPUT);
     Data_TRIS(INPUT);
     Timer2Init(Read_Timer_Timeout);
+    Init_PS_2_Send();
 }
 
 /******************************************************************************/
@@ -619,7 +621,7 @@ void Process_PS2_ScanCode(void)
                     else
                     {
                         BaudTyped = 9600;
-                        UARTstringWAIT("KeyBoard Reset to 9600");
+                        UARTstringWAIT("Baud Reset to 9600");
                         UARTstringWAIT(NoParityMSG);
                         UARTstringWAIT("\r\n");
                         delayUS(Word_Spacing);
@@ -688,7 +690,7 @@ void Process_PS2_ScanCode(void)
                                 delayUS(Word_Spacing);
                                 if(BaudTyped >=2400 && BaudTyped <= 115200)
                                 {
-                                    sprintf(buf,"KeyBoard Baud will be set to %lu",BaudTyped);
+                                    sprintf(buf,"Baud will be set to %lu",BaudTyped);
                                     UARTstringWAIT(buf);
                                     if(ParityTyped)
                                     {
@@ -717,7 +719,7 @@ void Process_PS2_ScanCode(void)
                                 }
                                 else
                                 {
-                                    UARTstringWAIT("KeyBoard Baud Out of Range\r\n");
+                                    UARTstringWAIT("Baud Out of Range\r\n");
                                     delayUS(Word_Spacing);
                                 }
                                 BAUDMODE=0;
@@ -994,49 +996,20 @@ unsigned char Init_PS_2_Send(void)
 {
     PS_2_DISABLE_INTERRUPT(CLK);
     
-    //scroll LED
-    if(Send_PS2(0xED))//Command LED
-    {
-        return 0;
-    }
-    delayUS(100);
-    if(Send_PS2(0x01))//Turn on scroll LED
+    //Turn on Keyboard LEDs
+    if(Send_PS2(0x07))
     {
         return 0;
     }
     delayUS(Character_Spacing);
 
-    //Caps lock LED
-    if(Send_PS2(0xED))//Command LED
-    {
-        return 0;
-    }
-    delayUS(100);
-    if(Send_PS2(0x04))//Turn on Caps LED
-    {
-        return 0;
-    }
-    delayUS(Character_Spacing);
-
-    //Num lock LED
-    if(Send_PS2(0xED))//Command LED
-    {
-        return 0;
-    }
-    delayUS(1000);
-    if(Send_PS2(0x02))//Turn on Number lock LED
-    {
-        return 0;
-    }
-    delayUS(Character_Spacing);
-    
     //LEDs Off
     if(Send_PS2(0xED))//Command LED
     {
         return 0;
     }
-    delayUS(100);
-    if(Send_PS2(0x00))//Turn on scroll LED
+    delayUS(5000);
+    if(Send_PS2(0x00))//Turn off LEDs
     {
         return 0;
     }

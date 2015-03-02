@@ -6442,7 +6442,6 @@ void Init_System (void)
 unsigned long temp =0;
 unsigned long Baud =0;
 unsigned char Parity =0;
-unsigned char buf[60];
 
 temp = ReadBaud((0x1800 >> 5),0);
 Baud = temp & 0x000FFFFF;
@@ -6456,20 +6455,17 @@ Parity = 0;
 InitUART(Baud, Parity);
 
 
-delayUS(10000);
-UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
-delayUS(10000);
+delayUS(15000);
+UARTstringWAIT("\r\nPS/2 Keyboard to RS-232\r\n");
+delayUS(15000);
 UARTstringWAIT("Firmware Version: ");
 UARTstringWAIT(Version);
 UARTstringWAIT("\r\n");
-delayUS(10000);
-UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
-delayUS(10000);
-
+delayUS(15000);
+UARTstringWAIT("Change BAUD: \"CNT + ALT + DEL\"\r\n");
+delayUS(15000);
 UARTstringWAIT("\r\n");
-delayUS(10000);
-sprintf(buf,"KeyBoard Baud is %lu",Baud);
-UARTstringWAIT(buf);
+
 if(Parity)
 {
 switch (Parity)
@@ -6493,7 +6489,7 @@ else
 UARTstringWAIT(NoParityMSG);
 }
 UARTstringWAIT("\r\n");
-delayUS(10000);
+delayUS(15000);
 INTCON |= 0x08;
 INTCONbits.GIE = 1;
 }

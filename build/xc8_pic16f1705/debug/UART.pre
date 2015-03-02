@@ -6676,11 +6676,11 @@ Paritytemp = (unsigned char)((temp & 0x00F00000) >> 20);
 
 InitUART(Baud, Parity);
 UARTstringWAIT("\r\n");
-delayUS(10000);
+delayUS(15000);
 if((Baud != Baudtemp) || (Parity != Paritytemp))
 {
-UARTstringWAIT("KeyBoard Program Fail\r\n");
-delayUS(10000);
+UARTstringWAIT("Flash Program Fail\r\n");
+delayUS(15000);
 }
 
 
@@ -6692,7 +6692,7 @@ LATC &= ~0b00010000;
 delayUS(10000);
 }
 
-sprintf(buf,"KeyBoard Baud is %lu",Baud);
+sprintf(buf,"Baud is %lu",Baud);
 UARTstringWAIT(buf);
 if(Parity)
 {
@@ -6717,5 +6717,5 @@ else
 UARTstringWAIT(NoParityMSG);
 }
 UARTstringWAIT("\r\n");
-delayUS(10000);
+delayUS(15000);
 }

@@ -45,10 +45,11 @@
  *                          Add code for 'Config' Pin on RS232 system.
  *                          Use device macro to define the use of pin RC0.
  *                          Tagged
- * 02/26/15     1.3_DW0     Added wait to let previous character send before
+ * 02/26/15     1.3_DW0a     Added wait to let previous character send before
  *                            before refilling the buffer.
  *                          Delete the check keyboard routine.
  *                          Add code for print screen button rejection.
+ *                          Momentarily turn on all keyboard leds at power on.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -88,7 +89,7 @@
 /* Version number                                                             */
 /******************************************************************************/
 
-const unsigned char Version[] = {"1.3_DW0"};
+const unsigned char Version[] = {"1.3_DW0a"};
 
 /******************************************************************************/
 /* Defines                                           */

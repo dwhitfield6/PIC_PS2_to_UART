@@ -5772,21 +5772,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.c: 394: UARTstringWAIT("\r\n");
 "394
 [e ( _UARTstringWAIT (1 :s 1C ]
-[; ;UART.c: 395: delayUS(10000);
+[; ;UART.c: 395: delayUS(15000);
 "395
-[e ( _delayUS (1 -> -> 10000 `i `l ]
+[e ( _delayUS (1 -> -> 15000 `i `l ]
 [; ;UART.c: 396: if((Baud != Baudtemp) || (Parity != Paritytemp))
 "396
 [e $ ! || != _Baud _Baudtemp != -> _Parity `ul _Paritytemp 645  ]
 [; ;UART.c: 397: {
 "397
 {
-[; ;UART.c: 398: UARTstringWAIT("KeyBoard Program Fail\r\n");
+[; ;UART.c: 398: UARTstringWAIT("Flash Program Fail\r\n");
 "398
 [e ( _UARTstringWAIT (1 :s 2C ]
-[; ;UART.c: 399: delayUS(10000);
+[; ;UART.c: 399: delayUS(15000);
 "399
-[e ( _delayUS (1 -> -> 10000 `i `l ]
+[e ( _delayUS (1 -> -> 15000 `i `l ]
 "400
 }
 [e :U 645 ]
@@ -5822,7 +5822,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "409
 }
 [; ;UART.c: 409: }
-[; ;UART.c: 411: sprintf(buf,"KeyBoard Baud is %lu",Baud);
+[; ;UART.c: 411: sprintf(buf,"Baud is %lu",Baud);
 "411
 [e ( _sprintf (1 , (. , &U _buf :s 3C _Baud ]
 [; ;UART.c: 412: UARTstringWAIT(buf);
@@ -5908,15 +5908,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.c: 435: UARTstringWAIT("\r\n");
 "435
 [e ( _UARTstringWAIT (1 :s 4C ]
-[; ;UART.c: 436: delayUS(10000);
+[; ;UART.c: 436: delayUS(15000);
 "436
-[e ( _delayUS (1 -> -> 10000 `i `l ]
+[e ( _delayUS (1 -> -> 15000 `i `l ]
 [; ;UART.c: 437: }
 "437
 [e :UE 644 ]
 }
 [p f _sprintf 8389648 ]
-[a 3C 75 101 121 66 111 97 114 100 32 66 97 117 100 32 105 115 32 37 108 117 0 ]
-[a 2C 75 101 121 66 111 97 114 100 32 80 114 111 103 114 97 109 32 70 97 105 108 13 10 0 ]
+[a 3C 66 97 117 100 32 105 115 32 37 108 117 0 ]
+[a 2C 70 108 97 115 104 32 80 114 111 103 114 97 109 32 70 97 105 108 13 10 0 ]
 [a 1C 13 10 0 ]
 [a 4C 13 10 0 ]

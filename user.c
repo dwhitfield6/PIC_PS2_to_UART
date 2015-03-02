@@ -105,7 +105,6 @@ void Init_System (void)
     unsigned long temp =0;
     unsigned long Baud =0;
     unsigned char Parity =0;
-    unsigned char buf[60];
 
     temp = ReadBaud(FLASH_ADDRESS_ROW,0);
     Baud   = temp & 0x000FFFFF;
@@ -124,15 +123,12 @@ void Init_System (void)
     delayUS(Word_Spacing);
     UARTstringWAIT("Firmware Version: ");
     UARTstringWAIT(Version);
+    UARTstringWAIT("\r\n");    
+    delayUS(Word_Spacing);
+    UARTstringWAIT("Change BAUD: \"CNT + ALT + DEL\"\r\n");
+    delayUS(Word_Spacing);
     UARTstringWAIT("\r\n");
-    delayUS(Word_Spacing);
-    UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
-    delayUS(Word_Spacing);
-
-    UARTstringWAIT("\r\n");
-    delayUS(Word_Spacing);
-    sprintf(buf,"KeyBoard Baud is %lu",Baud);
-    UARTstringWAIT(buf);
+    
     if(Parity)
     {
         switch (Parity)

@@ -56,8 +56,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _UARTstringWAIT `(v ~T0 @X0 0 ef1`*Cuc ]
 "52 user.c
 [v _Version `Cuc ~T0 @X0 -> 0 `x e ]
-"205 C:\Program Files (x86)\Microchip\xc8\v1.33\include\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "335 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [v _INTCON `Vuc ~T0 @X0 0 e@11 ]
 "341
@@ -5058,174 +5056,160 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Parity `uc ~T0 @X0 1 a ]
 [; ;user.c: 107: unsigned char Parity =0;
 [e = _Parity -> -> 0 `i `uc ]
-"108
-[v _buf `uc ~T0 @X0 -> 60 `i a ]
-[; ;user.c: 108: unsigned char buf[60];
-[; ;user.c: 110: temp = ReadBaud((0x1800 >> 5),0);
-"110
+[; ;user.c: 109: temp = ReadBaud((0x1800 >> 5),0);
+"109
 [e = _temp ( _ReadBaud (2 , -> >> -> 6144 `i -> 5 `i `ui -> -> 0 `i `uc ]
-[; ;user.c: 111: Baud = temp & 0x000FFFFF;
-"111
+[; ;user.c: 110: Baud = temp & 0x000FFFFF;
+"110
 [e = _Baud & _temp -> -> 1048575 `l `ul ]
-[; ;user.c: 112: Parity = (unsigned char)((temp & 0x00F00000) >> 20);
-"112
+[; ;user.c: 111: Parity = (unsigned char)((temp & 0x00F00000) >> 20);
+"111
 [e = _Parity -> >> & _temp -> -> 15728640 `l `ul -> 20 `i `uc ]
-[; ;user.c: 113: if(Baud <2400 || Baud > 115200)
-"113
+[; ;user.c: 112: if(Baud <2400 || Baud > 115200)
+"112
 [e $ ! || < _Baud -> -> -> 2400 `i `l `ul > _Baud -> -> 115200 `l `ul 590  ]
-[; ;user.c: 114: {
-"114
+[; ;user.c: 113: {
+"113
 {
-[; ;user.c: 116: Baud = 9600;
-"116
+[; ;user.c: 115: Baud = 9600;
+"115
 [e = _Baud -> -> -> 9600 `i `l `ul ]
-[; ;user.c: 117: Parity = 0;
-"117
+[; ;user.c: 116: Parity = 0;
+"116
 [e = _Parity -> -> 0 `i `uc ]
-"118
+"117
 }
 [e :U 590 ]
-[; ;user.c: 118: }
-[; ;user.c: 119: InitUART(Baud, Parity);
-"119
+[; ;user.c: 117: }
+[; ;user.c: 118: InitUART(Baud, Parity);
+"118
 [e ( _InitUART (2 , _Baud _Parity ]
-[; ;user.c: 122: delayUS(10000);
+[; ;user.c: 121: delayUS(15000);
+"121
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;user.c: 122: UARTstringWAIT("\r\nPS/2 Keyboard to RS-232\r\n");
 "122
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 123: UARTstringWAIT("PS/2 Keyboard to RS-232\r\n");
-"123
 [e ( _UARTstringWAIT (1 :s 1C ]
-[; ;user.c: 124: delayUS(10000);
+[; ;user.c: 123: delayUS(15000);
+"123
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;user.c: 124: UARTstringWAIT("Firmware Version: ");
 "124
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 125: UARTstringWAIT("Firmware Version: ");
-"125
 [e ( _UARTstringWAIT (1 :s 2C ]
-[; ;user.c: 126: UARTstringWAIT(Version);
-"126
+[; ;user.c: 125: UARTstringWAIT(Version);
+"125
 [e ( _UARTstringWAIT (1 &U _Version ]
-[; ;user.c: 127: UARTstringWAIT("\r\n");
-"127
+[; ;user.c: 126: UARTstringWAIT("\r\n");
+"126
 [e ( _UARTstringWAIT (1 :s 3C ]
-[; ;user.c: 128: delayUS(10000);
+[; ;user.c: 127: delayUS(15000);
+"127
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;user.c: 128: UARTstringWAIT("Change BAUD: \"CNT + ALT + DEL\"\r\n");
 "128
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 129: UARTstringWAIT("To Change BAUD hit \"CNT + ALT + DEL\"\r\n");
-"129
 [e ( _UARTstringWAIT (1 :s 4C ]
-[; ;user.c: 130: delayUS(10000);
+[; ;user.c: 129: delayUS(15000);
+"129
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;user.c: 130: UARTstringWAIT("\r\n");
 "130
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 132: UARTstringWAIT("\r\n");
-"132
 [e ( _UARTstringWAIT (1 :s 5C ]
-[; ;user.c: 133: delayUS(10000);
-"133
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 134: sprintf(buf,"KeyBoard Baud is %lu",Baud);
-"134
-[e ( _sprintf (1 , (. , &U _buf :s 6C _Baud ]
-[; ;user.c: 135: UARTstringWAIT(buf);
-"135
-[e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
-[; ;user.c: 136: if(Parity)
-"136
+[; ;user.c: 132: if(Parity)
+"132
 [e $ ! != -> _Parity `i -> -> -> 0 `i `uc `i 591  ]
-[; ;user.c: 137: {
-"137
+[; ;user.c: 133: {
+"133
 {
-[; ;user.c: 138: switch (Parity)
-"138
+[; ;user.c: 134: switch (Parity)
+"134
 [e $U 593  ]
-[; ;user.c: 139: {
-"139
+[; ;user.c: 135: {
+"135
 {
-[; ;user.c: 140: case 1:
-"140
+[; ;user.c: 136: case 1:
+"136
 [e :U 594 ]
-[; ;user.c: 141: UARTstringWAIT(OddParityMSG);
-"141
+[; ;user.c: 137: UARTstringWAIT(OddParityMSG);
+"137
 [e ( _UARTstringWAIT (1 &U _OddParityMSG ]
-[; ;user.c: 142: break;
-"142
-[e $U 592  ]
-[; ;user.c: 143: case 2:
-"143
-[e :U 595 ]
-[; ;user.c: 144: UARTstringWAIT(EvenParityMSG);
-"144
-[e ( _UARTstringWAIT (1 &U _EvenParityMSG ]
-[; ;user.c: 145: break;
-"145
-[e $U 592  ]
-[; ;user.c: 146: case 3:
-"146
-[e :U 596 ]
-[; ;user.c: 147: UARTstringWAIT(MarkParityMSG);
-"147
-[e ( _UARTstringWAIT (1 &U _MarkParityMSG ]
-[; ;user.c: 148: break;
-"148
-[e $U 592  ]
-[; ;user.c: 149: default:
-"149
-[e :U 597 ]
-[; ;user.c: 150: UARTstringWAIT(SpaceParityMSG);
-"150
-[e ( _UARTstringWAIT (1 &U _SpaceParityMSG ]
-[; ;user.c: 151: break;
-"151
-[e $U 592  ]
-"152
-}
-[; ;user.c: 152: }
-[e $U 592  ]
+[; ;user.c: 138: break;
 "138
+[e $U 592  ]
+[; ;user.c: 139: case 2:
+"139
+[e :U 595 ]
+[; ;user.c: 140: UARTstringWAIT(EvenParityMSG);
+"140
+[e ( _UARTstringWAIT (1 &U _EvenParityMSG ]
+[; ;user.c: 141: break;
+"141
+[e $U 592  ]
+[; ;user.c: 142: case 3:
+"142
+[e :U 596 ]
+[; ;user.c: 143: UARTstringWAIT(MarkParityMSG);
+"143
+[e ( _UARTstringWAIT (1 &U _MarkParityMSG ]
+[; ;user.c: 144: break;
+"144
+[e $U 592  ]
+[; ;user.c: 145: default:
+"145
+[e :U 597 ]
+[; ;user.c: 146: UARTstringWAIT(SpaceParityMSG);
+"146
+[e ( _UARTstringWAIT (1 &U _SpaceParityMSG ]
+[; ;user.c: 147: break;
+"147
+[e $U 592  ]
+"148
+}
+[; ;user.c: 148: }
+[e $U 592  ]
+"134
 [e :U 593 ]
 [e [\ _Parity , $ -> -> 1 `i `uc 594
  , $ -> -> 2 `i `uc 595
  , $ -> -> 3 `i `uc 596
  597 ]
-"152
+"148
 [e :U 592 ]
+"149
+}
+[; ;user.c: 149: }
+[e $U 598  ]
+"150
+[e :U 591 ]
+[; ;user.c: 150: else
+[; ;user.c: 151: {
+"151
+{
+[; ;user.c: 152: UARTstringWAIT(NoParityMSG);
+"152
+[e ( _UARTstringWAIT (1 &U _NoParityMSG ]
 "153
 }
-[; ;user.c: 153: }
-[e $U 598  ]
-"154
-[e :U 591 ]
-[; ;user.c: 154: else
-[; ;user.c: 155: {
-"155
-{
-[; ;user.c: 156: UARTstringWAIT(NoParityMSG);
-"156
-[e ( _UARTstringWAIT (1 &U _NoParityMSG ]
-"157
-}
 [e :U 598 ]
-[; ;user.c: 157: }
-[; ;user.c: 158: UARTstringWAIT("\r\n");
-"158
-[e ( _UARTstringWAIT (1 :s 7C ]
-[; ;user.c: 159: delayUS(10000);
-"159
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;user.c: 160: INTCON |= 0x08;
-"160
+[; ;user.c: 153: }
+[; ;user.c: 154: UARTstringWAIT("\r\n");
+"154
+[e ( _UARTstringWAIT (1 :s 6C ]
+[; ;user.c: 155: delayUS(15000);
+"155
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;user.c: 156: INTCON |= 0x08;
+"156
 [e =| _INTCON -> -> 8 `i `uc ]
-[; ;user.c: 161: INTCONbits.GIE = 1;
-"161
+[; ;user.c: 157: INTCONbits.GIE = 1;
+"157
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;user.c: 162: }
-"162
+[; ;user.c: 158: }
+"158
 [e :UE 589 ]
 }
-[p f _sprintf 8389648 ]
-[a 6C 75 101 121 66 111 97 114 100 32 66 97 117 100 32 105 115 32 37 108 117 0 ]
 [a 2C 70 105 114 109 119 97 114 101 32 86 101 114 115 105 111 110 58 32 0 ]
-[a 1C 80 83 47 50 32 75 101 121 98 111 97 114 100 32 116 111 32 82 83 45 50 51 50 13 10 0 ]
-[a 4C 84 111 32 67 104 97 110 103 101 32 66 65 85 68 32 104 105 116 32 34 67 78 84 32 43 32 65 76 84 32 43 32 68 69 76 34 13 10 0 ]
+[a 1C 13 10 80 83 47 50 32 75 101 121 98 111 97 114 100 32 116 111 32 82 83 45 50 51 50 13 10 0 ]
+[a 4C 67 104 97 110 103 101 32 66 65 85 68 58 32 34 67 78 84 32 43 32 65 76 84 32 43 32 68 69 76 34 13 10 0 ]
 [a 3C 13 10 0 ]
 [a 5C 13 10 0 ]
-[a 7C 13 10 0 ]
+[a 6C 13 10 0 ]

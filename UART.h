@@ -47,7 +47,7 @@
  *   printing 200,000 is common.
  */
 
-#define Word_Spacing        10000
+#define Word_Spacing        15000
 
 /******************************************************************************/
 /* Defines                                                                    */

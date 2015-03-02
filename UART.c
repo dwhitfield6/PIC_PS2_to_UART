@@ -395,7 +395,7 @@ void SetBaud(unsigned long Baud, unsigned char Parity)
     delayUS(Word_Spacing);
     if((Baud != Baudtemp) || (Parity != Paritytemp))
     {
-        UARTstringWAIT("KeyBoard Program Fail\r\n");
+        UARTstringWAIT("Flash Program Fail\r\n");
         delayUS(Word_Spacing);
     }
 
@@ -408,7 +408,7 @@ void SetBaud(unsigned long Baud, unsigned char Parity)
        delayUS(10000);
     }
 
-    sprintf(buf,"KeyBoard Baud is %lu",Baud);
+    sprintf(buf,"Baud is %lu",Baud);
     UARTstringWAIT(buf);
     if(Parity)
     {

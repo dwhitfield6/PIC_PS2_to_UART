@@ -5,6 +5,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Data_TRIS `(v ~T0 @X0 0 ef1`uc ]
 "37 Timer.h
 [v _Timer2Init `(v ~T0 @X0 0 ef1`uc ]
+"103 PS_2.h
+[v _Init_PS_2_Send `(uc ~T0 @X0 0 ef ]
 "997 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
 [s S60 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S60 . TRISA0 TRISA1 TRISA2 . TRISA4 TRISA5 ]
@@ -6560,1836 +6562,1839 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.c: 105: Timer2Init(255);
 "105
 [e ( _Timer2Init (1 -> -> 255 `i `uc ]
-[; ;PS_2.c: 106: }
+[; ;PS_2.c: 106: Init_PS_2_Send();
 "106
+[e ( _Init_PS_2_Send ..  ]
+[; ;PS_2.c: 107: }
+"107
 [e :UE 588 ]
 }
-"113
+"114
 [v _Clock_TRIS `(v ~T0 @X0 1 ef1`uc ]
-"114
-{
-[; ;PS_2.c: 113: void Clock_TRIS(unsigned char direction)
-[; ;PS_2.c: 114: {
-[e :U _Clock_TRIS ]
-"113
-[v _direction `uc ~T0 @X0 1 r1 ]
-"114
-[f ]
-[; ;PS_2.c: 115: if(direction == 0)
 "115
-[e $ ! == -> _direction `i -> 0 `i 590  ]
-[; ;PS_2.c: 116: {
+{
+[; ;PS_2.c: 114: void Clock_TRIS(unsigned char direction)
+[; ;PS_2.c: 115: {
+[e :U _Clock_TRIS ]
+"114
+[v _direction `uc ~T0 @X0 1 r1 ]
+"115
+[f ]
+[; ;PS_2.c: 116: if(direction == 0)
 "116
-{
-[; ;PS_2.c: 117: TRISAbits.TRISA5 = 0;
+[e $ ! == -> _direction `i -> 0 `i 590  ]
+[; ;PS_2.c: 117: {
 "117
-[e = . . _TRISAbits 0 5 -> -> 0 `i `uc ]
-"118
-}
-[; ;PS_2.c: 118: }
-[e $U 591  ]
-"119
-[e :U 590 ]
-[; ;PS_2.c: 119: else
-[; ;PS_2.c: 120: {
-"120
 {
-[; ;PS_2.c: 121: TRISAbits.TRISA5 = 1;
+[; ;PS_2.c: 118: TRISAbits.TRISA5 = 0;
+"118
+[e = . . _TRISAbits 0 5 -> -> 0 `i `uc ]
+"119
+}
+[; ;PS_2.c: 119: }
+[e $U 591  ]
+"120
+[e :U 590 ]
+[; ;PS_2.c: 120: else
+[; ;PS_2.c: 121: {
 "121
-[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+{
+[; ;PS_2.c: 122: TRISAbits.TRISA5 = 1;
 "122
+[e = . . _TRISAbits 0 5 -> -> 1 `i `uc ]
+"123
 }
 [e :U 591 ]
-[; ;PS_2.c: 122: }
 [; ;PS_2.c: 123: }
-"123
+[; ;PS_2.c: 124: }
+"124
 [e :UE 589 ]
 }
-"130
+"131
 [v _Data_TRIS `(v ~T0 @X0 1 ef1`uc ]
-"131
-{
-[; ;PS_2.c: 130: void Data_TRIS(unsigned char direction)
-[; ;PS_2.c: 131: {
-[e :U _Data_TRIS ]
-"130
-[v _direction `uc ~T0 @X0 1 r1 ]
-"131
-[f ]
-[; ;PS_2.c: 132: if(direction == 0)
 "132
-[e $ ! == -> _direction `i -> 0 `i 593  ]
-[; ;PS_2.c: 133: {
+{
+[; ;PS_2.c: 131: void Data_TRIS(unsigned char direction)
+[; ;PS_2.c: 132: {
+[e :U _Data_TRIS ]
+"131
+[v _direction `uc ~T0 @X0 1 r1 ]
+"132
+[f ]
+[; ;PS_2.c: 133: if(direction == 0)
 "133
-{
-[; ;PS_2.c: 134: TRISAbits.TRISA4 = 0;
+[e $ ! == -> _direction `i -> 0 `i 593  ]
+[; ;PS_2.c: 134: {
 "134
-[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
-"135
-}
-[; ;PS_2.c: 135: }
-[e $U 594  ]
-"136
-[e :U 593 ]
-[; ;PS_2.c: 136: else
-[; ;PS_2.c: 137: {
-"137
 {
-[; ;PS_2.c: 138: TRISAbits.TRISA4 = 1;
+[; ;PS_2.c: 135: TRISAbits.TRISA4 = 0;
+"135
+[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
+"136
+}
+[; ;PS_2.c: 136: }
+[e $U 594  ]
+"137
+[e :U 593 ]
+[; ;PS_2.c: 137: else
+[; ;PS_2.c: 138: {
 "138
-[e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
+{
+[; ;PS_2.c: 139: TRISAbits.TRISA4 = 1;
 "139
+[e = . . _TRISAbits 0 4 -> -> 1 `i `uc ]
+"140
 }
 [e :U 594 ]
-[; ;PS_2.c: 139: }
 [; ;PS_2.c: 140: }
-"140
+[; ;PS_2.c: 141: }
+"141
 [e :UE 592 ]
 }
-"148
+"149
 [v _INIT_PS_2_INTERRUPT `(v ~T0 @X0 1 ef1`uc ]
-"149
-{
-[; ;PS_2.c: 148: void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
-[; ;PS_2.c: 149: {
-[e :U _INIT_PS_2_INTERRUPT ]
-"148
-[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
-"149
-[f ]
-[; ;PS_2.c: 150: IOCAP =0;
 "150
-[e = _IOCAP -> -> 0 `i `uc ]
-[; ;PS_2.c: 151: IOCAN =0;
+{
+[; ;PS_2.c: 149: void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
+[; ;PS_2.c: 150: {
+[e :U _INIT_PS_2_INTERRUPT ]
+"149
+[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
+"150
+[f ]
+[; ;PS_2.c: 151: IOCAP =0;
 "151
-[e = _IOCAN -> -> 0 `i `uc ]
-[; ;PS_2.c: 152: if(DATA_CLK == 0b00100000)
+[e = _IOCAP -> -> 0 `i `uc ]
+[; ;PS_2.c: 152: IOCAN =0;
 "152
-[e $ ! == -> _DATA_CLK `i -> 32 `i 596  ]
-[; ;PS_2.c: 153: {
+[e = _IOCAN -> -> 0 `i `uc ]
+[; ;PS_2.c: 153: if(DATA_CLK == 0b00100000)
 "153
+[e $ ! == -> _DATA_CLK `i -> 32 `i 596  ]
+[; ;PS_2.c: 154: {
+"154
 {
-[; ;PS_2.c: 156: IOCAN |= 0b00100000;
-"156
-[e =| _IOCAN -> -> 32 `i `uc ]
+[; ;PS_2.c: 157: IOCAN |= 0b00100000;
 "157
-}
-[; ;PS_2.c: 157: }
-[e $U 597  ]
+[e =| _IOCAN -> -> 32 `i `uc ]
 "158
-[e :U 596 ]
-[; ;PS_2.c: 158: else
-[; ;PS_2.c: 159: {
+}
+[; ;PS_2.c: 158: }
+[e $U 597  ]
 "159
+[e :U 596 ]
+[; ;PS_2.c: 159: else
+[; ;PS_2.c: 160: {
+"160
 {
-[; ;PS_2.c: 162: IOCAN |= 0b00010000;
-"162
-[e =| _IOCAN -> -> 16 `i `uc ]
+[; ;PS_2.c: 163: IOCAN |= 0b00010000;
 "163
+[e =| _IOCAN -> -> 16 `i `uc ]
+"164
 }
 [e :U 597 ]
-[; ;PS_2.c: 163: }
 [; ;PS_2.c: 164: }
-"164
+[; ;PS_2.c: 165: }
+"165
 [e :UE 595 ]
 }
-"171
+"172
 [v _PS_2_DISABLE_INTERRUPT `(v ~T0 @X0 1 ef1`uc ]
-"172
-{
-[; ;PS_2.c: 171: void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
-[; ;PS_2.c: 172: {
-[e :U _PS_2_DISABLE_INTERRUPT ]
-"171
-[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
-"172
-[f ]
-[; ;PS_2.c: 173: if(DATA_CLK == 0b00100000)
 "173
-[e $ ! == -> _DATA_CLK `i -> 32 `i 599  ]
-[; ;PS_2.c: 174: {
+{
+[; ;PS_2.c: 172: void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
+[; ;PS_2.c: 173: {
+[e :U _PS_2_DISABLE_INTERRUPT ]
+"172
+[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
+"173
+[f ]
+[; ;PS_2.c: 174: if(DATA_CLK == 0b00100000)
 "174
+[e $ ! == -> _DATA_CLK `i -> 32 `i 599  ]
+[; ;PS_2.c: 175: {
+"175
 {
-[; ;PS_2.c: 177: IOCAN &= ~0b00100000;
-"177
-[e =& _IOCAN -> ~ -> 32 `i `uc ]
+[; ;PS_2.c: 178: IOCAN &= ~0b00100000;
 "178
-}
-[; ;PS_2.c: 178: }
-[e $U 600  ]
+[e =& _IOCAN -> ~ -> 32 `i `uc ]
 "179
-[e :U 599 ]
-[; ;PS_2.c: 179: else
-[; ;PS_2.c: 180: {
+}
+[; ;PS_2.c: 179: }
+[e $U 600  ]
 "180
+[e :U 599 ]
+[; ;PS_2.c: 180: else
+[; ;PS_2.c: 181: {
+"181
 {
-[; ;PS_2.c: 183: IOCAN &= ~0b00010000;
-"183
-[e =& _IOCAN -> ~ -> 16 `i `uc ]
+[; ;PS_2.c: 184: IOCAN &= ~0b00010000;
 "184
+[e =& _IOCAN -> ~ -> 16 `i `uc ]
+"185
 }
 [e :U 600 ]
-[; ;PS_2.c: 184: }
 [; ;PS_2.c: 185: }
-"185
+[; ;PS_2.c: 186: }
+"186
 [e :UE 598 ]
 }
-"192
+"193
 [v _PS_2_ENABLE_INTERRUPT `(v ~T0 @X0 1 ef1`uc ]
-"193
-{
-[; ;PS_2.c: 192: void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
-[; ;PS_2.c: 193: {
-[e :U _PS_2_ENABLE_INTERRUPT ]
-"192
-[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
-"193
-[f ]
-[; ;PS_2.c: 194: if(DATA_CLK == 0b00100000)
 "194
-[e $ ! == -> _DATA_CLK `i -> 32 `i 602  ]
-[; ;PS_2.c: 195: {
+{
+[; ;PS_2.c: 193: void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
+[; ;PS_2.c: 194: {
+[e :U _PS_2_ENABLE_INTERRUPT ]
+"193
+[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
+"194
+[f ]
+[; ;PS_2.c: 195: if(DATA_CLK == 0b00100000)
 "195
+[e $ ! == -> _DATA_CLK `i -> 32 `i 602  ]
+[; ;PS_2.c: 196: {
+"196
 {
-[; ;PS_2.c: 198: IOCAN |= 0b00100000;
-"198
+[; ;PS_2.c: 199: IOCAN |= 0b00100000;
+"199
 [e =| _IOCAN -> -> 32 `i `uc ]
-"200
-}
-[; ;PS_2.c: 200: }
-[e $U 603  ]
 "201
-[e :U 602 ]
-[; ;PS_2.c: 201: else
-[; ;PS_2.c: 202: {
+}
+[; ;PS_2.c: 201: }
+[e $U 603  ]
 "202
+[e :U 602 ]
+[; ;PS_2.c: 202: else
+[; ;PS_2.c: 203: {
+"203
 {
-[; ;PS_2.c: 205: IOCAN |= 0b00010000;
-"205
+[; ;PS_2.c: 206: IOCAN |= 0b00010000;
+"206
 [e =| _IOCAN -> -> 16 `i `uc ]
-"207
+"208
 }
 [e :U 603 ]
-[; ;PS_2.c: 207: }
 [; ;PS_2.c: 208: }
-"208
+[; ;PS_2.c: 209: }
+"209
 [e :UE 601 ]
 }
-"215
+"216
 [v _READ_PS_2_PIN `(uc ~T0 @X0 1 ef1`uc ]
-"216
-{
-[; ;PS_2.c: 215: unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
-[; ;PS_2.c: 216: {
-[e :U _READ_PS_2_PIN ]
-"215
-[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
-"216
-[f ]
-[; ;PS_2.c: 217: if(DATA_CLK == 0b00100000)
 "217
-[e $ ! == -> _DATA_CLK `i -> 32 `i 605  ]
-[; ;PS_2.c: 218: {
+{
+[; ;PS_2.c: 216: unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
+[; ;PS_2.c: 217: {
+[e :U _READ_PS_2_PIN ]
+"216
+[v _DATA_CLK `uc ~T0 @X0 1 r1 ]
+"217
+[f ]
+[; ;PS_2.c: 218: if(DATA_CLK == 0b00100000)
 "218
+[e $ ! == -> _DATA_CLK `i -> 32 `i 605  ]
+[; ;PS_2.c: 219: {
+"219
 {
-[; ;PS_2.c: 220: if((PORTA & 0b00100000) == 0b00100000)
-"220
-[e $ ! == & -> _PORTA `i -> 32 `i -> 32 `i 606  ]
-[; ;PS_2.c: 221: {
+[; ;PS_2.c: 221: if((PORTA & 0b00100000) == 0b00100000)
 "221
-{
-[; ;PS_2.c: 222: return (1);
+[e $ ! == & -> _PORTA `i -> 32 `i -> 32 `i 606  ]
+[; ;PS_2.c: 222: {
 "222
+{
+[; ;PS_2.c: 223: return (1);
+"223
 [e ) -> -> 1 `i `uc ]
 [e $UE 604  ]
-"223
-}
-[; ;PS_2.c: 223: }
-[e $U 607  ]
 "224
-[e :U 606 ]
-[; ;PS_2.c: 224: else
-[; ;PS_2.c: 225: {
+}
+[; ;PS_2.c: 224: }
+[e $U 607  ]
 "225
-{
-[; ;PS_2.c: 226: return 0;
+[e :U 606 ]
+[; ;PS_2.c: 225: else
+[; ;PS_2.c: 226: {
 "226
+{
+[; ;PS_2.c: 227: return 0;
+"227
 [e ) -> -> 0 `i `uc ]
 [e $UE 604  ]
-"227
-}
-[e :U 607 ]
 "228
 }
-[; ;PS_2.c: 227: }
-[; ;PS_2.c: 228: }
-[e $U 608  ]
+[e :U 607 ]
 "229
-[e :U 605 ]
-[; ;PS_2.c: 229: else
-[; ;PS_2.c: 230: {
+}
+[; ;PS_2.c: 228: }
+[; ;PS_2.c: 229: }
+[e $U 608  ]
 "230
+[e :U 605 ]
+[; ;PS_2.c: 230: else
+[; ;PS_2.c: 231: {
+"231
 {
-[; ;PS_2.c: 232: if((PORTA & 0b00010000) == 0b00010000)
-"232
-[e $ ! == & -> _PORTA `i -> 16 `i -> 16 `i 609  ]
-[; ;PS_2.c: 233: {
+[; ;PS_2.c: 233: if((PORTA & 0b00010000) == 0b00010000)
 "233
-{
-[; ;PS_2.c: 234: return (1);
+[e $ ! == & -> _PORTA `i -> 16 `i -> 16 `i 609  ]
+[; ;PS_2.c: 234: {
 "234
+{
+[; ;PS_2.c: 235: return (1);
+"235
 [e ) -> -> 1 `i `uc ]
 [e $UE 604  ]
-"235
-}
-[; ;PS_2.c: 235: }
-[e $U 610  ]
 "236
-[e :U 609 ]
-[; ;PS_2.c: 236: else
-[; ;PS_2.c: 237: {
+}
+[; ;PS_2.c: 236: }
+[e $U 610  ]
 "237
-{
-[; ;PS_2.c: 238: return 0;
+[e :U 609 ]
+[; ;PS_2.c: 237: else
+[; ;PS_2.c: 238: {
 "238
+{
+[; ;PS_2.c: 239: return 0;
+"239
 [e ) -> -> 0 `i `uc ]
 [e $UE 604  ]
-"239
-}
-[e :U 610 ]
 "240
 }
+[e :U 610 ]
+"241
+}
 [e :U 608 ]
-[; ;PS_2.c: 239: }
 [; ;PS_2.c: 240: }
 [; ;PS_2.c: 241: }
-"241
+[; ;PS_2.c: 242: }
+"242
 [e :UE 604 ]
 }
-"250
-[v _Process_PS2_ScanCode `(v ~T0 @X0 1 ef ]
 "251
+[v _Process_PS2_ScanCode `(v ~T0 @X0 1 ef ]
+"252
 {
-[; ;PS_2.c: 250: void Process_PS2_ScanCode(void)
-[; ;PS_2.c: 251: {
+[; ;PS_2.c: 251: void Process_PS2_ScanCode(void)
+[; ;PS_2.c: 252: {
 [e :U _Process_PS2_ScanCode ]
 [f ]
-"252
-[v _temp `uc ~T0 @X0 1 a ]
-[; ;PS_2.c: 252: unsigned char temp =0;
-[e = _temp -> -> 0 `i `uc ]
 "253
+[v _temp `uc ~T0 @X0 1 a ]
+[; ;PS_2.c: 253: unsigned char temp =0;
+[e = _temp -> -> 0 `i `uc ]
+"254
 [v _buf `uc ~T0 @X0 -> 60 `i a ]
-[; ;PS_2.c: 253: unsigned char buf[60];
-[; ;PS_2.c: 255: if(PS_2_Buffer_items != 0)
-"255
-[e $ ! != -> _PS_2_Buffer_items `i -> 0 `i 612  ]
-[; ;PS_2.c: 256: {
+[; ;PS_2.c: 254: unsigned char buf[60];
+[; ;PS_2.c: 256: if(PS_2_Buffer_items != 0)
 "256
+[e $ ! != -> _PS_2_Buffer_items `i -> 0 `i 612  ]
+[; ;PS_2.c: 257: {
+"257
 {
-[; ;PS_2.c: 258: while(PS_2_Buffer_items != 0)
-"258
+[; ;PS_2.c: 259: while(PS_2_Buffer_items != 0)
+"259
 [e $U 613  ]
 [e :U 614 ]
-[; ;PS_2.c: 259: {
-"259
+[; ;PS_2.c: 260: {
+"260
 {
-[; ;PS_2.c: 261: if(PS_2_ScanCodes[0])
-"261
-[e $ ! != -> *U + &U _PS_2_ScanCodes * -> -> -> 0 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `i -> -> -> 0 `i `uc `i 616  ]
-[; ;PS_2.c: 262: {
+[; ;PS_2.c: 262: if(PS_2_ScanCodes[0])
 "262
+[e $ ! != -> *U + &U _PS_2_ScanCodes * -> -> -> 0 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `i -> -> -> 0 `i `uc `i 616  ]
+[; ;PS_2.c: 263: {
+"263
 {
-[; ;PS_2.c: 264: PS_2_Read_Data_First = PS_2_ScanCodes[0];
-"264
-[e = _PS_2_Read_Data_First -> *U + &U _PS_2_ScanCodes * -> -> -> 0 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
-[; ;PS_2.c: 265: if(PS_2_Read_Data_First == 0xF0)
+[; ;PS_2.c: 265: PS_2_Read_Data_First = PS_2_ScanCodes[0];
 "265
-[e $ ! == _PS_2_Read_Data_First -> -> 240 `i `ui 617  ]
-[; ;PS_2.c: 266: {
-"266
-{
-[; ;PS_2.c: 267: PS_2_Read_Data_First = PS_2_ScanCodes[0];
-"267
 [e = _PS_2_Read_Data_First -> *U + &U _PS_2_ScanCodes * -> -> -> 0 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
-[; ;PS_2.c: 268: PS_2_Read_Data_Second = PS_2_ScanCodes[1];
+[; ;PS_2.c: 266: if(PS_2_Read_Data_First == 0xF0)
+"266
+[e $ ! == _PS_2_Read_Data_First -> -> 240 `i `ui 617  ]
+[; ;PS_2.c: 267: {
+"267
+{
+[; ;PS_2.c: 268: PS_2_Read_Data_First = PS_2_ScanCodes[0];
 "268
-[e = _PS_2_Read_Data_Second -> *U + &U _PS_2_ScanCodes * -> -> -> 1 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
-[; ;PS_2.c: 269: PS_2_Buffer_items -= 2;
+[e = _PS_2_Read_Data_First -> *U + &U _PS_2_ScanCodes * -> -> -> 0 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
+[; ;PS_2.c: 269: PS_2_Read_Data_Second = PS_2_ScanCodes[1];
 "269
-[e =- _PS_2_Buffer_items -> -> 2 `i `uc ]
-[; ;PS_2.c: 270: BufferShiftBack(PS_2_ScanCodes,2,12);
-"270
-[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 2 `i `uc -> -> 12 `i `uc ]
-"271
-}
-[; ;PS_2.c: 271: }
-[e $U 618  ]
-"272
-[e :U 617 ]
-[; ;PS_2.c: 272: else if(PS_2_Read_Data_First == 0xE0)
-[e $ ! == _PS_2_Read_Data_First -> -> 224 `i `ui 619  ]
-[; ;PS_2.c: 273: {
-"273
-{
-[; ;PS_2.c: 274: PS_2_Read_Data_Second = PS_2_ScanCodes[1];
-"274
 [e = _PS_2_Read_Data_Second -> *U + &U _PS_2_ScanCodes * -> -> -> 1 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
-[; ;PS_2.c: 275: if(PS_2_Read_Data_Second == 0x12)
-"275
-[e $ ! == _PS_2_Read_Data_Second -> -> 18 `i `ui 620  ]
-[; ;PS_2.c: 276: {
-"276
+[; ;PS_2.c: 270: PS_2_Buffer_items -= 2;
+"270
+[e =- _PS_2_Buffer_items -> -> 2 `i `uc ]
+[; ;PS_2.c: 271: BufferShiftBack(PS_2_ScanCodes,2,12);
+"271
+[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 2 `i `uc -> -> 12 `i `uc ]
+"272
+}
+[; ;PS_2.c: 272: }
+[e $U 618  ]
+"273
+[e :U 617 ]
+[; ;PS_2.c: 273: else if(PS_2_Read_Data_First == 0xE0)
+[e $ ! == _PS_2_Read_Data_First -> -> 224 `i `ui 619  ]
+[; ;PS_2.c: 274: {
+"274
 {
-[; ;PS_2.c: 278: PS_2_Read_Data_First = 0;
-"278
-[e = _PS_2_Read_Data_First -> -> 0 `i `ui ]
-[; ;PS_2.c: 279: PS_2_Read_Data_Second = 0;
+[; ;PS_2.c: 275: PS_2_Read_Data_Second = PS_2_ScanCodes[1];
+"275
+[e = _PS_2_Read_Data_Second -> *U + &U _PS_2_ScanCodes * -> -> -> 1 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
+[; ;PS_2.c: 276: if(PS_2_Read_Data_Second == 0x12)
+"276
+[e $ ! == _PS_2_Read_Data_Second -> -> 18 `i `ui 620  ]
+[; ;PS_2.c: 277: {
+"277
+{
+[; ;PS_2.c: 279: PS_2_Read_Data_First = 0;
 "279
-[e = _PS_2_Read_Data_Second -> -> 0 `i `ui ]
-[; ;PS_2.c: 280: PS_2_Buffer_items -= 4;
+[e = _PS_2_Read_Data_First -> -> 0 `i `ui ]
+[; ;PS_2.c: 280: PS_2_Read_Data_Second = 0;
 "280
-[e =- _PS_2_Buffer_items -> -> 4 `i `uc ]
-[; ;PS_2.c: 281: BufferShiftBack(PS_2_ScanCodes,4,12);
+[e = _PS_2_Read_Data_Second -> -> 0 `i `ui ]
+[; ;PS_2.c: 281: PS_2_Buffer_items -= 4;
 "281
-[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 4 `i `uc -> -> 12 `i `uc ]
+[e =- _PS_2_Buffer_items -> -> 4 `i `uc ]
+[; ;PS_2.c: 282: BufferShiftBack(PS_2_ScanCodes,4,12);
 "282
+[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 4 `i `uc -> -> 12 `i `uc ]
+"283
 }
 [e :U 620 ]
-[; ;PS_2.c: 282: }
-[; ;PS_2.c: 283: if(PS_2_Read_Data_Second == 0xF0)
-"283
-[e $ ! == _PS_2_Read_Data_Second -> -> 240 `i `ui 621  ]
-[; ;PS_2.c: 284: {
+[; ;PS_2.c: 283: }
+[; ;PS_2.c: 284: if(PS_2_Read_Data_Second == 0xF0)
 "284
-{
-[; ;PS_2.c: 285: PS_2_Read_Data_Third = PS_2_ScanCodes[2];
+[e $ ! == _PS_2_Read_Data_Second -> -> 240 `i `ui 621  ]
+[; ;PS_2.c: 285: {
 "285
-[e = _PS_2_Read_Data_Third -> *U + &U _PS_2_ScanCodes * -> -> -> 2 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
-[; ;PS_2.c: 286: if(PS_2_Read_Data_Third == 0x7C)
+{
+[; ;PS_2.c: 286: PS_2_Read_Data_Third = PS_2_ScanCodes[2];
 "286
-[e $ ! == _PS_2_Read_Data_Third -> -> 124 `i `ui 622  ]
-[; ;PS_2.c: 287: {
+[e = _PS_2_Read_Data_Third -> *U + &U _PS_2_ScanCodes * -> -> -> 2 `i `ui `ux -> -> # *U &U _PS_2_ScanCodes `ui `ux `ui ]
+[; ;PS_2.c: 287: if(PS_2_Read_Data_Third == 0x7C)
 "287
+[e $ ! == _PS_2_Read_Data_Third -> -> 124 `i `ui 622  ]
+[; ;PS_2.c: 288: {
+"288
 {
-[; ;PS_2.c: 289: PS_2_Read_Data_First = 0;
-"289
-[e = _PS_2_Read_Data_First -> -> 0 `i `ui ]
-[; ;PS_2.c: 290: PS_2_Read_Data_Second = 0;
+[; ;PS_2.c: 290: PS_2_Read_Data_First = 0;
 "290
-[e = _PS_2_Read_Data_Second -> -> 0 `i `ui ]
-[; ;PS_2.c: 291: PS_2_Read_Data_Third = 0;
+[e = _PS_2_Read_Data_First -> -> 0 `i `ui ]
+[; ;PS_2.c: 291: PS_2_Read_Data_Second = 0;
 "291
-[e = _PS_2_Read_Data_Third -> -> 0 `i `ui ]
-[; ;PS_2.c: 292: PS_2_Buffer_items -= 6;
+[e = _PS_2_Read_Data_Second -> -> 0 `i `ui ]
+[; ;PS_2.c: 292: PS_2_Read_Data_Third = 0;
 "292
-[e =- _PS_2_Buffer_items -> -> 6 `i `uc ]
-[; ;PS_2.c: 293: BufferShiftBack(PS_2_ScanCodes,6,12);
+[e = _PS_2_Read_Data_Third -> -> 0 `i `ui ]
+[; ;PS_2.c: 293: PS_2_Buffer_items -= 6;
 "293
-[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 6 `i `uc -> -> 12 `i `uc ]
+[e =- _PS_2_Buffer_items -> -> 6 `i `uc ]
+[; ;PS_2.c: 294: BufferShiftBack(PS_2_ScanCodes,6,12);
 "294
-}
-[; ;PS_2.c: 294: }
-[e $U 623  ]
+[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 6 `i `uc -> -> 12 `i `uc ]
 "295
-[e :U 622 ]
-[; ;PS_2.c: 295: else
-[; ;PS_2.c: 296: {
-"296
-{
-[; ;PS_2.c: 297: PS_2_Buffer_items -= 3;
-"297
-[e =- _PS_2_Buffer_items -> -> 3 `i `uc ]
-[; ;PS_2.c: 298: BufferShiftBack(PS_2_ScanCodes,3,12);
-"298
-[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 3 `i `uc -> -> 12 `i `uc ]
-"299
 }
-[e :U 623 ]
+[; ;PS_2.c: 295: }
+[e $U 623  ]
+"296
+[e :U 622 ]
+[; ;PS_2.c: 296: else
+[; ;PS_2.c: 297: {
+"297
+{
+[; ;PS_2.c: 298: PS_2_Buffer_items -= 3;
+"298
+[e =- _PS_2_Buffer_items -> -> 3 `i `uc ]
+[; ;PS_2.c: 299: BufferShiftBack(PS_2_ScanCodes,3,12);
+"299
+[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 3 `i `uc -> -> 12 `i `uc ]
 "300
 }
-[; ;PS_2.c: 299: }
-[; ;PS_2.c: 300: }
-[e $U 624  ]
+[e :U 623 ]
 "301
-[e :U 621 ]
-[; ;PS_2.c: 301: else
-[; ;PS_2.c: 302: {
-"302
-{
-[; ;PS_2.c: 303: PS_2_Buffer_items -= 2;
-"303
-[e =- _PS_2_Buffer_items -> -> 2 `i `uc ]
-[; ;PS_2.c: 304: BufferShiftBack(PS_2_ScanCodes,2,12);
-"304
-[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 2 `i `uc -> -> 12 `i `uc ]
-"305
 }
-[e :U 624 ]
+[; ;PS_2.c: 300: }
+[; ;PS_2.c: 301: }
+[e $U 624  ]
+"302
+[e :U 621 ]
+[; ;PS_2.c: 302: else
+[; ;PS_2.c: 303: {
+"303
+{
+[; ;PS_2.c: 304: PS_2_Buffer_items -= 2;
+"304
+[e =- _PS_2_Buffer_items -> -> 2 `i `uc ]
+[; ;PS_2.c: 305: BufferShiftBack(PS_2_ScanCodes,2,12);
+"305
+[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 2 `i `uc -> -> 12 `i `uc ]
 "306
 }
-[; ;PS_2.c: 305: }
-[; ;PS_2.c: 306: }
-[e $U 625  ]
+[e :U 624 ]
 "307
-[e :U 619 ]
-[; ;PS_2.c: 307: else
-[; ;PS_2.c: 308: {
+}
+[; ;PS_2.c: 306: }
+[; ;PS_2.c: 307: }
+[e $U 625  ]
 "308
-{
-[; ;PS_2.c: 309: PS_2_Buffer_items -= 1;
+[e :U 619 ]
+[; ;PS_2.c: 308: else
+[; ;PS_2.c: 309: {
 "309
-[e =- _PS_2_Buffer_items -> -> 1 `i `uc ]
-[; ;PS_2.c: 310: BufferShiftBack(PS_2_ScanCodes,1,12);
+{
+[; ;PS_2.c: 310: PS_2_Buffer_items -= 1;
 "310
-[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 1 `i `uc -> -> 12 `i `uc ]
+[e =- _PS_2_Buffer_items -> -> 1 `i `uc ]
+[; ;PS_2.c: 311: BufferShiftBack(PS_2_ScanCodes,1,12);
 "311
+[e ( _BufferShiftBack (3 , , &U _PS_2_ScanCodes -> -> 1 `i `uc -> -> 12 `i `uc ]
+"312
 }
 [e :U 625 ]
 [e :U 618 ]
-[; ;PS_2.c: 311: }
-[; ;PS_2.c: 314: if(PS_2_Read_Data_Third)
-"314
-[e $ ! != _PS_2_Read_Data_Third -> -> 0 `i `ui 626  ]
-[; ;PS_2.c: 315: {
+[; ;PS_2.c: 312: }
+[; ;PS_2.c: 315: if(PS_2_Read_Data_Third)
 "315
+[e $ ! != _PS_2_Read_Data_Third -> -> 0 `i `ui 626  ]
+[; ;PS_2.c: 316: {
+"316
 {
-[; ;PS_2.c: 317: if(PS_2_Read_Data_First == 0xE0)
-"317
-[e $ ! == _PS_2_Read_Data_First -> -> 224 `i `ui 627  ]
-[; ;PS_2.c: 318: {
+[; ;PS_2.c: 318: if(PS_2_Read_Data_First == 0xE0)
 "318
-{
-[; ;PS_2.c: 319: if(PS_2_Read_Data_Second == 0xF0)
+[e $ ! == _PS_2_Read_Data_First -> -> 224 `i `ui 627  ]
+[; ;PS_2.c: 319: {
 "319
-[e $ ! == _PS_2_Read_Data_Second -> -> 240 `i `ui 628  ]
-[; ;PS_2.c: 320: {
+{
+[; ;PS_2.c: 320: if(PS_2_Read_Data_Second == 0xF0)
 "320
-{
-[; ;PS_2.c: 321: if(PS_2_Read_Data_Third == 0x11 )
+[e $ ! == _PS_2_Read_Data_Second -> -> 240 `i `ui 628  ]
+[; ;PS_2.c: 321: {
 "321
-[e $ ! == _PS_2_Read_Data_Third -> -> 17 `i `ui 629  ]
-[; ;PS_2.c: 322: {
+{
+[; ;PS_2.c: 322: if(PS_2_Read_Data_Third == 0x11 )
 "322
-{
-[; ;PS_2.c: 323: LALT = 0;
+[e $ ! == _PS_2_Read_Data_Third -> -> 17 `i `ui 629  ]
+[; ;PS_2.c: 323: {
 "323
-[e = _LALT -> -> 0 `i `uc ]
+{
+[; ;PS_2.c: 324: LALT = 0;
 "324
-}
-[; ;PS_2.c: 324: }
-[e $U 630  ]
+[e = _LALT -> -> 0 `i `uc ]
 "325
-[e :U 629 ]
-[; ;PS_2.c: 325: else if(PS_2_Read_Data_Third == 0x14 )
-[e $ ! == _PS_2_Read_Data_Third -> -> 20 `i `ui 631  ]
-[; ;PS_2.c: 326: {
-"326
-{
-[; ;PS_2.c: 327: LControl = 0;
-"327
-[e = _LControl -> -> 0 `i `uc ]
-"328
 }
-[; ;PS_2.c: 328: }
-[e $U 632  ]
-"329
-[e :U 631 ]
-[; ;PS_2.c: 329: else if(PS_2_Read_Data_Third == 0x71 )
-[e $ ! == _PS_2_Read_Data_Third -> -> 113 `i `ui 633  ]
-[; ;PS_2.c: 330: {
-"330
+[; ;PS_2.c: 325: }
+[e $U 630  ]
+"326
+[e :U 629 ]
+[; ;PS_2.c: 326: else if(PS_2_Read_Data_Third == 0x14 )
+[e $ ! == _PS_2_Read_Data_Third -> -> 20 `i `ui 631  ]
+[; ;PS_2.c: 327: {
+"327
 {
-[; ;PS_2.c: 331: Delete = 0;
+[; ;PS_2.c: 328: LControl = 0;
+"328
+[e = _LControl -> -> 0 `i `uc ]
+"329
+}
+[; ;PS_2.c: 329: }
+[e $U 632  ]
+"330
+[e :U 631 ]
+[; ;PS_2.c: 330: else if(PS_2_Read_Data_Third == 0x71 )
+[e $ ! == _PS_2_Read_Data_Third -> -> 113 `i `ui 633  ]
+[; ;PS_2.c: 331: {
 "331
-[e = _Delete -> -> 0 `i `uc ]
+{
+[; ;PS_2.c: 332: Delete = 0;
 "332
+[e = _Delete -> -> 0 `i `uc ]
+"333
 }
 [e :U 633 ]
-"333
+"334
 [e :U 632 ]
 [e :U 630 ]
 }
 [e :U 628 ]
-"334
-}
-[e :U 627 ]
 "335
 }
-[; ;PS_2.c: 332: }
+[e :U 627 ]
+"336
+}
 [; ;PS_2.c: 333: }
 [; ;PS_2.c: 334: }
 [; ;PS_2.c: 335: }
+[; ;PS_2.c: 336: }
 [e $U 634  ]
-"336
-[e :U 626 ]
-[; ;PS_2.c: 336: else if(PS_2_Read_Data_Second)
-[e $ ! != _PS_2_Read_Data_Second -> -> 0 `i `ui 635  ]
-[; ;PS_2.c: 337: {
 "337
+[e :U 626 ]
+[; ;PS_2.c: 337: else if(PS_2_Read_Data_Second)
+[e $ ! != _PS_2_Read_Data_Second -> -> 0 `i `ui 635  ]
+[; ;PS_2.c: 338: {
+"338
 {
-[; ;PS_2.c: 339: if(PS_2_Read_Data_First == 0xF0)
-"339
-[e $ ! == _PS_2_Read_Data_First -> -> 240 `i `ui 636  ]
-[; ;PS_2.c: 340: {
+[; ;PS_2.c: 340: if(PS_2_Read_Data_First == 0xF0)
 "340
+[e $ ! == _PS_2_Read_Data_First -> -> 240 `i `ui 636  ]
+[; ;PS_2.c: 341: {
+"341
 {
-[; ;PS_2.c: 342: if(PS_2_Read_Data_Second == 0x12)
-"342
-[e $ ! == _PS_2_Read_Data_Second -> -> 18 `i `ui 637  ]
-[; ;PS_2.c: 343: {
+[; ;PS_2.c: 343: if(PS_2_Read_Data_Second == 0x12)
 "343
-{
-[; ;PS_2.c: 344: Right_Shift_Key =0;
+[e $ ! == _PS_2_Read_Data_Second -> -> 18 `i `ui 637  ]
+[; ;PS_2.c: 344: {
 "344
-[e = _Right_Shift_Key -> -> 0 `i `uc ]
+{
+[; ;PS_2.c: 345: Right_Shift_Key =0;
 "345
-}
-[; ;PS_2.c: 345: }
-[e $U 638  ]
+[e = _Right_Shift_Key -> -> 0 `i `uc ]
 "346
-[e :U 637 ]
-[; ;PS_2.c: 346: else if(PS_2_Read_Data_Second == 0x59)
-[e $ ! == _PS_2_Read_Data_Second -> -> 89 `i `ui 639  ]
-[; ;PS_2.c: 347: {
+}
+[; ;PS_2.c: 346: }
+[e $U 638  ]
 "347
-{
-[; ;PS_2.c: 348: Left_Shift_Key =0;
+[e :U 637 ]
+[; ;PS_2.c: 347: else if(PS_2_Read_Data_Second == 0x59)
+[e $ ! == _PS_2_Read_Data_Second -> -> 89 `i `ui 639  ]
+[; ;PS_2.c: 348: {
 "348
-[e = _Left_Shift_Key -> -> 0 `i `uc ]
+{
+[; ;PS_2.c: 349: Left_Shift_Key =0;
 "349
-}
-[; ;PS_2.c: 349: }
-[e $U 640  ]
+[e = _Left_Shift_Key -> -> 0 `i `uc ]
 "350
-[e :U 639 ]
-[; ;PS_2.c: 350: else if(PS_2_Read_Data_Second == 0x14)
-[e $ ! == _PS_2_Read_Data_Second -> -> 20 `i `ui 641  ]
-[; ;PS_2.c: 351: {
-"351
-{
-[; ;PS_2.c: 352: RControl =0;
-"352
-[e = _RControl -> -> 0 `i `uc ]
-"353
 }
-[; ;PS_2.c: 353: }
-[e $U 642  ]
-"354
-[e :U 641 ]
-[; ;PS_2.c: 354: else if(PS_2_Read_Data_Second == 0x11 )
-[e $ ! == _PS_2_Read_Data_Second -> -> 17 `i `ui 643  ]
-[; ;PS_2.c: 355: {
-"355
+[; ;PS_2.c: 350: }
+[e $U 640  ]
+"351
+[e :U 639 ]
+[; ;PS_2.c: 351: else if(PS_2_Read_Data_Second == 0x14)
+[e $ ! == _PS_2_Read_Data_Second -> -> 20 `i `ui 641  ]
+[; ;PS_2.c: 352: {
+"352
 {
-[; ;PS_2.c: 356: RALT =0;
+[; ;PS_2.c: 353: RControl =0;
+"353
+[e = _RControl -> -> 0 `i `uc ]
+"354
+}
+[; ;PS_2.c: 354: }
+[e $U 642  ]
+"355
+[e :U 641 ]
+[; ;PS_2.c: 355: else if(PS_2_Read_Data_Second == 0x11 )
+[e $ ! == _PS_2_Read_Data_Second -> -> 17 `i `ui 643  ]
+[; ;PS_2.c: 356: {
 "356
-[e = _RALT -> -> 0 `i `uc ]
+{
+[; ;PS_2.c: 357: RALT =0;
 "357
+[e = _RALT -> -> 0 `i `uc ]
+"358
 }
 [e :U 643 ]
-"358
+"359
 [e :U 642 ]
 [e :U 640 ]
 [e :U 638 ]
-[; ;PS_2.c: 357: }
-[; ;PS_2.c: 358: if(PS_2_Read_Data_Second == 0x59 || PS_2_Read_Data_Second == 0x12)
+[; ;PS_2.c: 358: }
+[; ;PS_2.c: 359: if(PS_2_Read_Data_Second == 0x59 || PS_2_Read_Data_Second == 0x12)
 [e $ ! || == _PS_2_Read_Data_Second -> -> 89 `i `ui == _PS_2_Read_Data_Second -> -> 18 `i `ui 644  ]
-[; ;PS_2.c: 359: {
-"359
-{
-[; ;PS_2.c: 360: if(Right_Shift_Key == 0 && Left_Shift_Key == 0)
+[; ;PS_2.c: 360: {
 "360
-[e $ ! && == -> _Right_Shift_Key `i -> 0 `i == -> _Left_Shift_Key `i -> 0 `i 645  ]
-[; ;PS_2.c: 361: {
+{
+[; ;PS_2.c: 361: if(Right_Shift_Key == 0 && Left_Shift_Key == 0)
 "361
-{
-[; ;PS_2.c: 362: if(!Send_PS2(0xED))
+[e $ ! && == -> _Right_Shift_Key `i -> 0 `i == -> _Left_Shift_Key `i -> 0 `i 645  ]
+[; ;PS_2.c: 362: {
 "362
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 646  ]
-[; ;PS_2.c: 363: {
+{
+[; ;PS_2.c: 363: if(!Send_PS2(0xED))
 "363
-{
-[; ;PS_2.c: 364: if(!Send_PS2(0x00))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 646  ]
+[; ;PS_2.c: 364: {
 "364
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 647  ]
-[; ;PS_2.c: 365: {
-"365
 {
-[; ;PS_2.c: 366: Shift_Key = 0;
+[; ;PS_2.c: 365: if(!Send_PS2(0x00))
+"365
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 647  ]
+[; ;PS_2.c: 366: {
 "366
-[e = _Shift_Key -> -> 0 `i `uc ]
+{
+[; ;PS_2.c: 367: Shift_Key = 0;
 "367
-}
-[e :U 647 ]
+[e = _Shift_Key -> -> 0 `i `uc ]
 "368
 }
-[e :U 646 ]
-[; ;PS_2.c: 367: }
-[; ;PS_2.c: 368: }
-[; ;PS_2.c: 369: if(Caps_Lock)
+[e :U 647 ]
 "369
-[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 648  ]
-[; ;PS_2.c: 370: {
+}
+[e :U 646 ]
+[; ;PS_2.c: 368: }
+[; ;PS_2.c: 369: }
+[; ;PS_2.c: 370: if(Caps_Lock)
 "370
-{
-[; ;PS_2.c: 371: CapsCount=0;
+[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 648  ]
+[; ;PS_2.c: 371: {
 "371
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 372: while(CapsCount<10)
+{
+[; ;PS_2.c: 372: CapsCount=0;
 "372
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 373: while(CapsCount<10)
+"373
 [e $U 649  ]
 [e :U 650 ]
-[; ;PS_2.c: 373: {
-"373
-{
-[; ;PS_2.c: 374: if(!Send_PS2(0xED))
+[; ;PS_2.c: 374: {
 "374
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 652  ]
-[; ;PS_2.c: 375: {
+{
+[; ;PS_2.c: 375: if(!Send_PS2(0xED))
 "375
-{
-[; ;PS_2.c: 376: if(!Send_PS2(0x04))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 652  ]
+[; ;PS_2.c: 376: {
 "376
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 4 `i `uc `i -> -> -> 0 `i `uc `i 653  ]
-[; ;PS_2.c: 377: {
-"377
 {
-[; ;PS_2.c: 378: break;
+[; ;PS_2.c: 377: if(!Send_PS2(0x04))
+"377
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 4 `i `uc `i -> -> -> 0 `i `uc `i 653  ]
+[; ;PS_2.c: 378: {
 "378
-[e $U 651  ]
+{
+[; ;PS_2.c: 379: break;
 "379
-}
-[e :U 653 ]
+[e $U 651  ]
 "380
 }
-[e :U 652 ]
-[; ;PS_2.c: 379: }
-[; ;PS_2.c: 380: }
-[; ;PS_2.c: 381: CapsCount++;
+[e :U 653 ]
 "381
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"382
 }
-[e :U 649 ]
-"372
-[e $ < -> _CapsCount `i -> 10 `i 650  ]
-[e :U 651 ]
+[e :U 652 ]
+[; ;PS_2.c: 380: }
+[; ;PS_2.c: 381: }
+[; ;PS_2.c: 382: CapsCount++;
+"382
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "383
 }
-[; ;PS_2.c: 382: }
-[; ;PS_2.c: 383: }
-[e $U 654  ]
+[e :U 649 ]
+"373
+[e $ < -> _CapsCount `i -> 10 `i 650  ]
+[e :U 651 ]
 "384
-[e :U 648 ]
-[; ;PS_2.c: 384: else
-[; ;PS_2.c: 385: {
+}
+[; ;PS_2.c: 383: }
+[; ;PS_2.c: 384: }
+[e $U 654  ]
 "385
-{
-[; ;PS_2.c: 386: CapsCount=0;
+[e :U 648 ]
+[; ;PS_2.c: 385: else
+[; ;PS_2.c: 386: {
 "386
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 387: while(CapsCount<10)
+{
+[; ;PS_2.c: 387: CapsCount=0;
 "387
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 388: while(CapsCount<10)
+"388
 [e $U 655  ]
 [e :U 656 ]
-[; ;PS_2.c: 388: {
-"388
-{
-[; ;PS_2.c: 389: if(!Send_PS2(0xED))
+[; ;PS_2.c: 389: {
 "389
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 658  ]
-[; ;PS_2.c: 390: {
+{
+[; ;PS_2.c: 390: if(!Send_PS2(0xED))
 "390
-{
-[; ;PS_2.c: 391: if(!Send_PS2(0x00))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 658  ]
+[; ;PS_2.c: 391: {
 "391
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 659  ]
-[; ;PS_2.c: 392: {
-"392
 {
-[; ;PS_2.c: 393: break;
+[; ;PS_2.c: 392: if(!Send_PS2(0x00))
+"392
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 659  ]
+[; ;PS_2.c: 393: {
 "393
-[e $U 657  ]
+{
+[; ;PS_2.c: 394: break;
 "394
-}
-[e :U 659 ]
+[e $U 657  ]
 "395
 }
-[e :U 658 ]
-[; ;PS_2.c: 394: }
-[; ;PS_2.c: 395: }
-[; ;PS_2.c: 396: CapsCount++;
+[e :U 659 ]
 "396
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"397
 }
-[e :U 655 ]
-"387
-[e $ < -> _CapsCount `i -> 10 `i 656  ]
-[e :U 657 ]
+[e :U 658 ]
+[; ;PS_2.c: 395: }
+[; ;PS_2.c: 396: }
+[; ;PS_2.c: 397: CapsCount++;
+"397
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "398
 }
-[e :U 654 ]
+[e :U 655 ]
+"388
+[e $ < -> _CapsCount `i -> 10 `i 656  ]
+[e :U 657 ]
 "399
 }
-[e :U 645 ]
+[e :U 654 ]
 "400
 }
-[; ;PS_2.c: 397: }
+[e :U 645 ]
+"401
+}
 [; ;PS_2.c: 398: }
 [; ;PS_2.c: 399: }
 [; ;PS_2.c: 400: }
+[; ;PS_2.c: 401: }
 [e $U 660  ]
-"401
-[e :U 644 ]
-[; ;PS_2.c: 401: else if(PS_2_Read_Data_Second == 0x58)
-[e $ ! == _PS_2_Read_Data_Second -> -> 88 `i `ui 661  ]
-[; ;PS_2.c: 402: {
 "402
-{
-[; ;PS_2.c: 403: Caps_Lock_Key = 0;
+[e :U 644 ]
+[; ;PS_2.c: 402: else if(PS_2_Read_Data_Second == 0x58)
+[e $ ! == _PS_2_Read_Data_Second -> -> 88 `i `ui 661  ]
+[; ;PS_2.c: 403: {
 "403
-[e = _Caps_Lock_Key -> -> 0 `i `uc ]
+{
+[; ;PS_2.c: 404: Caps_Lock_Key = 0;
 "404
+[e = _Caps_Lock_Key -> -> 0 `i `uc ]
+"405
 }
 [e :U 661 ]
-"405
+"406
 [e :U 660 ]
 }
-[; ;PS_2.c: 404: }
 [; ;PS_2.c: 405: }
+[; ;PS_2.c: 406: }
 [e $U 662  ]
-"406
-[e :U 636 ]
-[; ;PS_2.c: 406: else if(PS_2_Read_Data_First == 0xE0)
-[e $ ! == _PS_2_Read_Data_First -> -> 224 `i `ui 663  ]
-[; ;PS_2.c: 407: {
 "407
+[e :U 636 ]
+[; ;PS_2.c: 407: else if(PS_2_Read_Data_First == 0xE0)
+[e $ ! == _PS_2_Read_Data_First -> -> 224 `i `ui 663  ]
+[; ;PS_2.c: 408: {
+"408
 {
-[; ;PS_2.c: 409: if(PS_2_Read_Data_Second == 0x11 )
-"409
-[e $ ! == _PS_2_Read_Data_Second -> -> 17 `i `ui 664  ]
-[; ;PS_2.c: 410: {
+[; ;PS_2.c: 410: if(PS_2_Read_Data_Second == 0x11 )
 "410
-{
-[; ;PS_2.c: 411: LALT = 1;
+[e $ ! == _PS_2_Read_Data_Second -> -> 17 `i `ui 664  ]
+[; ;PS_2.c: 411: {
 "411
-[e = _LALT -> -> 1 `i `uc ]
+{
+[; ;PS_2.c: 412: LALT = 1;
 "412
-}
-[; ;PS_2.c: 412: }
-[e $U 665  ]
+[e = _LALT -> -> 1 `i `uc ]
 "413
-[e :U 664 ]
-[; ;PS_2.c: 413: else if(PS_2_Read_Data_Second == 0x14 )
-[e $ ! == _PS_2_Read_Data_Second -> -> 20 `i `ui 666  ]
-[; ;PS_2.c: 414: {
-"414
-{
-[; ;PS_2.c: 415: LControl = 1;
-"415
-[e = _LControl -> -> 1 `i `uc ]
-"416
 }
-[; ;PS_2.c: 416: }
-[e $U 667  ]
-"417
-[e :U 666 ]
-[; ;PS_2.c: 417: else if(PS_2_Read_Data_Second == 0x71 )
-[e $ ! == _PS_2_Read_Data_Second -> -> 113 `i `ui 668  ]
-[; ;PS_2.c: 418: {
-"418
+[; ;PS_2.c: 413: }
+[e $U 665  ]
+"414
+[e :U 664 ]
+[; ;PS_2.c: 414: else if(PS_2_Read_Data_Second == 0x14 )
+[e $ ! == _PS_2_Read_Data_Second -> -> 20 `i `ui 666  ]
+[; ;PS_2.c: 415: {
+"415
 {
-[; ;PS_2.c: 419: Delete = 1;
+[; ;PS_2.c: 416: LControl = 1;
+"416
+[e = _LControl -> -> 1 `i `uc ]
+"417
+}
+[; ;PS_2.c: 417: }
+[e $U 667  ]
+"418
+[e :U 666 ]
+[; ;PS_2.c: 418: else if(PS_2_Read_Data_Second == 0x71 )
+[e $ ! == _PS_2_Read_Data_Second -> -> 113 `i `ui 668  ]
+[; ;PS_2.c: 419: {
 "419
-[e = _Delete -> -> 1 `i `uc ]
+{
+[; ;PS_2.c: 420: Delete = 1;
 "420
+[e = _Delete -> -> 1 `i `uc ]
+"421
 }
 [e :U 668 ]
-"421
+"422
 [e :U 667 ]
 [e :U 665 ]
-[; ;PS_2.c: 420: }
-[; ;PS_2.c: 421: if(((RControl || LControl) + (LALT || RALT) + Delete) != 3)
+[; ;PS_2.c: 421: }
+[; ;PS_2.c: 422: if(((RControl || LControl) + (LALT || RALT) + Delete) != 3)
 [e $ ! != + + -> || != -> _RControl `i -> -> -> 0 `i `uc `i != -> _LControl `i -> -> -> 0 `i `uc `i `i -> || != -> _LALT `i -> -> -> 0 `i `uc `i != -> _RALT `i -> -> -> 0 `i `uc `i `i -> _Delete `i -> 3 `i 669  ]
-[; ;PS_2.c: 422: {
-"422
+[; ;PS_2.c: 423: {
+"423
 {
-[; ;PS_2.c: 424: temp = Decode_Scan_Code_FunctionE0(PS_2_Read_Data_Second);
-"424
-[e = _temp ( _Decode_Scan_Code_FunctionE0 (1 -> _PS_2_Read_Data_Second `uc ]
+[; ;PS_2.c: 425: temp = Decode_Scan_Code_FunctionE0(PS_2_Read_Data_Second);
 "425
-}
-[e :U 669 ]
+[e = _temp ( _Decode_Scan_Code_FunctionE0 (1 -> _PS_2_Read_Data_Second `uc ]
 "426
 }
-[e :U 663 ]
+[e :U 669 ]
 "427
+}
+[e :U 663 ]
+"428
 [e :U 662 ]
 }
 [e :U 635 ]
-"428
+"429
 [e :U 634 ]
-[; ;PS_2.c: 425: }
 [; ;PS_2.c: 426: }
 [; ;PS_2.c: 427: }
-[; ;PS_2.c: 428: if(PS_2_Read_Data_First != 0 && PS_2_Read_Data_Second == 0 &&
-[; ;PS_2.c: 429: PS_2_Read_Data_Third == 0)
-"429
-[e $ ! && && != _PS_2_Read_Data_First -> -> 0 `i `ui == _PS_2_Read_Data_Second -> -> 0 `i `ui == _PS_2_Read_Data_Third -> -> 0 `i `ui 670  ]
-[; ;PS_2.c: 430: {
+[; ;PS_2.c: 428: }
+[; ;PS_2.c: 429: if(PS_2_Read_Data_First != 0 && PS_2_Read_Data_Second == 0 &&
+[; ;PS_2.c: 430: PS_2_Read_Data_Third == 0)
 "430
+[e $ ! && && != _PS_2_Read_Data_First -> -> 0 `i `ui == _PS_2_Read_Data_Second -> -> 0 `i `ui == _PS_2_Read_Data_Third -> -> 0 `i `ui 670  ]
+[; ;PS_2.c: 431: {
+"431
 {
-[; ;PS_2.c: 432: if(PS_2_Read_Data_First == 0x12)
-"432
-[e $ ! == _PS_2_Read_Data_First -> -> 18 `i `ui 671  ]
-[; ;PS_2.c: 433: {
+[; ;PS_2.c: 433: if(PS_2_Read_Data_First == 0x12)
 "433
-{
-[; ;PS_2.c: 434: Right_Shift_Key = 1;
+[e $ ! == _PS_2_Read_Data_First -> -> 18 `i `ui 671  ]
+[; ;PS_2.c: 434: {
 "434
-[e = _Right_Shift_Key -> -> 1 `i `uc ]
-"435
-}
-[; ;PS_2.c: 435: }
-[e $U 672  ]
-"436
-[e :U 671 ]
-[; ;PS_2.c: 436: else if(PS_2_Read_Data_First == 0x59)
-[e $ ! == _PS_2_Read_Data_First -> -> 89 `i `ui 673  ]
-[; ;PS_2.c: 437: {
-"437
 {
-[; ;PS_2.c: 438: Left_Shift_Key = 1;
+[; ;PS_2.c: 435: Right_Shift_Key = 1;
+"435
+[e = _Right_Shift_Key -> -> 1 `i `uc ]
+"436
+}
+[; ;PS_2.c: 436: }
+[e $U 672  ]
+"437
+[e :U 671 ]
+[; ;PS_2.c: 437: else if(PS_2_Read_Data_First == 0x59)
+[e $ ! == _PS_2_Read_Data_First -> -> 89 `i `ui 673  ]
+[; ;PS_2.c: 438: {
 "438
-[e = _Left_Shift_Key -> -> 1 `i `uc ]
+{
+[; ;PS_2.c: 439: Left_Shift_Key = 1;
 "439
+[e = _Left_Shift_Key -> -> 1 `i `uc ]
+"440
 }
 [e :U 673 ]
-"440
-[e :U 672 ]
-[; ;PS_2.c: 439: }
-[; ;PS_2.c: 440: if((Right_Shift_Key == 1 && Right_Shift_Key_old == 0) || (Left_Shift_Key == 1 && Left_Shift_Key_old == 0))
-[e $ ! || && == -> _Right_Shift_Key `i -> 1 `i == -> _Right_Shift_Key_old `i -> 0 `i && == -> _Left_Shift_Key `i -> 1 `i == -> _Left_Shift_Key_old `i -> 0 `i 674  ]
-[; ;PS_2.c: 441: {
 "441
+[e :U 672 ]
+[; ;PS_2.c: 440: }
+[; ;PS_2.c: 441: if((Right_Shift_Key == 1 && Right_Shift_Key_old == 0) || (Left_Shift_Key == 1 && Left_Shift_Key_old == 0))
+[e $ ! || && == -> _Right_Shift_Key `i -> 1 `i == -> _Right_Shift_Key_old `i -> 0 `i && == -> _Left_Shift_Key `i -> 1 `i == -> _Left_Shift_Key_old `i -> 0 `i 674  ]
+[; ;PS_2.c: 442: {
+"442
 {
-[; ;PS_2.c: 443: if(!Send_PS2(0xED))
-"443
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 675  ]
-[; ;PS_2.c: 444: {
+[; ;PS_2.c: 444: if(!Send_PS2(0xED))
 "444
-{
-[; ;PS_2.c: 445: if(Caps_Lock)
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 675  ]
+[; ;PS_2.c: 445: {
 "445
-[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 676  ]
-[; ;PS_2.c: 446: {
-"446
 {
-[; ;PS_2.c: 447: CapsCount=0;
+[; ;PS_2.c: 446: if(Caps_Lock)
+"446
+[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 676  ]
+[; ;PS_2.c: 447: {
 "447
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 448: while(CapsCount<10)
+{
+[; ;PS_2.c: 448: CapsCount=0;
 "448
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 449: while(CapsCount<10)
+"449
 [e $U 677  ]
 [e :U 678 ]
-[; ;PS_2.c: 449: {
-"449
-{
-[; ;PS_2.c: 450: if(!Send_PS2(0xED))
+[; ;PS_2.c: 450: {
 "450
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 680  ]
-[; ;PS_2.c: 451: {
+{
+[; ;PS_2.c: 451: if(!Send_PS2(0xED))
 "451
-{
-[; ;PS_2.c: 452: if(!Send_PS2(0x05))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 680  ]
+[; ;PS_2.c: 452: {
 "452
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 5 `i `uc `i -> -> -> 0 `i `uc `i 681  ]
-[; ;PS_2.c: 453: {
-"453
 {
-[; ;PS_2.c: 454: Shift_Key = 1;
+[; ;PS_2.c: 453: if(!Send_PS2(0x05))
+"453
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 5 `i `uc `i -> -> -> 0 `i `uc `i 681  ]
+[; ;PS_2.c: 454: {
 "454
-[e = _Shift_Key -> -> 1 `i `uc ]
-[; ;PS_2.c: 455: break;
+{
+[; ;PS_2.c: 455: Shift_Key = 1;
 "455
-[e $U 679  ]
+[e = _Shift_Key -> -> 1 `i `uc ]
+[; ;PS_2.c: 456: break;
 "456
-}
-[e :U 681 ]
+[e $U 679  ]
 "457
 }
-[e :U 680 ]
-[; ;PS_2.c: 456: }
-[; ;PS_2.c: 457: }
-[; ;PS_2.c: 458: CapsCount++;
+[e :U 681 ]
 "458
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"459
 }
-[e :U 677 ]
-"448
-[e $ < -> _CapsCount `i -> 10 `i 678  ]
-[e :U 679 ]
+[e :U 680 ]
+[; ;PS_2.c: 457: }
+[; ;PS_2.c: 458: }
+[; ;PS_2.c: 459: CapsCount++;
+"459
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "460
 }
-[; ;PS_2.c: 459: }
-[; ;PS_2.c: 460: }
-[e $U 682  ]
+[e :U 677 ]
+"449
+[e $ < -> _CapsCount `i -> 10 `i 678  ]
+[e :U 679 ]
 "461
-[e :U 676 ]
-[; ;PS_2.c: 461: else
-[; ;PS_2.c: 462: {
+}
+[; ;PS_2.c: 460: }
+[; ;PS_2.c: 461: }
+[e $U 682  ]
 "462
-{
-[; ;PS_2.c: 463: CapsCount=0;
+[e :U 676 ]
+[; ;PS_2.c: 462: else
+[; ;PS_2.c: 463: {
 "463
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 464: while(CapsCount<10)
+{
+[; ;PS_2.c: 464: CapsCount=0;
 "464
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 465: while(CapsCount<10)
+"465
 [e $U 683  ]
 [e :U 684 ]
-[; ;PS_2.c: 465: {
-"465
-{
-[; ;PS_2.c: 466: if(!Send_PS2(0xED))
+[; ;PS_2.c: 466: {
 "466
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 686  ]
-[; ;PS_2.c: 467: {
+{
+[; ;PS_2.c: 467: if(!Send_PS2(0xED))
 "467
-{
-[; ;PS_2.c: 468: if(!Send_PS2(0x01))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 686  ]
+[; ;PS_2.c: 468: {
 "468
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 687  ]
-[; ;PS_2.c: 469: {
-"469
 {
-[; ;PS_2.c: 470: Shift_Key = 1;
+[; ;PS_2.c: 469: if(!Send_PS2(0x01))
+"469
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 687  ]
+[; ;PS_2.c: 470: {
 "470
-[e = _Shift_Key -> -> 1 `i `uc ]
-[; ;PS_2.c: 471: break;
+{
+[; ;PS_2.c: 471: Shift_Key = 1;
 "471
-[e $U 685  ]
+[e = _Shift_Key -> -> 1 `i `uc ]
+[; ;PS_2.c: 472: break;
 "472
-}
-[e :U 687 ]
+[e $U 685  ]
 "473
 }
-[e :U 686 ]
-[; ;PS_2.c: 472: }
-[; ;PS_2.c: 473: }
-[; ;PS_2.c: 474: CapsCount++;
+[e :U 687 ]
 "474
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"475
 }
-[e :U 683 ]
-"464
-[e $ < -> _CapsCount `i -> 10 `i 684  ]
-[e :U 685 ]
+[e :U 686 ]
+[; ;PS_2.c: 473: }
+[; ;PS_2.c: 474: }
+[; ;PS_2.c: 475: CapsCount++;
+"475
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "476
 }
-[e :U 682 ]
+[e :U 683 ]
+"465
+[e $ < -> _CapsCount `i -> 10 `i 684  ]
+[e :U 685 ]
 "477
 }
-[e :U 675 ]
+[e :U 682 ]
 "478
 }
+[e :U 675 ]
+"479
+}
 [e :U 674 ]
-[; ;PS_2.c: 475: }
 [; ;PS_2.c: 476: }
 [; ;PS_2.c: 477: }
 [; ;PS_2.c: 478: }
-[; ;PS_2.c: 479: if(PS_2_Read_Data_First == 0x14 )
-"479
-[e $ ! == _PS_2_Read_Data_First -> -> 20 `i `ui 688  ]
-[; ;PS_2.c: 480: {
+[; ;PS_2.c: 479: }
+[; ;PS_2.c: 480: if(PS_2_Read_Data_First == 0x14 )
 "480
-{
-[; ;PS_2.c: 481: RControl = 1;
+[e $ ! == _PS_2_Read_Data_First -> -> 20 `i `ui 688  ]
+[; ;PS_2.c: 481: {
 "481
-[e = _RControl -> -> 1 `i `uc ]
+{
+[; ;PS_2.c: 482: RControl = 1;
 "482
-}
-[; ;PS_2.c: 482: }
-[e $U 689  ]
+[e = _RControl -> -> 1 `i `uc ]
 "483
-[e :U 688 ]
-[; ;PS_2.c: 483: else if(PS_2_Read_Data_First == 0x11 )
-[e $ ! == _PS_2_Read_Data_First -> -> 17 `i `ui 690  ]
-[; ;PS_2.c: 484: {
+}
+[; ;PS_2.c: 483: }
+[e $U 689  ]
 "484
-{
-[; ;PS_2.c: 485: RALT = 1;
+[e :U 688 ]
+[; ;PS_2.c: 484: else if(PS_2_Read_Data_First == 0x11 )
+[e $ ! == _PS_2_Read_Data_First -> -> 17 `i `ui 690  ]
+[; ;PS_2.c: 485: {
 "485
-[e = _RALT -> -> 1 `i `uc ]
+{
+[; ;PS_2.c: 486: RALT = 1;
 "486
-}
-[; ;PS_2.c: 486: }
-[e $U 691  ]
+[e = _RALT -> -> 1 `i `uc ]
 "487
-[e :U 690 ]
-[; ;PS_2.c: 487: else if(PS_2_Read_Data_First == 0xEE )
-[e $ ! == _PS_2_Read_Data_First -> -> 238 `i `ui 692  ]
-[; ;PS_2.c: 488: {
-"488
-{
-[; ;PS_2.c: 489: ECHO = 1;
-"489
-[e = _ECHO -> -> 1 `i `uc ]
-"490
 }
-[; ;PS_2.c: 490: }
-[e $U 693  ]
+[; ;PS_2.c: 487: }
+[e $U 691  ]
+"488
+[e :U 690 ]
+[; ;PS_2.c: 488: else if(PS_2_Read_Data_First == 0xEE )
+[e $ ! == _PS_2_Read_Data_First -> -> 238 `i `ui 692  ]
+[; ;PS_2.c: 489: {
+"489
+{
+[; ;PS_2.c: 490: ECHO = 1;
+"490
+[e = _ECHO -> -> 1 `i `uc ]
 "491
-[e :U 692 ]
-[; ;PS_2.c: 491: else if(PS_2_Read_Data_First == 0x58)
-[e $ ! == _PS_2_Read_Data_First -> -> 88 `i `ui 694  ]
-[; ;PS_2.c: 492: {
+}
+[; ;PS_2.c: 491: }
+[e $U 693  ]
 "492
-{
-[; ;PS_2.c: 493: Caps_Lock_Key = 1;
+[e :U 692 ]
+[; ;PS_2.c: 492: else if(PS_2_Read_Data_First == 0x58)
+[e $ ! == _PS_2_Read_Data_First -> -> 88 `i `ui 694  ]
+[; ;PS_2.c: 493: {
 "493
-[e = _Caps_Lock_Key -> -> 1 `i `uc ]
-[; ;PS_2.c: 494: if(Caps_Lock_Key_old == 0)
+{
+[; ;PS_2.c: 494: Caps_Lock_Key = 1;
 "494
-[e $ ! == -> _Caps_Lock_Key_old `i -> 0 `i 695  ]
-[; ;PS_2.c: 495: {
+[e = _Caps_Lock_Key -> -> 1 `i `uc ]
+[; ;PS_2.c: 495: if(Caps_Lock_Key_old == 0)
 "495
-{
-[; ;PS_2.c: 496: if(Caps_Lock)
+[e $ ! == -> _Caps_Lock_Key_old `i -> 0 `i 695  ]
+[; ;PS_2.c: 496: {
 "496
-[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 696  ]
-[; ;PS_2.c: 497: {
+{
+[; ;PS_2.c: 497: if(Caps_Lock)
 "497
-{
-[; ;PS_2.c: 498: if(Shift_Key)
+[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 696  ]
+[; ;PS_2.c: 498: {
 "498
-[e $ ! != -> _Shift_Key `i -> -> -> 0 `i `uc `i 697  ]
-[; ;PS_2.c: 499: {
-"499
 {
-[; ;PS_2.c: 500: CapsCount=0;
+[; ;PS_2.c: 499: if(Shift_Key)
+"499
+[e $ ! != -> _Shift_Key `i -> -> -> 0 `i `uc `i 697  ]
+[; ;PS_2.c: 500: {
 "500
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 501: while(CapsCount<10)
+{
+[; ;PS_2.c: 501: CapsCount=0;
 "501
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 502: while(CapsCount<10)
+"502
 [e $U 698  ]
 [e :U 699 ]
-[; ;PS_2.c: 502: {
-"502
-{
-[; ;PS_2.c: 503: if(!Send_PS2(0xED))
+[; ;PS_2.c: 503: {
 "503
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 701  ]
-[; ;PS_2.c: 504: {
+{
+[; ;PS_2.c: 504: if(!Send_PS2(0xED))
 "504
-{
-[; ;PS_2.c: 505: if(!Send_PS2(0x01))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 701  ]
+[; ;PS_2.c: 505: {
 "505
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 702  ]
-[; ;PS_2.c: 506: {
-"506
 {
-[; ;PS_2.c: 507: Caps_Lock =0;
+[; ;PS_2.c: 506: if(!Send_PS2(0x01))
+"506
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 702  ]
+[; ;PS_2.c: 507: {
 "507
-[e = _Caps_Lock -> -> 0 `i `uc ]
-[; ;PS_2.c: 508: break;
+{
+[; ;PS_2.c: 508: Caps_Lock =0;
 "508
-[e $U 700  ]
+[e = _Caps_Lock -> -> 0 `i `uc ]
+[; ;PS_2.c: 509: break;
 "509
-}
-[e :U 702 ]
+[e $U 700  ]
 "510
 }
-[e :U 701 ]
-[; ;PS_2.c: 509: }
-[; ;PS_2.c: 510: }
-[; ;PS_2.c: 511: CapsCount++;
+[e :U 702 ]
 "511
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"512
 }
-[e :U 698 ]
-"501
-[e $ < -> _CapsCount `i -> 10 `i 699  ]
-[e :U 700 ]
+[e :U 701 ]
+[; ;PS_2.c: 510: }
+[; ;PS_2.c: 511: }
+[; ;PS_2.c: 512: CapsCount++;
+"512
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "513
 }
-[; ;PS_2.c: 512: }
-[; ;PS_2.c: 513: }
-[e $U 703  ]
+[e :U 698 ]
+"502
+[e $ < -> _CapsCount `i -> 10 `i 699  ]
+[e :U 700 ]
 "514
-[e :U 697 ]
-[; ;PS_2.c: 514: else
-[; ;PS_2.c: 515: {
+}
+[; ;PS_2.c: 513: }
+[; ;PS_2.c: 514: }
+[e $U 703  ]
 "515
-{
-[; ;PS_2.c: 516: CapsCount=0;
+[e :U 697 ]
+[; ;PS_2.c: 515: else
+[; ;PS_2.c: 516: {
 "516
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 517: while(CapsCount<10)
+{
+[; ;PS_2.c: 517: CapsCount=0;
 "517
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 518: while(CapsCount<10)
+"518
 [e $U 704  ]
 [e :U 705 ]
-[; ;PS_2.c: 518: {
-"518
-{
-[; ;PS_2.c: 519: if(!Send_PS2(0xED))
+[; ;PS_2.c: 519: {
 "519
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 707  ]
-[; ;PS_2.c: 520: {
+{
+[; ;PS_2.c: 520: if(!Send_PS2(0xED))
 "520
-{
-[; ;PS_2.c: 521: if(!Send_PS2(0x00))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 707  ]
+[; ;PS_2.c: 521: {
 "521
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 708  ]
-[; ;PS_2.c: 522: {
-"522
 {
-[; ;PS_2.c: 523: Caps_Lock =0;
+[; ;PS_2.c: 522: if(!Send_PS2(0x00))
+"522
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 708  ]
+[; ;PS_2.c: 523: {
 "523
-[e = _Caps_Lock -> -> 0 `i `uc ]
-[; ;PS_2.c: 524: break;
+{
+[; ;PS_2.c: 524: Caps_Lock =0;
 "524
-[e $U 706  ]
+[e = _Caps_Lock -> -> 0 `i `uc ]
+[; ;PS_2.c: 525: break;
 "525
-}
-[e :U 708 ]
+[e $U 706  ]
 "526
 }
-[e :U 707 ]
-[; ;PS_2.c: 525: }
-[; ;PS_2.c: 526: }
-[; ;PS_2.c: 527: CapsCount++;
+[e :U 708 ]
 "527
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"528
 }
-[e :U 704 ]
-"517
-[e $ < -> _CapsCount `i -> 10 `i 705  ]
-[e :U 706 ]
+[e :U 707 ]
+[; ;PS_2.c: 526: }
+[; ;PS_2.c: 527: }
+[; ;PS_2.c: 528: CapsCount++;
+"528
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "529
 }
-[e :U 703 ]
+[e :U 704 ]
+"518
+[e $ < -> _CapsCount `i -> 10 `i 705  ]
+[e :U 706 ]
 "530
 }
-[; ;PS_2.c: 528: }
+[e :U 703 ]
+"531
+}
 [; ;PS_2.c: 529: }
 [; ;PS_2.c: 530: }
+[; ;PS_2.c: 531: }
 [e $U 709  ]
-"531
-[e :U 696 ]
-[; ;PS_2.c: 531: else
-[; ;PS_2.c: 532: {
 "532
-{
-[; ;PS_2.c: 533: if(Shift_Key)
+[e :U 696 ]
+[; ;PS_2.c: 532: else
+[; ;PS_2.c: 533: {
 "533
-[e $ ! != -> _Shift_Key `i -> -> -> 0 `i `uc `i 710  ]
-[; ;PS_2.c: 534: {
-"534
 {
-[; ;PS_2.c: 535: CapsCount=0;
+[; ;PS_2.c: 534: if(Shift_Key)
+"534
+[e $ ! != -> _Shift_Key `i -> -> -> 0 `i `uc `i 710  ]
+[; ;PS_2.c: 535: {
 "535
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 536: while(CapsCount<10)
+{
+[; ;PS_2.c: 536: CapsCount=0;
 "536
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 537: while(CapsCount<10)
+"537
 [e $U 711  ]
 [e :U 712 ]
-[; ;PS_2.c: 537: {
-"537
-{
-[; ;PS_2.c: 538: if(!Send_PS2(0xED))
+[; ;PS_2.c: 538: {
 "538
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 714  ]
-[; ;PS_2.c: 539: {
+{
+[; ;PS_2.c: 539: if(!Send_PS2(0xED))
 "539
-{
-[; ;PS_2.c: 540: if(!Send_PS2(0x05))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 714  ]
+[; ;PS_2.c: 540: {
 "540
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 5 `i `uc `i -> -> -> 0 `i `uc `i 715  ]
-[; ;PS_2.c: 541: {
-"541
 {
-[; ;PS_2.c: 542: Caps_Lock =1;
+[; ;PS_2.c: 541: if(!Send_PS2(0x05))
+"541
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 5 `i `uc `i -> -> -> 0 `i `uc `i 715  ]
+[; ;PS_2.c: 542: {
 "542
-[e = _Caps_Lock -> -> 1 `i `uc ]
-[; ;PS_2.c: 543: break;
+{
+[; ;PS_2.c: 543: Caps_Lock =1;
 "543
-[e $U 713  ]
+[e = _Caps_Lock -> -> 1 `i `uc ]
+[; ;PS_2.c: 544: break;
 "544
-}
-[e :U 715 ]
+[e $U 713  ]
 "545
 }
-[e :U 714 ]
-[; ;PS_2.c: 544: }
-[; ;PS_2.c: 545: }
-[; ;PS_2.c: 546: CapsCount++;
+[e :U 715 ]
 "546
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"547
 }
-[e :U 711 ]
-"536
-[e $ < -> _CapsCount `i -> 10 `i 712  ]
-[e :U 713 ]
+[e :U 714 ]
+[; ;PS_2.c: 545: }
+[; ;PS_2.c: 546: }
+[; ;PS_2.c: 547: CapsCount++;
+"547
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "548
 }
-[; ;PS_2.c: 547: }
-[; ;PS_2.c: 548: }
-[e $U 716  ]
+[e :U 711 ]
+"537
+[e $ < -> _CapsCount `i -> 10 `i 712  ]
+[e :U 713 ]
 "549
-[e :U 710 ]
-[; ;PS_2.c: 549: else
-[; ;PS_2.c: 550: {
+}
+[; ;PS_2.c: 548: }
+[; ;PS_2.c: 549: }
+[e $U 716  ]
 "550
-{
-[; ;PS_2.c: 551: CapsCount=0;
+[e :U 710 ]
+[; ;PS_2.c: 550: else
+[; ;PS_2.c: 551: {
 "551
-[e = _CapsCount -> -> 0 `i `uc ]
-[; ;PS_2.c: 552: while(CapsCount<10)
+{
+[; ;PS_2.c: 552: CapsCount=0;
 "552
+[e = _CapsCount -> -> 0 `i `uc ]
+[; ;PS_2.c: 553: while(CapsCount<10)
+"553
 [e $U 717  ]
 [e :U 718 ]
-[; ;PS_2.c: 553: {
-"553
-{
-[; ;PS_2.c: 554: if(!Send_PS2(0xED))
+[; ;PS_2.c: 554: {
 "554
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 720  ]
-[; ;PS_2.c: 555: {
+{
+[; ;PS_2.c: 555: if(!Send_PS2(0xED))
 "555
-{
-[; ;PS_2.c: 556: if(!Send_PS2(0x04))
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 720  ]
+[; ;PS_2.c: 556: {
 "556
-[e $ ! ! != -> ( _Send_PS2 (1 -> -> 4 `i `uc `i -> -> -> 0 `i `uc `i 721  ]
-[; ;PS_2.c: 557: {
-"557
 {
-[; ;PS_2.c: 558: Caps_Lock =1;
+[; ;PS_2.c: 557: if(!Send_PS2(0x04))
+"557
+[e $ ! ! != -> ( _Send_PS2 (1 -> -> 4 `i `uc `i -> -> -> 0 `i `uc `i 721  ]
+[; ;PS_2.c: 558: {
 "558
-[e = _Caps_Lock -> -> 1 `i `uc ]
-[; ;PS_2.c: 559: break;
+{
+[; ;PS_2.c: 559: Caps_Lock =1;
 "559
-[e $U 719  ]
+[e = _Caps_Lock -> -> 1 `i `uc ]
+[; ;PS_2.c: 560: break;
 "560
-}
-[e :U 721 ]
+[e $U 719  ]
 "561
 }
-[e :U 720 ]
-[; ;PS_2.c: 560: }
-[; ;PS_2.c: 561: }
-[; ;PS_2.c: 562: CapsCount++;
+[e :U 721 ]
 "562
-[e ++ _CapsCount -> -> 1 `i `uc ]
-"563
 }
-[e :U 717 ]
-"552
-[e $ < -> _CapsCount `i -> 10 `i 718  ]
-[e :U 719 ]
+[e :U 720 ]
+[; ;PS_2.c: 561: }
+[; ;PS_2.c: 562: }
+[; ;PS_2.c: 563: CapsCount++;
+"563
+[e ++ _CapsCount -> -> 1 `i `uc ]
 "564
 }
-[e :U 716 ]
+[e :U 717 ]
+"553
+[e $ < -> _CapsCount `i -> 10 `i 718  ]
+[e :U 719 ]
 "565
 }
-[e :U 709 ]
+[e :U 716 ]
 "566
 }
-[e :U 695 ]
-"568
+[e :U 709 ]
+"567
 }
-[; ;PS_2.c: 563: }
+[e :U 695 ]
+"569
+}
 [; ;PS_2.c: 564: }
 [; ;PS_2.c: 565: }
 [; ;PS_2.c: 566: }
-[; ;PS_2.c: 568: }
+[; ;PS_2.c: 567: }
+[; ;PS_2.c: 569: }
 [e $U 722  ]
-"569
-[e :U 694 ]
-[; ;PS_2.c: 569: else
-[; ;PS_2.c: 570: {
 "570
-{
-[; ;PS_2.c: 571: if(Shift_Key ==1)
+[e :U 694 ]
+[; ;PS_2.c: 570: else
+[; ;PS_2.c: 571: {
 "571
-[e $ ! == -> _Shift_Key `i -> 1 `i 723  ]
-[; ;PS_2.c: 572: {
+{
+[; ;PS_2.c: 572: if(Shift_Key ==1)
 "572
+[e $ ! == -> _Shift_Key `i -> 1 `i 723  ]
+[; ;PS_2.c: 573: {
+"573
 {
-[; ;PS_2.c: 574: temp = Decode_Scan_Code_Shift(PS_2_Read_Data_First);
-"574
-[e = _temp ( _Decode_Scan_Code_Shift (1 -> _PS_2_Read_Data_First `uc ]
-[; ;PS_2.c: 575: if(Caps_Lock)
+[; ;PS_2.c: 575: temp = Decode_Scan_Code_Shift(PS_2_Read_Data_First);
 "575
-[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 724  ]
-[; ;PS_2.c: 576: {
+[e = _temp ( _Decode_Scan_Code_Shift (1 -> _PS_2_Read_Data_First `uc ]
+[; ;PS_2.c: 576: if(Caps_Lock)
 "576
+[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 724  ]
+[; ;PS_2.c: 577: {
+"577
 {
-[; ;PS_2.c: 578: if(temp >= 'A' && temp <= 'Z')
-"578
-[e $ ! && >= -> _temp `ui -> 65 `ui <= -> _temp `ui -> 90 `ui 725  ]
-[; ;PS_2.c: 579: {
+[; ;PS_2.c: 579: if(temp >= 'A' && temp <= 'Z')
 "579
-{
-[; ;PS_2.c: 580: temp += 32;
+[e $ ! && >= -> _temp `ui -> 65 `ui <= -> _temp `ui -> 90 `ui 725  ]
+[; ;PS_2.c: 580: {
 "580
-[e =+ _temp -> -> 32 `i `uc ]
+{
+[; ;PS_2.c: 581: temp += 32;
 "581
-}
-[e :U 725 ]
+[e =+ _temp -> -> 32 `i `uc ]
 "582
 }
-[e :U 724 ]
+[e :U 725 ]
 "583
 }
-[; ;PS_2.c: 581: }
+[e :U 724 ]
+"584
+}
 [; ;PS_2.c: 582: }
 [; ;PS_2.c: 583: }
+[; ;PS_2.c: 584: }
 [e $U 726  ]
-"584
-[e :U 723 ]
-[; ;PS_2.c: 584: else
-[; ;PS_2.c: 585: {
 "585
-{
-[; ;PS_2.c: 586: temp = Decode_Scan_Code(PS_2_Read_Data_First);
+[e :U 723 ]
+[; ;PS_2.c: 585: else
+[; ;PS_2.c: 586: {
 "586
-[e = _temp ( _Decode_Scan_Code (1 -> _PS_2_Read_Data_First `uc ]
-[; ;PS_2.c: 587: if(Caps_Lock)
+{
+[; ;PS_2.c: 587: temp = Decode_Scan_Code(PS_2_Read_Data_First);
 "587
-[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 727  ]
-[; ;PS_2.c: 588: {
+[e = _temp ( _Decode_Scan_Code (1 -> _PS_2_Read_Data_First `uc ]
+[; ;PS_2.c: 588: if(Caps_Lock)
 "588
+[e $ ! != -> _Caps_Lock `i -> -> -> 0 `i `uc `i 727  ]
+[; ;PS_2.c: 589: {
+"589
 {
-[; ;PS_2.c: 590: if(temp >= 'a' && temp <= 'z')
-"590
-[e $ ! && >= -> _temp `ui -> 97 `ui <= -> _temp `ui -> 122 `ui 728  ]
-[; ;PS_2.c: 591: {
+[; ;PS_2.c: 591: if(temp >= 'a' && temp <= 'z')
 "591
-{
-[; ;PS_2.c: 592: temp -= 32;
+[e $ ! && >= -> _temp `ui -> 97 `ui <= -> _temp `ui -> 122 `ui 728  ]
+[; ;PS_2.c: 592: {
 "592
-[e =- _temp -> -> 32 `i `uc ]
+{
+[; ;PS_2.c: 593: temp -= 32;
 "593
-}
-[e :U 728 ]
+[e =- _temp -> -> 32 `i `uc ]
 "594
 }
-[e :U 727 ]
+[e :U 728 ]
 "595
 }
+[e :U 727 ]
+"596
+}
 [e :U 726 ]
-[; ;PS_2.c: 593: }
 [; ;PS_2.c: 594: }
 [; ;PS_2.c: 595: }
-[; ;PS_2.c: 596: if(!temp)
-"596
-[e $ ! ! != -> _temp `i -> -> -> 0 `i `uc `i 729  ]
-[; ;PS_2.c: 597: {
+[; ;PS_2.c: 596: }
+[; ;PS_2.c: 597: if(!temp)
 "597
+[e $ ! ! != -> _temp `i -> -> -> 0 `i `uc `i 729  ]
+[; ;PS_2.c: 598: {
+"598
 {
-[; ;PS_2.c: 599: temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
-"599
-[e = _temp ( _Decode_Scan_Code_Function (1 -> _PS_2_Read_Data_First `uc ]
+[; ;PS_2.c: 600: temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
 "600
+[e = _temp ( _Decode_Scan_Code_Function (1 -> _PS_2_Read_Data_First `uc ]
+"601
 }
 [e :U 729 ]
-"601
+"602
 }
 [e :U 722 ]
 [e :U 693 ]
 [e :U 691 ]
 [e :U 689 ]
-"602
+"603
 }
 [e :U 670 ]
-[; ;PS_2.c: 600: }
 [; ;PS_2.c: 601: }
 [; ;PS_2.c: 602: }
-[; ;PS_2.c: 604: if(((RControl || LControl) + (LALT || RALT) + Delete) == 3)
-"604
-[e $ ! == + + -> || != -> _RControl `i -> -> -> 0 `i `uc `i != -> _LControl `i -> -> -> 0 `i `uc `i `i -> || != -> _LALT `i -> -> -> 0 `i `uc `i != -> _RALT `i -> -> -> 0 `i `uc `i `i -> _Delete `i -> 3 `i 730  ]
-[; ;PS_2.c: 605: {
+[; ;PS_2.c: 603: }
+[; ;PS_2.c: 605: if(((RControl || LControl) + (LALT || RALT) + Delete) == 3)
 "605
+[e $ ! == + + -> || != -> _RControl `i -> -> -> 0 `i `uc `i != -> _LControl `i -> -> -> 0 `i `uc `i `i -> || != -> _LALT `i -> -> -> 0 `i `uc `i != -> _RALT `i -> -> -> 0 `i `uc `i `i -> _Delete `i -> 3 `i 730  ]
+[; ;PS_2.c: 606: {
+"606
 {
-[; ;PS_2.c: 607: UARTstringWAIT("\r\n");
-"607
-[e ( _UARTstringWAIT (1 :s 1C ]
-[; ;PS_2.c: 608: delayUS(10000);
+[; ;PS_2.c: 608: UARTstringWAIT("\r\n");
 "608
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;PS_2.c: 609: if(!BAUDMODE)
+[e ( _UARTstringWAIT (1 :s 1C ]
+[; ;PS_2.c: 609: delayUS(15000);
 "609
-[e $ ! ! != -> _BAUDMODE `i -> -> -> 0 `i `uc `i 731  ]
-[; ;PS_2.c: 610: {
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;PS_2.c: 610: if(!BAUDMODE)
 "610
-{
-[; ;PS_2.c: 611: BaudTyped =0;
+[e $ ! ! != -> _BAUDMODE `i -> -> -> 0 `i `uc `i 731  ]
+[; ;PS_2.c: 611: {
 "611
-[e = _BaudTyped -> -> -> 0 `i `l `ul ]
-[; ;PS_2.c: 612: ParityTyped =0;
-"612
-[e = _ParityTyped -> -> 0 `i `uc ]
-[; ;PS_2.c: 613: BAUDMODE = 1;
-"613
-[e = _BAUDMODE -> -> 1 `i `uc ]
-[; ;PS_2.c: 614: UARTstringWAIT("Enter Baud rate \r\n");
-"614
-[e ( _UARTstringWAIT (1 :s 2C ]
-[; ;PS_2.c: 615: delayUS(10000);
-"615
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;PS_2.c: 616: UARTchar('>' , 0, 0);
-"616
-[e ( _UARTchar (3 , , -> -> 62 `ui `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
-"618
-}
-[; ;PS_2.c: 618: }
-[e $U 732  ]
-"619
-[e :U 731 ]
-[; ;PS_2.c: 619: else
-[; ;PS_2.c: 620: {
-"620
 {
-[; ;PS_2.c: 621: BaudTyped = 9600;
+[; ;PS_2.c: 612: BaudTyped =0;
+"612
+[e = _BaudTyped -> -> -> 0 `i `l `ul ]
+[; ;PS_2.c: 613: ParityTyped =0;
+"613
+[e = _ParityTyped -> -> 0 `i `uc ]
+[; ;PS_2.c: 614: BAUDMODE = 1;
+"614
+[e = _BAUDMODE -> -> 1 `i `uc ]
+[; ;PS_2.c: 615: UARTstringWAIT("Enter Baud rate \r\n");
+"615
+[e ( _UARTstringWAIT (1 :s 2C ]
+[; ;PS_2.c: 616: delayUS(15000);
+"616
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;PS_2.c: 617: UARTchar('>' , 0, 0);
+"617
+[e ( _UARTchar (3 , , -> -> 62 `ui `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
+"619
+}
+[; ;PS_2.c: 619: }
+[e $U 732  ]
+"620
+[e :U 731 ]
+[; ;PS_2.c: 620: else
+[; ;PS_2.c: 621: {
 "621
-[e = _BaudTyped -> -> -> 9600 `i `l `ul ]
-[; ;PS_2.c: 622: UARTstringWAIT("KeyBoard Reset to 9600");
+{
+[; ;PS_2.c: 622: BaudTyped = 9600;
 "622
-[e ( _UARTstringWAIT (1 :s 3C ]
-[; ;PS_2.c: 623: UARTstringWAIT(NoParityMSG);
+[e = _BaudTyped -> -> -> 9600 `i `l `ul ]
+[; ;PS_2.c: 623: UARTstringWAIT("Baud Reset to 9600");
 "623
-[e ( _UARTstringWAIT (1 &U _NoParityMSG ]
-[; ;PS_2.c: 624: UARTstringWAIT("\r\n");
+[e ( _UARTstringWAIT (1 :s 3C ]
+[; ;PS_2.c: 624: UARTstringWAIT(NoParityMSG);
 "624
-[e ( _UARTstringWAIT (1 :s 4C ]
-[; ;PS_2.c: 625: delayUS(10000);
+[e ( _UARTstringWAIT (1 &U _NoParityMSG ]
+[; ;PS_2.c: 625: UARTstringWAIT("\r\n");
 "625
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;PS_2.c: 626: SetBaud(BaudTyped, 0);
+[e ( _UARTstringWAIT (1 :s 4C ]
+[; ;PS_2.c: 626: delayUS(15000);
 "626
-[e ( _SetBaud (2 , _BaudTyped -> -> 0 `i `uc ]
-[; ;PS_2.c: 627: BAUDMODE = 0;
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;PS_2.c: 627: SetBaud(BaudTyped, 0);
 "627
-[e = _BAUDMODE -> -> 0 `i `uc ]
+[e ( _SetBaud (2 , _BaudTyped -> -> 0 `i `uc ]
+[; ;PS_2.c: 628: BAUDMODE = 0;
 "628
+[e = _BAUDMODE -> -> 0 `i `uc ]
+"629
 }
 [e :U 732 ]
-[; ;PS_2.c: 628: }
-[; ;PS_2.c: 629: RControl =0;
-"629
-[e = _RControl -> -> 0 `i `uc ]
-[; ;PS_2.c: 630: LControl =0;
+[; ;PS_2.c: 629: }
+[; ;PS_2.c: 630: RControl =0;
 "630
-[e = _LControl -> -> 0 `i `uc ]
-[; ;PS_2.c: 631: LALT =0;
+[e = _RControl -> -> 0 `i `uc ]
+[; ;PS_2.c: 631: LControl =0;
 "631
-[e = _LALT -> -> 0 `i `uc ]
-[; ;PS_2.c: 632: RALT =0;
+[e = _LControl -> -> 0 `i `uc ]
+[; ;PS_2.c: 632: LALT =0;
 "632
-[e = _RALT -> -> 0 `i `uc ]
-[; ;PS_2.c: 633: Delete =0;
+[e = _LALT -> -> 0 `i `uc ]
+[; ;PS_2.c: 633: RALT =0;
 "633
-[e = _Delete -> -> 0 `i `uc ]
+[e = _RALT -> -> 0 `i `uc ]
+[; ;PS_2.c: 634: Delete =0;
 "634
+[e = _Delete -> -> 0 `i `uc ]
+"635
 }
 [e :U 730 ]
-[; ;PS_2.c: 634: }
-[; ;PS_2.c: 636: if(temp)
-"636
-[e $ ! != -> _temp `i -> -> -> 0 `i `uc `i 733  ]
-[; ;PS_2.c: 637: {
+[; ;PS_2.c: 635: }
+[; ;PS_2.c: 637: if(temp)
 "637
+[e $ ! != -> _temp `i -> -> -> 0 `i `uc `i 733  ]
+[; ;PS_2.c: 638: {
+"638
 {
-[; ;PS_2.c: 639: if(temp == 0x01)
-"639
-[e $ ! == -> _temp `i -> 1 `i 734  ]
-[; ;PS_2.c: 640: {
+[; ;PS_2.c: 640: if(temp == 0x01)
 "640
+[e $ ! == -> _temp `i -> 1 `i 734  ]
+[; ;PS_2.c: 641: {
+"641
 {
-[; ;PS_2.c: 642: UART_send_break();
-"642
-[e ( _UART_send_break ..  ]
-[; ;PS_2.c: 643: UART_send_break_timed(100000);
+[; ;PS_2.c: 643: UART_send_break();
 "643
-[e ( _UART_send_break_timed (1 -> -> 100000 `l `ui ]
+[e ( _UART_send_break ..  ]
+[; ;PS_2.c: 644: UART_send_break_timed(100000);
 "644
-}
-[; ;PS_2.c: 644: }
-[e $U 735  ]
+[e ( _UART_send_break_timed (1 -> -> 100000 `l `ui ]
 "645
-[e :U 734 ]
-[; ;PS_2.c: 645: else
-[; ;PS_2.c: 646: {
-"646
-{
-[; ;PS_2.c: 647: if(!BAUDMODE)
-"647
-[e $ ! ! != -> _BAUDMODE `i -> -> -> 0 `i `uc `i 736  ]
-[; ;PS_2.c: 648: {
-"648
-{
-[; ;PS_2.c: 649: UARTchar(temp, 0, 0);
-"649
-[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
-[; ;PS_2.c: 650: if(temp == '\r')
-"650
-[e $ ! == -> _temp `ui -> 13 `ui 737  ]
-[; ;PS_2.c: 651: {
-"651
-{
-[; ;PS_2.c: 652: delayUS(5000);
-"652
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;PS_2.c: 653: UARTchar('\n', 0, 0);
-"653
-[e ( _UARTchar (3 , , -> -> 10 `ui `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
-[; ;PS_2.c: 654: delayUS(10000);
-"654
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-"655
 }
-[e :U 737 ]
+[; ;PS_2.c: 645: }
+[e $U 735  ]
+"646
+[e :U 734 ]
+[; ;PS_2.c: 646: else
+[; ;PS_2.c: 647: {
+"647
+{
+[; ;PS_2.c: 648: if(!BAUDMODE)
+"648
+[e $ ! ! != -> _BAUDMODE `i -> -> -> 0 `i `uc `i 736  ]
+[; ;PS_2.c: 649: {
+"649
+{
+[; ;PS_2.c: 650: UARTchar(temp, 0, 0);
+"650
+[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
+[; ;PS_2.c: 651: if(temp == '\r')
+"651
+[e $ ! == -> _temp `ui -> 13 `ui 737  ]
+[; ;PS_2.c: 652: {
+"652
+{
+[; ;PS_2.c: 653: delayUS(5000);
+"653
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;PS_2.c: 654: UARTchar('\n', 0, 0);
+"654
+[e ( _UARTchar (3 , , -> -> 10 `ui `uc -> -> 0 `i `uc -> -> 0 `i `uc ]
+[; ;PS_2.c: 655: delayUS(15000);
+"655
+[e ( _delayUS (1 -> -> 15000 `i `l ]
 "656
 }
-[; ;PS_2.c: 655: }
-[; ;PS_2.c: 656: }
-[e $U 738  ]
+[e :U 737 ]
 "657
-[e :U 736 ]
-[; ;PS_2.c: 657: else
-[; ;PS_2.c: 658: {
+}
+[; ;PS_2.c: 656: }
+[; ;PS_2.c: 657: }
+[e $U 738  ]
 "658
-{
-[; ;PS_2.c: 659: if(ISNUMBER(temp))
+[e :U 736 ]
+[; ;PS_2.c: 658: else
+[; ;PS_2.c: 659: {
 "659
-[e $ ! != -> ( _ISNUMBER (1 _temp `i -> -> -> 0 `i `uc `i 739  ]
-[; ;PS_2.c: 660: {
+{
+[; ;PS_2.c: 660: if(ISNUMBER(temp))
 "660
-{
-[; ;PS_2.c: 661: BaudTyped*=10;
+[e $ ! != -> ( _ISNUMBER (1 _temp `i -> -> -> 0 `i `uc `i 739  ]
+[; ;PS_2.c: 661: {
 "661
-[e =* _BaudTyped -> -> -> 10 `i `l `ul ]
-[; ;PS_2.c: 662: BaudTyped += temp - 48;
+{
+[; ;PS_2.c: 662: BaudTyped*=10;
 "662
-[e =+ _BaudTyped -> -> - -> _temp `i -> 48 `i `l `ul ]
-[; ;PS_2.c: 663: UARTchar(temp, 0, 0);
+[e =* _BaudTyped -> -> -> 10 `i `l `ul ]
+[; ;PS_2.c: 663: BaudTyped += temp - 48;
 "663
-[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
+[e =+ _BaudTyped -> -> - -> _temp `i -> 48 `i `l `ul ]
+[; ;PS_2.c: 664: UARTchar(temp, 0, 0);
 "664
-}
-[; ;PS_2.c: 664: }
-[e $U 740  ]
+[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
 "665
-[e :U 739 ]
-[; ;PS_2.c: 665: else if(temp == 'o' || temp == 'O')
-[e $ ! || == -> _temp `ui -> 111 `ui == -> _temp `ui -> 79 `ui 741  ]
-[; ;PS_2.c: 666: {
+}
+[; ;PS_2.c: 665: }
+[e $U 740  ]
 "666
-{
-[; ;PS_2.c: 667: ParityTyped = 1;
+[e :U 739 ]
+[; ;PS_2.c: 666: else if(temp == 'o' || temp == 'O')
+[e $ ! || == -> _temp `ui -> 111 `ui == -> _temp `ui -> 79 `ui 741  ]
+[; ;PS_2.c: 667: {
 "667
-[e = _ParityTyped -> -> 1 `i `uc ]
-[; ;PS_2.c: 668: UARTchar(temp, 0, 0);
+{
+[; ;PS_2.c: 668: ParityTyped = 1;
 "668
-[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
+[e = _ParityTyped -> -> 1 `i `uc ]
+[; ;PS_2.c: 669: UARTchar(temp, 0, 0);
 "669
-}
-[; ;PS_2.c: 669: }
-[e $U 742  ]
+[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
 "670
-[e :U 741 ]
-[; ;PS_2.c: 670: else if(temp == 'e' || temp == 'E')
-[e $ ! || == -> _temp `ui -> 101 `ui == -> _temp `ui -> 69 `ui 743  ]
-[; ;PS_2.c: 671: {
+}
+[; ;PS_2.c: 670: }
+[e $U 742  ]
 "671
-{
-[; ;PS_2.c: 672: ParityTyped = 2;
+[e :U 741 ]
+[; ;PS_2.c: 671: else if(temp == 'e' || temp == 'E')
+[e $ ! || == -> _temp `ui -> 101 `ui == -> _temp `ui -> 69 `ui 743  ]
+[; ;PS_2.c: 672: {
 "672
-[e = _ParityTyped -> -> 2 `i `uc ]
-[; ;PS_2.c: 673: UARTchar(temp, 0, 0);
+{
+[; ;PS_2.c: 673: ParityTyped = 2;
 "673
-[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
+[e = _ParityTyped -> -> 2 `i `uc ]
+[; ;PS_2.c: 674: UARTchar(temp, 0, 0);
 "674
-}
-[; ;PS_2.c: 674: }
-[e $U 744  ]
+[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
 "675
-[e :U 743 ]
-[; ;PS_2.c: 675: else if(temp == 'm' || temp == 'M')
-[e $ ! || == -> _temp `ui -> 109 `ui == -> _temp `ui -> 77 `ui 745  ]
-[; ;PS_2.c: 676: {
+}
+[; ;PS_2.c: 675: }
+[e $U 744  ]
 "676
-{
-[; ;PS_2.c: 677: ParityTyped = 3;
+[e :U 743 ]
+[; ;PS_2.c: 676: else if(temp == 'm' || temp == 'M')
+[e $ ! || == -> _temp `ui -> 109 `ui == -> _temp `ui -> 77 `ui 745  ]
+[; ;PS_2.c: 677: {
 "677
-[e = _ParityTyped -> -> 3 `i `uc ]
-[; ;PS_2.c: 678: UARTchar(temp, 0, 0);
+{
+[; ;PS_2.c: 678: ParityTyped = 3;
 "678
-[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
+[e = _ParityTyped -> -> 3 `i `uc ]
+[; ;PS_2.c: 679: UARTchar(temp, 0, 0);
 "679
-}
-[; ;PS_2.c: 679: }
-[e $U 746  ]
-"680
-[e :U 745 ]
-[; ;PS_2.c: 680: else if(temp == 's' || temp == 'S')
-[e $ ! || == -> _temp `ui -> 115 `ui == -> _temp `ui -> 83 `ui 747  ]
-[; ;PS_2.c: 681: {
-"681
-{
-[; ;PS_2.c: 682: ParityTyped = 4;
-"682
-[e = _ParityTyped -> -> 4 `i `uc ]
-[; ;PS_2.c: 683: UARTchar(temp, 0, 0);
-"683
 [e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
+"680
+}
+[; ;PS_2.c: 680: }
+[e $U 746  ]
+"681
+[e :U 745 ]
+[; ;PS_2.c: 681: else if(temp == 's' || temp == 'S')
+[e $ ! || == -> _temp `ui -> 115 `ui == -> _temp `ui -> 83 `ui 747  ]
+[; ;PS_2.c: 682: {
+"682
+{
+[; ;PS_2.c: 683: ParityTyped = 4;
+"683
+[e = _ParityTyped -> -> 4 `i `uc ]
+[; ;PS_2.c: 684: UARTchar(temp, 0, 0);
 "684
-}
-[; ;PS_2.c: 684: }
-[e $U 748  ]
+[e ( _UARTchar (3 , , _temp -> -> 0 `i `uc -> -> 0 `i `uc ]
 "685
-[e :U 747 ]
-[; ;PS_2.c: 685: else if(temp == '\r')
-[e $ ! == -> _temp `ui -> 13 `ui 749  ]
-[; ;PS_2.c: 686: {
-"686
-{
-[; ;PS_2.c: 687: UARTstringWAIT("\r\n");
-"687
-[e ( _UARTstringWAIT (1 :s 5C ]
-[; ;PS_2.c: 688: delayUS(10000);
-"688
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;PS_2.c: 689: if(BaudTyped >=2400 && BaudTyped <= 115200)
-"689
-[e $ ! && >= _BaudTyped -> -> -> 2400 `i `l `ul <= _BaudTyped -> -> 115200 `l `ul 750  ]
-[; ;PS_2.c: 690: {
-"690
-{
-[; ;PS_2.c: 691: sprintf(buf,"KeyBoard Baud will be set to %lu",BaudTyped);
-"691
-[e ( _sprintf (1 , (. , &U _buf :s 6C _BaudTyped ]
-[; ;PS_2.c: 692: UARTstringWAIT(buf);
-"692
-[e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
-[; ;PS_2.c: 693: if(ParityTyped)
-"693
-[e $ ! != -> _ParityTyped `i -> -> -> 0 `i `uc `i 751  ]
-[; ;PS_2.c: 694: {
-"694
-{
-[; ;PS_2.c: 695: switch (ParityTyped)
-"695
-[e $U 753  ]
-[; ;PS_2.c: 696: {
-"696
-{
-[; ;PS_2.c: 697: case 1:
-"697
-[e :U 754 ]
-[; ;PS_2.c: 698: UARTstringWAIT(OddParityMSG);
-"698
-[e ( _UARTstringWAIT (1 &U _OddParityMSG ]
-[; ;PS_2.c: 699: break;
-"699
-[e $U 752  ]
-[; ;PS_2.c: 700: case 2:
-"700
-[e :U 755 ]
-[; ;PS_2.c: 701: UARTstringWAIT(EvenParityMSG);
-"701
-[e ( _UARTstringWAIT (1 &U _EvenParityMSG ]
-[; ;PS_2.c: 702: break;
-"702
-[e $U 752  ]
-[; ;PS_2.c: 703: case 3:
-"703
-[e :U 756 ]
-[; ;PS_2.c: 704: UARTstringWAIT(MarkParityMSG);
-"704
-[e ( _UARTstringWAIT (1 &U _MarkParityMSG ]
-[; ;PS_2.c: 705: break;
-"705
-[e $U 752  ]
-[; ;PS_2.c: 706: default:
-"706
-[e :U 757 ]
-[; ;PS_2.c: 707: UARTstringWAIT(SpaceParityMSG);
-"707
-[e ( _UARTstringWAIT (1 &U _SpaceParityMSG ]
-[; ;PS_2.c: 708: break;
-"708
-[e $U 752  ]
-"709
 }
-[; ;PS_2.c: 709: }
-[e $U 752  ]
+[; ;PS_2.c: 685: }
+[e $U 748  ]
+"686
+[e :U 747 ]
+[; ;PS_2.c: 686: else if(temp == '\r')
+[e $ ! == -> _temp `ui -> 13 `ui 749  ]
+[; ;PS_2.c: 687: {
+"687
+{
+[; ;PS_2.c: 688: UARTstringWAIT("\r\n");
+"688
+[e ( _UARTstringWAIT (1 :s 5C ]
+[; ;PS_2.c: 689: delayUS(15000);
+"689
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+[; ;PS_2.c: 690: if(BaudTyped >=2400 && BaudTyped <= 115200)
+"690
+[e $ ! && >= _BaudTyped -> -> -> 2400 `i `l `ul <= _BaudTyped -> -> 115200 `l `ul 750  ]
+[; ;PS_2.c: 691: {
+"691
+{
+[; ;PS_2.c: 692: sprintf(buf,"Baud will be set to %lu",BaudTyped);
+"692
+[e ( _sprintf (1 , (. , &U _buf :s 6C _BaudTyped ]
+[; ;PS_2.c: 693: UARTstringWAIT(buf);
+"693
+[e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
+[; ;PS_2.c: 694: if(ParityTyped)
+"694
+[e $ ! != -> _ParityTyped `i -> -> -> 0 `i `uc `i 751  ]
+[; ;PS_2.c: 695: {
 "695
+{
+[; ;PS_2.c: 696: switch (ParityTyped)
+"696
+[e $U 753  ]
+[; ;PS_2.c: 697: {
+"697
+{
+[; ;PS_2.c: 698: case 1:
+"698
+[e :U 754 ]
+[; ;PS_2.c: 699: UARTstringWAIT(OddParityMSG);
+"699
+[e ( _UARTstringWAIT (1 &U _OddParityMSG ]
+[; ;PS_2.c: 700: break;
+"700
+[e $U 752  ]
+[; ;PS_2.c: 701: case 2:
+"701
+[e :U 755 ]
+[; ;PS_2.c: 702: UARTstringWAIT(EvenParityMSG);
+"702
+[e ( _UARTstringWAIT (1 &U _EvenParityMSG ]
+[; ;PS_2.c: 703: break;
+"703
+[e $U 752  ]
+[; ;PS_2.c: 704: case 3:
+"704
+[e :U 756 ]
+[; ;PS_2.c: 705: UARTstringWAIT(MarkParityMSG);
+"705
+[e ( _UARTstringWAIT (1 &U _MarkParityMSG ]
+[; ;PS_2.c: 706: break;
+"706
+[e $U 752  ]
+[; ;PS_2.c: 707: default:
+"707
+[e :U 757 ]
+[; ;PS_2.c: 708: UARTstringWAIT(SpaceParityMSG);
+"708
+[e ( _UARTstringWAIT (1 &U _SpaceParityMSG ]
+[; ;PS_2.c: 709: break;
+"709
+[e $U 752  ]
+"710
+}
+[; ;PS_2.c: 710: }
+[e $U 752  ]
+"696
 [e :U 753 ]
 [e [\ _ParityTyped , $ -> -> 1 `i `uc 754
  , $ -> -> 2 `i `uc 755
  , $ -> -> 3 `i `uc 756
  757 ]
-"709
-[e :U 752 ]
 "710
-}
-[; ;PS_2.c: 710: }
-[e $U 758  ]
+[e :U 752 ]
 "711
-[e :U 751 ]
-[; ;PS_2.c: 711: else
-[; ;PS_2.c: 712: {
+}
+[; ;PS_2.c: 711: }
+[e $U 758  ]
 "712
-{
-[; ;PS_2.c: 713: UARTstringWAIT(NoParityMSG);
+[e :U 751 ]
+[; ;PS_2.c: 712: else
+[; ;PS_2.c: 713: {
 "713
-[e ( _UARTstringWAIT (1 &U _NoParityMSG ]
+{
+[; ;PS_2.c: 714: UARTstringWAIT(NoParityMSG);
 "714
+[e ( _UARTstringWAIT (1 &U _NoParityMSG ]
+"715
 }
 [e :U 758 ]
-[; ;PS_2.c: 714: }
-[; ;PS_2.c: 715: UARTstringWAIT("\r\n");
-"715
-[e ( _UARTstringWAIT (1 :s 7C ]
-[; ;PS_2.c: 716: SetBaud(BaudTyped, ParityTyped);
+[; ;PS_2.c: 715: }
+[; ;PS_2.c: 716: UARTstringWAIT("\r\n");
 "716
-[e ( _SetBaud (2 , _BaudTyped _ParityTyped ]
+[e ( _UARTstringWAIT (1 :s 7C ]
+[; ;PS_2.c: 717: SetBaud(BaudTyped, ParityTyped);
 "717
-}
-[; ;PS_2.c: 717: }
-[e $U 759  ]
+[e ( _SetBaud (2 , _BaudTyped _ParityTyped ]
 "718
-[e :U 750 ]
-[; ;PS_2.c: 718: else
-[; ;PS_2.c: 719: {
+}
+[; ;PS_2.c: 718: }
+[e $U 759  ]
 "719
-{
-[; ;PS_2.c: 720: UARTstringWAIT("KeyBoard Baud Out of Range\r\n");
+[e :U 750 ]
+[; ;PS_2.c: 719: else
+[; ;PS_2.c: 720: {
 "720
-[e ( _UARTstringWAIT (1 :s 8C ]
-[; ;PS_2.c: 721: delayUS(10000);
+{
+[; ;PS_2.c: 721: UARTstringWAIT("Baud Out of Range\r\n");
 "721
-[e ( _delayUS (1 -> -> 10000 `i `l ]
+[e ( _UARTstringWAIT (1 :s 8C ]
+[; ;PS_2.c: 722: delayUS(15000);
 "722
+[e ( _delayUS (1 -> -> 15000 `i `l ]
+"723
 }
 [e :U 759 ]
-[; ;PS_2.c: 722: }
-[; ;PS_2.c: 723: BAUDMODE=0;
-"723
-[e = _BAUDMODE -> -> 0 `i `uc ]
+[; ;PS_2.c: 723: }
+[; ;PS_2.c: 724: BAUDMODE=0;
 "724
+[e = _BAUDMODE -> -> 0 `i `uc ]
+"725
 }
 [e :U 749 ]
-"725
+"726
 [e :U 748 ]
 [e :U 746 ]
 [e :U 744 ]
@@ -8397,891 +8402,882 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 740 ]
 }
 [e :U 738 ]
-"726
-}
-[e :U 735 ]
 "727
 }
+[e :U 735 ]
+"728
+}
 [e :U 733 ]
-[; ;PS_2.c: 724: }
 [; ;PS_2.c: 725: }
 [; ;PS_2.c: 726: }
 [; ;PS_2.c: 727: }
-[; ;PS_2.c: 730: temp =0;
-"730
-[e = _temp -> -> 0 `i `uc ]
-[; ;PS_2.c: 731: PS_2_Read_Data_First =0;
+[; ;PS_2.c: 728: }
+[; ;PS_2.c: 731: temp =0;
 "731
-[e = _PS_2_Read_Data_First -> -> 0 `i `ui ]
-[; ;PS_2.c: 732: PS_2_Read_Data_Second =0;
+[e = _temp -> -> 0 `i `uc ]
+[; ;PS_2.c: 732: PS_2_Read_Data_First =0;
 "732
-[e = _PS_2_Read_Data_Second -> -> 0 `i `ui ]
-[; ;PS_2.c: 733: PS_2_Read_Data_Third =0;
+[e = _PS_2_Read_Data_First -> -> 0 `i `ui ]
+[; ;PS_2.c: 733: PS_2_Read_Data_Second =0;
 "733
-[e = _PS_2_Read_Data_Third -> -> 0 `i `ui ]
-[; ;PS_2.c: 734: Caps_Lock_Key_old = Caps_Lock_Key;
+[e = _PS_2_Read_Data_Second -> -> 0 `i `ui ]
+[; ;PS_2.c: 734: PS_2_Read_Data_Third =0;
 "734
-[e = _Caps_Lock_Key_old _Caps_Lock_Key ]
-[; ;PS_2.c: 735: Right_Shift_Key_old = Right_Shift_Key;
+[e = _PS_2_Read_Data_Third -> -> 0 `i `ui ]
+[; ;PS_2.c: 735: Caps_Lock_Key_old = Caps_Lock_Key;
 "735
-[e = _Right_Shift_Key_old _Right_Shift_Key ]
-[; ;PS_2.c: 736: Left_Shift_Key_old = Left_Shift_Key;
+[e = _Caps_Lock_Key_old _Caps_Lock_Key ]
+[; ;PS_2.c: 736: Right_Shift_Key_old = Right_Shift_Key;
 "736
-[e = _Left_Shift_Key_old _Left_Shift_Key ]
-[; ;PS_2.c: 737: LATC &= ~0b00010000;
+[e = _Right_Shift_Key_old _Right_Shift_Key ]
+[; ;PS_2.c: 737: Left_Shift_Key_old = Left_Shift_Key;
 "737
-[e =& _LATC -> ~ -> 16 `i `uc ]
+[e = _Left_Shift_Key_old _Left_Shift_Key ]
+[; ;PS_2.c: 738: LATC &= ~0b00010000;
 "738
-}
-[; ;PS_2.c: 738: }
-[e $U 760  ]
+[e =& _LATC -> ~ -> 16 `i `uc ]
 "739
-[e :U 616 ]
-[; ;PS_2.c: 739: else
-[; ;PS_2.c: 740: {
-"740
-{
-[; ;PS_2.c: 742: cleanBuffer(PS_2_ScanCodes, 12);
-"742
-[e ( _cleanBuffer (2 , &U _PS_2_ScanCodes -> 12 `i ]
-[; ;PS_2.c: 743: PS_2_Buffer_items = 0;
-"743
-[e = _PS_2_Buffer_items -> -> 0 `i `uc ]
-"744
 }
-[e :U 760 ]
+[; ;PS_2.c: 739: }
+[e $U 760  ]
+"740
+[e :U 616 ]
+[; ;PS_2.c: 740: else
+[; ;PS_2.c: 741: {
+"741
+{
+[; ;PS_2.c: 743: cleanBuffer(PS_2_ScanCodes, 12);
+"743
+[e ( _cleanBuffer (2 , &U _PS_2_ScanCodes -> 12 `i ]
+[; ;PS_2.c: 744: PS_2_Buffer_items = 0;
+"744
+[e = _PS_2_Buffer_items -> -> 0 `i `uc ]
 "745
 }
-[e :U 613 ]
-"258
-[e $ != -> _PS_2_Buffer_items `i -> 0 `i 614  ]
-[e :U 615 ]
+[e :U 760 ]
 "746
 }
+[e :U 613 ]
+"259
+[e $ != -> _PS_2_Buffer_items `i -> 0 `i 614  ]
+[e :U 615 ]
+"747
+}
 [e :U 612 ]
-[; ;PS_2.c: 744: }
 [; ;PS_2.c: 745: }
 [; ;PS_2.c: 746: }
 [; ;PS_2.c: 747: }
-"747
+[; ;PS_2.c: 748: }
+"748
 [e :UE 611 ]
 }
-"754
+"755
 [v _Decode_Scan_Code `(uc ~T0 @X0 1 ef1`uc ]
-"755
-{
-[; ;PS_2.c: 754: unsigned char Decode_Scan_Code(unsigned char Code)
-[; ;PS_2.c: 755: {
-[e :U _Decode_Scan_Code ]
-"754
-[v _Code `uc ~T0 @X0 1 r1 ]
-"755
-[f ]
-[; ;PS_2.c: 756: Code -= 13;
 "756
-[e =- _Code -> -> 13 `i `uc ]
-[; ;PS_2.c: 757: if(Code <=112)
-"757
-[e $ ! <= -> _Code `i -> 112 `i 762  ]
-[; ;PS_2.c: 758: {
-"758
 {
-[; ;PS_2.c: 759: return ScanCode[Code];
+[; ;PS_2.c: 755: unsigned char Decode_Scan_Code(unsigned char Code)
+[; ;PS_2.c: 756: {
+[e :U _Decode_Scan_Code ]
+"755
+[v _Code `uc ~T0 @X0 1 r1 ]
+"756
+[f ]
+[; ;PS_2.c: 757: Code -= 13;
+"757
+[e =- _Code -> -> 13 `i `uc ]
+[; ;PS_2.c: 758: if(Code <=112)
+"758
+[e $ ! <= -> _Code `i -> 112 `i 762  ]
+[; ;PS_2.c: 759: {
 "759
+{
+[; ;PS_2.c: 760: return ScanCode[Code];
+"760
 [e ) *U + &U _ScanCode * -> _Code `ux -> -> # *U &U _ScanCode `ui `ux ]
 [e $UE 761  ]
-"760
-}
-[; ;PS_2.c: 760: }
-[e $U 763  ]
 "761
-[e :U 762 ]
-[; ;PS_2.c: 761: else
-[; ;PS_2.c: 762: {
+}
+[; ;PS_2.c: 761: }
+[e $U 763  ]
 "762
-{
-[; ;PS_2.c: 763: return 0;
+[e :U 762 ]
+[; ;PS_2.c: 762: else
+[; ;PS_2.c: 763: {
 "763
+{
+[; ;PS_2.c: 764: return 0;
+"764
 [e ) -> -> 0 `i `uc ]
 [e $UE 761  ]
-"764
+"765
 }
 [e :U 763 ]
-[; ;PS_2.c: 764: }
 [; ;PS_2.c: 765: }
-"765
+[; ;PS_2.c: 766: }
+"766
 [e :UE 761 ]
 }
-"773
+"774
 [v _Decode_Scan_Code_Shift `(uc ~T0 @X0 1 ef1`uc ]
-"774
-{
-[; ;PS_2.c: 773: unsigned char Decode_Scan_Code_Shift(unsigned char Code)
-[; ;PS_2.c: 774: {
-[e :U _Decode_Scan_Code_Shift ]
-"773
-[v _Code `uc ~T0 @X0 1 r1 ]
-"774
-[f ]
-[; ;PS_2.c: 775: Code -= 13;
 "775
-[e =- _Code -> -> 13 `i `uc ]
-[; ;PS_2.c: 776: if(Code <=112)
-"776
-[e $ ! <= -> _Code `i -> 112 `i 765  ]
-[; ;PS_2.c: 777: {
-"777
 {
-[; ;PS_2.c: 778: return ScanCodeSHIFT[Code];
+[; ;PS_2.c: 774: unsigned char Decode_Scan_Code_Shift(unsigned char Code)
+[; ;PS_2.c: 775: {
+[e :U _Decode_Scan_Code_Shift ]
+"774
+[v _Code `uc ~T0 @X0 1 r1 ]
+"775
+[f ]
+[; ;PS_2.c: 776: Code -= 13;
+"776
+[e =- _Code -> -> 13 `i `uc ]
+[; ;PS_2.c: 777: if(Code <=112)
+"777
+[e $ ! <= -> _Code `i -> 112 `i 765  ]
+[; ;PS_2.c: 778: {
 "778
+{
+[; ;PS_2.c: 779: return ScanCodeSHIFT[Code];
+"779
 [e ) *U + &U _ScanCodeSHIFT * -> _Code `ux -> -> # *U &U _ScanCodeSHIFT `ui `ux ]
 [e $UE 764  ]
-"779
-}
-[; ;PS_2.c: 779: }
-[e $U 766  ]
 "780
-[e :U 765 ]
-[; ;PS_2.c: 780: else
-[; ;PS_2.c: 781: {
+}
+[; ;PS_2.c: 780: }
+[e $U 766  ]
 "781
-{
-[; ;PS_2.c: 782: return 0;
+[e :U 765 ]
+[; ;PS_2.c: 781: else
+[; ;PS_2.c: 782: {
 "782
+{
+[; ;PS_2.c: 783: return 0;
+"783
 [e ) -> -> 0 `i `uc ]
 [e $UE 764  ]
-"783
+"784
 }
 [e :U 766 ]
-[; ;PS_2.c: 783: }
 [; ;PS_2.c: 784: }
-"784
+[; ;PS_2.c: 785: }
+"785
 [e :UE 764 ]
 }
-"792
+"793
 [v _Decode_Scan_Code_FunctionE0 `(uc ~T0 @X0 1 ef1`uc ]
-"793
-{
-[; ;PS_2.c: 792: unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
-[; ;PS_2.c: 793: {
-[e :U _Decode_Scan_Code_FunctionE0 ]
-"792
-[v _Code `uc ~T0 @X0 1 r1 ]
-"793
-[f ]
-[; ;PS_2.c: 794: Code -= 17;
 "794
-[e =- _Code -> -> 17 `i `uc ]
-[; ;PS_2.c: 795: if(Code <=108)
-"795
-[e $ ! <= -> _Code `i -> 108 `i 768  ]
-[; ;PS_2.c: 796: {
-"796
 {
-[; ;PS_2.c: 797: return ScanCodeFunctionE0[Code];
+[; ;PS_2.c: 793: unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
+[; ;PS_2.c: 794: {
+[e :U _Decode_Scan_Code_FunctionE0 ]
+"793
+[v _Code `uc ~T0 @X0 1 r1 ]
+"794
+[f ]
+[; ;PS_2.c: 795: Code -= 17;
+"795
+[e =- _Code -> -> 17 `i `uc ]
+[; ;PS_2.c: 796: if(Code <=108)
+"796
+[e $ ! <= -> _Code `i -> 108 `i 768  ]
+[; ;PS_2.c: 797: {
 "797
+{
+[; ;PS_2.c: 798: return ScanCodeFunctionE0[Code];
+"798
 [e ) *U + &U _ScanCodeFunctionE0 * -> _Code `ux -> -> # *U &U _ScanCodeFunctionE0 `ui `ux ]
 [e $UE 767  ]
-"798
-}
-[; ;PS_2.c: 798: }
-[e $U 769  ]
 "799
-[e :U 768 ]
-[; ;PS_2.c: 799: else
-[; ;PS_2.c: 800: {
+}
+[; ;PS_2.c: 799: }
+[e $U 769  ]
 "800
-{
-[; ;PS_2.c: 801: return 0;
+[e :U 768 ]
+[; ;PS_2.c: 800: else
+[; ;PS_2.c: 801: {
 "801
+{
+[; ;PS_2.c: 802: return 0;
+"802
 [e ) -> -> 0 `i `uc ]
 [e $UE 767  ]
-"802
+"803
 }
 [e :U 769 ]
-[; ;PS_2.c: 802: }
 [; ;PS_2.c: 803: }
-"803
+[; ;PS_2.c: 804: }
+"804
 [e :UE 767 ]
 }
-"811
+"812
 [v _Decode_Scan_Code_Function `(uc ~T0 @X0 1 ef1`uc ]
-"812
-{
-[; ;PS_2.c: 811: unsigned char Decode_Scan_Code_Function(unsigned char Code)
-[; ;PS_2.c: 812: {
-[e :U _Decode_Scan_Code_Function ]
-"811
-[v _Code `uc ~T0 @X0 1 r1 ]
-"812
-[f ]
-[; ;PS_2.c: 813: if(Code <=131)
 "813
-[e $ ! <= -> _Code `i -> 131 `i 771  ]
-[; ;PS_2.c: 814: {
-"814
 {
-[; ;PS_2.c: 815: return ScanCodeFunctionNoE0[Code];
+[; ;PS_2.c: 812: unsigned char Decode_Scan_Code_Function(unsigned char Code)
+[; ;PS_2.c: 813: {
+[e :U _Decode_Scan_Code_Function ]
+"812
+[v _Code `uc ~T0 @X0 1 r1 ]
+"813
+[f ]
+[; ;PS_2.c: 814: if(Code <=131)
+"814
+[e $ ! <= -> _Code `i -> 131 `i 771  ]
+[; ;PS_2.c: 815: {
 "815
+{
+[; ;PS_2.c: 816: return ScanCodeFunctionNoE0[Code];
+"816
 [e ) *U + &U _ScanCodeFunctionNoE0 * -> _Code `ux -> -> # *U &U _ScanCodeFunctionNoE0 `ui `ux ]
 [e $UE 770  ]
-"816
-}
-[; ;PS_2.c: 816: }
-[e $U 772  ]
 "817
-[e :U 771 ]
-[; ;PS_2.c: 817: else
-[; ;PS_2.c: 818: {
+}
+[; ;PS_2.c: 817: }
+[e $U 772  ]
 "818
-{
-[; ;PS_2.c: 819: return 0;
+[e :U 771 ]
+[; ;PS_2.c: 818: else
+[; ;PS_2.c: 819: {
 "819
+{
+[; ;PS_2.c: 820: return 0;
+"820
 [e ) -> -> 0 `i `uc ]
 [e $UE 770  ]
-"820
+"821
 }
 [e :U 772 ]
-[; ;PS_2.c: 820: }
 [; ;PS_2.c: 821: }
-"821
+[; ;PS_2.c: 822: }
+"822
 [e :UE 770 ]
 }
-"828
+"829
 [v _Send_PS2 `(uc ~T0 @X0 1 ef1`uc ]
-"829
+"830
 {
-[; ;PS_2.c: 828: unsigned char Send_PS2(unsigned char command)
-[; ;PS_2.c: 829: {
+[; ;PS_2.c: 829: unsigned char Send_PS2(unsigned char command)
+[; ;PS_2.c: 830: {
 [e :U _Send_PS2 ]
-"828
-[v _command `uc ~T0 @X0 1 r1 ]
 "829
+[v _command `uc ~T0 @X0 1 r1 ]
+"830
 [f ]
 [v _i `uc ~T0 @X0 1 a ]
-[; ;PS_2.c: 830: unsigned char i=0;
-"830
-[e = _i -> -> 0 `i `uc ]
+[; ;PS_2.c: 831: unsigned char i=0;
 "831
-[v _oddparity `uc ~T0 @X0 1 a ]
-[; ;PS_2.c: 831: unsigned char oddparity = CheckSum_byte((unsigned int)command , 3);
-[e = _oddparity ( _CheckSum_byte (2 , -> _command `ui -> -> 3 `i `uc ]
+[e = _i -> -> 0 `i `uc ]
 "832
+[v _oddparity `uc ~T0 @X0 1 a ]
+[; ;PS_2.c: 832: unsigned char oddparity = CheckSum_byte((unsigned int)command , 3);
+[e = _oddparity ( _CheckSum_byte (2 , -> _command `ui -> -> 3 `i `uc ]
+"833
 [v _timeout `ui ~T0 @X0 1 a ]
-[; ;PS_2.c: 832: unsigned int timeout =0;
+[; ;PS_2.c: 833: unsigned int timeout =0;
 [e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 834: Clock_TRIS(0);
-"834
-[e ( _Clock_TRIS (1 -> -> 0 `i `uc ]
-[; ;PS_2.c: 835: Data_TRIS(0);
+[; ;PS_2.c: 835: Clock_TRIS(0);
 "835
-[e ( _Data_TRIS (1 -> -> 0 `i `uc ]
-[; ;PS_2.c: 836: LATA &= ~0b00100000;
+[e ( _Clock_TRIS (1 -> -> 0 `i `uc ]
+[; ;PS_2.c: 836: Data_TRIS(0);
 "836
-[e =& _LATA -> ~ -> 32 `i `uc ]
-[; ;PS_2.c: 837: delayUS(300);
+[e ( _Data_TRIS (1 -> -> 0 `i `uc ]
+[; ;PS_2.c: 837: LATA &= ~0b00100000;
 "837
-[e ( _delayUS (1 -> -> 300 `i `l ]
-[; ;PS_2.c: 838: LATA &= ~0b00010000;
+[e =& _LATA -> ~ -> 32 `i `uc ]
+[; ;PS_2.c: 838: delayUS(300);
 "838
-[e =& _LATA -> ~ -> 16 `i `uc ]
-[; ;PS_2.c: 839: delayUS(20);
+[e ( _delayUS (1 -> -> 300 `i `l ]
+[; ;PS_2.c: 839: LATA &= ~0b00010000;
 "839
-[e ( _delayUS (1 -> -> 20 `i `l ]
-[; ;PS_2.c: 840: Clock_TRIS(1);
+[e =& _LATA -> ~ -> 16 `i `uc ]
+[; ;PS_2.c: 840: delayUS(20);
 "840
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 841: timeout=0;
+[e ( _delayUS (1 -> -> 20 `i `l ]
+[; ;PS_2.c: 841: Clock_TRIS(1);
 "841
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 842: while(READ_PS_2_PIN(0b00100000))
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 842: timeout=0;
 "842
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 843: while(READ_PS_2_PIN(0b00100000))
+"843
 [e $U 774  ]
 [e :U 775 ]
-[; ;PS_2.c: 843: {
-"843
-{
-[; ;PS_2.c: 844: __nop();
+[; ;PS_2.c: 844: {
 "844
-[e ( ___nop ..  ]
-[; ;PS_2.c: 845: timeout++;
-"845
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 846: if(timeout > 15000)
-"846
-[e $ ! > _timeout -> -> 15000 `i `ui 777  ]
-[; ;PS_2.c: 847: {
-"847
 {
-[; ;PS_2.c: 848: Clock_TRIS(1);
+[; ;PS_2.c: 845: __nop();
+"845
+[e ( ___nop ..  ]
+[; ;PS_2.c: 846: timeout++;
+"846
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 847: if(timeout > 15000)
+"847
+[e $ ! > _timeout -> -> 15000 `i `ui 777  ]
+[; ;PS_2.c: 848: {
 "848
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 849: Data_TRIS(1);
+{
+[; ;PS_2.c: 849: Clock_TRIS(1);
 "849
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 850: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 850: Data_TRIS(1);
 "850
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 851: return 1;
+"851
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"851
-}
-[e :U 777 ]
 "852
 }
+[e :U 777 ]
+"853
+}
 [e :U 774 ]
-"842
+"843
 [e $ != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 775  ]
 [e :U 776 ]
-[; ;PS_2.c: 851: }
 [; ;PS_2.c: 852: }
-[; ;PS_2.c: 853: for(i=0;i<8;i++)
-"853
+[; ;PS_2.c: 853: }
+[; ;PS_2.c: 854: for(i=0;i<8;i++)
+"854
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 8 `i 778  ]
 [e $U 779  ]
-"854
-[e :U 778 ]
-[; ;PS_2.c: 854: {
-{
-[; ;PS_2.c: 855: if(command & 0x1)
 "855
-[e $ ! != & -> _command `i -> 1 `i -> 0 `i 781  ]
-[; ;PS_2.c: 856: {
+[e :U 778 ]
+[; ;PS_2.c: 855: {
+{
+[; ;PS_2.c: 856: if(command & 0x1)
 "856
-{
-[; ;PS_2.c: 857: LATA |= 0b00010000;
+[e $ ! != & -> _command `i -> 1 `i -> 0 `i 781  ]
+[; ;PS_2.c: 857: {
 "857
-[e =| _LATA -> -> 16 `i `uc ]
-"858
-}
-[; ;PS_2.c: 858: }
-[e $U 782  ]
-"859
-[e :U 781 ]
-[; ;PS_2.c: 859: else
-[; ;PS_2.c: 860: {
-"860
 {
-[; ;PS_2.c: 861: LATA &= ~0b00010000;
+[; ;PS_2.c: 858: LATA |= 0b00010000;
+"858
+[e =| _LATA -> -> 16 `i `uc ]
+"859
+}
+[; ;PS_2.c: 859: }
+[e $U 782  ]
+"860
+[e :U 781 ]
+[; ;PS_2.c: 860: else
+[; ;PS_2.c: 861: {
 "861
-[e =& _LATA -> ~ -> 16 `i `uc ]
+{
+[; ;PS_2.c: 862: LATA &= ~0b00010000;
 "862
+[e =& _LATA -> ~ -> 16 `i `uc ]
+"863
 }
 [e :U 782 ]
-[; ;PS_2.c: 862: }
-[; ;PS_2.c: 863: command >> = 1;
-"863
-[e =>> _command -> 1 `i ]
-[; ;PS_2.c: 864: timeout=0;
+[; ;PS_2.c: 863: }
+[; ;PS_2.c: 864: command >> = 1;
 "864
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 865: while(!READ_PS_2_PIN(0b00100000))
+[e =>> _command -> 1 `i ]
+[; ;PS_2.c: 865: timeout=0;
 "865
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 866: while(!READ_PS_2_PIN(0b00100000))
+"866
 [e $U 783  ]
 [e :U 784 ]
-[; ;PS_2.c: 866: {
-"866
-{
-[; ;PS_2.c: 867: timeout++;
+[; ;PS_2.c: 867: {
 "867
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 868: if(timeout > 15000)
-"868
-[e $ ! > _timeout -> -> 15000 `i `ui 786  ]
-[; ;PS_2.c: 869: {
-"869
 {
-[; ;PS_2.c: 870: Clock_TRIS(1);
+[; ;PS_2.c: 868: timeout++;
+"868
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 869: if(timeout > 15000)
+"869
+[e $ ! > _timeout -> -> 15000 `i `ui 786  ]
+[; ;PS_2.c: 870: {
 "870
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 871: Data_TRIS(1);
+{
+[; ;PS_2.c: 871: Clock_TRIS(1);
 "871
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 872: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 872: Data_TRIS(1);
 "872
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 873: return 1;
+"873
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"873
-}
-[e :U 786 ]
 "874
 }
+[e :U 786 ]
+"875
+}
 [e :U 783 ]
-"865
+"866
 [e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 784  ]
 [e :U 785 ]
-[; ;PS_2.c: 873: }
 [; ;PS_2.c: 874: }
-[; ;PS_2.c: 875: timeout=0;
-"875
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 876: while(READ_PS_2_PIN(0b00100000))
+[; ;PS_2.c: 875: }
+[; ;PS_2.c: 876: timeout=0;
 "876
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 877: while(READ_PS_2_PIN(0b00100000))
+"877
 [e $U 787  ]
 [e :U 788 ]
-[; ;PS_2.c: 877: {
-"877
-{
-[; ;PS_2.c: 878: __nop();
+[; ;PS_2.c: 878: {
 "878
-[e ( ___nop ..  ]
-[; ;PS_2.c: 879: timeout++;
-"879
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 880: if(timeout > 15000)
-"880
-[e $ ! > _timeout -> -> 15000 `i `ui 790  ]
-[; ;PS_2.c: 881: {
-"881
 {
-[; ;PS_2.c: 882: Clock_TRIS(1);
+[; ;PS_2.c: 879: __nop();
+"879
+[e ( ___nop ..  ]
+[; ;PS_2.c: 880: timeout++;
+"880
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 881: if(timeout > 15000)
+"881
+[e $ ! > _timeout -> -> 15000 `i `ui 790  ]
+[; ;PS_2.c: 882: {
 "882
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 883: Data_TRIS(1);
+{
+[; ;PS_2.c: 883: Clock_TRIS(1);
 "883
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 884: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 884: Data_TRIS(1);
 "884
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 885: return 1;
+"885
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"885
-}
-[e :U 790 ]
 "886
 }
-[e :U 787 ]
-"876
-[e $ != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 788  ]
-[e :U 789 ]
+[e :U 790 ]
 "887
 }
-"853
+[e :U 787 ]
+"877
+[e $ != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 788  ]
+[e :U 789 ]
+"888
+}
+"854
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 8 `i 778  ]
 [e :U 779 ]
-"887
+"888
 }
-[; ;PS_2.c: 885: }
 [; ;PS_2.c: 886: }
 [; ;PS_2.c: 887: }
-[; ;PS_2.c: 889: if(oddparity & 0x1)
-"889
-[e $ ! != & -> _oddparity `i -> 1 `i -> 0 `i 791  ]
-[; ;PS_2.c: 890: {
+[; ;PS_2.c: 888: }
+[; ;PS_2.c: 890: if(oddparity & 0x1)
 "890
-{
-[; ;PS_2.c: 891: LATA |= 0b00010000;
+[e $ ! != & -> _oddparity `i -> 1 `i -> 0 `i 791  ]
+[; ;PS_2.c: 891: {
 "891
-[e =| _LATA -> -> 16 `i `uc ]
-"892
-}
-[; ;PS_2.c: 892: }
-[e $U 792  ]
-"893
-[e :U 791 ]
-[; ;PS_2.c: 893: else
-[; ;PS_2.c: 894: {
-"894
 {
-[; ;PS_2.c: 895: LATA &= ~0b00010000;
+[; ;PS_2.c: 892: LATA |= 0b00010000;
+"892
+[e =| _LATA -> -> 16 `i `uc ]
+"893
+}
+[; ;PS_2.c: 893: }
+[e $U 792  ]
+"894
+[e :U 791 ]
+[; ;PS_2.c: 894: else
+[; ;PS_2.c: 895: {
 "895
-[e =& _LATA -> ~ -> 16 `i `uc ]
+{
+[; ;PS_2.c: 896: LATA &= ~0b00010000;
 "896
+[e =& _LATA -> ~ -> 16 `i `uc ]
+"897
 }
 [e :U 792 ]
-[; ;PS_2.c: 896: }
-[; ;PS_2.c: 897: timeout=0;
-"897
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 898: while(!READ_PS_2_PIN(0b00100000))
+[; ;PS_2.c: 897: }
+[; ;PS_2.c: 898: timeout=0;
 "898
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 899: while(!READ_PS_2_PIN(0b00100000))
+"899
 [e $U 793  ]
 [e :U 794 ]
-[; ;PS_2.c: 899: {
-"899
-{
-[; ;PS_2.c: 900: timeout++;
+[; ;PS_2.c: 900: {
 "900
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 901: if(timeout > 15000)
-"901
-[e $ ! > _timeout -> -> 15000 `i `ui 796  ]
-[; ;PS_2.c: 902: {
-"902
 {
-[; ;PS_2.c: 903: Clock_TRIS(1);
+[; ;PS_2.c: 901: timeout++;
+"901
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 902: if(timeout > 15000)
+"902
+[e $ ! > _timeout -> -> 15000 `i `ui 796  ]
+[; ;PS_2.c: 903: {
 "903
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 904: Data_TRIS(1);
+{
+[; ;PS_2.c: 904: Clock_TRIS(1);
 "904
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 905: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 905: Data_TRIS(1);
 "905
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 906: return 1;
+"906
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"906
-}
-[e :U 796 ]
 "907
 }
+[e :U 796 ]
+"908
+}
 [e :U 793 ]
-"898
+"899
 [e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 794  ]
 [e :U 795 ]
-[; ;PS_2.c: 906: }
 [; ;PS_2.c: 907: }
-[; ;PS_2.c: 908: timeout=0;
-"908
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 909: while(READ_PS_2_PIN(0b00100000))
+[; ;PS_2.c: 908: }
+[; ;PS_2.c: 909: timeout=0;
 "909
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 910: while(READ_PS_2_PIN(0b00100000))
+"910
 [e $U 797  ]
 [e :U 798 ]
-[; ;PS_2.c: 910: {
-"910
-{
-[; ;PS_2.c: 911: timeout++;
+[; ;PS_2.c: 911: {
 "911
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 912: if(timeout > 15000)
-"912
-[e $ ! > _timeout -> -> 15000 `i `ui 800  ]
-[; ;PS_2.c: 913: {
-"913
 {
-[; ;PS_2.c: 914: Clock_TRIS(1);
+[; ;PS_2.c: 912: timeout++;
+"912
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 913: if(timeout > 15000)
+"913
+[e $ ! > _timeout -> -> 15000 `i `ui 800  ]
+[; ;PS_2.c: 914: {
 "914
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 915: Data_TRIS(1);
+{
+[; ;PS_2.c: 915: Clock_TRIS(1);
 "915
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 916: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 916: Data_TRIS(1);
 "916
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 917: return 1;
+"917
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"917
-}
-[e :U 800 ]
 "918
 }
+[e :U 800 ]
+"919
+}
 [e :U 797 ]
-"909
+"910
 [e $ != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 798  ]
 [e :U 799 ]
-[; ;PS_2.c: 917: }
 [; ;PS_2.c: 918: }
-[; ;PS_2.c: 920: Data_TRIS(1);
-"920
+[; ;PS_2.c: 919: }
+[; ;PS_2.c: 921: Data_TRIS(1);
+"921
 [e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 922: timeout=0;
-"922
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 923: while(READ_PS_2_PIN(0b00010000))
+[; ;PS_2.c: 923: timeout=0;
 "923
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 924: while(READ_PS_2_PIN(0b00010000))
+"924
 [e $U 801  ]
 [e :U 802 ]
-[; ;PS_2.c: 924: {
-"924
-{
-[; ;PS_2.c: 925: timeout++;
+[; ;PS_2.c: 925: {
 "925
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 926: if(timeout > 15000)
-"926
-[e $ ! > _timeout -> -> 15000 `i `ui 804  ]
-[; ;PS_2.c: 927: {
-"927
 {
-[; ;PS_2.c: 928: Clock_TRIS(1);
+[; ;PS_2.c: 926: timeout++;
+"926
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 927: if(timeout > 15000)
+"927
+[e $ ! > _timeout -> -> 15000 `i `ui 804  ]
+[; ;PS_2.c: 928: {
 "928
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 929: Data_TRIS(1);
+{
+[; ;PS_2.c: 929: Clock_TRIS(1);
 "929
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 930: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 930: Data_TRIS(1);
 "930
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 931: return 1;
+"931
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"931
-}
-[e :U 804 ]
 "932
 }
+[e :U 804 ]
+"933
+}
 [e :U 801 ]
-"923
+"924
 [e $ != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 802  ]
 [e :U 803 ]
-[; ;PS_2.c: 931: }
 [; ;PS_2.c: 932: }
-[; ;PS_2.c: 933: timeout=0;
-"933
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 934: while(READ_PS_2_PIN(0b00100000))
+[; ;PS_2.c: 933: }
+[; ;PS_2.c: 934: timeout=0;
 "934
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 935: while(READ_PS_2_PIN(0b00100000))
+"935
 [e $U 805  ]
 [e :U 806 ]
-[; ;PS_2.c: 935: {
-"935
-{
-[; ;PS_2.c: 936: timeout++;
+[; ;PS_2.c: 936: {
 "936
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 937: if(timeout > 15000)
-"937
-[e $ ! > _timeout -> -> 15000 `i `ui 808  ]
-[; ;PS_2.c: 938: {
-"938
 {
-[; ;PS_2.c: 939: Clock_TRIS(1);
+[; ;PS_2.c: 937: timeout++;
+"937
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 938: if(timeout > 15000)
+"938
+[e $ ! > _timeout -> -> 15000 `i `ui 808  ]
+[; ;PS_2.c: 939: {
 "939
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 940: Data_TRIS(1);
+{
+[; ;PS_2.c: 940: Clock_TRIS(1);
 "940
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 941: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 941: Data_TRIS(1);
 "941
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 942: return 1;
+"942
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"942
-}
-[e :U 808 ]
 "943
 }
+[e :U 808 ]
+"944
+}
 [e :U 805 ]
-"934
+"935
 [e $ != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 806  ]
 [e :U 807 ]
-[; ;PS_2.c: 942: }
 [; ;PS_2.c: 943: }
-[; ;PS_2.c: 944: timeout=0;
-"944
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 945: while(!READ_PS_2_PIN(0b00010000))
+[; ;PS_2.c: 944: }
+[; ;PS_2.c: 945: timeout=0;
 "945
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 946: while(!READ_PS_2_PIN(0b00010000))
+"946
 [e $U 809  ]
 [e :U 810 ]
-[; ;PS_2.c: 946: {
-"946
-{
-[; ;PS_2.c: 947: timeout++;
+[; ;PS_2.c: 947: {
 "947
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 948: if(timeout > 15000)
-"948
-[e $ ! > _timeout -> -> 15000 `i `ui 812  ]
-[; ;PS_2.c: 949: {
-"949
 {
-[; ;PS_2.c: 950: Clock_TRIS(1);
+[; ;PS_2.c: 948: timeout++;
+"948
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 949: if(timeout > 15000)
+"949
+[e $ ! > _timeout -> -> 15000 `i `ui 812  ]
+[; ;PS_2.c: 950: {
 "950
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 951: Data_TRIS(1);
+{
+[; ;PS_2.c: 951: Clock_TRIS(1);
 "951
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 952: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 952: Data_TRIS(1);
 "952
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 953: return 1;
+"953
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"953
-}
-[e :U 812 ]
 "954
 }
+[e :U 812 ]
+"955
+}
 [e :U 809 ]
-"945
+"946
 [e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 16 `i `uc `i -> -> -> 0 `i `uc `i 810  ]
 [e :U 811 ]
-[; ;PS_2.c: 953: }
 [; ;PS_2.c: 954: }
-[; ;PS_2.c: 955: timeout=0;
-"955
-[e = _timeout -> -> 0 `i `ui ]
-[; ;PS_2.c: 956: while(!READ_PS_2_PIN(0b00100000))
+[; ;PS_2.c: 955: }
+[; ;PS_2.c: 956: timeout=0;
 "956
+[e = _timeout -> -> 0 `i `ui ]
+[; ;PS_2.c: 957: while(!READ_PS_2_PIN(0b00100000))
+"957
 [e $U 813  ]
 [e :U 814 ]
-[; ;PS_2.c: 957: {
-"957
-{
-[; ;PS_2.c: 958: timeout++;
+[; ;PS_2.c: 958: {
 "958
-[e ++ _timeout -> -> 1 `i `ui ]
-[; ;PS_2.c: 959: if(timeout > 15000)
-"959
-[e $ ! > _timeout -> -> 15000 `i `ui 816  ]
-[; ;PS_2.c: 960: {
-"960
 {
-[; ;PS_2.c: 961: Clock_TRIS(1);
+[; ;PS_2.c: 959: timeout++;
+"959
+[e ++ _timeout -> -> 1 `i `ui ]
+[; ;PS_2.c: 960: if(timeout > 15000)
+"960
+[e $ ! > _timeout -> -> 15000 `i `ui 816  ]
+[; ;PS_2.c: 961: {
 "961
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 962: Data_TRIS(1);
+{
+[; ;PS_2.c: 962: Clock_TRIS(1);
 "962
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 963: return 1;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 963: Data_TRIS(1);
 "963
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 964: return 1;
+"964
 [e ) -> -> 1 `i `uc ]
 [e $UE 773  ]
-"964
-}
-[e :U 816 ]
 "965
 }
+[e :U 816 ]
+"966
+}
 [e :U 813 ]
-"956
+"957
 [e $ ! != -> ( _READ_PS_2_PIN (1 -> -> 32 `i `uc `i -> -> -> 0 `i `uc `i 814  ]
 [e :U 815 ]
-[; ;PS_2.c: 964: }
 [; ;PS_2.c: 965: }
-[; ;PS_2.c: 968: Clock_TRIS(1);
-"968
-[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 969: Data_TRIS(1);
+[; ;PS_2.c: 966: }
+[; ;PS_2.c: 969: Clock_TRIS(1);
 "969
-[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
-[; ;PS_2.c: 970: return 0;
+[e ( _Clock_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 970: Data_TRIS(1);
 "970
+[e ( _Data_TRIS (1 -> -> 1 `i `uc ]
+[; ;PS_2.c: 971: return 0;
+"971
 [e ) -> -> 0 `i `uc ]
 [e $UE 773  ]
-[; ;PS_2.c: 971: }
-"971
+[; ;PS_2.c: 972: }
+"972
 [e :UE 773 ]
 }
-"978
-[v _ResendLast `(v ~T0 @X0 1 ef ]
 "979
+[v _ResendLast `(v ~T0 @X0 1 ef ]
+"980
 {
-[; ;PS_2.c: 978: void ResendLast(void)
-[; ;PS_2.c: 979: {
+[; ;PS_2.c: 979: void ResendLast(void)
+[; ;PS_2.c: 980: {
 [e :U _ResendLast ]
 [f ]
-[; ;PS_2.c: 980: PS_2_DISABLE_INTERRUPT(0b00100000);
-"980
+[; ;PS_2.c: 981: PS_2_DISABLE_INTERRUPT(0b00100000);
+"981
 [e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;PS_2.c: 982: Send_PS2(0xFE);
-"982
-[e ( _Send_PS2 (1 -> -> 254 `i `uc ]
-[; ;PS_2.c: 983: }
+[; ;PS_2.c: 983: Send_PS2(0xFE);
 "983
+[e ( _Send_PS2 (1 -> -> 254 `i `uc ]
+[; ;PS_2.c: 984: }
+"984
 [e :UE 817 ]
 }
-"993
-[v _Init_PS_2_Send `(uc ~T0 @X0 1 ef ]
 "994
+[v _Init_PS_2_Send `(uc ~T0 @X0 1 ef ]
+"995
 {
-[; ;PS_2.c: 993: unsigned char Init_PS_2_Send(void)
-[; ;PS_2.c: 994: {
+[; ;PS_2.c: 994: unsigned char Init_PS_2_Send(void)
+[; ;PS_2.c: 995: {
 [e :U _Init_PS_2_Send ]
 [f ]
-[; ;PS_2.c: 995: PS_2_DISABLE_INTERRUPT(0b00100000);
-"995
+[; ;PS_2.c: 996: PS_2_DISABLE_INTERRUPT(0b00100000);
+"996
 [e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;PS_2.c: 998: if(Send_PS2(0xED))
-"998
-[e $ ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 819  ]
-[; ;PS_2.c: 999: {
+[; ;PS_2.c: 999: if(Send_PS2(0x07))
 "999
-{
-[; ;PS_2.c: 1000: return 0;
+[e $ ! != -> ( _Send_PS2 (1 -> -> 7 `i `uc `i -> -> -> 0 `i `uc `i 819  ]
+[; ;PS_2.c: 1000: {
 "1000
+{
+[; ;PS_2.c: 1001: return 0;
+"1001
 [e ) -> -> 0 `i `uc ]
 [e $UE 818  ]
-"1001
+"1002
 }
 [e :U 819 ]
-[; ;PS_2.c: 1001: }
-[; ;PS_2.c: 1002: delayUS(100);
-"1002
-[e ( _delayUS (1 -> -> 100 `i `l ]
-[; ;PS_2.c: 1003: if(Send_PS2(0x01))
+[; ;PS_2.c: 1002: }
+[; ;PS_2.c: 1003: delayUS(5000);
 "1003
-[e $ ! != -> ( _Send_PS2 (1 -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 820  ]
-[; ;PS_2.c: 1004: {
-"1004
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;PS_2.c: 1006: if(Send_PS2(0xED))
+"1006
+[e $ ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 820  ]
+[; ;PS_2.c: 1007: {
+"1007
 {
-[; ;PS_2.c: 1005: return 0;
-"1005
+[; ;PS_2.c: 1008: return 0;
+"1008
 [e ) -> -> 0 `i `uc ]
 [e $UE 818  ]
-"1006
+"1009
 }
 [e :U 820 ]
-[; ;PS_2.c: 1006: }
-[; ;PS_2.c: 1007: delayUS(5000);
-"1007
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;PS_2.c: 1010: if(Send_PS2(0xED))
+[; ;PS_2.c: 1009: }
+[; ;PS_2.c: 1010: delayUS(5000);
 "1010
-[e $ ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 821  ]
-[; ;PS_2.c: 1011: {
+[e ( _delayUS (1 -> -> 5000 `i `l ]
+[; ;PS_2.c: 1011: if(Send_PS2(0x00))
 "1011
-{
-[; ;PS_2.c: 1012: return 0;
+[e $ ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 821  ]
+[; ;PS_2.c: 1012: {
 "1012
+{
+[; ;PS_2.c: 1013: return 0;
+"1013
 [e ) -> -> 0 `i `uc ]
 [e $UE 818  ]
-"1013
+"1014
 }
 [e :U 821 ]
-[; ;PS_2.c: 1013: }
-[; ;PS_2.c: 1014: delayUS(100);
-"1014
-[e ( _delayUS (1 -> -> 100 `i `l ]
-[; ;PS_2.c: 1015: if(Send_PS2(0x04))
-"1015
-[e $ ! != -> ( _Send_PS2 (1 -> -> 4 `i `uc `i -> -> -> 0 `i `uc `i 822  ]
-[; ;PS_2.c: 1016: {
-"1016
-{
-[; ;PS_2.c: 1017: return 0;
+[; ;PS_2.c: 1014: }
+[; ;PS_2.c: 1017: if(Send_PS2(0xf4))
 "1017
+[e $ ! != -> ( _Send_PS2 (1 -> -> 244 `i `uc `i -> -> -> 0 `i `uc `i 822  ]
+[; ;PS_2.c: 1018: {
+"1018
+{
+[; ;PS_2.c: 1019: return 0;
+"1019
 [e ) -> -> 0 `i `uc ]
 [e $UE 818  ]
-"1018
+"1020
 }
 [e :U 822 ]
-[; ;PS_2.c: 1018: }
-[; ;PS_2.c: 1019: delayUS(5000);
-"1019
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;PS_2.c: 1022: if(Send_PS2(0xED))
-"1022
-[e $ ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 823  ]
-[; ;PS_2.c: 1023: {
+[; ;PS_2.c: 1020: }
+[; ;PS_2.c: 1023: if(Send_PS2(0xf4))
 "1023
-{
-[; ;PS_2.c: 1024: return 0;
+[e $ ! != -> ( _Send_PS2 (1 -> -> 244 `i `uc `i -> -> -> 0 `i `uc `i 823  ]
+[; ;PS_2.c: 1024: {
 "1024
+{
+[; ;PS_2.c: 1025: return 0;
+"1025
 [e ) -> -> 0 `i `uc ]
 [e $UE 818  ]
-"1025
+"1026
 }
 [e :U 823 ]
-[; ;PS_2.c: 1025: }
-[; ;PS_2.c: 1026: delayUS(1000);
-"1026
-[e ( _delayUS (1 -> -> 1000 `i `l ]
-[; ;PS_2.c: 1027: if(Send_PS2(0x02))
-"1027
-[e $ ! != -> ( _Send_PS2 (1 -> -> 2 `i `uc `i -> -> -> 0 `i `uc `i 824  ]
-[; ;PS_2.c: 1028: {
-"1028
-{
-[; ;PS_2.c: 1029: return 0;
+[; ;PS_2.c: 1026: }
+[; ;PS_2.c: 1029: if(Send_PS2(0xf0))
 "1029
+[e $ ! != -> ( _Send_PS2 (1 -> -> 240 `i `uc `i -> -> -> 0 `i `uc `i 824  ]
+[; ;PS_2.c: 1030: {
+"1030
+{
+[; ;PS_2.c: 1031: return 0;
+"1031
 [e ) -> -> 0 `i `uc ]
 [e $UE 818  ]
-"1030
+"1032
 }
 [e :U 824 ]
-[; ;PS_2.c: 1030: }
-[; ;PS_2.c: 1031: delayUS(5000);
-"1031
-[e ( _delayUS (1 -> -> 5000 `i `l ]
-[; ;PS_2.c: 1034: if(Send_PS2(0xED))
+[; ;PS_2.c: 1032: }
+[; ;PS_2.c: 1033: delayUS(100);
+"1033
+[e ( _delayUS (1 -> -> 100 `i `l ]
+[; ;PS_2.c: 1034: if(Send_PS2(0x02))
 "1034
-[e $ ! != -> ( _Send_PS2 (1 -> -> 237 `i `uc `i -> -> -> 0 `i `uc `i 825  ]
+[e $ ! != -> ( _Send_PS2 (1 -> -> 2 `i `uc `i -> -> -> 0 `i `uc `i 825  ]
 [; ;PS_2.c: 1035: {
 "1035
 {
@@ -9293,26 +9289,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 825 ]
 [; ;PS_2.c: 1037: }
-[; ;PS_2.c: 1038: delayUS(100);
-"1038
-[e ( _delayUS (1 -> -> 100 `i `l ]
-[; ;PS_2.c: 1039: if(Send_PS2(0x00))
-"1039
-[e $ ! != -> ( _Send_PS2 (1 -> -> 0 `i `uc `i -> -> -> 0 `i `uc `i 826  ]
-[; ;PS_2.c: 1040: {
+[; ;PS_2.c: 1040: if(Send_PS2(0xf3))
 "1040
-{
-[; ;PS_2.c: 1041: return 0;
+[e $ ! != -> ( _Send_PS2 (1 -> -> 243 `i `uc `i -> -> -> 0 `i `uc `i 826  ]
+[; ;PS_2.c: 1041: {
 "1041
+{
+[; ;PS_2.c: 1042: return 0;
+"1042
 [e ) -> -> 0 `i `uc ]
 [e $UE 818  ]
-"1042
+"1043
 }
 [e :U 826 ]
-[; ;PS_2.c: 1042: }
-[; ;PS_2.c: 1045: if(Send_PS2(0xf4))
+[; ;PS_2.c: 1043: }
+[; ;PS_2.c: 1044: delayUS(100);
+"1044
+[e ( _delayUS (1 -> -> 100 `i `l ]
+[; ;PS_2.c: 1045: if(Send_PS2(0x2F))
 "1045
-[e $ ! != -> ( _Send_PS2 (1 -> -> 244 `i `uc `i -> -> -> 0 `i `uc `i 827  ]
+[e $ ! != -> ( _Send_PS2 (1 -> -> 47 `i `uc `i -> -> -> 0 `i `uc `i 827  ]
 [; ;PS_2.c: 1046: {
 "1046
 {
@@ -9324,236 +9320,160 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 827 ]
 [; ;PS_2.c: 1048: }
-[; ;PS_2.c: 1051: if(Send_PS2(0xf4))
-"1051
-[e $ ! != -> ( _Send_PS2 (1 -> -> 244 `i `uc `i -> -> -> 0 `i `uc `i 828  ]
-[; ;PS_2.c: 1052: {
-"1052
-{
-[; ;PS_2.c: 1053: return 0;
-"1053
-[e ) -> -> 0 `i `uc ]
-[e $UE 818  ]
-"1054
-}
-[e :U 828 ]
-[; ;PS_2.c: 1054: }
-[; ;PS_2.c: 1057: if(Send_PS2(0xf0))
-"1057
-[e $ ! != -> ( _Send_PS2 (1 -> -> 240 `i `uc `i -> -> -> 0 `i `uc `i 829  ]
-[; ;PS_2.c: 1058: {
-"1058
-{
-[; ;PS_2.c: 1059: return 0;
-"1059
-[e ) -> -> 0 `i `uc ]
-[e $UE 818  ]
-"1060
-}
-[e :U 829 ]
-[; ;PS_2.c: 1060: }
-[; ;PS_2.c: 1061: delayUS(100);
-"1061
-[e ( _delayUS (1 -> -> 100 `i `l ]
-[; ;PS_2.c: 1062: if(Send_PS2(0x02))
-"1062
-[e $ ! != -> ( _Send_PS2 (1 -> -> 2 `i `uc `i -> -> -> 0 `i `uc `i 830  ]
-[; ;PS_2.c: 1063: {
-"1063
-{
-[; ;PS_2.c: 1064: return 0;
-"1064
-[e ) -> -> 0 `i `uc ]
-[e $UE 818  ]
-"1065
-}
-[e :U 830 ]
-[; ;PS_2.c: 1065: }
-[; ;PS_2.c: 1068: if(Send_PS2(0xf3))
-"1068
-[e $ ! != -> ( _Send_PS2 (1 -> -> 243 `i `uc `i -> -> -> 0 `i `uc `i 831  ]
-[; ;PS_2.c: 1069: {
-"1069
-{
-[; ;PS_2.c: 1070: return 0;
-"1070
-[e ) -> -> 0 `i `uc ]
-[e $UE 818  ]
-"1071
-}
-[e :U 831 ]
-[; ;PS_2.c: 1071: }
-[; ;PS_2.c: 1072: delayUS(100);
-"1072
-[e ( _delayUS (1 -> -> 100 `i `l ]
-[; ;PS_2.c: 1073: if(Send_PS2(0x2F))
-"1073
-[e $ ! != -> ( _Send_PS2 (1 -> -> 47 `i `uc `i -> -> -> 0 `i `uc `i 832  ]
-[; ;PS_2.c: 1074: {
-"1074
-{
-[; ;PS_2.c: 1075: return 0;
-"1075
-[e ) -> -> 0 `i `uc ]
-[e $UE 818  ]
-"1076
-}
-[e :U 832 ]
-[; ;PS_2.c: 1076: }
-[; ;PS_2.c: 1077: return 1;
-"1077
+[; ;PS_2.c: 1049: return 1;
+"1049
 [e ) -> -> 1 `i `uc ]
 [e $UE 818  ]
-[; ;PS_2.c: 1078: }
-"1078
+[; ;PS_2.c: 1050: }
+"1050
 [e :UE 818 ]
 }
-"1086
+"1058
 [v _Keyboard_Connected `(uc ~T0 @X0 1 ef ]
-"1087
+"1059
 {
-[; ;PS_2.c: 1086: unsigned char Keyboard_Connected(void)
-[; ;PS_2.c: 1087: {
+[; ;PS_2.c: 1058: unsigned char Keyboard_Connected(void)
+[; ;PS_2.c: 1059: {
 [e :U _Keyboard_Connected ]
 [f ]
 [v _i `ul ~T0 @X0 1 a ]
-[; ;PS_2.c: 1088: unsigned long i=0;
-"1088
+[; ;PS_2.c: 1060: unsigned long i=0;
+"1060
 [e = _i -> -> -> 0 `i `l `ul ]
-[; ;PS_2.c: 1089: ECHO =0;
-"1089
+[; ;PS_2.c: 1061: ECHO =0;
+"1061
 [e = _ECHO -> -> 0 `i `uc ]
-[; ;PS_2.c: 1090: Send_PS2(0xEE);
-"1090
+[; ;PS_2.c: 1062: Send_PS2(0xEE);
+"1062
 [e ( _Send_PS2 (1 -> -> 238 `i `uc ]
-[; ;PS_2.c: 1091: PS_2_ENABLE_INTERRUPT(0b00100000);
-"1091
+[; ;PS_2.c: 1063: PS_2_ENABLE_INTERRUPT(0b00100000);
+"1063
 [e ( _PS_2_ENABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;PS_2.c: 1092: for(i=0;i<5000;i++)
-"1092
+[; ;PS_2.c: 1064: for(i=0;i<5000;i++)
+"1064
 {
 [e = _i -> -> -> 0 `i `l `ul ]
-[e $ < _i -> -> -> 5000 `i `l `ul 834  ]
-[e $U 835  ]
-"1093
-[e :U 834 ]
-[; ;PS_2.c: 1093: {
+[e $ < _i -> -> -> 5000 `i `l `ul 829  ]
+[e $U 830  ]
+"1065
+[e :U 829 ]
+[; ;PS_2.c: 1065: {
 {
-[; ;PS_2.c: 1094: delayUS(1);
-"1094
+[; ;PS_2.c: 1066: delayUS(1);
+"1066
 [e ( _delayUS (1 -> -> 1 `i `l ]
-[; ;PS_2.c: 1095: if(ECHO)
-"1095
-[e $ ! != -> _ECHO `i -> -> -> 0 `i `uc `i 837  ]
-[; ;PS_2.c: 1096: {
-"1096
+[; ;PS_2.c: 1067: if(ECHO)
+"1067
+[e $ ! != -> _ECHO `i -> -> -> 0 `i `uc `i 832  ]
+[; ;PS_2.c: 1068: {
+"1068
 {
-[; ;PS_2.c: 1097: break;
-"1097
-[e $U 835  ]
+[; ;PS_2.c: 1069: break;
+"1069
+[e $U 830  ]
+"1070
+}
+[e :U 832 ]
+"1071
+}
+"1064
+[e ++ _i -> -> -> 1 `i `l `ul ]
+[e $ < _i -> -> -> 5000 `i `l `ul 829  ]
+[e :U 830 ]
+"1071
+}
+[; ;PS_2.c: 1070: }
+[; ;PS_2.c: 1071: }
+[; ;PS_2.c: 1072: PS_2_DISABLE_INTERRUPT(0b00100000);
+"1072
+[e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
+[; ;PS_2.c: 1073: if(ECHO)
+"1073
+[e $ ! != -> _ECHO `i -> -> -> 0 `i `uc `i 833  ]
+[; ;PS_2.c: 1074: {
+"1074
+{
+[; ;PS_2.c: 1075: return 1;
+"1075
+[e ) -> -> 1 `i `uc ]
+[e $UE 828  ]
+"1076
+}
+[; ;PS_2.c: 1076: }
+[e $U 834  ]
+"1077
+[e :U 833 ]
+[; ;PS_2.c: 1077: else
+[; ;PS_2.c: 1078: {
+"1078
+{
+[; ;PS_2.c: 1079: return 0;
+"1079
+[e ) -> -> 0 `i `uc ]
+[e $UE 828  ]
+"1080
+}
+[e :U 834 ]
+[; ;PS_2.c: 1080: }
+[; ;PS_2.c: 1081: }
+"1081
+[e :UE 828 ]
+}
+"1088
+[v _PS2RawToScan `(ui ~T0 @X0 1 ef1`ui ]
+"1089
+{
+[; ;PS_2.c: 1088: unsigned int PS2RawToScan(unsigned int Raw)
+[; ;PS_2.c: 1089: {
+[e :U _PS2RawToScan ]
+"1088
+[v _Raw `ui ~T0 @X0 1 r1 ]
+"1089
+[f ]
+"1090
+[v _temp `ui ~T0 @X0 1 a ]
+[; ;PS_2.c: 1090: unsigned int temp;
+[; ;PS_2.c: 1092: if(CheckSum_byte((Raw >> 2) & 0xFF , 3) == ((Raw & 0x02)>> 1))
+"1092
+[e $ ! == -> ( _CheckSum_byte (2 , & >> _Raw -> 2 `i -> -> 255 `i `ui -> -> 3 `i `uc `ui >> & _Raw -> -> 2 `i `ui -> 1 `i 836  ]
+[; ;PS_2.c: 1093: {
+"1093
+{
+[; ;PS_2.c: 1095: temp = ((Raw >> 2) & 0xFF);
+"1095
+[e = _temp & >> _Raw -> 2 `i -> -> 255 `i `ui ]
+[; ;PS_2.c: 1096: temp = (unsigned int) Reverse_Byte((unsigned char) temp);
+"1096
+[e = _temp -> ( _Reverse_Byte (1 -> _temp `uc `ui ]
 "1098
 }
-[e :U 837 ]
-"1099
-}
-"1092
-[e ++ _i -> -> -> 1 `i `l `ul ]
-[e $ < _i -> -> -> 5000 `i `l `ul 834  ]
-[e :U 835 ]
-"1099
-}
 [; ;PS_2.c: 1098: }
-[; ;PS_2.c: 1099: }
-[; ;PS_2.c: 1100: PS_2_DISABLE_INTERRUPT(0b00100000);
+[e $U 837  ]
+"1099
+[e :U 836 ]
+[; ;PS_2.c: 1099: else
+[; ;PS_2.c: 1100: {
 "1100
-[e ( _PS_2_DISABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;PS_2.c: 1101: if(ECHO)
-"1101
-[e $ ! != -> _ECHO `i -> -> -> 0 `i `uc `i 838  ]
-[; ;PS_2.c: 1102: {
+{
+[; ;PS_2.c: 1102: temp = 0;
 "1102
-{
-[; ;PS_2.c: 1103: return 1;
-"1103
-[e ) -> -> 1 `i `uc ]
-[e $UE 833  ]
-"1104
-}
-[; ;PS_2.c: 1104: }
-[e $U 839  ]
-"1105
-[e :U 838 ]
-[; ;PS_2.c: 1105: else
-[; ;PS_2.c: 1106: {
-"1106
-{
-[; ;PS_2.c: 1107: return 0;
-"1107
-[e ) -> -> 0 `i `uc ]
-[e $UE 833  ]
-"1108
-}
-[e :U 839 ]
-[; ;PS_2.c: 1108: }
-[; ;PS_2.c: 1109: }
-"1109
-[e :UE 833 ]
-}
-"1116
-[v _PS2RawToScan `(ui ~T0 @X0 1 ef1`ui ]
-"1117
-{
-[; ;PS_2.c: 1116: unsigned int PS2RawToScan(unsigned int Raw)
-[; ;PS_2.c: 1117: {
-[e :U _PS2RawToScan ]
-"1116
-[v _Raw `ui ~T0 @X0 1 r1 ]
-"1117
-[f ]
-"1118
-[v _temp `ui ~T0 @X0 1 a ]
-[; ;PS_2.c: 1118: unsigned int temp;
-[; ;PS_2.c: 1120: if(CheckSum_byte((Raw >> 2) & 0xFF , 3) == ((Raw & 0x02)>> 1))
-"1120
-[e $ ! == -> ( _CheckSum_byte (2 , & >> _Raw -> 2 `i -> -> 255 `i `ui -> -> 3 `i `uc `ui >> & _Raw -> -> 2 `i `ui -> 1 `i 841  ]
-[; ;PS_2.c: 1121: {
-"1121
-{
-[; ;PS_2.c: 1123: temp = ((Raw >> 2) & 0xFF);
-"1123
-[e = _temp & >> _Raw -> 2 `i -> -> 255 `i `ui ]
-[; ;PS_2.c: 1124: temp = (unsigned int) Reverse_Byte((unsigned char) temp);
-"1124
-[e = _temp -> ( _Reverse_Byte (1 -> _temp `uc `ui ]
-"1126
-}
-[; ;PS_2.c: 1126: }
-[e $U 842  ]
-"1127
-[e :U 841 ]
-[; ;PS_2.c: 1127: else
-[; ;PS_2.c: 1128: {
-"1128
-{
-[; ;PS_2.c: 1130: temp = 0;
-"1130
 [e = _temp -> -> 0 `i `ui ]
-"1131
+"1103
 }
-[e :U 842 ]
-[; ;PS_2.c: 1131: }
-[; ;PS_2.c: 1132: return temp;
-"1132
+[e :U 837 ]
+[; ;PS_2.c: 1103: }
+[; ;PS_2.c: 1104: return temp;
+"1104
 [e ) _temp ]
-[e $UE 840  ]
-[; ;PS_2.c: 1133: }
-"1133
-[e :UE 840 ]
+[e $UE 835  ]
+[; ;PS_2.c: 1105: }
+"1105
+[e :UE 835 ]
 }
 [p f _sprintf 8389648 ]
-[a 6C 75 101 121 66 111 97 114 100 32 66 97 117 100 32 119 105 108 108 32 98 101 32 115 101 116 32 116 111 32 37 108 117 0 ]
-[a 3C 75 101 121 66 111 97 114 100 32 82 101 115 101 116 32 116 111 32 57 54 48 48 0 ]
-[a 8C 75 101 121 66 111 97 114 100 32 66 97 117 100 32 79 117 116 32 111 102 32 82 97 110 103 101 13 10 0 ]
+[a 6C 66 97 117 100 32 119 105 108 108 32 98 101 32 115 101 116 32 116 111 32 37 108 117 0 ]
+[a 3C 66 97 117 100 32 82 101 115 101 116 32 116 111 32 57 54 48 48 0 ]
+[a 8C 66 97 117 100 32 79 117 116 32 111 102 32 82 97 110 103 101 13 10 0 ]
 [a 2C 69 110 116 101 114 32 66 97 117 100 32 114 97 116 101 32 13 10 0 ]
 [a 1C 13 10 0 ]
 [a 4C 13 10 0 ]
