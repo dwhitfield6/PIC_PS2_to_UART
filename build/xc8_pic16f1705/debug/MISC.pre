@@ -6362,14 +6362,11 @@ return 0;
 unsigned char READ_CONFIG_PIN(void)
 {
 
-if((PORTC & 0b00000001) == 0b00000001)
-{
-return (1);
-}
+# 153
 return 0;
 }
 
-# 159
+# 161
 void cleanBuffer(unsigned char* data, int count)
 {
 unsigned char i=0;
@@ -6379,7 +6376,7 @@ data[i]= 0;
 }
 }
 
-# 175
+# 177
 unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size)
 {
 unsigned char i=0;

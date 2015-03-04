@@ -24,8 +24,11 @@
  *                            of release.
  *                          Fixed Baud rate sting logic to save memory.
  *                          Added "keyboard" before every baud rate change.
- * 02/27/15     1.3         Complete redesign.
+ * 02/27/15     1.3_DW0a    Complete redesign.
  *                          Momentarily turn on all keyboard leds at power on.
+ *                          Make the pause/break key send a break.
+ *                          Fix functionality for control key and alt key.
+ *
 /******************************************************************************/
 
 /******************************************************************************/
@@ -305,6 +308,17 @@ void Process_PS2_ScanCode(void)
                         PS_2_Buffer_items -= 2;
                         BufferShiftBack(PS_2_ScanCodes,2,PS2_ScanCode_Limit);
                     }
+                }
+                else if(PS_2_Read_Data_First == 0xE1)
+                {
+                        /*
+                         *  Pause/break is the same as 'end' key and both send
+                         *  a break character
+                         */
+                        PS_2_Read_Data_First = 0xE0;
+                        PS_2_Read_Data_Second = 0x69;
+                        PS_2_Buffer_items -= 8;
+                        BufferShiftBack(PS_2_ScanCodes,8,PS2_ScanCode_Limit);
                 }
                 else
                 {
@@ -595,11 +609,11 @@ void Process_PS2_ScanCode(void)
                                 }
                             }
                         }
-                        if(!temp)
-                        {
-                            //it isnt an ascii represented value
-                            temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
-                        }
+                    }
+                    if(!temp)
+                    {
+                        //it isnt an ascii represented value
+                        temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
                     }
                 }
                 

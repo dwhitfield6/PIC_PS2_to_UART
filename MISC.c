@@ -7,6 +7,8 @@
  * MM/DD/YY
  * --------     ---------   ----------------------------------------------------
  * 01/09/15     1.0C           Taken from proj6_UART_RF_ADC_LCD_RTC.
+ * 03/03/15     1.3_DW0a       Define out the config code when product is an
+ *                               Arduino.
  *
 /******************************************************************************/
 
@@ -139,15 +141,17 @@ unsigned char ISNUMBER(unsigned char ascii)
 /******************************************************************************/
 /* unsigned char READ_CONFIG_PIN(void)
  *
- * The function returns configuration baseed off of the config pin.
+ * The function returns configuration based off of the config pin.
 /******************************************************************************/
 unsigned char READ_CONFIG_PIN(void)
 {
         //READ RC0
+        #ifndef ARDUINO
         if((PORTC & Config) == Config)
         {
             return (1);
         }
+        #endif
         return 0;
 }
 

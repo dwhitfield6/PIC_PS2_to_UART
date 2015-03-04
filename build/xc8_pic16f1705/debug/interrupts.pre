@@ -6904,32 +6904,6 @@ IOCAF &= ~0b00010000;
 else if (PIR1bits.RCIF)
 {
 
-
-LATC |= 0b00001000;
-SinLEDtimer = 0;
-Rx_fault = 0;
-if(RC1STAbits.FERR)
-{
-Rx_fault =1;
-}
-rx = ReadUSART();
-
-if(READ_CONFIG_PIN())
-{
-if(Rx_fault == 1)
-{
-if(rx == 0)
-{
-
-UART_send_break_timed(100000);
-}
-}
-else
-{
-UARTchar(rx, 1 ,RC1STAbits.RX9D);
-}
-}
-
 # 168
 PIR1bits.RCIF = 0;
 }
@@ -6952,8 +6926,7 @@ else
 Process_PS2_ScanCode();
 }
 
-PIE1bits.RCIE = 1;
-
+# 191
 PS_2_ENABLE_INTERRUPT(0b00100000);
 PIR1bits.TMR2IF =0;
 }

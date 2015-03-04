@@ -50,6 +50,10 @@
  *                          Delete the check keyboard routine.
  *                          Add code for print screen button rejection.
  *                          Momentarily turn on all keyboard leds at power on.
+ *                          Make the pause/break key send a break.
+ *                          Fix functionality for control key and alt key.
+ *                          Define out the config code when product is an
+ *                            Arduino.
 /******************************************************************************/
 
 /******************************************************************************/

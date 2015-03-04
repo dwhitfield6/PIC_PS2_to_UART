@@ -6281,7 +6281,7 @@ unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsign
 void InitApp(void);
 void Init_System (void);
 
-# 49 "MISC.c"
+# 51 "MISC.c"
 void delayUS(long US)
 {
 long i;
@@ -6295,7 +6295,7 @@ __nop();
 }
 }
 
-# 69
+# 71
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even)
 {
 char i = 0;
@@ -6328,7 +6328,7 @@ return 0;
 }
 }
 
-# 106
+# 108
 unsigned char Reverse_Byte(unsigned char This)
 {
 unsigned char temp=0;
@@ -6345,7 +6345,7 @@ temp += (This & 0x80) >> 7;
 return temp;
 }
 
-# 127
+# 129
 unsigned char ISNUMBER(unsigned char ascii)
 {
 if(ascii >= '0' && ascii <='9')
@@ -6358,18 +6358,15 @@ return 0;
 }
 }
 
-# 144
+# 146
 unsigned char READ_CONFIG_PIN(void)
 {
 
-if((PORTC & 0b00000001) == 0b00000001)
-{
-return (1);
-}
+# 155
 return 0;
 }
 
-# 159
+# 163
 void cleanBuffer(unsigned char* data, int count)
 {
 unsigned char i=0;
@@ -6379,7 +6376,7 @@ data[i]= 0;
 }
 }
 
-# 175
+# 179
 unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size)
 {
 unsigned char i=0;

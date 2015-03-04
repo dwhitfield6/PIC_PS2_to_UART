@@ -6842,16 +6842,16 @@ void ShutDown_ADC(void);
 
 const unsigned char VoltageMSG[] = {"Voltage too "};
 
-# 91 "main.c"
-const unsigned char Version[] = {"1.3_DW0"};
+# 92 "main.c"
+const unsigned char Version[] = {"1.3_DW0a"};
 
-# 100
+# 101
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
 unsigned char Alarm;
 double BatteryVoltage = 0.0;
 
-# 109
+# 110
 void main(void)
 {
 unsigned char i=0;
@@ -6871,12 +6871,12 @@ delayUS(10000);
 }
 
 BatteryVoltage = ReadVoltage();
-if(BatteryVoltage < 6.55 )
+if(BatteryVoltage < 4.65 )
 {
 UARTstringWAIT(VoltageMSG);
 UARTstringWAIT("Low!\r\n");
 }
-else if (BatteryVoltage > 30.0)
+else if (BatteryVoltage > 5.35)
 {
 UARTstringWAIT(VoltageMSG);
 UARTstringWAIT("High!\r\n");
@@ -6884,14 +6884,12 @@ UARTstringWAIT("High!\r\n");
 
 PS_2_ENABLE_INTERRUPT(0b00100000);
 
-PIE1bits.RCIE = 1;
-
-
+# 145
 while(1)
 {
 BatteryVoltage = ReadVoltage();
 delayUS(20);
-if(BatteryVoltage < 6.55 || BatteryVoltage > 30.0)
+if(BatteryVoltage < 4.65 || BatteryVoltage > 5.35)
 {
 Alarm = 1;
 }

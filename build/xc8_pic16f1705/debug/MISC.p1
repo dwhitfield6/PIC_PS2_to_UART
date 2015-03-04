@@ -2,8 +2,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "28 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
-"461 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
-[v _PORTC `Vuc ~T0 @X0 0 e@14 ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16f1705.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -4961,151 +4959,137 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.c: 145: {
 [e :U _READ_CONFIG_PIN ]
 [f ]
-[; ;MISC.c: 147: if((PORTC & 0b00000001) == 0b00000001)
-"147
-[e $ ! == & -> _PORTC `i -> 1 `i -> 1 `i 609  ]
-[; ;MISC.c: 148: {
-"148
-{
-[; ;MISC.c: 149: return (1);
-"149
-[e ) -> -> 1 `i `uc ]
-[e $UE 608  ]
-"150
-}
-[e :U 609 ]
-[; ;MISC.c: 150: }
-[; ;MISC.c: 151: return 0;
-"151
+[; ;MISC.c: 153: return 0;
+"153
 [e ) -> -> 0 `i `uc ]
 [e $UE 608  ]
-[; ;MISC.c: 152: }
-"152
+[; ;MISC.c: 154: }
+"154
 [e :UE 608 ]
 }
-"159
+"161
 [v _cleanBuffer `(v ~T0 @X0 1 ef2`*uc`i ]
-"160
+"162
 {
-[; ;MISC.c: 159: void cleanBuffer(unsigned char* data, int count)
-[; ;MISC.c: 160: {
+[; ;MISC.c: 161: void cleanBuffer(unsigned char* data, int count)
+[; ;MISC.c: 162: {
 [e :U _cleanBuffer ]
-"159
+"161
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _count `i ~T0 @X0 1 r2 ]
-"160
+"162
 [f ]
-"161
-[v _i `uc ~T0 @X0 1 a ]
-[; ;MISC.c: 161: unsigned char i=0;
-[e = _i -> -> 0 `i `uc ]
-[; ;MISC.c: 162: for(i=0; i<count;i++)
-"162
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 614  ]
 "163
-[e :U 611 ]
-[; ;MISC.c: 163: {
-{
-[; ;MISC.c: 164: data[i]= 0;
+[v _i `uc ~T0 @X0 1 a ]
+[; ;MISC.c: 163: unsigned char i=0;
+[e = _i -> -> 0 `i `uc ]
+[; ;MISC.c: 164: for(i=0; i<count;i++)
 "164
-[e = *U + _data * -> _i `ux -> -> # *U _data `ui `ux -> -> 0 `i `uc ]
-"165
-}
-"162
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 614 ]
-[e $ < -> _i `i _count 611  ]
-[e :U 612 ]
-"165
-}
-[; ;MISC.c: 165: }
-[; ;MISC.c: 166: }
-"166
-[e :UE 610 ]
-}
-"175
-[v _BufferShiftBack `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
-"176
 {
-[; ;MISC.c: 175: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size)
-[; ;MISC.c: 176: {
+[e = _i -> -> 0 `i `uc ]
+[e $U 613  ]
+"165
+[e :U 610 ]
+[; ;MISC.c: 165: {
+{
+[; ;MISC.c: 166: data[i]= 0;
+"166
+[e = *U + _data * -> _i `ux -> -> # *U _data `ui `ux -> -> 0 `i `uc ]
+"167
+}
+"164
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 613 ]
+[e $ < -> _i `i _count 610  ]
+[e :U 611 ]
+"167
+}
+[; ;MISC.c: 167: }
+[; ;MISC.c: 168: }
+"168
+[e :UE 609 ]
+}
+"177
+[v _BufferShiftBack `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
+"178
+{
+[; ;MISC.c: 177: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size)
+[; ;MISC.c: 178: {
 [e :U _BufferShiftBack ]
-"175
+"177
 [v _buffer `*uc ~T0 @X0 1 r1 ]
 [v _shift `uc ~T0 @X0 1 r2 ]
 [v _size `uc ~T0 @X0 1 r3 ]
-"176
-[f ]
-"177
-[v _i `uc ~T0 @X0 1 a ]
-[; ;MISC.c: 177: unsigned char i=0;
-[e = _i -> -> 0 `i `uc ]
-[; ;MISC.c: 178: if(shift > size)
 "178
-[e $ ! > -> _shift `i -> _size `i 616  ]
-[; ;MISC.c: 179: {
+[f ]
 "179
-{
-[; ;MISC.c: 180: return 0;
+[v _i `uc ~T0 @X0 1 a ]
+[; ;MISC.c: 179: unsigned char i=0;
+[e = _i -> -> 0 `i `uc ]
+[; ;MISC.c: 180: if(shift > size)
 "180
-[e ) -> -> 0 `i `uc ]
-[e $UE 615  ]
+[e $ ! > -> _shift `i -> _size `i 615  ]
+[; ;MISC.c: 181: {
 "181
-}
-[e :U 616 ]
-[; ;MISC.c: 181: }
-[; ;MISC.c: 182: for(i = 0; i < size; i++)
+{
+[; ;MISC.c: 182: return 0;
 "182
+[e ) -> -> 0 `i `uc ]
+[e $UE 614  ]
+"183
+}
+[e :U 615 ]
+[; ;MISC.c: 183: }
+[; ;MISC.c: 184: for(i = 0; i < size; i++)
+"184
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 620  ]
-"183
-[e :U 617 ]
-[; ;MISC.c: 183: {
-{
-[; ;MISC.c: 184: if(i < (size - shift))
-"184
-[e $ ! < -> _i `i - -> _size `i -> _shift `i 621  ]
-[; ;MISC.c: 185: {
+[e $U 619  ]
 "185
+[e :U 616 ]
+[; ;MISC.c: 185: {
 {
-[; ;MISC.c: 186: buffer[i] = buffer[i+shift];
+[; ;MISC.c: 186: if(i < (size - shift))
 "186
-[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux *U + _buffer * -> + -> _i `i -> _shift `i `x -> -> # *U _buffer `i `x ]
+[e $ ! < -> _i `i - -> _size `i -> _shift `i 620  ]
+[; ;MISC.c: 187: {
 "187
-}
-[; ;MISC.c: 187: }
-[e $U 622  ]
-"188
-[e :U 621 ]
-[; ;MISC.c: 188: else
-[; ;MISC.c: 189: {
-"189
 {
-[; ;MISC.c: 190: buffer[i] = 0;
+[; ;MISC.c: 188: buffer[i] = buffer[i+shift];
+"188
+[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux *U + _buffer * -> + -> _i `i -> _shift `i `x -> -> # *U _buffer `i `x ]
+"189
+}
+[; ;MISC.c: 189: }
+[e $U 621  ]
 "190
-[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux -> -> 0 `i `uc ]
-"191
-}
-[e :U 622 ]
-"192
-}
-"182
-[e ++ _i -> -> 1 `i `uc ]
 [e :U 620 ]
-[e $ < -> _i `i -> _size `i 617  ]
-[e :U 618 ]
+[; ;MISC.c: 190: else
+[; ;MISC.c: 191: {
+"191
+{
+[; ;MISC.c: 192: buffer[i] = 0;
 "192
-}
-[; ;MISC.c: 191: }
-[; ;MISC.c: 192: }
-[; ;MISC.c: 193: return 1;
+[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux -> -> 0 `i `uc ]
 "193
-[e ) -> -> 1 `i `uc ]
-[e $UE 615  ]
-[; ;MISC.c: 194: }
+}
+[e :U 621 ]
 "194
-[e :UE 615 ]
+}
+"184
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 619 ]
+[e $ < -> _i `i -> _size `i 616  ]
+[e :U 617 ]
+"194
+}
+[; ;MISC.c: 193: }
+[; ;MISC.c: 194: }
+[; ;MISC.c: 195: return 1;
+"195
+[e ) -> -> 1 `i `uc ]
+[e $UE 614  ]
+[; ;MISC.c: 196: }
+"196
+[e :UE 614 ]
 }

@@ -18,17 +18,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _UARTstringWAIT `(v ~T0 @X0 0 ef1`*Cuc ]
 "100 PS_2.h
 [v _PS_2_ENABLE_INTERRUPT `(v ~T0 @X0 0 ef1`uc ]
-"1090 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
-[s S64 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S64 . TMR1IE TMR2IE CCP1IE SSP1IE TXIE RCIE ADIE TMR1GIE ]
-"1100
-[s S65 :2 `uc 1 :1 `uc 1 ]
-[n S65 . . CCPIE ]
-"1089
-[u S63 `S64 1 `S65 1 ]
-[n S63 . . . ]
-"1105
-[v _PIE1bits `VS63 ~T0 @X0 0 e@145 ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16f1705.h: 47: extern volatile unsigned char INDF0 @ 0x000;
@@ -6380,7 +6369,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [; ;ADC.h: 93: const unsigned char VoltageMSG[] = {"Voltage too "};
-"91 main.c
+"92 main.c
 [v _Version `Cuc ~T0 @X0 -> 0 `x e ]
 [i _Version
 :U ..
@@ -6391,234 +6380,232 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 68 `c
 -> 87 `c
 -> 48 `c
+-> 97 `c
 -> 0 `c
 ..
 ]
-[; ;main.c: 91: const unsigned char Version[] = {"1.3_DW0"};
-"100
+[; ;main.c: 92: const unsigned char Version[] = {"1.3_DW0a"};
+"101
 [v _SinLEDtimer `ui ~T0 @X0 1 e ]
 [i _SinLEDtimer
 -> -> 0 `i `ui
 ]
-[; ;main.c: 100: unsigned int SinLEDtimer =0;
-"101
+[; ;main.c: 101: unsigned int SinLEDtimer =0;
+"102
 [v _pwrLEDtoggle `ui ~T0 @X0 1 e ]
 [i _pwrLEDtoggle
 -> -> 0 `i `ui
 ]
-[; ;main.c: 101: unsigned int pwrLEDtoggle =0;
-"102
-[v _Alarm `uc ~T0 @X0 1 e ]
-[; ;main.c: 102: unsigned char Alarm;
+[; ;main.c: 102: unsigned int pwrLEDtoggle =0;
 "103
+[v _Alarm `uc ~T0 @X0 1 e ]
+[; ;main.c: 103: unsigned char Alarm;
+"104
 [v _BatteryVoltage `d ~T0 @X0 1 e ]
 [i _BatteryVoltage
 .0.0
 ]
-[; ;main.c: 103: double BatteryVoltage = 0.0;
-"109
-[v _main `(v ~T0 @X0 1 ef ]
+[; ;main.c: 104: double BatteryVoltage = 0.0;
 "110
+[v _main `(v ~T0 @X0 1 ef ]
+"111
 {
-[; ;main.c: 109: void main(void)
-[; ;main.c: 110: {
+[; ;main.c: 110: void main(void)
+[; ;main.c: 111: {
 [e :U _main ]
 [f ]
-"111
+"112
 [v _i `uc ~T0 @X0 1 a ]
-[; ;main.c: 111: unsigned char i=0;
+[; ;main.c: 112: unsigned char i=0;
 [e = _i -> -> 0 `i `uc ]
-[; ;main.c: 113: ConfigureOscillator();
-"113
-[e ( _ConfigureOscillator ..  ]
-[; ;main.c: 114: InitApp();
+[; ;main.c: 114: ConfigureOscillator();
 "114
-[e ( _InitApp ..  ]
-[; ;main.c: 115: Init_System();
+[e ( _ConfigureOscillator ..  ]
+[; ;main.c: 115: InitApp();
 "115
-[e ( _Init_System ..  ]
-[; ;main.c: 116: PS_2_INIT();
+[e ( _InitApp ..  ]
+[; ;main.c: 116: Init_System();
 "116
+[e ( _Init_System ..  ]
+[; ;main.c: 117: PS_2_INIT();
+"117
 [e ( _PS_2_INIT ..  ]
-[; ;main.c: 119: for(i =0;i<10;i++)
-"119
+[; ;main.c: 120: for(i =0;i<10;i++)
+"120
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 10 `i 588  ]
 [e $U 589  ]
-"120
-[e :U 588 ]
-[; ;main.c: 120: {
-{
-[; ;main.c: 121: LATC |= 0b00010000;
 "121
-[e =| _LATC -> -> 16 `i `uc ]
-[; ;main.c: 122: delayUS(10000);
+[e :U 588 ]
+[; ;main.c: 121: {
+{
+[; ;main.c: 122: LATC |= 0b00010000;
 "122
-[e ( _delayUS (1 -> -> 10000 `i `l ]
-[; ;main.c: 123: LATC &= ~0b00010000;
+[e =| _LATC -> -> 16 `i `uc ]
+[; ;main.c: 123: delayUS(10000);
 "123
-[e =& _LATC -> ~ -> 16 `i `uc ]
-[; ;main.c: 124: delayUS(10000);
-"124
 [e ( _delayUS (1 -> -> 10000 `i `l ]
+[; ;main.c: 124: LATC &= ~0b00010000;
+"124
+[e =& _LATC -> ~ -> 16 `i `uc ]
+[; ;main.c: 125: delayUS(10000);
 "125
+[e ( _delayUS (1 -> -> 10000 `i `l ]
+"126
 }
-"119
+"120
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 10 `i 588  ]
 [e :U 589 ]
-"125
+"126
 }
-[; ;main.c: 125: }
-[; ;main.c: 127: BatteryVoltage = ReadVoltage();
-"127
-[e = _BatteryVoltage ( _ReadVoltage ..  ]
-[; ;main.c: 128: if(BatteryVoltage < 6.55 )
+[; ;main.c: 126: }
+[; ;main.c: 128: BatteryVoltage = ReadVoltage();
 "128
-[e $ ! < _BatteryVoltage .6.55 591  ]
-[; ;main.c: 129: {
+[e = _BatteryVoltage ( _ReadVoltage ..  ]
+[; ;main.c: 129: if(BatteryVoltage < 4.65 )
 "129
-{
-[; ;main.c: 130: UARTstringWAIT(VoltageMSG);
+[e $ ! < _BatteryVoltage .4.65 591  ]
+[; ;main.c: 130: {
 "130
-[e ( _UARTstringWAIT (1 &U _VoltageMSG ]
-[; ;main.c: 131: UARTstringWAIT("Low!\r\n");
-"131
-[e ( _UARTstringWAIT (1 :s 1C ]
-"132
-}
-[; ;main.c: 132: }
-[e $U 592  ]
-"133
-[e :U 591 ]
-[; ;main.c: 133: else if (BatteryVoltage > 30.0)
-[e $ ! > _BatteryVoltage .30.0 593  ]
-[; ;main.c: 134: {
-"134
 {
-[; ;main.c: 135: UARTstringWAIT(VoltageMSG);
-"135
+[; ;main.c: 131: UARTstringWAIT(VoltageMSG);
+"131
 [e ( _UARTstringWAIT (1 &U _VoltageMSG ]
-[; ;main.c: 136: UARTstringWAIT("High!\r\n");
+[; ;main.c: 132: UARTstringWAIT("Low!\r\n");
+"132
+[e ( _UARTstringWAIT (1 :s 1C ]
+"133
+}
+[; ;main.c: 133: }
+[e $U 592  ]
+"134
+[e :U 591 ]
+[; ;main.c: 134: else if (BatteryVoltage > 5.35)
+[e $ ! > _BatteryVoltage .5.35 593  ]
+[; ;main.c: 135: {
+"135
+{
+[; ;main.c: 136: UARTstringWAIT(VoltageMSG);
 "136
-[e ( _UARTstringWAIT (1 :s 2C ]
+[e ( _UARTstringWAIT (1 &U _VoltageMSG ]
+[; ;main.c: 137: UARTstringWAIT("High!\r\n");
 "137
+[e ( _UARTstringWAIT (1 :s 2C ]
+"138
 }
 [e :U 593 ]
-"139
+"140
 [e :U 592 ]
-[; ;main.c: 137: }
-[; ;main.c: 139: PS_2_ENABLE_INTERRUPT(0b00100000);
+[; ;main.c: 138: }
+[; ;main.c: 140: PS_2_ENABLE_INTERRUPT(0b00100000);
 [e ( _PS_2_ENABLE_INTERRUPT (1 -> -> 32 `i `uc ]
-[; ;main.c: 141: PIE1bits.RCIE = 1;
-"141
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
-[; ;main.c: 144: while(1)
-"144
-[e :U 595 ]
-[; ;main.c: 145: {
+[; ;main.c: 145: while(1)
 "145
-{
-[; ;main.c: 146: BatteryVoltage = ReadVoltage();
+[e :U 595 ]
+[; ;main.c: 146: {
 "146
-[e = _BatteryVoltage ( _ReadVoltage ..  ]
-[; ;main.c: 147: delayUS(20);
+{
+[; ;main.c: 147: BatteryVoltage = ReadVoltage();
 "147
-[e ( _delayUS (1 -> -> 20 `i `l ]
-[; ;main.c: 148: if(BatteryVoltage < 6.55 || BatteryVoltage > 30.0)
+[e = _BatteryVoltage ( _ReadVoltage ..  ]
+[; ;main.c: 148: delayUS(20);
 "148
-[e $ ! || < _BatteryVoltage .6.55 > _BatteryVoltage .30.0 597  ]
-[; ;main.c: 149: {
+[e ( _delayUS (1 -> -> 20 `i `l ]
+[; ;main.c: 149: if(BatteryVoltage < 4.65 || BatteryVoltage > 5.35)
 "149
-{
-[; ;main.c: 150: Alarm = 1;
+[e $ ! || < _BatteryVoltage .4.65 > _BatteryVoltage .5.35 597  ]
+[; ;main.c: 150: {
 "150
-[e = _Alarm -> -> 1 `i `uc ]
-"151
-}
-[; ;main.c: 151: }
-[e $U 598  ]
-"152
-[e :U 597 ]
-[; ;main.c: 152: else
-[; ;main.c: 153: {
-"153
 {
-[; ;main.c: 154: Alarm = 0;
+[; ;main.c: 151: Alarm = 1;
+"151
+[e = _Alarm -> -> 1 `i `uc ]
+"152
+}
+[; ;main.c: 152: }
+[e $U 598  ]
+"153
+[e :U 597 ]
+[; ;main.c: 153: else
+[; ;main.c: 154: {
 "154
-[e = _Alarm -> -> 0 `i `uc ]
-[; ;main.c: 155: LATC |= 0b00000010;
+{
+[; ;main.c: 155: Alarm = 0;
 "155
-[e =| _LATC -> -> 2 `i `uc ]
+[e = _Alarm -> -> 0 `i `uc ]
+[; ;main.c: 156: LATC |= 0b00000010;
 "156
+[e =| _LATC -> -> 2 `i `uc ]
+"157
 }
 [e :U 598 ]
-[; ;main.c: 156: }
-[; ;main.c: 157: if(Alarm)
-"157
-[e $ ! != -> _Alarm `i -> -> -> 0 `i `uc `i 599  ]
-[; ;main.c: 158: {
+[; ;main.c: 157: }
+[; ;main.c: 158: if(Alarm)
 "158
-{
-[; ;main.c: 159: pwrLEDtoggle++;
+[e $ ! != -> _Alarm `i -> -> -> 0 `i `uc `i 599  ]
+[; ;main.c: 159: {
 "159
-[e ++ _pwrLEDtoggle -> -> 1 `i `ui ]
-[; ;main.c: 160: if(pwrLEDtoggle == 100)
-"160
-[e $ ! == _pwrLEDtoggle -> -> 100 `i `ui 600  ]
-[; ;main.c: 161: {
-"161
 {
-[; ;main.c: 162: pwrLEDtoggle = 0;
+[; ;main.c: 160: pwrLEDtoggle++;
+"160
+[e ++ _pwrLEDtoggle -> -> 1 `i `ui ]
+[; ;main.c: 161: if(pwrLEDtoggle == 100)
+"161
+[e $ ! == _pwrLEDtoggle -> -> 100 `i `ui 600  ]
+[; ;main.c: 162: {
 "162
-[e = _pwrLEDtoggle -> -> 0 `i `ui ]
-[; ;main.c: 163: LATC ^= 0b00000010;
+{
+[; ;main.c: 163: pwrLEDtoggle = 0;
 "163
-[e =^ _LATC -> -> 2 `i `uc ]
+[e = _pwrLEDtoggle -> -> 0 `i `ui ]
+[; ;main.c: 164: LATC ^= 0b00000010;
 "164
-}
-[e :U 600 ]
+[e =^ _LATC -> -> 2 `i `uc ]
 "165
 }
+[e :U 600 ]
+"166
+}
 [e :U 599 ]
-[; ;main.c: 164: }
 [; ;main.c: 165: }
-[; ;main.c: 167: if(SinLEDtimer < 100)
-"167
-[e $ ! < _SinLEDtimer -> -> 100 `i `ui 601  ]
-[; ;main.c: 168: {
+[; ;main.c: 166: }
+[; ;main.c: 168: if(SinLEDtimer < 100)
 "168
-{
-[; ;main.c: 169: SinLEDtimer++;
+[e $ ! < _SinLEDtimer -> -> 100 `i `ui 601  ]
+[; ;main.c: 169: {
 "169
-[e ++ _SinLEDtimer -> -> 1 `i `ui ]
-"170
-}
-[; ;main.c: 170: }
-[e $U 602  ]
-"171
-[e :U 601 ]
-[; ;main.c: 171: else
-[; ;main.c: 172: {
-"172
 {
-[; ;main.c: 173: LATC &= ~0b00001000;
-"173
-[e =& _LATC -> ~ -> 8 `i `uc ]
-"174
+[; ;main.c: 170: SinLEDtimer++;
+"170
+[e ++ _SinLEDtimer -> -> 1 `i `ui ]
+"171
 }
-[e :U 602 ]
+[; ;main.c: 171: }
+[e $U 602  ]
+"172
+[e :U 601 ]
+[; ;main.c: 172: else
+[; ;main.c: 173: {
+"173
+{
+[; ;main.c: 174: LATC &= ~0b00001000;
+"174
+[e =& _LATC -> ~ -> 8 `i `uc ]
 "175
 }
+[e :U 602 ]
+"176
+}
 [e :U 594 ]
-"144
+"145
 [e $U 595  ]
 [e :U 596 ]
-[; ;main.c: 174: }
 [; ;main.c: 175: }
 [; ;main.c: 176: }
-"176
+[; ;main.c: 177: }
+"177
 [e :UE 587 ]
 }
 [a 1C 76 111 119 33 13 10 0 ]

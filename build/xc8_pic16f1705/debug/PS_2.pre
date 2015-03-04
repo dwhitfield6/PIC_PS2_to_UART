@@ -6905,7 +6905,7 @@ void Timer2ON(void);
 void Timer2OFF(void);
 void Timer2Reset(void);
 
-# 64 "PS_2.c"
+# 65 "PS_2.c"
 extern unsigned char PS_2_ScanCodes[12];
 extern unsigned char PS_2_Buffer_items;
 extern unsigned int PS_2_Read_Data_First;
@@ -6932,7 +6932,7 @@ unsigned char ECHO =0;
 unsigned long BaudTyped=0;
 unsigned char ParityTyped=0;
 
-# 100
+# 101
 void PS_2_INIT(void)
 {
 
@@ -6942,7 +6942,7 @@ Timer2Init(255);
 Init_PS_2_Send();
 }
 
-# 114
+# 115
 void Clock_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6955,7 +6955,7 @@ TRISAbits.TRISA5 = 1;
 }
 }
 
-# 131
+# 132
 void Data_TRIS(unsigned char direction)
 {
 if(direction == 0)
@@ -6968,7 +6968,7 @@ TRISAbits.TRISA4 = 1;
 }
 }
 
-# 149
+# 150
 void INIT_PS_2_INTERRUPT(unsigned char DATA_CLK)
 {
 IOCAP =0;
@@ -6987,7 +6987,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-# 172
+# 173
 void PS_2_DISABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7004,7 +7004,7 @@ IOCAN &= ~0b00010000;
 }
 }
 
-# 193
+# 194
 void PS_2_ENABLE_INTERRUPT(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7023,7 +7023,7 @@ IOCAN |= 0b00010000;
 }
 }
 
-# 216
+# 217
 unsigned char READ_PS_2_PIN(unsigned char DATA_CLK)
 {
 if(DATA_CLK == 0b00100000)
@@ -7052,7 +7052,7 @@ return 0;
 }
 }
 
-# 251
+# 252
 void Process_PS2_ScanCode(void)
 {
 unsigned char temp =0;
@@ -7109,6 +7109,15 @@ else
 PS_2_Buffer_items -= 2;
 BufferShiftBack(PS_2_ScanCodes,2,12);
 }
+}
+else if(PS_2_Read_Data_First == 0xE1)
+{
+
+# 315
+PS_2_Read_Data_First = 0xE0;
+PS_2_Read_Data_Second = 0x69;
+PS_2_Buffer_items -= 8;
+BufferShiftBack(PS_2_ScanCodes,8,12);
 }
 else
 {
@@ -7399,11 +7408,11 @@ temp -= 32;
 }
 }
 }
+}
 if(!temp)
 {
 
 temp = Decode_Scan_Code_Function(PS_2_Read_Data_First);
-}
 }
 }
 
@@ -7552,7 +7561,7 @@ PS_2_Buffer_items = 0;
 }
 }
 
-# 755
+# 767
 unsigned char Decode_Scan_Code(unsigned char Code)
 {
 Code -= 13;
@@ -7566,7 +7575,7 @@ return 0;
 }
 }
 
-# 774
+# 786
 unsigned char Decode_Scan_Code_Shift(unsigned char Code)
 {
 Code -= 13;
@@ -7580,7 +7589,7 @@ return 0;
 }
 }
 
-# 793
+# 805
 unsigned char Decode_Scan_Code_FunctionE0(unsigned char Code)
 {
 Code -= 17;
@@ -7594,7 +7603,7 @@ return 0;
 }
 }
 
-# 812
+# 824
 unsigned char Decode_Scan_Code_Function(unsigned char Code)
 {
 if(Code <=131)
@@ -7607,7 +7616,7 @@ return 0;
 }
 }
 
-# 829
+# 841
 unsigned char Send_PS2(unsigned char command)
 {
 unsigned char i=0;
@@ -7753,7 +7762,7 @@ Data_TRIS(1);
 return 0;
 }
 
-# 979
+# 991
 void ResendLast(void)
 {
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -7761,7 +7770,7 @@ PS_2_DISABLE_INTERRUPT(0b00100000);
 Send_PS2(0xFE);
 }
 
-# 994
+# 1006
 unsigned char Init_PS_2_Send(void)
 {
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -7820,7 +7829,7 @@ return 0;
 return 1;
 }
 
-# 1058
+# 1070
 unsigned char Keyboard_Connected(void)
 {
 unsigned long i=0;
@@ -7846,7 +7855,7 @@ return 0;
 }
 }
 
-# 1088
+# 1100
 unsigned int PS2RawToScan(unsigned int Raw)
 {
 unsigned int temp;

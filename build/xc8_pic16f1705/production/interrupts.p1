@@ -40,24 +40,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Timer2ON `(v ~T0 @X0 0 ef ]
 "100 PS_2.h
 [v _PS_2_ENABLE_INTERRUPT `(v ~T0 @X0 0 ef1`uc ]
-"61 interrupts.c
-[v _SinLEDtimer `ui ~T0 @X0 0 e ]
-"3139 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f1705.h
-[s S177 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S177 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"3138
-[u S176 `S177 1 ]
-[n S176 . . ]
-"3150
-[v _RC1STAbits `VS176 ~T0 @X0 0 e@413 ]
-"102 UART.h
-[v _ReadUSART `(uc ~T0 @X0 0 ef ]
-"110
-[v _READ_CONFIG_PIN `(uc ~T0 @X0 0 ef ]
-"105
-[v _UART_send_break_timed `(v ~T0 @X0 0 ef1`ui ]
-"100
-[v _UARTchar `(v ~T0 @X0 0 ef3`uc`uc`uc ]
 "39 Timer.h
 [v _Timer2OFF `(v ~T0 @X0 0 ef ]
 "108 PS_2.h
@@ -6579,88 +6561,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupts.c: 126: {
 "126
 {
-[; ;interrupts.c: 129: LATC |= 0b00001000;
-"129
-[e =| _LATC -> -> 8 `i `uc ]
-[; ;interrupts.c: 130: SinLEDtimer = 0;
-"130
-[e = _SinLEDtimer -> -> 0 `i `ui ]
-[; ;interrupts.c: 131: Rx_fault = 0;
-"131
-[e = _Rx_fault -> -> 0 `i `uc ]
-[; ;interrupts.c: 132: if(RC1STAbits.FERR)
-"132
-[e $ ! != -> . . _RC1STAbits 0 2 `i -> -> -> 0 `i `Vuc `i 598  ]
-[; ;interrupts.c: 133: {
-"133
-{
-[; ;interrupts.c: 134: Rx_fault =1;
-"134
-[e = _Rx_fault -> -> 1 `i `uc ]
-"135
-}
-[e :U 598 ]
-[; ;interrupts.c: 135: }
-[; ;interrupts.c: 136: rx = ReadUSART();
-"136
-[e = _rx ( _ReadUSART ..  ]
-[; ;interrupts.c: 138: if(READ_CONFIG_PIN())
-"138
-[e $ ! != -> ( _READ_CONFIG_PIN ..  `i -> -> -> 0 `i `uc `i 599  ]
-[; ;interrupts.c: 139: {
-"139
-{
-[; ;interrupts.c: 140: if(Rx_fault == 1)
-"140
-[e $ ! == -> _Rx_fault `i -> 1 `i 600  ]
-[; ;interrupts.c: 141: {
-"141
-{
-[; ;interrupts.c: 142: if(rx == 0)
-"142
-[e $ ! == -> _rx `i -> 0 `i 601  ]
-[; ;interrupts.c: 143: {
-"143
-{
-[; ;interrupts.c: 145: UART_send_break_timed(100000);
-"145
-[e ( _UART_send_break_timed (1 -> -> 100000 `l `ui ]
-"146
-}
-[e :U 601 ]
-"147
-}
-[; ;interrupts.c: 146: }
-[; ;interrupts.c: 147: }
-[e $U 602  ]
-"148
-[e :U 600 ]
-[; ;interrupts.c: 148: else
-[; ;interrupts.c: 149: {
-"149
-{
-[; ;interrupts.c: 150: UARTchar(rx, 1 ,RC1STAbits.RX9D);
-"150
-[e ( _UARTchar (3 , , _rx -> -> 1 `i `uc . . _RC1STAbits 0 0 ]
-"151
-}
-[e :U 602 ]
-"152
-}
-[e :U 599 ]
-[; ;interrupts.c: 151: }
-[; ;interrupts.c: 152: }
 [; ;interrupts.c: 168: PIR1bits.RCIF = 0;
 "168
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
 "169
 }
 [; ;interrupts.c: 169: }
-[e $U 603  ]
+[e $U 598  ]
 "170
 [e :U 597 ]
 [; ;interrupts.c: 170: else if(PIR1bits.TMR2IF)
-[e $ ! != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i 604  ]
+[e $ ! != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i 599  ]
 [; ;interrupts.c: 171: {
 "171
 {
@@ -6681,7 +6592,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PS_2_Read_Data_TEMP -> -> 0 `i `ui ]
 [; ;interrupts.c: 178: if(ResendLastFlag)
 "178
-[e $ ! != -> _ResendLastFlag `i -> -> -> 0 `i `uc `i 605  ]
+[e $ ! != -> _ResendLastFlag `i -> -> -> 0 `i `uc `i 600  ]
 [; ;interrupts.c: 179: {
 "179
 {
@@ -6694,9 +6605,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "183
 }
 [; ;interrupts.c: 183: }
-[e $U 606  ]
+[e $U 601  ]
 "184
-[e :U 605 ]
+[e :U 600 ]
 [; ;interrupts.c: 184: else
 [; ;interrupts.c: 185: {
 "185
@@ -6706,11 +6617,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _Process_PS2_ScanCode ..  ]
 "187
 }
-[e :U 606 ]
+[e :U 601 ]
 [; ;interrupts.c: 187: }
-[; ;interrupts.c: 189: PIE1bits.RCIE = 1;
-"189
-[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
 [; ;interrupts.c: 191: PS_2_ENABLE_INTERRUPT(0b00100000);
 "191
 [e ( _PS_2_ENABLE_INTERRUPT (1 -> -> 32 `i `uc ]
@@ -6719,9 +6627,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
 "193
 }
-[e :U 604 ]
+[e :U 599 ]
 "194
-[e :U 603 ]
+[e :U 598 ]
 [e :U 596 ]
 [e :U 594 ]
 [; ;interrupts.c: 193: }

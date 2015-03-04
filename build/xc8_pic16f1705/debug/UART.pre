@@ -6457,8 +6457,7 @@ PPSLOCK =0;
 RC2PPS = 0b00010100;
 CKPPS = 0b00010010;
 
-RXPPS = 0b00010101;
-
+# 136
 PPSLOCK =1;
 
 PIR1bits.RCIF = 0;
@@ -6572,21 +6571,10 @@ TXSTAbits.TX9D = (NinethBit_override_data & 0x01);
 }
 }
 
-if(data == '\n')
-{
-if(override)
-{
+# 275
 while(!TXSTAbits.TRMT);
 TXREG = data;
-}
-}
-else
-{
-while(!TXSTAbits.TRMT);
-TXREG = data;
-}
 
-# 278
 }
 
 # 285
@@ -6641,8 +6629,7 @@ PPSLOCK =0;
 RC2PPS = 0b00010100;
 CKPPS = 0b00010010;
 
-RXPPS = 0b00010101;
-
+# 352
 PPSLOCK =1;
 }
 

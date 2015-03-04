@@ -25,8 +25,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RC2PPS `Vuc ~T0 @X0 0 e@3746 ]
 "8012
 [v _CKPPS `Vuc ~T0 @X0 0 e@3621 ]
-"7993
-[v _RXPPS `Vuc ~T0 @X0 0 e@3620 ]
 "2615
 [v _ANSELA `Vuc ~T0 @X0 0 e@396 ]
 "2659
@@ -4990,9 +4988,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.c: 70: TRISAbits.TRISA2 = 1;
 "70
 [e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-[; ;user.c: 72: TRISCbits.TRISC0 = 1;
-"72
-[e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
+[; ;user.c: 74: TRISCbits.TRISC0 = 0;
+"74
+[e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
 [; ;user.c: 77: TRISCbits.TRISC5 = 1;
 "77
 [e = . . _TRISCbits 0 5 -> -> 1 `i `uc ]
@@ -5008,9 +5006,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.c: 83: CKPPS = 0b00010010;
 "83
 [e = _CKPPS -> -> 18 `i `uc ]
-[; ;user.c: 85: RXPPS = 0b00010101;
-"85
-[e = _RXPPS -> -> 21 `i `uc ]
 [; ;user.c: 87: PPSLOCK =1;
 "87
 [e = _PPSLOCK -> -> 1 `i `uc ]
