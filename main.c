@@ -54,6 +54,12 @@
  *                          Fix functionality for control key and alt key.
  *                          Define out the config code when product is an
  *                            Arduino.
+ *                          Decreased timeout for keypress to increase
+ *                            throughput.
+ *                          Separated long break when 'end' is pressed and short
+ *                            and long break when 'pause' is pressed.
+ *                          Add line feed when f3 is pressed with a rs232
+ *                            system.
 /******************************************************************************/
 
 /******************************************************************************/

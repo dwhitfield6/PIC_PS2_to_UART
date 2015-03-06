@@ -11,6 +11,8 @@
  *                          Added "keyboard" before every baud rate change.
  *                          Added wait to let previous character send before
  *                            before refilling the buffer.
+ *  03/05/15     1.3_DW0a   Add line feed when f3 is pressed with a rs232
+ *                            system.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -49,6 +51,7 @@
 /******************************************************************************/
 
 extern unsigned char BAUDMODE;
+extern unsigned char LineOverride;
 
 /******************************************************************************/
 /* Functions
@@ -260,10 +263,11 @@ void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBi
     #ifndef ADDLINE
     if(data == '\n')
     {
-        if(override)
+        if(override || LineOverride)
         {
             while(!TXSTAbits.TRMT); //Wait for previous character to be output
             TXREG = data;      // Write the data byte to the USART
+            LineOverride = 0;
         }
     }
     else
