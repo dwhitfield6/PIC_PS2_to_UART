@@ -89,7 +89,7 @@ void InitUART(unsigned long Baud, unsigned char parity)
      * 3 is mark
      * 4 is space
      */
-
+    PIE1bits.RCIE = 0;
     LATC |= TX;
     PPSLOCK =0;//unlock PPS
     RC2PPS = 0b00000000;//RC2 is LATxy
@@ -139,6 +139,7 @@ void InitUART(unsigned long Baud, unsigned char parity)
     PPSLOCK =1; //lock PPS
 
     PIR1bits.RCIF = 0; //reset RX pin flag
+    PIE1bits.RCIE = 1;
     INTCONbits.PEIE = 1; //Enable pheripheral interrupt
 }
 

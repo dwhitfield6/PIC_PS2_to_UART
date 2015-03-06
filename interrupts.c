@@ -9,6 +9,7 @@
  * 01/21/15     1.2         Created log.
  *                          Changed send_break to a timed send break for
  *                            compatibility reasons.
+ * 03/06/15     1.3_DW0a    Fixed UART recieve overrun error.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -73,6 +74,7 @@ void interrupt isr(void)
 {
     unsigned char rx;
     unsigned char Rx_fault =0;
+    unsigned char Rx_Overun = 0;
     unsigned char ScanTemp;
 
     if(IOCAF & CLK)
@@ -125,15 +127,28 @@ void interrupt isr(void)
     else if (PIR1bits.RCIF)
     {
         //rx interrupt
+        PIE1bits.RCIE = 0;
         #ifndef ARDUINO
         LATC |= SinLED;
         SinLEDtimer = 0;
         Rx_fault = 0;
+        Rx_Overun = 0;
+
+        if(RC1STAbits.OERR)
+        {
+            RC1STAbits.CREN = 0;
+            Rx_Overun = 1;
+        }
+
         if(RC1STAbits.FERR)
         {
-            Rx_fault =1;
+            Rx_fault = 1;
         }
         rx = ReadUSART(); //read the byte from rx register
+        if(Rx_Overun)
+        {
+            RC1STAbits.CREN = 1;
+        }
         #ifdef RS232
         if(READ_CONFIG_PIN())
         {
@@ -166,6 +181,7 @@ void interrupt isr(void)
         #endif
         #endif
         PIR1bits.RCIF = 0;
+        PIE1bits.RCIE = 1;
     }
     else if(PIR1bits.TMR2IF)
     {

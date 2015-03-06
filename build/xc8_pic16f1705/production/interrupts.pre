@@ -6847,7 +6847,7 @@ unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 
-# 59 "interrupts.c"
+# 60 "interrupts.c"
 extern unsigned char PS_2_ScanCodes[12];
 extern unsigned char PS_2_Buffer_items;
 extern unsigned int SinLEDtimer;
@@ -6857,11 +6857,12 @@ unsigned char PS_2_bits = 0;
 
 unsigned char ResendLastFlag = 0;
 
-# 72
+# 73
 void interrupt isr(void)
 {
 unsigned char rx;
 unsigned char Rx_fault =0;
+unsigned char Rx_Overun = 0;
 unsigned char ScanTemp;
 
 if(IOCAF & 0b00100000)
@@ -6914,15 +6915,28 @@ IOCAF &= ~0b00010000;
 else if (PIR1bits.RCIF)
 {
 
+PIE1bits.RCIE = 0;
 
 LATC |= 0b00001000;
 SinLEDtimer = 0;
 Rx_fault = 0;
+Rx_Overun = 0;
+
+if(RC1STAbits.OERR)
+{
+RC1STAbits.CREN = 0;
+Rx_Overun = 1;
+}
+
 if(RC1STAbits.FERR)
 {
-Rx_fault =1;
+Rx_fault = 1;
 }
 rx = ReadUSART();
+if(Rx_Overun)
+{
+RC1STAbits.CREN = 1;
+}
 
 if(READ_CONFIG_PIN())
 {
@@ -6940,8 +6954,9 @@ UARTchar(rx, 1 ,RC1STAbits.RX9D);
 }
 }
 
-# 168
+# 183
 PIR1bits.RCIF = 0;
+PIE1bits.RCIE = 1;
 }
 else if(PIR1bits.TMR2IF)
 {

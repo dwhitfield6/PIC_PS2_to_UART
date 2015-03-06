@@ -60,6 +60,7 @@
  *                            and long break when 'pause' is pressed.
  *                          Add line feed when f3 is pressed with a rs232
  *                            system.
+ *                          Fixed UART recieve overrun error.
 /******************************************************************************/
 
 /******************************************************************************/

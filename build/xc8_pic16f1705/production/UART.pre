@@ -6423,7 +6423,8 @@ unsigned char config;
 unsigned int spbrg;
 unsigned char baudconfig;
 
-# 93
+# 92
+PIE1bits.RCIE = 0;
 LATC |= 0b00000100;
 PPSLOCK =0;
 RC2PPS = 0b00000000;
@@ -6473,17 +6474,18 @@ RXPPS = 0b00010101;
 PPSLOCK =1;
 
 PIR1bits.RCIF = 0;
+PIE1bits.RCIE = 1;
 INTCONbits.PEIE = 1;
 }
 
-# 150
+# 151
 void baudUSART (unsigned char baudconfig)
 {
 BAUD1CON =0;
 BAUD1CON = baudconfig;
 }
 
-# 161
+# 162
 void OpenUSART( unsigned char config, unsigned int spbrg)
 {
 TX1STA = 0;
@@ -6552,7 +6554,7 @@ TX1STAbits.TXEN = 1;
 RC1STAbits.SPEN = 1;
 }
 
-# 234
+# 235
 void UARTchar(unsigned char data, unsigned char override, unsigned char NinethBit_override_data)
 {
 if(TXSTAbits.TX9)
@@ -6598,10 +6600,10 @@ while(!TXSTAbits.TRMT);
 TXREG = data;
 }
 
-# 282
+# 283
 }
 
-# 289
+# 290
 void UARTstring(const unsigned char *data)
 {
 do
@@ -6614,7 +6616,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 306
+# 307
 char ReadUSART(void)
 {
 char data;
@@ -6629,14 +6631,14 @@ data = RCREG;
 return (data);
 }
 
-# 326
+# 327
 void UART_send_break(void)
 {
 TX1STA |= 0b00001000;
 TXREG = 'd';
 }
 
-# 338
+# 339
 void UART_send_break_timed(unsigned int US)
 {
 
@@ -6658,7 +6660,7 @@ RXPPS = 0b00010101;
 PPSLOCK =1;
 }
 
-# 365
+# 366
 void UARTstringWAIT(const unsigned char *data)
 {
 do
@@ -6672,7 +6674,7 @@ while((!TX1STAbits.TRMT));
 } while( *data++);
 }
 
-# 384
+# 385
 void SetBaud(unsigned long Baud, unsigned char Parity)
 {
 unsigned char buf[50];
