@@ -11,6 +11,7 @@
  *                            products.
  *                          Create macro for the adding a new line with each
  *                            cariage return.
+ * 03/11/15     1.3_DW0a    Dropped minimum voltage to 5.25 V.
 /******************************************************************************/
 
 /******************************************************************************/
@@ -38,10 +39,11 @@
 /******************************************************************************/
 /* Pick Which System!!!
  * 
- * Choose if the system is the RS232 model or TTL model.
+ * Choose if the system is the RS232 model, TTL model (UART standalone),
+ *  or Arduino Module.
  *
- * For an RS-232 system (includes rs 232 drivers and is powered by power brick;
- * Uncomment the RS232 macro below.
+ * For an RS-232 system (includes rs 232 drivers and is powered by power brick.
+ *  Uncomment the RS232 macro below.
  *
  * For the TTL version that goes between the main sustem and the USB to TTL
  *  UART converter, Comment both below.
@@ -52,7 +54,7 @@
 /******************************************************************************/
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-#define RS232
+//#define RS232
 //#define ARDUINO
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -100,7 +102,7 @@
 #define VoltageLow 6.55
 #define VoltageHigh 30.0
 #else
-#define VoltageLow 4.65
+#define VoltageLow 4.25
 #define VoltageHigh 5.35
 #endif
 /******************************************************************************/

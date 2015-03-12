@@ -146,7 +146,7 @@ unsigned char ISNUMBER(unsigned char ascii)
 unsigned char READ_CONFIG_PIN(void)
 {
         //READ RC0
-        #ifndef ARDUINO
+        #ifdef RS232
         if((PORTC & Config) == Config)
         {
             return (1);

@@ -4995,9 +4995,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.c: 70: TRISAbits.TRISA2 = 1;
 "70
 [e = . . _TRISAbits 0 2 -> -> 1 `i `uc ]
-[; ;user.c: 72: TRISCbits.TRISC0 = 1;
-"72
-[e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
+[; ;user.c: 74: TRISCbits.TRISC0 = 0;
+"74
+[e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
 [; ;user.c: 77: TRISCbits.TRISC5 = 1;
 "77
 [e = . . _TRISCbits 0 5 -> -> 1 `i `uc ]

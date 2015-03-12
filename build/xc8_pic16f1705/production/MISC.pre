@@ -6372,12 +6372,7 @@ return 0;
 unsigned char READ_CONFIG_PIN(void)
 {
 
-
-if((PORTC & 0b00000001) == 0b00000001)
-{
-return (1);
-}
-
+# 155
 return 0;
 }
 

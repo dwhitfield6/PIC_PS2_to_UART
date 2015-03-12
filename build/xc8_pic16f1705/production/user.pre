@@ -6423,9 +6423,11 @@ TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 0;
 TRISAbits.TRISA2 = 1;
 
-TRISCbits.TRISC0 = 1;
 
-# 77
+
+TRISCbits.TRISC0 = 0;
+
+
 TRISCbits.TRISC5 = 1;
 
 

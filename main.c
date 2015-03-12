@@ -45,7 +45,7 @@
  *                          Add code for 'Config' Pin on RS232 system.
  *                          Use device macro to define the use of pin RC0.
  *                          Tagged
- * 02/26/15     1.3_DW0a     Added wait to let previous character send before
+ * 03/11/15     1.3_DW0a     Added wait to let previous character send before
  *                            before refilling the buffer.
  *                          Delete the check keyboard routine.
  *                          Add code for print screen button rejection.
@@ -61,6 +61,8 @@
  *                          Add line feed when f3 is pressed with a rs232
  *                            system.
  *                          Fixed UART recieve overrun error.
+ *                          Fixed UART standalone build.
+ *                          Dropped minimum voltage to 5.25 V.
 /******************************************************************************/
 
 /******************************************************************************/

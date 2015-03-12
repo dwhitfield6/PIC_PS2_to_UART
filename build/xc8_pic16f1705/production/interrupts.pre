@@ -6938,8 +6938,7 @@ if(Rx_Overun)
 RC1STAbits.CREN = 1;
 }
 
-if(READ_CONFIG_PIN())
-{
+# 169
 if(Rx_fault == 1)
 {
 if(rx == 0)
@@ -6952,9 +6951,8 @@ else
 {
 UARTchar(rx, 1 ,RC1STAbits.RX9D);
 }
-}
 
-# 183
+
 PIR1bits.RCIF = 0;
 PIE1bits.RCIE = 1;
 }

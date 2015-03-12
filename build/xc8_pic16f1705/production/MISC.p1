@@ -2,8 +2,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "28 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
-"463 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
-[v _PORTC `Vuc ~T0 @X0 0 e@14 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f1705.h: 49: extern volatile unsigned char INDF0 @ 0x000;
@@ -4966,20 +4964,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.c: 147: {
 [e :U _READ_CONFIG_PIN ]
 [f ]
-[; ;MISC.c: 150: if((PORTC & 0b00000001) == 0b00000001)
-"150
-[e $ ! == & -> _PORTC `i -> 1 `i -> 1 `i 609  ]
-[; ;MISC.c: 151: {
-"151
-{
-[; ;MISC.c: 152: return (1);
-"152
-[e ) -> -> 1 `i `uc ]
-[e $UE 608  ]
-"153
-}
-[e :U 609 ]
-[; ;MISC.c: 153: }
 [; ;MISC.c: 155: return 0;
 "155
 [e ) -> -> 0 `i `uc ]
@@ -5008,9 +4992,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "166
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 614  ]
+[e $U 613  ]
 "167
-[e :U 611 ]
+[e :U 610 ]
 [; ;MISC.c: 167: {
 {
 [; ;MISC.c: 168: data[i]= 0;
@@ -5020,15 +5004,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "166
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 614 ]
-[e $ < -> _i `i _count 611  ]
-[e :U 612 ]
+[e :U 613 ]
+[e $ < -> _i `i _count 610  ]
+[e :U 611 ]
 "169
 }
 [; ;MISC.c: 169: }
 [; ;MISC.c: 170: }
 "170
-[e :UE 610 ]
+[e :UE 609 ]
 }
 "179
 [v _BufferShiftBack `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
@@ -5049,30 +5033,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _i -> -> 0 `i `uc ]
 [; ;MISC.c: 182: if(shift > size)
 "182
-[e $ ! > -> _shift `i -> _size `i 616  ]
+[e $ ! > -> _shift `i -> _size `i 615  ]
 [; ;MISC.c: 183: {
 "183
 {
 [; ;MISC.c: 184: return 0;
 "184
 [e ) -> -> 0 `i `uc ]
-[e $UE 615  ]
+[e $UE 614  ]
 "185
 }
-[e :U 616 ]
+[e :U 615 ]
 [; ;MISC.c: 185: }
 [; ;MISC.c: 186: for(i = 0; i < size; i++)
 "186
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 620  ]
+[e $U 619  ]
 "187
-[e :U 617 ]
+[e :U 616 ]
 [; ;MISC.c: 187: {
 {
 [; ;MISC.c: 188: if(i < (size - shift))
 "188
-[e $ ! < -> _i `i - -> _size `i -> _shift `i 621  ]
+[e $ ! < -> _i `i - -> _size `i -> _shift `i 620  ]
 [; ;MISC.c: 189: {
 "189
 {
@@ -5082,9 +5066,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "191
 }
 [; ;MISC.c: 191: }
-[e $U 622  ]
+[e $U 621  ]
 "192
-[e :U 621 ]
+[e :U 620 ]
 [; ;MISC.c: 192: else
 [; ;MISC.c: 193: {
 "193
@@ -5094,14 +5078,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux -> -> 0 `i `uc ]
 "195
 }
-[e :U 622 ]
+[e :U 621 ]
 "196
 }
 "186
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 620 ]
-[e $ < -> _i `i -> _size `i 617  ]
-[e :U 618 ]
+[e :U 619 ]
+[e $ < -> _i `i -> _size `i 616  ]
+[e :U 617 ]
 "196
 }
 [; ;MISC.c: 195: }
@@ -5109,8 +5093,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;MISC.c: 197: return 1;
 "197
 [e ) -> -> 1 `i `uc ]
-[e $UE 615  ]
+[e $UE 614  ]
 [; ;MISC.c: 198: }
 "198
-[e :UE 615 ]
+[e :UE 614 ]
 }

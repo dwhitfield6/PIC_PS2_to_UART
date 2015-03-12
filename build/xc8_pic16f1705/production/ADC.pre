@@ -6336,11 +6336,17 @@ double ReadVoltage(void)
 unsigned int temp;
 double voltage;
 
-# 70
+LATC &= ~0b00000001;
+
+
 temp = InternalADC_Read(2);
 DisableInternalADC();
 
-# 78
+LATC |= 0b00000001;
+
+
+
+
 if((FVRCON & 0x03) == 0x03)
 {
 
@@ -6362,7 +6368,7 @@ ADCON0 =0;
 ADCON1 =0;
 ADCON1 |= 0b01010000;
 FVRCON |= 0b10000000;
-FVRCON |= 0b00000011;
+FVRCON |= 0b00000001;
 while(!(FVRCON & 0b01000000));
 ADCON0 |= (channel << 2);
 ADCON1 |= 0b10000011;

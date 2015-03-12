@@ -96,8 +96,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXSTAbits `VS186 ~T0 @X0 0 e@414 ]
 "58 MISC.h
 [v _CheckSum_byte `(uc ~T0 @X0 0 ef2`ui`uc ]
-"54 UART.c
-[v _LineOverride `uc ~T0 @X0 0 e ]
 "2960 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
 [v _TXREG `Vuc ~T0 @X0 0 e@410 ]
 "2903
@@ -5485,59 +5483,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 606 ]
 [; ;UART.c: 262: }
 [; ;UART.c: 263: }
-[; ;UART.c: 265: if(data == '\n')
-"265
-[e $ ! == -> _data `ui -> 10 `ui 615  ]
-[; ;UART.c: 266: {
-"266
-{
-[; ;UART.c: 267: if(override || LineOverride)
-"267
-[e $ ! || != -> _override `i -> -> -> 0 `i `uc `i != -> _LineOverride `i -> -> -> 0 `i `uc `i 616  ]
-[; ;UART.c: 268: {
-"268
-{
-[; ;UART.c: 269: while(!TXSTAbits.TRMT);
-"269
-[e $U 617  ]
-[e :U 618 ]
-[e :U 617 ]
-[e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 618  ]
-[e :U 619 ]
-[; ;UART.c: 270: TXREG = data;
-"270
-[e = _TXREG _data ]
-[; ;UART.c: 271: LineOverride = 0;
-"271
-[e = _LineOverride -> -> 0 `i `uc ]
-"272
-}
+[; ;UART.c: 280: while(!TXSTAbits.TRMT);
+"280
+[e $U 615  ]
 [e :U 616 ]
-"273
-}
-[; ;UART.c: 272: }
-[; ;UART.c: 273: }
-[e $U 620  ]
-"274
 [e :U 615 ]
-[; ;UART.c: 274: else
-[; ;UART.c: 275: {
-"275
-{
-[; ;UART.c: 276: while(!TXSTAbits.TRMT);
-"276
-[e $U 621  ]
-[e :U 622 ]
-[e :U 621 ]
-[e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 622  ]
-[e :U 623 ]
-[; ;UART.c: 277: TXREG = data;
-"277
+[e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 616  ]
+[e :U 617 ]
+[; ;UART.c: 281: TXREG = data;
+"281
 [e = _TXREG _data ]
-"278
-}
-[e :U 620 ]
-[; ;UART.c: 278: }
 [; ;UART.c: 283: }
 "283
 [e :UE 605 ]
@@ -5555,13 +5510,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;UART.c: 292: do
 "292
-[e :U 627 ]
+[e :U 621 ]
 [; ;UART.c: 293: {
 "293
 {
 [; ;UART.c: 294: if(*data != 0)
 "294
-[e $ ! != -> *U _data `i -> 0 `i 628  ]
+[e $ ! != -> *U _data `i -> 0 `i 622  ]
 [; ;UART.c: 295: {
 "295
 {
@@ -5570,23 +5525,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _UARTchar (3 , , *U _data -> -> 0 `i `uc -> -> 0 `i `uc ]
 [; ;UART.c: 297: while((!TX1STAbits.TRMT));
 "297
-[e $U 629  ]
-[e :U 630 ]
-[e :U 629 ]
-[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 630  ]
-[e :U 631 ]
+[e $U 623  ]
+[e :U 624 ]
+[e :U 623 ]
+[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 624  ]
+[e :U 625 ]
 "298
 }
-[e :U 628 ]
+[e :U 622 ]
 "299
 }
 [; ;UART.c: 298: }
 [; ;UART.c: 299: } while( *data++);
-[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 627  ]
-[e :U 626 ]
+[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 621  ]
+[e :U 620 ]
 [; ;UART.c: 300: }
 "300
-[e :UE 624 ]
+[e :UE 618 ]
 }
 "307
 [v _ReadUSART `(uc ~T0 @X0 1 ef ]
@@ -5601,7 +5556,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.c: 309: char data;
 [; ;UART.c: 311: if(RCSTAbits.OERR)
 "311
-[e $ ! != -> . . _RCSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 633  ]
+[e $ ! != -> . . _RCSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 627  ]
 [; ;UART.c: 312: {
 "312
 {
@@ -5610,7 +5565,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
 "314
 }
-[e :U 633 ]
+[e :U 627 ]
 [; ;UART.c: 314: }
 [; ;UART.c: 316: data = RCREG;
 "316
@@ -5618,10 +5573,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;UART.c: 318: return (data);
 "318
 [e ) _data ]
-[e $UE 632  ]
+[e $UE 626  ]
 [; ;UART.c: 319: }
 "319
-[e :UE 632 ]
+[e :UE 626 ]
 }
 "327
 [v _UART_send_break `(v ~T0 @X0 1 ef ]
@@ -5639,7 +5594,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TXREG -> -> 100 `ui `uc ]
 [; ;UART.c: 331: }
 "331
-[e :UE 634 ]
+[e :UE 628 ]
 }
 "339
 [v _UART_send_break_timed `(v ~T0 @X0 1 ef1`ui ]
@@ -5690,7 +5645,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PPSLOCK -> -> 1 `i `uc ]
 [; ;UART.c: 358: }
 "358
-[e :UE 635 ]
+[e :UE 629 ]
 }
 "366
 [v _UARTstringWAIT `(v ~T0 @X0 1 ef1`*Cuc ]
@@ -5705,7 +5660,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;UART.c: 368: do
 "368
-[e :U 639 ]
+[e :U 633 ]
 [; ;UART.c: 369: {
 "369
 {
@@ -5714,7 +5669,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _delayUS (1 -> -> 5000 `i `l ]
 [; ;UART.c: 371: if(*data != 0)
 "371
-[e $ ! != -> *U _data `i -> 0 `i 640  ]
+[e $ ! != -> *U _data `i -> 0 `i 634  ]
 [; ;UART.c: 372: {
 "372
 {
@@ -5723,23 +5678,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _UARTchar (3 , , *U _data -> -> 0 `i `uc -> -> 0 `i `uc ]
 [; ;UART.c: 374: while((!TX1STAbits.TRMT));
 "374
-[e $U 641  ]
-[e :U 642 ]
-[e :U 641 ]
-[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 642  ]
-[e :U 643 ]
+[e $U 635  ]
+[e :U 636 ]
+[e :U 635 ]
+[e $ ! != -> . . _TX1STAbits 0 1 `i -> -> -> 0 `i `Vuc `i 636  ]
+[e :U 637 ]
 "375
 }
-[e :U 640 ]
+[e :U 634 ]
 "376
 }
 [; ;UART.c: 375: }
 [; ;UART.c: 376: } while( *data++);
-[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 639  ]
-[e :U 638 ]
+[e $ != -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `i -> -> -> 0 `i `Cuc `i 633  ]
+[e :U 632 ]
 [; ;UART.c: 377: }
 "377
-[e :UE 636 ]
+[e :UE 630 ]
 }
 "385
 [v _SetBaud `(v ~T0 @X0 1 ef2`ul`uc ]
@@ -5794,7 +5749,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _delayUS (1 -> -> 15000 `i `l ]
 [; ;UART.c: 401: if((Baud != Baudtemp) || (Parity != Paritytemp))
 "401
-[e $ ! || != _Baud _Baudtemp != -> _Parity `ul _Paritytemp 645  ]
+[e $ ! || != _Baud _Baudtemp != -> _Parity `ul _Paritytemp 639  ]
 [; ;UART.c: 402: {
 "402
 {
@@ -5806,16 +5761,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _delayUS (1 -> -> 15000 `i `l ]
 "405
 }
-[e :U 645 ]
+[e :U 639 ]
 [; ;UART.c: 405: }
 [; ;UART.c: 408: for(i =0;i<10;i++)
 "408
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 10 `i 646  ]
-[e $U 647  ]
+[e $ < -> _i `i -> 10 `i 640  ]
+[e $U 641  ]
 "409
-[e :U 646 ]
+[e :U 640 ]
 [; ;UART.c: 409: {
 {
 [; ;UART.c: 410: LATC |= 0b00010000;
@@ -5834,8 +5789,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "408
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 10 `i 646  ]
-[e :U 647 ]
+[e $ < -> _i `i -> 10 `i 640  ]
+[e :U 641 ]
 "414
 }
 [; ;UART.c: 414: }
@@ -5847,70 +5802,70 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _UARTstringWAIT (1 -> &U _buf `*Cuc ]
 [; ;UART.c: 418: if(Parity)
 "418
-[e $ ! != -> _Parity `i -> -> -> 0 `i `uc `i 649  ]
+[e $ ! != -> _Parity `i -> -> -> 0 `i `uc `i 643  ]
 [; ;UART.c: 419: {
 "419
 {
 [; ;UART.c: 420: switch (Parity)
 "420
-[e $U 651  ]
+[e $U 645  ]
 [; ;UART.c: 421: {
 "421
 {
 [; ;UART.c: 422: case 1:
 "422
-[e :U 652 ]
+[e :U 646 ]
 [; ;UART.c: 423: UARTstringWAIT(OddParityMSG);
 "423
 [e ( _UARTstringWAIT (1 &U _OddParityMSG ]
 [; ;UART.c: 424: break;
 "424
-[e $U 650  ]
+[e $U 644  ]
 [; ;UART.c: 425: case 2:
 "425
-[e :U 653 ]
+[e :U 647 ]
 [; ;UART.c: 426: UARTstringWAIT(EvenParityMSG);
 "426
 [e ( _UARTstringWAIT (1 &U _EvenParityMSG ]
 [; ;UART.c: 427: break;
 "427
-[e $U 650  ]
+[e $U 644  ]
 [; ;UART.c: 428: case 3:
 "428
-[e :U 654 ]
+[e :U 648 ]
 [; ;UART.c: 429: UARTstringWAIT(MarkParityMSG);
 "429
 [e ( _UARTstringWAIT (1 &U _MarkParityMSG ]
 [; ;UART.c: 430: break;
 "430
-[e $U 650  ]
+[e $U 644  ]
 [; ;UART.c: 431: default:
 "431
-[e :U 655 ]
+[e :U 649 ]
 [; ;UART.c: 432: UARTstringWAIT(SpaceParityMSG);
 "432
 [e ( _UARTstringWAIT (1 &U _SpaceParityMSG ]
 [; ;UART.c: 433: break;
 "433
-[e $U 650  ]
+[e $U 644  ]
 "434
 }
 [; ;UART.c: 434: }
-[e $U 650  ]
+[e $U 644  ]
 "420
-[e :U 651 ]
-[e [\ _Parity , $ -> -> 1 `i `uc 652
- , $ -> -> 2 `i `uc 653
- , $ -> -> 3 `i `uc 654
- 655 ]
+[e :U 645 ]
+[e [\ _Parity , $ -> -> 1 `i `uc 646
+ , $ -> -> 2 `i `uc 647
+ , $ -> -> 3 `i `uc 648
+ 649 ]
 "434
-[e :U 650 ]
+[e :U 644 ]
 "435
 }
 [; ;UART.c: 435: }
-[e $U 656  ]
+[e $U 650  ]
 "436
-[e :U 649 ]
+[e :U 643 ]
 [; ;UART.c: 436: else
 [; ;UART.c: 437: {
 "437
@@ -5920,7 +5875,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _UARTstringWAIT (1 &U _NoParityMSG ]
 "439
 }
-[e :U 656 ]
+[e :U 650 ]
 [; ;UART.c: 439: }
 [; ;UART.c: 440: UARTstringWAIT("\r\n");
 "440
@@ -5930,7 +5885,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _delayUS (1 -> -> 15000 `i `l ]
 [; ;UART.c: 442: }
 "442
-[e :UE 644 ]
+[e :UE 638 ]
 }
 [p f _sprintf 8389648 ]
 [a 3C 66 97 117 100 32 105 115 32 37 108 117 0 ]
