@@ -2,7 +2,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>UART_Keyboard_v1_2</name>
+            <name>PIC_PS2_to_UART</name>
             <creation-uuid>fd17e5a7-f9b6-4f8e-a0b1-1d020538f498</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>

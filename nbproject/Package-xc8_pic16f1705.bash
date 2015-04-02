@@ -10,9 +10,9 @@ CND_CONF=xc8_pic16f1705
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/PS2_to_UART_PIC.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=PS2_to_UART_PIC.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=ps2touartpic/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/PIC_PS2_to_UART.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=PIC_PS2_to_UART.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=picps2touart/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/ps2touartpic/bin
+makeDirectory ${TMPDIR}/picps2touart/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/ps2touartpic.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/picps2touart.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/ps2touartpic.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/picps2touart.tar *
 checkReturnCode
 
 # Cleanup
