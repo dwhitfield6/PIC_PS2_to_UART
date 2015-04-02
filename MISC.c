@@ -196,3 +196,6 @@ unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsign
     }
     return PASS;
 }
+/*-----------------------------------------------------------------------------/
+ End of File
+/-----------------------------------------------------------------------------*/

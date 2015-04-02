@@ -43,3 +43,6 @@ void ConfigureOscillator(void)
     while(!(OSCSTAT & HFIOFS));//Wait for High frequency inernal oscillator to be ready
     while(!(OSCSTAT & PllR));//Wait for PLL to be ready
 }
+/*-----------------------------------------------------------------------------/
+ End of File
+/-----------------------------------------------------------------------------*/

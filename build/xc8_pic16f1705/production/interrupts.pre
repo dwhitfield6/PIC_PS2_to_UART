@@ -6785,7 +6785,7 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0' ,
 0x17 };
 
-# 144 "user.h"
+# 146 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6938,7 +6938,8 @@ if(Rx_Overun)
 RC1STAbits.CREN = 1;
 }
 
-# 169
+if(READ_CONFIG_PIN())
+{
 if(Rx_fault == 1)
 {
 if(rx == 0)
@@ -6951,8 +6952,9 @@ else
 {
 UARTchar(rx, 1 ,RC1STAbits.RX9D);
 }
+}
 
-
+# 183
 PIR1bits.RCIF = 0;
 PIE1bits.RCIE = 1;
 }

@@ -49,7 +49,7 @@
 [v i1_ReadBaud ReadBaud `(ul  1 e 4 0 ]
 "73 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\interrupts.c
 [v _isr isr `II(v  1 e 0 0 ]
-"121 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
+"123 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
 [v _main main `(v  1 e 0 0 ]
 "51 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
 [v _delayUS delayUS `(v  1 e 0 0 ]
@@ -61,6 +61,8 @@
 [v _Reverse_Byte Reverse_Byte `(uc  1 e 1 0 ]
 "129
 [v _ISNUMBER ISNUMBER `(uc  1 e 1 0 ]
+"146
+[v _READ_CONFIG_PIN READ_CONFIG_PIN `(uc  1 e 1 0 ]
 "163
 [v _cleanBuffer cleanBuffer `(v  1 e 0 0 ]
 "179
@@ -147,7 +149,7 @@
 [v _VoltageMSG VoltageMSG `DCC[13]uc  1 e 13 0 ]
 "337 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
-[s S380 . 1 `uc 1 IOCIF 1 0 :1:0 
+[s S384 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 IOCIE 1 0 :1:3 
@@ -157,15 +159,17 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "360
-[s S389 . 1 `uc 1 . 1 0 :2:0 
+[s S393 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 T0IE 1 0 :1:5 
 ]
-[u S394 . 1 `S380 1 . 1 0 `S389 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES394  1 e 1 @11 ]
+[u S398 . 1 `S384 1 . 1 0 `S393 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES398  1 e 1 @11 ]
 "414
 [v _PORTA PORTA `VEuc  1 e 1 @12 ]
+"463
+[v _PORTC PORTC `VEuc  1 e 1 @14 ]
 [s S72 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -187,12 +191,12 @@
 [v _PR2 PR2 `VEuc  1 e 1 @27 ]
 "923
 [v _T2CON T2CON `VEuc  1 e 1 @28 ]
-[s S1032 . 1 `uc 1 T2CKPS 1 0 :2:0 
+[s S1037 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 T2OUTPS 1 0 :4:3 
 ]
 "944
-[s S1036 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+[s S1041 . 1 `uc 1 T2CKPS0 1 0 :1:0 
 `uc 1 T2CKPS1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 T2OUTPS0 1 0 :1:3 
@@ -200,9 +204,9 @@
 `uc 1 T2OUTPS2 1 0 :1:5 
 `uc 1 T2OUTPS3 1 0 :1:6 
 ]
-[u S1044 . 1 `S1032 1 . 1 0 `S1036 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES1044  1 e 1 @28 ]
-[s S307 . 1 `uc 1 TRISA0 1 0 :1:0 
+[u S1049 . 1 `S1037 1 . 1 0 `S1041 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES1049  1 e 1 @28 ]
+[s S311 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -210,9 +214,9 @@
 `uc 1 TRISA5 1 0 :1:5 
 ]
 "1008
-[u S314 . 1 `S307 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES314  1 e 1 @140 ]
-[s S290 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S318 . 1 `S311 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES318  1 e 1 @140 ]
+[s S294 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -220,8 +224,8 @@
 `uc 1 TRISC5 1 0 :1:5 
 ]
 "1052
-[u S297 . 1 `S290 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES297  1 e 1 @142 ]
+[u S301 . 1 `S294 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES301  1 e 1 @142 ]
 "1086
 [v _PIE1 PIE1 `VEuc  1 e 1 @145 ]
 [s S25 . 1 `uc 1 TMR1IE 1 0 :1:0 
@@ -239,7 +243,7 @@
 ]
 [u S37 . 1 `S25 1 . 1 0 `S34 1 . 1 0 ]
 [v _PIE1bits PIE1bits `VES37  1 e 1 @145 ]
-[s S330 . 1 `uc 1 PS 1 0 :3:0 
+[s S334 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 TMR0SE 1 0 :1:4 
 `uc 1 TMR0CS 1 0 :1:5 
@@ -247,15 +251,15 @@
 `uc 1 nWPUEN 1 0 :1:7 
 ]
 "1279
-[s S337 . 1 `uc 1 PS0 1 0 :1:0 
+[s S341 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
 ]
-[u S344 . 1 `S330 1 . 1 0 `S337 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES344  1 e 1 @149 ]
+[u S348 . 1 `S334 1 . 1 0 `S341 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES348  1 e 1 @149 ]
 "1509
 [v _OSCCON OSCCON `VEuc  1 e 1 @153 ]
 "1580
@@ -320,7 +324,7 @@
 [v _RCSTAbits RCSTAbits `VES119  1 e 1 @413 ]
 "3311
 [v _TX1STA TX1STA `VEuc  1 e 1 @414 ]
-[s S484 . 1 `uc 1 TX9D 1 0 :1:0 
+[s S489 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -330,33 +334,33 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "3337
-[u S493 . 1 `S484 1 . 1 0 ]
-[v _TX1STAbits TX1STAbits `VES493  1 e 1 @414 ]
+[u S498 . 1 `S489 1 . 1 0 ]
+[v _TX1STAbits TX1STAbits `VES498  1 e 1 @414 ]
 "3446
-[v _TXSTAbits TXSTAbits `VES493  1 e 1 @414 ]
+[v _TXSTAbits TXSTAbits `VES498  1 e 1 @414 ]
 "3490
 [v _BAUD1CON BAUD1CON `VEuc  1 e 1 @415 ]
 "3735
 [v _WPUA WPUA `VEuc  1 e 1 @524 ]
 "3784
 [v _WPUC WPUC `VEuc  1 e 1 @526 ]
-[s S980 . 1 `uc 1 CCP2M 1 0 :4:0 
+[s S985 . 1 `uc 1 CCP2M 1 0 :4:0 
 `uc 1 DC2B 1 0 :2:4 
 ]
 "5589
-[s S983 . 1 `uc 1 CCP2M0 1 0 :1:0 
+[s S988 . 1 `uc 1 CCP2M0 1 0 :1:0 
 `uc 1 CCP2M1 1 0 :1:1 
 `uc 1 CCP2M2 1 0 :1:2 
 `uc 1 CCP2M3 1 0 :1:3 
 `uc 1 DC2B0 1 0 :1:4 
 `uc 1 DC2B1 1 0 :1:5 
 ]
-[s S990 . 1 `uc 1 . 1 0 :4:0 
+[s S995 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CCP2Y 1 0 :1:4 
 `uc 1 CCP2X 1 0 :1:5 
 ]
-[u S994 . 1 `S980 1 . 1 0 `S983 1 . 1 0 `S990 1 . 1 0 ]
-[v _CCP2CONbits CCP2CONbits `VES994  1 e 1 @666 ]
+[u S999 . 1 `S985 1 . 1 0 `S988 1 . 1 0 `S995 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES999  1 e 1 @666 ]
 "5993
 [v _IOCAP IOCAP `VEuc  1 e 1 @913 ]
 "6042
@@ -383,15 +387,15 @@
 [v _PS_2_bits PS_2_bits `uc  1 e 1 0 ]
 "67
 [v _ResendLastFlag ResendLastFlag `uc  1 e 1 0 ]
-"103 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
+"105 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
 [v _Version Version `DCC[9]uc  1 e 9 0 ]
-"112
-[v _SinLEDtimer SinLEDtimer `ui  1 e 2 0 ]
-"113
-[v _pwrLEDtoggle pwrLEDtoggle `ui  1 e 2 0 ]
 "114
-[v _Alarm Alarm `uc  1 e 1 0 ]
+[v _SinLEDtimer SinLEDtimer `ui  1 e 2 0 ]
 "115
+[v _pwrLEDtoggle pwrLEDtoggle `ui  1 e 2 0 ]
+"116
+[v _Alarm Alarm `uc  1 e 1 0 ]
+"117
 [v _BatteryVoltage BatteryVoltage `d  1 e 3 0 ]
 "76 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v _CapsCount CapsCount `uc  1 e 1 0 ]
@@ -463,12 +467,12 @@
 [v _MarkParityMSG MarkParityMSG `DCC[15]uc  1 e 15 0 ]
 "119
 [v _SpaceParityMSG SpaceParityMSG `DCC[16]uc  1 e 16 0 ]
-"121 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
+"123 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
 [v _main main `(v  1 e 0 0 ]
 {
-"123
+"125
 [v main@i i `uc  1 a 1 54 ]
-"188
+"190
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\ftge.c
 [v ___ftge __ftge `(b  1 e 0 0 ]
@@ -832,7 +836,12 @@
 [v i1PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 1 ]
 "192
 } 0
-"257
+"146 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+[v _READ_CONFIG_PIN READ_CONFIG_PIN `(uc  1 e 1 0 ]
+{
+"156
+} 0
+"257 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
 [v _Process_PS2_ScanCode Process_PS2_ScanCode `(v  1 e 0 0 ]
 {
 "261

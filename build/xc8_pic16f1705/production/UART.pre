@@ -6347,7 +6347,7 @@ extern int printf(const char *, ...);
 # 55 "system.h"
 void ConfigureOscillator(void);
 
-# 144 "user.h"
+# 146 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6585,10 +6585,22 @@ TXSTAbits.TX9D = (NinethBit_override_data & 0x01);
 }
 }
 
-# 280
+if(data == '\n')
+{
+if(override || LineOverride)
+{
 while(!TXSTAbits.TRMT);
 TXREG = data;
+LineOverride = 0;
+}
+}
+else
+{
+while(!TXSTAbits.TRMT);
+TXREG = data;
+}
 
+# 283
 }
 
 # 290

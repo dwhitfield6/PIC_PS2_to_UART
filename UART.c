@@ -440,3 +440,6 @@ void SetBaud(unsigned long Baud, unsigned char Parity)
     UARTstringWAIT("\r\n");
     delayUS(Word_Spacing);
 }
+/*-----------------------------------------------------------------------------/
+ End of File
+/-----------------------------------------------------------------------------*/

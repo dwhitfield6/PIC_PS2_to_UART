@@ -4769,8 +4769,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 202: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 206: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 207: extern int printf(const char *, ...);
-[; ;user.h: 144: void InitApp(void);
-[; ;user.h: 145: void Init_System (void);
+[; ;user.h: 146: void InitApp(void);
+[; ;user.h: 147: void Init_System (void);
 [; ;system.h: 55: void ConfigureOscillator(void);
 "82 PS_2.h
 [v _PS_2_ScanCodes `uc ~T0 @X0 -> 12 `i e ]

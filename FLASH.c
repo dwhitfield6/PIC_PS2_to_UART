@@ -192,3 +192,6 @@ unsigned long ReadBaud(unsigned int row, unsigned char column)
     MEM[0] = (unsigned int)((temp & 0xFFFC000) >> 14);
     return (((unsigned long)MEM[0] << 12) + (unsigned long)MEM[1]);
 }
+/*-----------------------------------------------------------------------------/
+ End of File
+/-----------------------------------------------------------------------------*/

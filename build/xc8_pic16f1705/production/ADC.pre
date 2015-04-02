@@ -6276,7 +6276,7 @@ typedef uint16_t uintptr_t;
 # 12 "C:\Program Files (x86)\Microchip\xc8\v1.34\include\stdbool.h"
 typedef unsigned char bool;
 
-# 144 "user.h"
+# 146 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6336,17 +6336,11 @@ double ReadVoltage(void)
 unsigned int temp;
 double voltage;
 
-LATC &= ~0b00000001;
-
-
+# 70
 temp = InternalADC_Read(2);
 DisableInternalADC();
 
-LATC |= 0b00000001;
-
-
-
-
+# 78
 if((FVRCON & 0x03) == 0x03)
 {
 
@@ -6368,7 +6362,7 @@ ADCON0 =0;
 ADCON1 =0;
 ADCON1 |= 0b01010000;
 FVRCON |= 0b10000000;
-FVRCON |= 0b00000001;
+FVRCON |= 0b00000011;
 while(!(FVRCON & 0b01000000));
 ADCON0 |= (channel << 2);
 ADCON1 |= 0b10000011;

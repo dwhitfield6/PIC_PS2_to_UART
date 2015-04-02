@@ -6344,7 +6344,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 144 "user.h"
+# 146 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6423,11 +6423,9 @@ TRISCbits.TRISC3 = 0;
 TRISCbits.TRISC4 = 0;
 TRISAbits.TRISA2 = 1;
 
+TRISCbits.TRISC0 = 1;
 
-
-TRISCbits.TRISC0 = 0;
-
-
+# 77
 TRISCbits.TRISC5 = 1;
 
 

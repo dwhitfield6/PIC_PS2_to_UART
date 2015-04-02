@@ -52,6 +52,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RC1STAbits `VS176 ~T0 @X0 0 e@413 ]
 "102 UART.h
 [v _ReadUSART `(uc ~T0 @X0 0 ef ]
+"110
+[v _READ_CONFIG_PIN `(uc ~T0 @X0 0 ef ]
 "105
 [v _UART_send_break_timed `(v ~T0 @X0 0 ef1`ui ]
 "100
@@ -6210,8 +6212,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 586: '\0' ,
 [; ;PS_2.h: 587: '\0' ,
 [; ;PS_2.h: 588: 0x17 };
-[; ;user.h: 144: void InitApp(void);
-[; ;user.h: 145: void Init_System (void);
+[; ;user.h: 146: void InitApp(void);
+[; ;user.h: 147: void Init_System (void);
 "91 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -6646,42 +6648,52 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 600 ]
 [; ;interrupts.c: 151: }
-[; ;interrupts.c: 169: if(Rx_fault == 1)
-"169
-[e $ ! == -> _Rx_fault `i -> 1 `i 601  ]
-[; ;interrupts.c: 170: {
-"170
+[; ;interrupts.c: 153: if(READ_CONFIG_PIN())
+"153
+[e $ ! != -> ( _READ_CONFIG_PIN ..  `i -> -> -> 0 `i `uc `i 601  ]
+[; ;interrupts.c: 154: {
+"154
 {
-[; ;interrupts.c: 171: if(rx == 0)
-"171
-[e $ ! == -> _rx `i -> 0 `i 602  ]
-[; ;interrupts.c: 172: {
-"172
+[; ;interrupts.c: 155: if(Rx_fault == 1)
+"155
+[e $ ! == -> _Rx_fault `i -> 1 `i 602  ]
+[; ;interrupts.c: 156: {
+"156
 {
-[; ;interrupts.c: 174: UART_send_break_timed(100000);
-"174
+[; ;interrupts.c: 157: if(rx == 0)
+"157
+[e $ ! == -> _rx `i -> 0 `i 603  ]
+[; ;interrupts.c: 158: {
+"158
+{
+[; ;interrupts.c: 160: UART_send_break_timed(100000);
+"160
 [e ( _UART_send_break_timed (1 -> -> 100000 `l `ui ]
-"175
-}
-[e :U 602 ]
-"176
-}
-[; ;interrupts.c: 175: }
-[; ;interrupts.c: 176: }
-[e $U 603  ]
-"177
-[e :U 601 ]
-[; ;interrupts.c: 177: else
-[; ;interrupts.c: 178: {
-"178
-{
-[; ;interrupts.c: 179: UARTchar(rx, 1 ,RC1STAbits.RX9D);
-"179
-[e ( _UARTchar (3 , , _rx -> -> 1 `i `uc . . _RC1STAbits 0 0 ]
-"180
+"161
 }
 [e :U 603 ]
-[; ;interrupts.c: 180: }
+"162
+}
+[; ;interrupts.c: 161: }
+[; ;interrupts.c: 162: }
+[e $U 604  ]
+"163
+[e :U 602 ]
+[; ;interrupts.c: 163: else
+[; ;interrupts.c: 164: {
+"164
+{
+[; ;interrupts.c: 165: UARTchar(rx, 1 ,RC1STAbits.RX9D);
+"165
+[e ( _UARTchar (3 , , _rx -> -> 1 `i `uc . . _RC1STAbits 0 0 ]
+"166
+}
+[e :U 604 ]
+"167
+}
+[e :U 601 ]
+[; ;interrupts.c: 166: }
+[; ;interrupts.c: 167: }
 [; ;interrupts.c: 183: PIR1bits.RCIF = 0;
 "183
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
@@ -6691,11 +6703,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "185
 }
 [; ;interrupts.c: 185: }
-[e $U 604  ]
+[e $U 605  ]
 "186
 [e :U 597 ]
 [; ;interrupts.c: 186: else if(PIR1bits.TMR2IF)
-[e $ ! != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i 605  ]
+[e $ ! != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i 606  ]
 [; ;interrupts.c: 187: {
 "187
 {
@@ -6716,7 +6728,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _PS_2_Read_Data_TEMP -> -> 0 `i `ui ]
 [; ;interrupts.c: 194: if(ResendLastFlag)
 "194
-[e $ ! != -> _ResendLastFlag `i -> -> -> 0 `i `uc `i 606  ]
+[e $ ! != -> _ResendLastFlag `i -> -> -> 0 `i `uc `i 607  ]
 [; ;interrupts.c: 195: {
 "195
 {
@@ -6729,9 +6741,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "199
 }
 [; ;interrupts.c: 199: }
-[e $U 607  ]
+[e $U 608  ]
 "200
-[e :U 606 ]
+[e :U 607 ]
 [; ;interrupts.c: 200: else
 [; ;interrupts.c: 201: {
 "201
@@ -6741,7 +6753,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _Process_PS2_ScanCode ..  ]
 "203
 }
-[e :U 607 ]
+[e :U 608 ]
 [; ;interrupts.c: 203: }
 [; ;interrupts.c: 205: PIE1bits.RCIE = 1;
 "205
@@ -6754,9 +6766,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
 "209
 }
-[e :U 605 ]
+[e :U 606 ]
 "210
-[e :U 604 ]
+[e :U 605 ]
 [e :U 596 ]
 [e :U 594 ]
 [; ;interrupts.c: 209: }

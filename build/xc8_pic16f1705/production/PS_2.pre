@@ -6344,7 +6344,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 144 "user.h"
+# 146 "user.h"
 void InitApp(void);
 void Init_System (void);
 

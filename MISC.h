@@ -12,6 +12,9 @@
 /******************************************************************************/
 /* Files to Include                                                           */
 /******************************************************************************/
+#ifndef MISC_H
+#define	MISC_H
+
 #if defined(__XC)
     #include <xc.h>         /* XC8 General Include File */
 #elif defined(HI_TECH_C)
@@ -59,3 +62,5 @@ unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
 unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+
+#endif	/* MISC_H */

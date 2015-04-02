@@ -6279,7 +6279,7 @@ typedef unsigned char bool;
 # 55 "system.h"
 void ConfigureOscillator(void);
 
-# 144 "user.h"
+# 146 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6852,16 +6852,16 @@ void ShutDown_ADC(void);
 
 const unsigned char VoltageMSG[] = {"Voltage too "};
 
-# 103 "main.c"
+# 105 "main.c"
 const unsigned char Version[] = {"1.3_DW0a"};
 
-# 112
+# 114
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
 unsigned char Alarm;
 double BatteryVoltage = 0.0;
 
-# 121
+# 123
 void main(void)
 {
 unsigned char i=0;
@@ -6881,12 +6881,12 @@ delayUS(10000);
 }
 
 BatteryVoltage = ReadVoltage();
-if(BatteryVoltage < 4.25 )
+if(BatteryVoltage < 6.55 )
 {
 UARTstringWAIT(VoltageMSG);
 UARTstringWAIT("Low!\r\n");
 }
-else if (BatteryVoltage > 5.35)
+else if (BatteryVoltage > 30.0)
 {
 UARTstringWAIT(VoltageMSG);
 UARTstringWAIT("High!\r\n");
@@ -6901,7 +6901,7 @@ while(1)
 {
 BatteryVoltage = ReadVoltage();
 delayUS(20);
-if(BatteryVoltage < 4.25 || BatteryVoltage > 5.35)
+if(BatteryVoltage < 6.55 || BatteryVoltage > 30.0)
 {
 Alarm = 1;
 }
