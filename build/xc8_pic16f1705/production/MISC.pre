@@ -6279,7 +6279,7 @@ typedef unsigned char bool;
 # 55 "system.h"
 void ConfigureOscillator(void);
 
-# 56 "MISC.h"
+# 59 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
@@ -6287,7 +6287,7 @@ unsigned char Reverse_Byte(unsigned char This);
 unsigned char ISNUMBER(unsigned char ascii);
 unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 
-# 146 "user.h"
+# 159 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6412,3 +6412,4 @@ buffer[i] = 0;
 }
 return 1;
 }
+

@@ -6785,7 +6785,7 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0' ,
 0x17 };
 
-# 146 "user.h"
+# 159 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6839,7 +6839,7 @@ void Timer2ON(void);
 void Timer2OFF(void);
 void Timer2Reset(void);
 
-# 56 "MISC.h"
+# 59 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);

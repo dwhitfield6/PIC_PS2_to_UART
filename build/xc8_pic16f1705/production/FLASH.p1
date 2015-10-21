@@ -16,7 +16,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _PMCON2 `Vuc ~T0 @X0 0 e@406 ]
 "337
 [v _INTCON `Vuc ~T0 @X0 0 e@11 ]
-"56 MISC.h
+"59 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -4715,14 +4715,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FLASH.h: 74: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 [; ;FLASH.h: 75: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 [; ;FLASH.h: 76: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;user.h: 146: void InitApp(void);
-[; ;user.h: 147: void Init_System (void);
-[; ;MISC.h: 56: void delayUS(long US);
-[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
-[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;user.h: 159: void InitApp(void);
+[; ;user.h: 160: void Init_System (void);
+[; ;MISC.h: 59: void delayUS(long US);
+[; ;MISC.h: 60: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 61: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 62: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 63: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 64: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 "43 FLASH.c
 [v _ReadFlash_2Byte `(ui ~T0 @X0 1 ef2`ui`uc ]
 "44

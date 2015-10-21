@@ -6212,8 +6212,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 586: '\0' ,
 [; ;PS_2.h: 587: '\0' ,
 [; ;PS_2.h: 588: 0x17 };
-[; ;user.h: 146: void InitApp(void);
-[; ;user.h: 147: void Init_System (void);
+[; ;user.h: 159: void InitApp(void);
+[; ;user.h: 160: void Init_System (void);
 "91 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -6394,12 +6394,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;Timer.h: 38: void Timer2ON(void);
 [; ;Timer.h: 39: void Timer2OFF(void);
 [; ;Timer.h: 40: void Timer2Reset(void);
-[; ;MISC.h: 56: void delayUS(long US);
-[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
-[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;MISC.h: 59: void delayUS(long US);
+[; ;MISC.h: 60: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 61: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 62: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 63: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 64: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 [; ;interrupts.c: 60: extern unsigned char PS_2_ScanCodes[12];
 [; ;interrupts.c: 61: extern unsigned char PS_2_Buffer_items;
 [; ;interrupts.c: 62: extern unsigned int SinLEDtimer;

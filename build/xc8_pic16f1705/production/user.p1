@@ -50,7 +50,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ReadBaud `(ul ~T0 @X0 0 ef2`ui`uc ]
 "98 UART.h
 [v _InitUART `(v ~T0 @X0 0 ef2`ul`uc ]
-"56 MISC.h
+"59 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 "107 UART.h
 [v _UARTstringWAIT `(v ~T0 @X0 0 ef1`*Cuc ]
@@ -4776,8 +4776,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 202: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 206: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 207: extern int printf(const char *, ...);
-[; ;user.h: 146: void InitApp(void);
-[; ;user.h: 147: void Init_System (void);
+[; ;user.h: 159: void InitApp(void);
+[; ;user.h: 160: void Init_System (void);
 [; ;system.h: 55: void ConfigureOscillator(void);
 "91 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
@@ -4955,12 +4955,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;FLASH.h: 74: void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 [; ;FLASH.h: 75: void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 [; ;FLASH.h: 76: unsigned long ReadBaud(unsigned int row, unsigned char column);
-[; ;MISC.h: 56: void delayUS(long US);
-[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
-[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;MISC.h: 59: void delayUS(long US);
+[; ;MISC.h: 60: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 61: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 62: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 63: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 64: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 [; ;Timer.h: 37: void Timer2Init(unsigned char time);
 [; ;Timer.h: 38: void Timer2ON(void);
 [; ;Timer.h: 39: void Timer2OFF(void);

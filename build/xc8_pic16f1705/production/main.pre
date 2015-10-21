@@ -6279,11 +6279,11 @@ typedef unsigned char bool;
 # 55 "system.h"
 void ConfigureOscillator(void);
 
-# 146 "user.h"
+# 159 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 56 "MISC.h"
+# 59 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
@@ -6852,16 +6852,16 @@ void ShutDown_ADC(void);
 
 const unsigned char VoltageMSG[] = {"Voltage too "};
 
-# 105 "main.c"
+# 107 "main.c"
 const unsigned char Version[] = {"1.3_DW0a"};
 
-# 114
+# 116
 unsigned int SinLEDtimer =0;
 unsigned int pwrLEDtoggle =0;
 unsigned char Alarm;
 double BatteryVoltage = 0.0;
 
-# 123
+# 125
 void main(void)
 {
 unsigned char i=0;

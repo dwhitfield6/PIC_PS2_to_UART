@@ -6295,11 +6295,11 @@ void WriteFlash_Sequential(unsigned int row, unsigned int* buffer, char amount);
 void WriteBaud(unsigned int row, unsigned long Baud, unsigned char Parity);
 unsigned long ReadBaud(unsigned int row, unsigned char column);
 
-# 146 "user.h"
+# 159 "user.h"
 void InitApp(void);
 void Init_System (void);
 
-# 56 "MISC.h"
+# 59 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
@@ -6428,3 +6428,4 @@ MEM[1] = (unsigned int)(temp & 0x0003FFF);
 MEM[0] = (unsigned int)((temp & 0xFFFC000) >> 14);
 return (((unsigned long)MEM[0] << 12) + (unsigned long)MEM[1]);
 }
+

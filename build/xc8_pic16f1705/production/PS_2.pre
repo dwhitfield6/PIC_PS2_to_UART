@@ -6344,7 +6344,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 146 "user.h"
+# 159 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6857,7 +6857,7 @@ const unsigned char ScanCodeFunctionE0[109] = {
 '\0' ,
 0x17 };
 
-# 56 "MISC.h"
+# 59 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
@@ -7895,3 +7895,4 @@ temp = 0;
 }
 return temp;
 }
+

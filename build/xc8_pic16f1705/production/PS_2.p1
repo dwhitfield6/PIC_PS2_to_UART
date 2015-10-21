@@ -21,7 +21,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _IOCAN `Vuc ~T0 @X0 0 e@914 ]
 "414
 [v _PORTA `Vuc ~T0 @X0 0 e@12 ]
-"61 MISC.h
+"64 MISC.h
 [v _BufferShiftBack `(uc ~T0 @X0 0 ef3`*uc`uc`uc ]
 "104 PS_2.h
 [v _Send_PS2 `(uc ~T0 @X0 0 ef1`uc ]
@@ -35,7 +35,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Decode_Scan_Code_Function `(uc ~T0 @X0 0 ef1`uc ]
 "107 UART.h
 [v _UARTstringWAIT `(v ~T0 @X0 0 ef1`*Cuc ]
-"56 MISC.h
+"59 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 "100 UART.h
 [v _UARTchar `(v ~T0 @X0 0 ef3`uc`uc`uc ]
@@ -45,22 +45,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _UART_send_break_timed `(v ~T0 @X0 0 ef1`ui ]
 "106
 [v _UART_send_break `(v ~T0 @X0 0 ef ]
-"60 MISC.h
+"63 MISC.h
 [v _ISNUMBER `(uc ~T0 @X0 0 ef1`uc ]
 "206 C:\Program Files (x86)\Microchip\xc8\v1.34\include\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "1907 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
 [v _LATC `Vuc ~T0 @X0 0 e@270 ]
-"57 MISC.h
+"60 MISC.h
 [v _cleanBuffer `(v ~T0 @X0 0 ef2`*uc`i ]
-"58
+"61
 [v _CheckSum_byte `(uc ~T0 @X0 0 ef2`ui`uc ]
 "1863 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
 [v _LATA `Vuc ~T0 @X0 0 e@268 ]
 "28 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
-"59 MISC.h
+"62 MISC.h
 [v _Reverse_Byte `(uc ~T0 @X0 0 ef1`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -4769,8 +4769,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 202: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 206: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 207: extern int printf(const char *, ...);
-[; ;user.h: 146: void InitApp(void);
-[; ;user.h: 147: void Init_System (void);
+[; ;user.h: 159: void InitApp(void);
+[; ;user.h: 160: void Init_System (void);
 [; ;system.h: 55: void ConfigureOscillator(void);
 "82 PS_2.h
 [v _PS_2_ScanCodes `uc ~T0 @X0 -> 12 `i e ]
@@ -6245,12 +6245,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;PS_2.h: 586: '\0' ,
 [; ;PS_2.h: 587: '\0' ,
 [; ;PS_2.h: 588: 0x17 };
-[; ;MISC.h: 56: void delayUS(long US);
-[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
-[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;MISC.h: 59: void delayUS(long US);
+[; ;MISC.h: 60: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 61: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 62: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 63: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 64: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 "91 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD

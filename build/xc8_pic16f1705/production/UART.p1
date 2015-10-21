@@ -94,7 +94,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S186 . . ]
 "3446
 [v _TXSTAbits `VS186 ~T0 @X0 0 e@414 ]
-"58 MISC.h
+"61 MISC.h
 [v _CheckSum_byte `(uc ~T0 @X0 0 ef2`ui`uc ]
 "54 UART.c
 [v _LineOverride `uc ~T0 @X0 0 e ]
@@ -102,7 +102,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXREG `Vuc ~T0 @X0 0 e@410 ]
 "2903
 [v _RCREG `Vuc ~T0 @X0 0 e@409 ]
-"56 MISC.h
+"59 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 "75 FLASH.h
 [v _WriteBaud `(v ~T0 @X0 0 ef3`ui`ul`uc ]
@@ -4818,8 +4818,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 206: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 207: extern int printf(const char *, ...);
 [; ;system.h: 55: void ConfigureOscillator(void);
-[; ;user.h: 146: void InitApp(void);
-[; ;user.h: 147: void Init_System (void);
+[; ;user.h: 159: void InitApp(void);
+[; ;user.h: 160: void Init_System (void);
 "91 UART.h
 [v _BAUD `ul ~T0 @X0 1 e ]
 [i _BAUD
@@ -4974,12 +4974,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [; ;UART.h: 119: const unsigned char SpaceParityMSG[] = {" with Space bit"};
-[; ;MISC.h: 56: void delayUS(long US);
-[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
-[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;MISC.h: 59: void delayUS(long US);
+[; ;MISC.h: 60: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 61: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 62: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 63: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 64: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 "60 FLASH.h
 [v _MEM `ui ~T0 @X0 -> 2 `i e ]
 [i _MEM

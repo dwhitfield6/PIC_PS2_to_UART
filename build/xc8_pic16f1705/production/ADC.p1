@@ -20,7 +20,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S63 . . . ]
 "1107
 [v _PIE1bits `VS63 ~T0 @X0 0 e@145 ]
-"56 MISC.h
+"59 MISC.h
 [v _delayUS `(v ~T0 @X0 0 ef1`l ]
 "1666 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
 [v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
@@ -4702,8 +4702,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;user.h: 146: void InitApp(void);
-[; ;user.h: 147: void Init_System (void);
+[; ;user.h: 159: void InitApp(void);
+[; ;user.h: 160: void Init_System (void);
 [; ;ADC.h: 85: double ReadVoltage(void);
 [; ;ADC.h: 86: void DisableInternalADC(void);
 [; ;ADC.h: 87: unsigned int InternalADC_Read(unsigned char channel);
@@ -4883,12 +4883,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [; ;UART.h: 119: const unsigned char SpaceParityMSG[] = {" with Space bit"};
-[; ;MISC.h: 56: void delayUS(long US);
-[; ;MISC.h: 57: void cleanBuffer(unsigned char* data, int count);
-[; ;MISC.h: 58: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
-[; ;MISC.h: 59: unsigned char Reverse_Byte(unsigned char This);
-[; ;MISC.h: 60: unsigned char ISNUMBER(unsigned char ascii);
-[; ;MISC.h: 61: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
+[; ;MISC.h: 59: void delayUS(long US);
+[; ;MISC.h: 60: void cleanBuffer(unsigned char* data, int count);
+[; ;MISC.h: 61: unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
+[; ;MISC.h: 62: unsigned char Reverse_Byte(unsigned char This);
+[; ;MISC.h: 63: unsigned char ISNUMBER(unsigned char ascii);
+[; ;MISC.h: 64: unsigned char BufferShiftBack(unsigned char* buffer, unsigned char shift, unsigned char size);
 "62 ADC.c
 [v _ReadVoltage `(d ~T0 @X0 1 ef ]
 "63

@@ -6313,3 +6313,4 @@ void Timer2Reset(void)
 {
 TMR2 = 0;
 }
+

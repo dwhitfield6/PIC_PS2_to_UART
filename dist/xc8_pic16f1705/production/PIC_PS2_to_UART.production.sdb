@@ -1,9 +1,9 @@
-[p LITE_MODE AUTOSTATIC PIC14 PIC14E ]
+[p PRO_MODE GLOBOPT AUTOSTATIC PIC14 PIC14E SPACEOPT ]
 [d version 1.1 ]
 [d edition pro ]
 [d chip 16F1705 ]
 [d frameptr 6 ]
-"62 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.c
+"62 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\ADC.c
 [v _ReadVoltage ReadVoltage `(d  1 e 3 0 ]
 "97
 [v _InternalADC_Read InternalADC_Read `(ui  1 e 2 0 ]
@@ -30,7 +30,7 @@
 [v ___lwtoft __lwtoft `(f  1 e 3 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"43 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.c
+"43 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\FLASH.c
 [v _ReadFlash_2Byte ReadFlash_2Byte `(ui  1 e 2 0 ]
 [v i1_ReadFlash_2Byte ReadFlash_2Byte `(ui  1 e 2 0 ]
 "62
@@ -47,11 +47,11 @@
 "187
 [v _ReadBaud ReadBaud `(ul  1 e 4 0 ]
 [v i1_ReadBaud ReadBaud `(ul  1 e 4 0 ]
-"73 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\interrupts.c
+"73 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\interrupts.c
 [v _isr isr `II(v  1 e 0 0 ]
-"123 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
+"125 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\main.c
 [v _main main `(v  1 e 0 0 ]
-"51 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"51 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v _delayUS delayUS `(v  1 e 0 0 ]
 [v i1_delayUS delayUS `(v  1 e 0 0 ]
 "71
@@ -67,7 +67,7 @@
 [v _cleanBuffer cleanBuffer `(v  1 e 0 0 ]
 "179
 [v _BufferShiftBack BufferShiftBack `(uc  1 e 1 0 ]
-"106 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"106 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _PS_2_INIT PS_2_INIT `(v  1 e 0 0 ]
 "120
 [v _Clock_TRIS Clock_TRIS `(v  1 e 0 0 ]
@@ -103,9 +103,9 @@
 [v _Init_PS_2_Send Init_PS_2_Send `(uc  1 e 1 0 ]
 "1115
 [v _PS2RawToScan PS2RawToScan `(ui  1 e 2 0 ]
-"40 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\system.c
+"40 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\system.c
 [v _ConfigureOscillator ConfigureOscillator `(v  1 e 0 0 ]
-"41 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\Timer.c
+"41 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\Timer.c
 [v _Timer2Init Timer2Init `(v  1 e 0 0 ]
 "59
 [v _Timer2ON Timer2ON `(v  1 e 0 0 ]
@@ -114,7 +114,7 @@
 [v _Timer2OFF Timer2OFF `(v  1 e 0 0 ]
 "81
 [v _Timer2Reset Timer2Reset `(v  1 e 0 0 ]
-"65 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"65 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.c
 [v _CloseUSART CloseUSART `(v  1 e 0 0 ]
 [v i1_CloseUSART CloseUSART `(v  1 e 0 0 ]
 "78
@@ -141,11 +141,11 @@
 [v i1_UARTstringWAIT UARTstringWAIT `(v  1 e 0 0 ]
 "385
 [v _SetBaud SetBaud `(v  1 e 0 0 ]
-"62 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\user.c
+"62 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\user.c
 [v _InitApp InitApp `(v  1 e 0 0 ]
 "103
 [v _Init_System Init_System `(v  1 e 0 0 ]
-"93 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.h
+"93 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\ADC.h
 [v _VoltageMSG VoltageMSG `DCC[13]uc  1 e 13 0 ]
 "337 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
 [v _INTCON INTCON `VEuc  1 e 1 @11 ]
@@ -272,8 +272,6 @@
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
 "1764
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
-"1816
-[v _ADCON2 ADCON2 `VEuc  1 e 1 @159 ]
 "1863
 [v _LATA LATA `VEuc  1 e 1 @268 ]
 "1907
@@ -361,8 +359,6 @@
 ]
 [u S999 . 1 `S985 1 . 1 0 `S988 1 . 1 0 `S995 1 . 1 0 ]
 [v _CCP2CONbits CCP2CONbits `VES999  1 e 1 @666 ]
-"5993
-[v _IOCAP IOCAP `VEuc  1 e 1 @913 ]
 "6042
 [v _IOCAN IOCAN `VEuc  1 e 1 @914 ]
 "6091
@@ -379,25 +375,25 @@
 [v _HFIOFS HFIOFS `VEb  1 e 0 @1232 ]
 "354 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\doprnt.c
 [v _dpowers dpowers `DCC[10]ul  1 s 40 dpowers ]
-"60 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.h
+"60 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\FLASH.h
 [v _MEM MEM `[2]ui  1 e 4 0 ]
-"64 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\interrupts.c
+"64 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\interrupts.c
 [v _PS_2_Read_Data_TEMP PS_2_Read_Data_TEMP `ui  1 e 2 0 ]
 "65
 [v _PS_2_bits PS_2_bits `uc  1 e 1 0 ]
 "67
 [v _ResendLastFlag ResendLastFlag `uc  1 e 1 0 ]
-"105 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
+"107 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\main.c
 [v _Version Version `DCC[9]uc  1 e 9 0 ]
-"114
-[v _SinLEDtimer SinLEDtimer `ui  1 e 2 0 ]
-"115
-[v _pwrLEDtoggle pwrLEDtoggle `ui  1 e 2 0 ]
 "116
-[v _Alarm Alarm `uc  1 e 1 0 ]
+[v _SinLEDtimer SinLEDtimer `ui  1 e 2 0 ]
 "117
+[v _pwrLEDtoggle pwrLEDtoggle `ui  1 e 2 0 ]
+"118
+[v _Alarm Alarm `uc  1 e 1 0 ]
+"119
 [v _BatteryVoltage BatteryVoltage `d  1 e 3 0 ]
-"76 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"76 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _CapsCount CapsCount `uc  1 e 1 0 ]
 "77
 [v _Right_Shift_Key Right_Shift_Key `uc  1 e 1 0 ]
@@ -427,15 +423,13 @@
 [v _Delete Delete `uc  1 e 1 0 ]
 "90
 [v _BAUDMODE BAUDMODE `uc  1 e 1 0 ]
-"91
-[v _ECHO ECHO `uc  1 e 1 0 ]
 "92
 [v _BaudTyped BaudTyped `ul  1 e 4 0 ]
 "93
 [v _ParityTyped ParityTyped `uc  1 e 1 0 ]
 "94
 [v _LineOverride LineOverride `uc  1 e 1 0 ]
-"82 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.h
+"82 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.h
 [v _PS_2_ScanCodes PS_2_ScanCodes `[12]uc  1 e 12 0 ]
 "83
 [v _PS_2_Buffer_items PS_2_Buffer_items `uc  1 e 1 0 ]
@@ -453,9 +447,7 @@
 [v _ScanCodeFunctionNoE0 ScanCodeFunctionNoE0 `DCC[132]uc  1 e 132 0 ]
 "479
 [v _ScanCodeFunctionE0 ScanCodeFunctionE0 `DCC[109]uc  1 e 109 0 ]
-"91 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.h
-[v _BAUD BAUD `ul  1 e 4 0 ]
-"92
+"92 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.h
 [v _PARITY PARITY `uc  1 e 1 0 ]
 "115
 [v _NoParityMSG NoParityMSG `DCC[20]uc  1 e 20 0 ]
@@ -467,12 +459,12 @@
 [v _MarkParityMSG MarkParityMSG `DCC[15]uc  1 e 15 0 ]
 "119
 [v _SpaceParityMSG SpaceParityMSG `DCC[16]uc  1 e 16 0 ]
-"123 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\main.c
+"125 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\main.c
 [v _main main `(v  1 e 0 0 ]
 {
-"125
-[v main@i i `uc  1 a 1 54 ]
-"190
+"127
+[v main@i i `uc  1 a 1 50 ]
+"192
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\ftge.c
 [v ___ftge __ftge `(b  1 e 0 0 ]
@@ -481,13 +473,13 @@
 [v ___ftge@ff2 ff2 `f  1 p 3 3 ]
 "13
 } 0
-"62 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.c
+"62 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\ADC.c
 [v _ReadVoltage ReadVoltage `(d  1 e 3 0 ]
 {
 "65
-[v ReadVoltage@voltage voltage `d  1 a 3 48 ]
+[v ReadVoltage@voltage voltage `d  1 a 3 45 ]
 "64
-[v ReadVoltage@temp temp `ui  1 a 2 51 ]
+[v ReadVoltage@temp temp `ui  1 a 2 48 ]
 "90
 } 0
 "28 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\lwtoft.c
@@ -500,28 +492,28 @@
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
 {
 "65
-[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 39 ]
+[v ___ftmul@f3_as_product f3_as_product `um  1 a 3 36 ]
 "64
-[v ___ftmul@sign sign `uc  1 a 1 43 ]
-[v ___ftmul@cntr cntr `uc  1 a 1 42 ]
-[v ___ftmul@exp exp `uc  1 a 1 38 ]
+[v ___ftmul@sign sign `uc  1 a 1 40 ]
+[v ___ftmul@cntr cntr `uc  1 a 1 39 ]
+[v ___ftmul@exp exp `uc  1 a 1 35 ]
 "62
-[v ___ftmul@f1 f1 `f  1 p 3 28 ]
-[v ___ftmul@f2 f2 `f  1 p 3 31 ]
+[v ___ftmul@f1 f1 `f  1 p 3 26 ]
+[v ___ftmul@f2 f2 `f  1 p 3 29 ]
 "157
 } 0
 "56 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
 {
 "60
-[v ___ftdiv@f3 f3 `f  1 a 3 23 ]
+[v ___ftdiv@f3 f3 `f  1 a 3 21 ]
 "59
-[v ___ftdiv@sign sign `uc  1 a 1 27 ]
-[v ___ftdiv@exp exp `uc  1 a 1 26 ]
-[v ___ftdiv@cntr cntr `uc  1 a 1 22 ]
+[v ___ftdiv@sign sign `uc  1 a 1 25 ]
+[v ___ftdiv@exp exp `uc  1 a 1 24 ]
+[v ___ftdiv@cntr cntr `uc  1 a 1 20 ]
 "56
-[v ___ftdiv@f2 f2 `f  1 p 3 12 ]
-[v ___ftdiv@f1 f1 `f  1 p 3 15 ]
+[v ___ftdiv@f2 f2 `f  1 p 3 11 ]
+[v ___ftdiv@f1 f1 `f  1 p 3 14 ]
 "86
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\float.c
@@ -532,13 +524,13 @@
 [v ___ftpack@sign sign `uc  1 p 1 4 ]
 "86
 } 0
-"97 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\ADC.c
+"97 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\ADC.c
 [v _InternalADC_Read InternalADC_Read `(ui  1 e 2 0 ]
 {
 [v InternalADC_Read@channel channel `uc  1 a 1 wreg ]
 [v InternalADC_Read@channel channel `uc  1 a 1 wreg ]
 "99
-[v InternalADC_Read@channel channel `uc  1 a 1 14 ]
+[v InternalADC_Read@channel channel `uc  1 a 1 13 ]
 "113
 } 0
 "120
@@ -546,23 +538,21 @@
 {
 "123
 } 0
-"106 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"106 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _PS_2_INIT PS_2_INIT `(v  1 e 0 0 ]
 {
 "113
 } 0
-"41 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\Timer.c
+"41 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\Timer.c
 [v _Timer2Init Timer2Init `(v  1 e 0 0 ]
 {
 [v Timer2Init@time time `uc  1 a 1 wreg ]
 "44
-[v Timer2Init@prescaler prescaler `uc  1 a 1 4 ]
-"43
-[v Timer2Init@postscaler postscaler `uc  1 a 1 3 ]
+[v Timer2Init@prescaler prescaler `uc  1 a 1 2 ]
 "41
 [v Timer2Init@time time `uc  1 a 1 wreg ]
-"43
-[v Timer2Init@time time `uc  1 a 1 2 ]
+"44
+[v Timer2Init@time time `uc  1 a 1 0 ]
 "52
 } 0
 "59
@@ -570,7 +560,7 @@
 {
 "62
 } 0
-"1021 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"1021 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _Init_PS_2_Send Init_PS_2_Send `(uc  1 e 1 0 ]
 {
 "1077
@@ -580,15 +570,14 @@
 {
 [v Send_PS2@command command `uc  1 a 1 wreg ]
 "860
-[v Send_PS2@timeout timeout `ui  1 a 2 17 ]
+[v Send_PS2@timeout timeout `ui  1 a 2 13 ]
 "857
-[v Send_PS2@i i `uc  1 a 1 16 ]
+[v Send_PS2@i i `uc  1 a 1 12 ]
 "859
-[v Send_PS2@oddparity oddparity `uc  1 a 1 14 ]
+[v Send_PS2@oddparity oddparity `uc  1 a 1 10 ]
 "856
 [v Send_PS2@command command `uc  1 a 1 wreg ]
-"858
-[v Send_PS2@command command `uc  1 a 1 15 ]
+[v Send_PS2@command command `uc  1 a 1 11 ]
 "999
 } 0
 "222
@@ -624,7 +613,7 @@
 [v PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 wreg ]
 [v PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 wreg ]
 "180
-[v PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 1 ]
+[v PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 0 ]
 "192
 } 0
 "199
@@ -636,24 +625,24 @@
 [v PS_2_ENABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 0 ]
 "215
 } 0
-"103 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\user.c
+"103 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\user.c
 [v _Init_System Init_System `(v  1 e 0 0 ]
 {
 "106
-[v Init_System@Baud Baud `ul  1 a 4 44 ]
+[v Init_System@Baud Baud `ul  1 a 4 42 ]
 "105
-[v Init_System@temp temp `ul  1 a 4 40 ]
+[v Init_System@temp temp `ul  1 a 4 38 ]
 "107
-[v Init_System@Parity Parity `uc  1 a 1 48 ]
+[v Init_System@Parity Parity `uc  1 a 1 46 ]
 "158
 } 0
-"366 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"366 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.c
 [v _UARTstringWAIT UARTstringWAIT `(v  1 e 0 0 ]
 {
-[v UARTstringWAIT@data data `*.26DCCuc  1 p 2 15 ]
+[v UARTstringWAIT@data data `*.26DCCuc  1 p 2 11 ]
 "377
 } 0
-"51 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"51 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v _delayUS delayUS `(v  1 e 0 0 ]
 {
 "53
@@ -664,32 +653,32 @@
 [v delayUS@US US `l  1 p 4 0 ]
 "62
 } 0
-"235 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"235 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.c
 [v _UARTchar UARTchar `(v  1 e 0 0 ]
 {
 [v UARTchar@data data `uc  1 a 1 wreg ]
 [v UARTchar@data data `uc  1 a 1 wreg ]
-[v UARTchar@override override `uc  1 p 1 8 ]
-[v UARTchar@NinethBit_override_data NinethBit_override_data `uc  1 p 1 9 ]
+[v UARTchar@override override `uc  1 p 1 7 ]
+[v UARTchar@NinethBit_override_data NinethBit_override_data `uc  1 p 1 8 ]
 "237
-[v UARTchar@data data `uc  1 a 1 14 ]
+[v UARTchar@data data `uc  1 a 1 10 ]
 "283
 } 0
-"71 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"71 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v _CheckSum_byte CheckSum_byte `(uc  1 e 1 0 ]
 {
 "75
-[v CheckSum_byte@ThisTemp ThisTemp `ui  1 a 2 4 ]
+[v CheckSum_byte@ThisTemp ThisTemp `ui  1 a 2 3 ]
 "73
-[v CheckSum_byte@i i `uc  1 a 1 7 ]
+[v CheckSum_byte@i i `uc  1 a 1 6 ]
 "74
-[v CheckSum_byte@Parity Parity `uc  1 a 1 6 ]
+[v CheckSum_byte@Parity Parity `uc  1 a 1 5 ]
 "71
 [v CheckSum_byte@This This `ui  1 p 2 0 ]
 [v CheckSum_byte@Odd_Even Odd_Even `uc  1 p 1 2 ]
 "101
 } 0
-"187 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.c
+"187 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\FLASH.c
 [v _ReadBaud ReadBaud `(ul  1 e 4 0 ]
 {
 "189
@@ -705,8 +694,8 @@
 "64
 [v ReadFlash_4Byte@temp temp `ul  1 a 4 14 ]
 "62
-[v ReadFlash_4Byte@row row `ui  1 p 2 5 ]
-[v ReadFlash_4Byte@column column `uc  1 p 1 7 ]
+[v ReadFlash_4Byte@row row `ui  1 p 2 6 ]
+[v ReadFlash_4Byte@column column `uc  1 p 1 8 ]
 "68
 } 0
 "43
@@ -716,20 +705,20 @@
 [v ReadFlash_2Byte@column column `uc  1 p 1 2 ]
 "53
 } 0
-"78 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"78 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.c
 [v _InitUART InitUART `(v  1 e 0 0 ]
 {
 "80
-[v InitUART@temp temp `ul  1 a 4 31 ]
+[v InitUART@temp temp `ul  1 a 4 30 ]
 "82
-[v InitUART@spbrg spbrg `ui  1 a 2 27 ]
+[v InitUART@spbrg spbrg `ui  1 a 2 26 ]
 "81
-[v InitUART@config config `uc  1 a 1 30 ]
+[v InitUART@config config `uc  1 a 1 29 ]
 "83
-[v InitUART@baudconfig baudconfig `uc  1 a 1 29 ]
+[v InitUART@baudconfig baudconfig `uc  1 a 1 28 ]
 "78
-[v InitUART@Baud Baud `ul  1 p 4 14 ]
-[v InitUART@parity parity `uc  1 p 1 18 ]
+[v InitUART@Baud Baud `ul  1 p 4 13 ]
+[v InitUART@parity parity `uc  1 p 1 17 ]
 "144
 } 0
 "151
@@ -745,19 +734,19 @@
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "11
-[v ___lldiv@quotient quotient `ul  1 a 4 9 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 8 ]
 "12
-[v ___lldiv@counter counter `uc  1 a 1 13 ]
+[v ___lldiv@counter counter `uc  1 a 1 12 ]
 "6
 [v ___lldiv@divisor divisor `ul  1 p 4 0 ]
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "31
 } 0
-"307 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"307 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.c
 [v _ReadUSART ReadUSART `(uc  1 e 1 0 ]
 {
 "309
-[v ReadUSART@data data `uc  1 a 1 1 ]
+[v ReadUSART@data data `uc  1 a 1 0 ]
 "319
 } 0
 "162
@@ -775,35 +764,35 @@
 {
 "70
 } 0
-"62 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\user.c
+"62 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\user.c
 [v _InitApp InitApp `(v  1 e 0 0 ]
 {
 "95
 } 0
-"40 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\system.c
+"40 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\system.c
 [v _ConfigureOscillator ConfigureOscillator `(v  1 e 0 0 ]
 {
 "45
 } 0
-"73 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\interrupts.c
+"73 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\interrupts.c
 [v _isr isr `II(v  1 e 0 0 ]
 {
 "78
-[v isr@ScanTemp ScanTemp `uc  1 a 1 37 ]
+[v isr@ScanTemp ScanTemp `uc  1 a 1 79 ]
 "75
-[v isr@rx rx `uc  1 a 1 36 ]
+[v isr@rx rx `uc  1 a 1 78 ]
 "77
-[v isr@Rx_Overun Rx_Overun `uc  1 a 1 35 ]
+[v isr@Rx_Overun Rx_Overun `uc  1 a 1 77 ]
 "76
-[v isr@Rx_fault Rx_fault `uc  1 a 1 34 ]
+[v isr@Rx_fault Rx_fault `uc  1 a 1 76 ]
 "210
 } 0
-"59 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\Timer.c
+"59 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\Timer.c
 [v i1_Timer2ON Timer2ON `(v  1 e 0 0 ]
 {
 "62
 } 0
-"199 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"199 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v i1_PS_2_ENABLE_INTERRUPT PS_2_ENABLE_INTERRUPT `(v  1 e 0 0 ]
 {
 [v i1PS_2_ENABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 wreg ]
@@ -812,7 +801,7 @@
 [v i1PS_2_ENABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 0 ]
 "215
 } 0
-"81 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\Timer.c
+"81 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\Timer.c
 [v _Timer2Reset Timer2Reset `(v  1 e 0 0 ]
 {
 "84
@@ -822,7 +811,7 @@
 {
 "73
 } 0
-"1006 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"1006 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _ResendLast ResendLast `(v  1 e 0 0 ]
 {
 "1011
@@ -833,23 +822,23 @@
 [v i1PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 wreg ]
 [v i1PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 wreg ]
 "180
-[v i1PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 1 ]
+[v i1PS_2_DISABLE_INTERRUPT@DATA_CLK DATA_CLK `uc  1 a 1 0 ]
 "192
 } 0
-"146 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"146 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v _READ_CONFIG_PIN READ_CONFIG_PIN `(uc  1 e 1 0 ]
 {
 "156
 } 0
-"257 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"257 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _Process_PS2_ScanCode Process_PS2_ScanCode `(v  1 e 0 0 ]
 {
 "261
-[v Process_PS2_ScanCode@buf buf `[60]uc  1 a 60 0 ]
+[v Process_PS2_ScanCode@buf buf `[60]uc  1 a 60 6 ]
 "259
-[v Process_PS2_ScanCode@temp temp `uc  1 a 1 65 ]
+[v Process_PS2_ScanCode@temp temp `uc  1 a 1 75 ]
 "260
-[v Process_PS2_ScanCode@shortbreak shortbreak `uc  1 a 1 64 ]
+[v Process_PS2_ScanCode@shortbreak shortbreak `uc  1 a 1 74 ]
 "775
 } 0
 "856
@@ -860,7 +849,6 @@
 [v i1Send_PS2@i Send_PS2 `uc  1 a 1 2 ]
 [v i1Send_PS2@oddparity Send_PS2 `uc  1 a 1 0 ]
 [v i1Send_PS2@command command `uc  1 a 1 wreg ]
-"858
 [v i1Send_PS2@command command `uc  1 a 1 1 ]
 "999
 } 0
@@ -891,17 +879,17 @@
 [v i1Clock_TRIS@direction direction `uc  1 a 1 0 ]
 "130
 } 0
-"163 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"163 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v _cleanBuffer cleanBuffer `(v  1 e 0 0 ]
 {
-[v cleanBuffer@data data `*.4uc  1 a 1 wreg ]
+[v cleanBuffer@data data `*.6uc  1 a 1 wreg ]
 "165
 [v cleanBuffer@i i `uc  1 a 1 4 ]
 "163
-[v cleanBuffer@data data `*.4uc  1 a 1 wreg ]
+[v cleanBuffer@data data `*.6uc  1 a 1 wreg ]
 [v cleanBuffer@count count `i  1 p 2 0 ]
 "165
-[v cleanBuffer@data data `*.4uc  1 a 1 3 ]
+[v cleanBuffer@data data `*.6uc  1 a 1 3 ]
 "170
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\Umul32.c
@@ -914,7 +902,7 @@
 [v ___lmul@multiplicand multiplicand `ul  1 p 4 4 ]
 "129
 } 0
-"339 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"339 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.c
 [v _UART_send_break_timed UART_send_break_timed `(v  1 e 0 0 ]
 {
 [v UART_send_break_timed@US US `ui  1 p 2 10 ]
@@ -929,24 +917,24 @@
 [v _SetBaud SetBaud `(v  1 e 0 0 ]
 {
 "387
-[v SetBaud@buf buf `[50]uc  1 a 50 0 ]
+[v SetBaud@buf buf `[50]uc  1 a 50 17 ]
 "390
-[v SetBaud@temp temp `ul  1 a 4 58 ]
-"389
-[v SetBaud@Paritytemp Paritytemp `ul  1 a 4 54 ]
+[v SetBaud@temp temp `ul  1 a 4 75 ]
 "388
-[v SetBaud@Baudtemp Baudtemp `ul  1 a 4 50 ]
+[v SetBaud@Baudtemp Baudtemp `ul  1 a 4 71 ]
+"389
+[v SetBaud@Paritytemp Paritytemp `ul  1 a 4 67 ]
 "391
-[v SetBaud@i i `uc  1 a 1 62 ]
+[v SetBaud@i i `uc  1 a 1 79 ]
 "385
-[v SetBaud@Baud Baud `ul  1 p 4 15 ]
-[v SetBaud@Parity Parity `uc  1 p 1 19 ]
+[v SetBaud@Baud Baud `ul  1 p 4 8 ]
+[v SetBaud@Parity Parity `uc  1 p 1 12 ]
 "442
 } 0
 "366
 [v i1_UARTstringWAIT UARTstringWAIT `(v  1 e 0 0 ]
 {
-[v i1UARTstringWAIT@data data `*.26DCCuc  1 p 2 1 ]
+[v i1UARTstringWAIT@data data `*.26DCCuc  1 p 2 11 ]
 "377
 } 0
 "235
@@ -954,13 +942,13 @@
 {
 [v i1UARTchar@data data `uc  1 a 1 wreg ]
 [v i1UARTchar@data data `uc  1 a 1 wreg ]
-[v i1UARTchar@override override `uc  1 p 1 8 ]
-[v i1UARTchar@NinethBit_override_data NinethBit_override_data `uc  1 p 1 9 ]
+[v i1UARTchar@override override `uc  1 p 1 7 ]
+[v i1UARTchar@NinethBit_override_data NinethBit_override_data `uc  1 p 1 8 ]
 "237
-[v i1UARTchar@data data `uc  1 a 1 0 ]
+[v i1UARTchar@data data `uc  1 a 1 10 ]
 "283
 } 0
-"187 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.c
+"187 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\FLASH.c
 [v i1_ReadBaud ReadBaud `(ul  1 e 4 0 ]
 {
 [v i1ReadBaud@temp ReadBaud `ul  1 a 4 16 ]
@@ -972,11 +960,11 @@
 [v i1_ReadFlash_4Byte ReadFlash_4Byte `(ul  1 e 4 0 ]
 {
 [v i1ReadFlash_4Byte@temp ReadFlash_4Byte `ul  1 a 4 0 ]
-[v i1ReadFlash_4Byte@row row `ui  1 p 2 5 ]
-[v i1ReadFlash_4Byte@column column `uc  1 p 1 7 ]
+[v i1ReadFlash_4Byte@row row `ui  1 p 2 6 ]
+[v i1ReadFlash_4Byte@column column `uc  1 p 1 8 ]
 "68
 } 0
-"78 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\UART.c
+"78 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\UART.c
 [v i1_InitUART InitUART `(v  1 e 0 0 ]
 {
 [v i1InitUART@temp InitUART `ul  1 a 4 17 ]
@@ -999,7 +987,7 @@
 "307
 [v i1_ReadUSART ReadUSART `(uc  1 e 1 0 ]
 {
-[v i1ReadUSART@data ReadUSART `uc  1 a 1 1 ]
+[v i1ReadUSART@data ReadUSART `uc  1 a 1 0 ]
 "319
 } 0
 "162
@@ -1020,29 +1008,26 @@
 "492 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\doprnt.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[v sprintf@sp sp `*.5uc  1 a 1 wreg ]
 "528
 [v sprintf@val val `ul  1 a 4 25 ]
 "504
 [v sprintf@prec prec `i  1 a 2 23 ]
 "499
-[v sprintf@c c `c  1 a 1 31 ]
+[v sprintf@c c `c  1 a 1 30 ]
 "494
 [v sprintf@ap ap `[1]*.4v  1 a 1 29 ]
 "508
 [v sprintf@flag flag `uc  1 a 1 22 ]
 "492
-[v sprintf@sp sp `*.5uc  1 a 1 wreg ]
+[v sprintf@sp sp `*.39uc  1 p 2 8 ]
 [v sprintf@f f `*.25DCCuc  1 p 2 10 ]
-"533
-[v sprintf@sp sp `*.5uc  1 a 1 30 ]
 "1541
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.34\sources\common\lldiv.c
 [v i1___lldiv __lldiv `(ul  1 e 4 0 ]
 {
-[v i1___lldiv@quotient __lldiv `ul  1 a 4 9 ]
-[v i1___lldiv@counter __lldiv `uc  1 a 1 13 ]
+[v i1___lldiv@quotient __lldiv `ul  1 a 4 8 ]
+[v i1___lldiv@counter __lldiv `uc  1 a 1 12 ]
 [v i1___lldiv@divisor divisor `ul  1 p 4 0 ]
 [v i1___lldiv@dividend dividend `ul  1 p 4 4 ]
 "31
@@ -1051,49 +1036,49 @@
 [v ___llmod __llmod `(ul  1 e 4 0 ]
 {
 "11
-[v ___llmod@counter counter `uc  1 a 1 9 ]
+[v ___llmod@counter counter `uc  1 a 1 13 ]
 "6
 [v ___llmod@divisor divisor `ul  1 p 4 0 ]
 [v ___llmod@dividend dividend `ul  1 p 4 4 ]
 "26
 } 0
-"171 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.c
+"171 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\FLASH.c
 [v _WriteBaud WriteBaud `(v  1 e 0 0 ]
 {
 "173
-[v WriteBaud@temp temp `ul  1 a 4 74 ]
+[v WriteBaud@temp temp `ul  1 a 4 4 ]
 "171
-[v WriteBaud@row row `ui  1 p 2 0 ]
-[v WriteBaud@Baud Baud `ul  1 p 4 2 ]
-[v WriteBaud@Parity Parity `uc  1 p 1 6 ]
+[v WriteBaud@row row `ui  1 p 2 73 ]
+[v WriteBaud@Baud Baud `ul  1 p 4 75 ]
+[v WriteBaud@Parity Parity `uc  1 p 1 79 ]
 "178
 } 0
 "112
 [v _WriteFlash_Sequential WriteFlash_Sequential `(v  1 e 0 0 ]
 {
 "121
-[v WriteFlash_Sequential@TempBufL TempBufL `[32]uc  1 a 32 35 ]
+[v WriteFlash_Sequential@TempBufL TempBufL `[32]uc  1 a 32 34 ]
 "120
-[v WriteFlash_Sequential@TempBufH TempBufH `[32]uc  1 a 32 3 ]
+[v WriteFlash_Sequential@TempBufH TempBufH `[32]uc  1 a 32 2 ]
 "118
-[v WriteFlash_Sequential@temp temp `ui  1 a 2 70 ]
+[v WriteFlash_Sequential@temp temp `ui  1 a 2 69 ]
 "117
-[v WriteFlash_Sequential@i i `uc  1 a 1 73 ]
+[v WriteFlash_Sequential@i i `uc  1 a 1 72 ]
 "114
-[v WriteFlash_Sequential@spaces spaces `uc  1 a 1 72 ]
-"119
-[v WriteFlash_Sequential@amountTemp amountTemp `uc  1 a 1 69 ]
-"116
-[v WriteFlash_Sequential@tempL tempL `uc  1 a 1 68 ]
+[v WriteFlash_Sequential@spaces spaces `uc  1 a 1 71 ]
 "115
-[v WriteFlash_Sequential@tempH tempH `uc  1 a 1 67 ]
+[v WriteFlash_Sequential@tempH tempH `uc  1 a 1 68 ]
+"119
+[v WriteFlash_Sequential@amountTemp amountTemp `uc  1 a 1 67 ]
+"116
+[v WriteFlash_Sequential@tempL tempL `uc  1 a 1 66 ]
 "112
 [v WriteFlash_Sequential@row row `ui  1 p 2 10 ]
-[v WriteFlash_Sequential@buffer buffer `*.4ui  1 p 1 12 ]
+[v WriteFlash_Sequential@buffer buffer `*.6ui  1 p 1 12 ]
 [v WriteFlash_Sequential@amount amount `uc  1 p 1 13 ]
 "164
 } 0
-"51 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"51 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v i1_delayUS delayUS `(v  1 e 0 0 ]
 {
 [v i1delayUS@i delayUS `l  1 a 4 5 ]
@@ -1101,7 +1086,7 @@
 [v i1delayUS@US US `l  1 p 4 0 ]
 "62
 } 0
-"43 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\FLASH.c
+"43 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\FLASH.c
 [v i1_ReadFlash_2Byte ReadFlash_2Byte `(ui  1 e 2 0 ]
 {
 [v i1ReadFlash_2Byte@row row `ui  1 p 2 0 ]
@@ -1119,7 +1104,7 @@
 {
 "84
 } 0
-"129 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"129 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v _ISNUMBER ISNUMBER `(uc  1 e 1 0 ]
 {
 [v ISNUMBER@ascii ascii `uc  1 a 1 wreg ]
@@ -1128,7 +1113,7 @@
 [v ISNUMBER@ascii ascii `uc  1 a 1 0 ]
 "139
 } 0
-"801 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"801 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _Decode_Scan_Code_Shift Decode_Scan_Code_Shift `(uc  1 e 1 0 ]
 {
 [v Decode_Scan_Code_Shift@Code Code `uc  1 a 1 wreg ]
@@ -1164,35 +1149,34 @@
 [v Decode_Scan_Code@Code Code `uc  1 a 1 0 ]
 "793
 } 0
-"179 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"179 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v _BufferShiftBack BufferShiftBack `(uc  1 e 1 0 ]
 {
-[v BufferShiftBack@buffer buffer `*.4uc  1 a 1 wreg ]
+[v BufferShiftBack@buffer buffer `*.6uc  1 a 1 wreg ]
 "181
 [v BufferShiftBack@i i `uc  1 a 1 6 ]
 "179
-[v BufferShiftBack@buffer buffer `*.4uc  1 a 1 wreg ]
+[v BufferShiftBack@buffer buffer `*.6uc  1 a 1 wreg ]
 [v BufferShiftBack@shift shift `uc  1 p 1 0 ]
 [v BufferShiftBack@size size `uc  1 p 1 1 ]
-"181
-[v BufferShiftBack@buffer buffer `*.4uc  1 a 1 7 ]
+[v BufferShiftBack@buffer buffer `*.6uc  1 a 1 7 ]
 "198
 } 0
-"1115 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\PS_2.c
+"1115 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\PS_2.c
 [v _PS2RawToScan PS2RawToScan `(ui  1 e 2 0 ]
 {
 "1117
-[v PS2RawToScan@temp temp `ui  1 a 2 10 ]
+[v PS2RawToScan@temp temp `ui  1 a 2 0 ]
 "1115
-[v PS2RawToScan@Raw Raw `ui  1 p 2 8 ]
+[v PS2RawToScan@Raw Raw `ui  1 p 2 7 ]
 "1132
 } 0
-"71 C:\Users\dwhitfield.TDY\Documents\GitHub\PS2_to_UART_PIC\MISC.c
+"71 C:\Users\dwhitfield\Documents\GitHub\PIC_PS2_to_UART\MISC.c
 [v i1_CheckSum_byte CheckSum_byte `(uc  1 e 1 0 ]
 {
-[v i1CheckSum_byte@ThisTemp CheckSum_byte `ui  1 a 2 4 ]
-[v i1CheckSum_byte@i CheckSum_byte `uc  1 a 1 7 ]
-[v i1CheckSum_byte@Parity CheckSum_byte `uc  1 a 1 6 ]
+[v i1CheckSum_byte@ThisTemp CheckSum_byte `ui  1 a 2 3 ]
+[v i1CheckSum_byte@i CheckSum_byte `uc  1 a 1 6 ]
+[v i1CheckSum_byte@Parity CheckSum_byte `uc  1 a 1 5 ]
 [v i1CheckSum_byte@This This `ui  1 p 2 0 ]
 [v i1CheckSum_byte@Odd_Even Odd_Even `uc  1 p 1 2 ]
 "101
@@ -1202,10 +1186,10 @@
 {
 [v Reverse_Byte@This This `uc  1 a 1 wreg ]
 "110
-[v Reverse_Byte@temp temp `uc  1 a 1 2 ]
+[v Reverse_Byte@temp temp `uc  1 a 1 1 ]
 "108
 [v Reverse_Byte@This This `uc  1 a 1 wreg ]
 "110
-[v Reverse_Byte@This This `uc  1 a 1 3 ]
+[v Reverse_Byte@This This `uc  1 a 1 2 ]
 "122
 } 0

@@ -6347,7 +6347,7 @@ extern int printf(const char *, ...);
 # 55 "system.h"
 void ConfigureOscillator(void);
 
-# 146 "user.h"
+# 159 "user.h"
 void InitApp(void);
 void Init_System (void);
 
@@ -6379,7 +6379,7 @@ const unsigned char EvenParityMSG[] = {" with Even parity bit"};
 const unsigned char MarkParityMSG[] = {" with Mark bit"};
 const unsigned char SpaceParityMSG[] = {" with Space bit"};
 
-# 56 "MISC.h"
+# 59 "MISC.h"
 void delayUS(long US);
 void cleanBuffer(unsigned char* data, int count);
 unsigned char CheckSum_byte(unsigned int This, unsigned char Odd_Even);
@@ -6733,3 +6733,4 @@ UARTstringWAIT(NoParityMSG);
 UARTstringWAIT("\r\n");
 delayUS(15000);
 }
+

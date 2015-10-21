@@ -6,24 +6,26 @@
  * Date         Revision    Comments
  * MM/DD/YY
  * --------     ---------   ----------------------------------------------------
- * 01/09/15     1.0C_DW0a   Changed frequency to 32MHz.
- *                          Commented out code to allow it to fit in 16F1704.
- * 01/15/15     1.0D_DW0a   Changed MCU to the PIC16f1705 which has 4k more
- *                            memory.
- *                          Added code to change/add a parity bit.
- *                          Added UART receive functionality.
- *                          Enabled pull-up of rx pin.
- *                          Detect break character functionality.
- * 01/15/15     1.0E_DW0a   Added ADC to read value of battery.
- * 01/20/15     1.0F_DW0a   Bug fixes.
- * 01/20/15     1.1         Changed name from 1.0F_DW0a.
- *                          Tagged.
- * 01/20/15     1.1_DW0a
- *                          Add code for Version number.
- *                          Change BAUD flash address to 0x1800.
- *                          Protect code with code protect bit enabled in
- *                            configuration bits.
- *                          Fixed bugs with shift key and Caps lock key.
+ * 10/21/15     7.3_DW0a    Changed version number to match new scheme.
+ * 03/11/15     1.3_DW0a    Added wait to let previous character send before
+ * 03/11/15     1.3_DW0a    Added wait to let previous character send before
+ *                            before refilling the buffer.
+ *                          Delete the check keyboard routine.
+ *                          Add code for print screen button rejection.
+ *                          Momentarily turn on all keyboard leds at power on.
+ *                          Make the pause/break key send a break.
+ *                          Fix functionality for control key and alt key.
+ *                          Define out the config code when product is an
+ *                            Arduino.
+ *                          Decreased timeout for keypress to increase
+ *                            throughput.
+ *                          Separated long break when 'end' is pressed and short
+ *                            and long break when 'pause' is pressed.
+ *                          Add line feed when f3 is pressed with a rs232
+ *                            system.
+ *                          Fixed UART recieve overrun error.
+ *                          Fixed UART standalone build.
+ *                          Dropped minimum voltage to 5.25 V.
  * 01/26/15     1.2         Changed name from 1.1_DW0a.
  *                          Add log comments.
  *                          Add function comments.
@@ -45,24 +47,24 @@
  *                          Add code for 'Config' Pin on RS232 system.
  *                          Use device macro to define the use of pin RC0.
  *                          Tagged
- * 03/11/15     1.3_DW0a     Added wait to let previous character send before
- *                            before refilling the buffer.
- *                          Delete the check keyboard routine.
- *                          Add code for print screen button rejection.
- *                          Momentarily turn on all keyboard leds at power on.
- *                          Make the pause/break key send a break.
- *                          Fix functionality for control key and alt key.
- *                          Define out the config code when product is an
- *                            Arduino.
- *                          Decreased timeout for keypress to increase
- *                            throughput.
- *                          Separated long break when 'end' is pressed and short
- *                            and long break when 'pause' is pressed.
- *                          Add line feed when f3 is pressed with a rs232
- *                            system.
- *                          Fixed UART recieve overrun error.
- *                          Fixed UART standalone build.
- *                          Dropped minimum voltage to 5.25 V.
+ * 01/20/15     1.1_DW0a    Changed version name.
+ *                          Add code for Version number.
+ *                          Change BAUD flash address to 0x1800.
+ *                          Protect code with code protect bit enabled in
+ *                            configuration bits.
+ *                          Fixed bugs with shift key and Caps lock key.
+ *                          Detect break character functionality.
+ * 01/20/15     1.1         Changed name from 1.0F_DW0a.
+ * 01/20/15     1.0F_DW0a   Bug fixes.
+ * 01/15/15     1.0E_DW0a   Added ADC to read value of battery.
+ *                          Tagged.
+ * 01/15/15     1.0D_DW0a   Changed MCU to the PIC16f1705 which has 4k more
+ *                            memory.
+ *                          Added code to change/add a parity bit.
+ *                          Added UART receive functionality.
+ *                          Enabled pull-up of rx pin.
+ * 01/09/15     1.0C_DW0a   Changed frequency to 32MHz.
+ *                          Commented out code to allow it to fit in 16F1704.
 /******************************************************************************/
 
 /******************************************************************************/
