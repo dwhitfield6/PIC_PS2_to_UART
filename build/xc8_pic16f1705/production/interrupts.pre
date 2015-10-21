@@ -6865,7 +6865,7 @@ unsigned char Rx_fault =0;
 unsigned char Rx_Overun = 0;
 unsigned char ScanTemp;
 
-if(IOCAF & 0b00100000)
+if((IOCAF & 0b00100000) && (IOCAN & 0b00100000))
 {
 
 PS_2_DISABLE_INTERRUPT(0b00100000);
@@ -6907,12 +6907,12 @@ Timer2ON();
 IOCAF &= ~0b00100000;
 PS_2_ENABLE_INTERRUPT(0b00100000);
 }
-else if (IOCAF & 0b00010000)
+else if ((IOCAF & 0b00010000) && (IOCAN & 0b00100000))
 {
 PS_2_DISABLE_INTERRUPT(0b00010000);
 IOCAF &= ~0b00010000;
 }
-else if (PIR1bits.RCIF)
+else if (PIR1bits.RCIF && PIE1bits.RCIE)
 {
 
 PIE1bits.RCIE = 0;
@@ -6958,7 +6958,7 @@ UARTchar(rx, 1 ,RC1STAbits.RX9D);
 PIR1bits.RCIF = 0;
 PIE1bits.RCIE = 1;
 }
-else if(PIR1bits.TMR2IF)
+else if(PIR1bits.TMR2IF && PIE1bits.TMR2IE)
 {
 
 PIE1bits.TMR2IE = 0;

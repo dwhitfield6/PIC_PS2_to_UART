@@ -6389,7 +6389,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Version `Cuc ~T0 @X0 -> 0 `x e ]
 [i _Version
 :U ..
--> 49 `c
+-> 55 `c
 -> 46 `c
 -> 51 `c
 -> 95 `c
@@ -6400,7 +6400,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[; ;main.c: 107: const unsigned char Version[] = {"1.3_DW0a"};
+[; ;main.c: 107: const unsigned char Version[] = {"7.3_DW0a"};
 "116
 [v _SinLEDtimer `ui ~T0 @X0 1 e ]
 [i _SinLEDtimer

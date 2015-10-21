@@ -77,7 +77,7 @@ void interrupt isr(void)
     unsigned char Rx_Overun = 0;
     unsigned char ScanTemp;
 
-    if(IOCAF & CLK)
+    if((IOCAF & CLK) && (IOCAN & CLK))
     {
         //Change on PS_2 clk pin
         PS_2_DISABLE_INTERRUPT(CLK);
@@ -119,12 +119,12 @@ void interrupt isr(void)
         IOCAF &= ~CLK; /* Clear the flag */
         PS_2_ENABLE_INTERRUPT(CLK);
     }
-    else if (IOCAF & DATA)
+    else if ((IOCAF & DATA) && (IOCAN & CLK))
     {
         PS_2_DISABLE_INTERRUPT(DATA);
         IOCAF &= ~DATA; /* Clear the flag */
     }
-    else if (PIR1bits.RCIF)
+    else if (PIR1bits.RCIF && PIE1bits.RCIE)
     {
         //rx interrupt
         PIE1bits.RCIE = 0;
@@ -183,7 +183,7 @@ void interrupt isr(void)
         PIR1bits.RCIF = 0;
         PIE1bits.RCIE = 1;
     }
-    else if(PIR1bits.TMR2IF)
+    else if(PIR1bits.TMR2IF && PIE1bits.TMR2IE)
     {
         //Not used in this version
         PIE1bits.TMR2IE = 0;//disable timer 2 interupt

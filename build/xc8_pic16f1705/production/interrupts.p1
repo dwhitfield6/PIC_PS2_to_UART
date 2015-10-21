@@ -1,6 +1,8 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "6091 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
 [v _IOCAF `Vuc ~T0 @X0 0 e@915 ]
+"6042
+[v _IOCAN `Vuc ~T0 @X0 0 e@914 ]
 "103 PS_2.h
 [v _PS_2_DISABLE_INTERRUPT `(v ~T0 @X0 0 ef1`uc ]
 "1092 C:\Program Files (x86)\Microchip\xc8\v1.34\include\pic16f1705.h
@@ -6444,9 +6446,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "78
 [v _ScanTemp `uc ~T0 @X0 1 a ]
 [; ;interrupts.c: 78: unsigned char ScanTemp;
-[; ;interrupts.c: 80: if(IOCAF & 0b00100000)
+[; ;interrupts.c: 80: if((IOCAF & 0b00100000) && (IOCAN & 0b00100000))
 "80
-[e $ ! != & -> _IOCAF `i -> 32 `i -> 0 `i 588  ]
+[e $ ! && != & -> _IOCAF `i -> 32 `i -> 0 `i != & -> _IOCAN `i -> 32 `i -> 0 `i 588  ]
 [; ;interrupts.c: 81: {
 "81
 {
@@ -6566,8 +6568,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 594  ]
 "122
 [e :U 588 ]
-[; ;interrupts.c: 122: else if (IOCAF & 0b00010000)
-[e $ ! != & -> _IOCAF `i -> 16 `i -> 0 `i 595  ]
+[; ;interrupts.c: 122: else if ((IOCAF & 0b00010000) && (IOCAN & 0b00100000))
+[e $ ! && != & -> _IOCAF `i -> 16 `i -> 0 `i != & -> _IOCAN `i -> 32 `i -> 0 `i 595  ]
 [; ;interrupts.c: 123: {
 "123
 {
@@ -6583,8 +6585,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 596  ]
 "127
 [e :U 595 ]
-[; ;interrupts.c: 127: else if (PIR1bits.RCIF)
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 597  ]
+[; ;interrupts.c: 127: else if (PIR1bits.RCIF && PIE1bits.RCIE)
+[e $ ! && != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i != -> . . _PIE1bits 0 5 `i -> -> -> 0 `i `Vuc `i 597  ]
 [; ;interrupts.c: 128: {
 "128
 {
@@ -6706,8 +6708,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 605  ]
 "186
 [e :U 597 ]
-[; ;interrupts.c: 186: else if(PIR1bits.TMR2IF)
-[e $ ! != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i 606  ]
+[; ;interrupts.c: 186: else if(PIR1bits.TMR2IF && PIE1bits.TMR2IE)
+[e $ ! && != -> . . _PIR1bits 0 1 `i -> -> -> 0 `i `Vuc `i != -> . . _PIE1bits 0 1 `i -> -> -> 0 `i `Vuc `i 606  ]
 [; ;interrupts.c: 187: {
 "187
 {

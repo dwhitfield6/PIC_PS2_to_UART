@@ -6853,7 +6853,7 @@ void ShutDown_ADC(void);
 const unsigned char VoltageMSG[] = {"Voltage too "};
 
 # 107 "main.c"
-const unsigned char Version[] = {"1.3_DW0a"};
+const unsigned char Version[] = {"7.3_DW0a"};
 
 # 116
 unsigned int SinLEDtimer =0;
